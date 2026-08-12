@@ -1,0 +1,296 @@
+<section class="benefits-tea-section page-width section">
+
+  {% comment %} <div class="view-all-top">
+    <a href="/collections/all" class="view-all-link">View All Products →</a>
+  </div> {% endcomment %}
+
+
+
+  <div class="benefits-header">
+    <h2>{{ section.settings.heading }}</h2>
+    <p>{{ section.settings.subtext }}</p>
+  </div>
+
+  <div class="benefits-wrapper">
+
+    <!-- LEFT -->
+    <div class="benefits-side">
+      {% for block in section.blocks %}
+        {% if block.settings.position == 'left' %}
+          <div class="benefit-item221">
+            {% if block.settings.icon %}
+              <div class="icon-wrap">
+                <img src="{{ block.settings.icon | image_url: width: 50 }}"  alt="tea">
+              </div>
+            {% endif %}
+            <div>
+             <h4 class="benefits-4">{{ block.settings.title }}</h4>
+              <p class="benefits-p">{{ block.settings.desc }}</p>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <!-- CENTER -->
+    <div class="benefits-center">
+      {% if section.settings.center_img %}
+        <img src="{{ section.settings.center_img | image_url: width: 500 }}"  alt="tea">
+      {% endif %}
+    </div>
+
+    <!-- RIGHT -->
+    <div class="benefits-side">
+      {% for block in section.blocks %}
+        {% if block.settings.position == 'right' %}
+          <div class="benefit-item221">
+            {% if block.settings.icon %}
+              <div class="icon-wrap">
+                <img src="{{ block.settings.icon | image_url: width: 50 }}" alt="tea">
+              </div>
+            {% endif %}
+            <div>
+              <h4 class="benefits-4">{{ block.settings.title }}</h4>
+              <p class="benefits-p">{{ block.settings.desc }}</p>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .benefits-header h2 {
+  font-size: clamp(24px, 4vw, 40px);
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+
+.benefits-header p {
+  font-size: clamp(14px, 1.5vw, 16px);
+  color: #666;
+}
+
+.benefits-4 {
+  font-size: clamp(16px, 2vw, 22px);
+  margin: 10px 0 0;
+  font-weight: 600;
+}
+
+.benefits-p {
+  font-size: clamp(13px, 1.5vw, 15px);
+  margin: 8px 0 0;
+  color: #555;
+  line-height: 1.5;
+}
+@media (max-width: 768px) {
+  .benefits-header {
+    margin-bottom: 30px;
+  }
+
+  .benefit-item221 {
+    gap: 10px;
+  }
+
+  .icon-wrap {
+    width: 50px;
+    height: 50px;
+  }
+
+  .icon-wrap img {
+    width: 30px;
+    height: 30px;
+  }
+}
+    .benefits-4{
+        margin:10px 0px 0px 0px;
+    }
+    .benefits-p{
+    margin:10px 0px 0px 0px;
+    }
+.benefits-tea-section {
+  padding: 60px 0;
+  background: #fcfaf7 !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.view-all-top {
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+.view-all-link {
+  color: #4caf50;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.benefits-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.benefits-header h2 {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.benefits-header p {
+  color: #666;
+}
+
+.benefits-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.benefits-side {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.benefit-item221 {
+  display: flex;
+  gap: 15px;
+  align-items: flex-start;
+}
+
+.icon-wrap {
+  width: 105px;
+  height: 60px;
+  background: #e8f5eb;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.icon-wrap img {
+  width: 45px;
+  height: 45px;
+  transition: transform 0.3s ease;
+}
+
+/* Hover Effect */
+.benefit-item221:hover .icon-wrap {
+  transform: scale(1.1);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.benefit-item221:hover .icon-wrap img {
+  transform: scale(1.05);
+}
+
+.benefits-center img {
+    width: 100%;
+    border-radius: 10px;
+    height: 100%;
+    object-fit: cover;
+}
+.benefits-center {
+    height: 500px;
+}
+.floating {
+  position: absolute;
+  animation: float 4s ease-in-out infinite;
+}
+
+.top-left {
+    top: 20px;
+    left: 5%;
+    width: 200px;
+}
+.bottom-right {
+    bottom: 20px;
+    right: 5%;
+    width: 200px;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+  100% { transform: translateY(0); }
+}
+
+@media(max-width: 768px){
+  .benefits-wrapper {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Benefits Tea",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Your Exercise Boost with Benefits"
+    },
+    {
+      "type": "textarea",
+      "id": "subtext",
+      "label": "Subtext",
+      "default": "Our blends don’t sacrifice well-being for function."
+    },
+ 
+    {
+      "type": "image_picker",
+      "id": "center_img",
+      "label": "Center Image"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Benefit Item",
+      "settings": [
+        {
+          "type": "select",
+          "id": "position",
+          "label": "Position",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "right", "label": "Right" }
+          ],
+          "default": "left"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "desc",
+          "label": "Description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Benefits Tea",
+      "blocks": [
+        { "type": "benefit", "settings": { "position": "left", "title": "Energy Boost" } },
+        { "type": "benefit", "settings": { "position": "right", "title": "Healthy Body" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

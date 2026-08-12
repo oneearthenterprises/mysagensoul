@@ -1,0 +1,195 @@
+{% comment %} sections/shop-by-concern.liquid {% endcomment %}
+
+<section class="shop-by-concern section" style="padding: {{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px;">
+  <div class="page-width">
+    {% if section.settings.title != blank %}
+      <h2 class="shop-by-concern__title">{{ section.settings.title }}</h2>
+    {% endif %}
+
+    <div class="shop-by-concern__tabs">
+      {% for block in section.blocks %}
+        {%- assign url = '' -%}
+
+        {% if block.settings.link_type == 'collection' %}
+          {% if block.settings.collection != blank %}
+            {%- assign url = block.settings.collection.url -%}
+          {% endif %}
+
+        {% elsif block.settings.link_type == 'product' %}
+          {% if block.settings.product != blank %}
+            {%- assign url = block.settings.product.url -%}
+          {% endif %}
+
+        {% elsif block.settings.link_type == 'url' %}
+          {% if block.settings.custom_url != blank %}
+            {%- assign url = block.settings.custom_url -%}
+          {% endif %}
+        {% endif %}
+
+        <a
+          href="{{ url }}"
+          class="shop-by-concern__tab{% if forloop.first %} shop-by-concern__tab--active{% endif %}"
+          {{ block.shopify_attributes }}
+        >
+          {{ block.settings.label }}
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+
+@media (max-width: 767px) {
+
+    .shop-by-concern__tab {
+
+  
+    width: 48%;
+    display: flex;
+  
+}
+}
+
+.shop-by-concern__title {
+  text-align: center;
+  font-size: clamp(20px, 4vw, 32px);
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 25px;
+}
+
+.shop-by-concern__tabs {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.shop-by-concern__tab {
+  padding: 10px;
+  border: 1px solid #d9d9d9;
+  border-radius: 8px;
+  background: #fff;
+  color: #222;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  min-width: 130px;
+  text-align: center;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.shop-by-concern__tab:hover {
+  background: #111;
+  color: #fff;
+  border-color: #111;
+}
+
+/* Mobile Scroll Layout */
+@media screen and (max-width: 767px) {
+
+  .shop-by-concern__tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    justify-content: flex-start;
+    padding-bottom: 8px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .shop-by-concern__tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .shop-by-concern__tab {
+    min-width: max-content;
+    white-space: nowrap;
+    padding: 10px;
+    justify-content: center;
+  }
+}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Shop by concern",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Shop by concern"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0, "max": 100, "step": 4, "default": 36, "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0, "max": 100, "step": 4, "default": 36, "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tab",
+      "name": "Tab",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Button label",
+          "default": "Hibiscus Flower"
+        },
+        {
+          "type": "select",
+          "id": "link_type",
+          "label": "Link to",
+          "options": [
+            { "value": "collection", "label": "Collection" },
+            { "value": "product",    "label": "Product" },
+            { "value": "url",        "label": "Custom URL" }
+          ],
+          "default": "collection"
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection (if linking to a collection)"
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product (if linking to a product)"
+        },
+        {
+          "type": "url",
+          "id": "custom_url",
+          "label": "Custom URL (if using a custom link)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shop by concern",
+      "blocks": [
+        { "type": "tab", "settings": { "label": "Hibiscus Flower", "link_type": "collection" } },
+        { "type": "tab", "settings": { "label": "Heart",           "link_type": "collection" } },
+        { "type": "tab", "settings": { "label": "Black Tea",       "link_type": "collection" } },
+        { "type": "tab", "settings": { "label": "Glow",            "link_type": "collection" } },
+        { "type": "tab", "settings": { "label": "Focus",           "link_type": "collection" } },
+        { "type": "tab", "settings": { "label": "Detox",           "link_type": "collection" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

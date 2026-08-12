@@ -1,0 +1,346 @@
+<section class="ss-brewing-guide">
+  <div class="page-width section">
+
+    <h2 class="ss-title">{{ section.settings.heading }}</h2>
+
+    <div class="ss-grid">
+
+      <!-- Left Image -->
+      <div class="ss-image">
+        {% if section.settings.image != blank %}
+          <img
+            src="{{ section.settings.image | image_url: width: 1200 }}"
+            alt="{{ section.settings.heading }}"
+                      loading="lazy" width="" height="">
+        {% endif %}
+      </div>
+
+      <!-- Right Content -->
+      <div class="ss-content">
+
+        <div class="ss-top">
+
+          <!-- HOW TO USE -->
+          <div class="ss-column">
+            <h3>{{ section.settings.use_title }}</h3>
+
+            {% for block in section.blocks %}
+              {% if block.type == 'step' %}
+              <div class="ss-step">
+
+                <div class="ss-icon">
+                  {% if block.settings.icon != blank %}
+                    <img
+                      src="{{ block.settings.icon | image_url: width: 80 }}"
+                      alt=""
+                      loading="lazy" width="" height="">
+                  {% endif %}
+                </div>
+
+                <span>{{ block.settings.text }}</span>
+
+              </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+
+          <!-- WHEN TO USE -->
+          <div class="ss-column">
+            <h3>{{ section.settings.when_title }}</h3>
+
+            <div class="ss-description">
+              {{ section.settings.when_text }}
+            </div>
+
+            {% if section.settings.button_text != blank %}
+              <a href="{{ section.settings.button_link }}" class="ss-read">
+                {{ section.settings.button_text }}
+              </a>
+            {% endif %}
+          </div>
+
+        </div>
+
+        <!-- Chef Secret -->
+
+        <div class="ss-secret">
+
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <!-- Group applying global styles for the strokes -->
+  <g fill="none" stroke="#000000" stroke-width="18" stroke-linecap="round" stroke-linejoin="round">
+    
+    <!-- Left outer puff -->
+    <path d="M 160 260 C 90 260 90 140 160 160"></path>
+    
+    <!-- Top-left puff -->
+    <path d="M 150 170 C 140 60 250 60 260 140"></path>
+    
+    <!-- Top-right puff -->
+    <path d="M 240 140 C 260 40 380 60 370 170"></path>
+    
+    <!-- Right outer puff -->
+    <path d="M 360 160 C 430 140 430 260 360 260"></path>
+    
+    <!-- Left vertical base line -->
+    <path d="M 155 255 Q 145 340 120 420"></path>
+    
+    <!-- Right vertical base line -->
+    <path d="M 365 255 Q 375 340 380 400"></path>
+    
+    <!-- Upper bottom swoosh -->
+    <path d="M 200 365 Q 300 360 380 400"></path>
+    
+    <!-- Lower bottom swoosh -->
+    <path d="M 120 420 Q 250 380 300 420"></path>
+    
+  </g>
+</svg>
+
+     
+
+          <div>
+
+            <h3>{{ section.settings.secret_title }}</h3>
+
+            <p>{{ section.settings.secret_text }}</p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+
+.ss-brewing-guide{
+padding:80px 0;
+}
+
+.ss-title{
+font-size:52px;
+font-weight:700;
+text-align:center;
+margin-bottom:50px;
+}
+
+.ss-grid{
+display:grid;
+grid-template-columns:1.2fr 1fr;
+gap:50px;
+align-items:flex-start;
+}
+
+.ss-image img{
+width:100%;
+display:block;
+border-radius:22px;
+}
+
+.ss-top{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:40px;
+margin-bottom:35px;
+}
+
+.ss-column h3{
+font-size:32px;
+font-weight:700;
+margin-bottom:25px;
+}
+
+.ss-step{
+display:flex;
+align-items:center;
+gap:12px;
+margin-bottom:12px;
+}
+
+.ss-icon{
+width:42px;
+height:42px;
+border-radius:50%;
+background:#F7EEE7;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-shrink:0;
+}
+
+{% comment %} .ss-icon img{
+width:60px;
+height:60px;
+object-fit:contain;
+} {% endcomment %}
+
+.ss-step span{
+font-size:16px;
+}
+
+.ss-description{
+font-size:18px;
+line-height:1.8;
+color:#444;
+}
+
+.ss-read{
+display:inline-block;
+margin-top:20px;
+font-weight:700;
+text-decoration:none;
+color:#000;
+}
+
+.ss-secret{
+margin-top:30px;
+background:#F7EEE7;
+padding:35px;
+border-radius:24px;
+display:flex;
+gap:25px;
+align-items:flex-start;
+    position: relative;
+}
+.ss-secret svg {
+    position: absolute;
+    width: 50px;
+    left: 0;
+    top: -100px;
+    rotate: -21deg;
+}
+
+
+.ss-secret h3{
+margin-bottom:15px;
+font-size:32px;
+}
+
+.ss-secret p{
+font-size:18px;
+line-height:1.8;
+margin:0;
+}
+
+@media(max-width:990px){
+
+.ss-grid{
+grid-template-columns:1fr;
+}
+
+.ss-top{
+grid-template-columns:1fr;
+}
+
+.ss-title{
+font-size:38px;
+}
+
+}
+
+</style>
+
+{% schema %}
+{
+  "name": "Brewing Guide",
+  "settings": [
+    {
+      "type":"text",
+      "id":"heading",
+      "label":"Heading",
+      "default":"How to Brew the Perfect Cup"
+    },
+    {
+      "type":"image_picker",
+      "id":"image",
+      "label":"Image"
+    },
+    {
+      "type":"text",
+      "id":"use_title",
+      "label":"How To Use Title",
+      "default":"HOW TO USE"
+    },
+    {
+      "type":"text",
+      "id":"when_title",
+      "label":"When To Use Title",
+      "default":"WHEN TO USE"
+    },
+    {
+      "type":"richtext",
+      "id":"when_text",
+      "label":"When To Use Text",
+      "default":"<p>Sip 2–3 cups daily — enjoy one warm cup in the morning, another in the afternoon, and one in the evening for a soothing wellness ritual.</p>"
+    },
+    {
+      "type":"text",
+      "id":"button_text",
+      "label":"Button Text",
+      "default":"Read More →"
+    },
+    {
+      "type":"url",
+      "id":"button_link",
+      "label":"Button Link"
+    },
+    {
+      "type":"text",
+      "id":"secret_title",
+      "label":"Chef Secret Title",
+      "default":"THE CHEF'S SECRET"
+    },
+    {
+      "type":"textarea",
+      "id":"secret_text",
+      "label":"Chef Secret Text",
+      "default":"Brew double strength, add a splash of oat milk, a pinch of turmeric and a squeeze of lemon for a delicious herbal latte."
+    }
+  ],
+  "blocks":[
+    {
+      "type":"step",
+      "name":"Step",
+      "settings":[
+        {
+          "type":"image_picker",
+          "id":"icon",
+          "label":"Icon"
+        },
+        {
+          "type":"text",
+          "id":"text",
+          "label":"Text",
+          "default":"Add a Tea Bag"
+        }
+      ]
+    }
+  ],
+  "presets":[
+    {
+      "name":"Brewing Guide",
+      "blocks":[
+        {
+          "type":"step"
+        },
+        {
+          "type":"step"
+        },
+        {
+          "type":"step"
+        },
+        {
+          "type":"step"
+        },
+        {
+          "type":"step"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

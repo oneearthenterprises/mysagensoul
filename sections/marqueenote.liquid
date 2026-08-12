@@ -1,0 +1,203 @@
+{% comment %}
+  Marquee Note - Full Section (All in One)
+{% endcomment %}
+
+<div class="marquee-note"
+  style="
+    --speed: {{ section.settings.speed }}s;
+    --bg: {{ section.settings.bg }};
+    --text: {{ section.settings.text_color }};
+  "
+  data-direction="{{ section.settings.direction }}"
+>
+
+  <div class="marquee-note__track">
+
+    {% for block in section.blocks %}
+      <div class="marquee-note__item">
+
+        {% if block.settings.icon_image != blank %}
+          <img 
+            src="{{ block.settings.icon_image | image_url: width: 2000 }}" 
+            class="marquee-note__icon"
+            alt="icon" width="2000" height="2000"
+          >
+        {% elsif block.settings.icon != blank %}
+          <span class="marquee-note__emoji">{{ block.settings.icon }}</span>
+        {% endif %}
+
+        <span class="marquee-note__text">
+          {{ block.settings.text }}
+        </span>
+
+      </div>
+    {% endfor %}
+
+    {% comment %} Duplicate for infinite loop {% endcomment %}
+    {% for block in section.blocks %}
+      <div class="marquee-note__item">
+
+        {% if block.settings.icon_image != blank %}
+          <img 
+            src="{{ block.settings.icon_image | image_url: width: 2000 }}" 
+            class="marquee-note__icon"
+            alt="icon" width="2000" height="2000"
+          >
+        {% elsif block.settings.icon != blank %}
+          <span class="marquee-note__emoji">{{ block.settings.icon }}</span>
+        {% endif %}
+
+        <span class="marquee-note__text">
+          {{ block.settings.text }}
+        </span>
+
+      </div>
+    {% endfor %}
+
+  </div>
+</div>
+
+<style>
+.marquee-note {
+    width: 100%;
+    overflow: hidden;
+    background: var(--bg);
+    color: var(--text);
+    padding: 10px 0;
+    height: 50px;
+    display: flex;
+}
+
+.marquee-note__track{
+  display: inline-flex;
+  gap: 15px;
+  animation: marquee-left var(--speed) linear infinite;
+}
+
+.marquee-note[data-direction="right"] .marquee-note__track{
+  animation: marquee-right var(--speed) linear infinite;
+}
+
+.marquee-note__item{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.marquee-note__icon{
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+
+.marquee-note__emoji{
+  font-size: 16px;
+}
+
+.marquee-note__text{
+  letter-spacing: 0.5px;
+}
+
+/* Pause on hover */
+.marquee-note:hover .marquee-note__track{
+  animation-play-state: paused;
+}
+
+/* Animations */
+@keyframes marquee-left{
+  0%{ transform: translateX(0); }
+  100%{ transform: translateX(-50%); }
+}
+
+@keyframes marquee-right{
+  0%{ transform: translateX(-50%); }
+  100%{ transform: translateX(0); }
+}
+
+/* Mobile */
+@media(max-width:768px){
+  .marquee-note__track{
+    gap: 30px;
+  }
+
+  .marquee-note__item{
+    font-size: 12px;
+  }
+
+  .marquee-note__icon{
+    width: 14px;
+    height: 14px;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Marquee Note",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg",
+      "label": "Background Color",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "select",
+      "id": "direction",
+      "label": "Scroll Direction",
+      "options": [
+        { "value": "left", "label": "Left to Right" },
+        { "value": "right", "label": "Right to Left" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "label": "Speed (Seconds)",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Marquee Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon_image",
+          "label": "Icon Image"
+        },
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Emoji (Fallback)",
+          "default": "|"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "“Enhance your cup with a drizzle of raw honey or a squeeze of fresh lemon — both deepen the hibiscus bloom and add a gentle warmth that lingers long after the last sip.”"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Marquee Note"
+    }
+  ]
+}
+{% endschema %} 

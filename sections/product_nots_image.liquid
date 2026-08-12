@@ -1,0 +1,121 @@
+{% assign notes = product.metafields.custom.productnotes.value %}
+
+{% if notes %}
+<section class="product-notes-section">
+  <div class="page-width">
+    <div class="product-notes-wrapper">
+
+      <span class="note-badge">
+        A Note on Wellness
+      </span>
+
+      <div class="product-notes-content">
+
+        <img
+          class="quote-icon quote-left"
+          src="https://cdn.shopify.com/s/files/1/0674/9972/0775/files/icons8-quotes-50.png?v=1780551547"
+          alt="Quote"
+        >
+
+        {{ notes.description | metafield_tag }}
+
+        <img
+          class="quote-icon quote-right"
+          src="https://cdn.shopify.com/s/files/1/0674/9972/0775/files/icons8-quotes-50.png?v=1780551547"
+          alt="Quote"
+        >
+
+      </div>
+
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<style>
+.product-notes-section{
+  padding:60px 20px;
+  background:#f7f8f6;
+}
+
+.product-notes-wrapper{
+
+  margin:0 auto;
+  text-align:center;
+}
+
+.note-badge{
+  display:inline-block;
+  padding:8px 16px;
+  background:#b8d49a;
+  color:#4f6f5f;
+  border-radius:4px;
+  font-size:14px;
+  font-weight:600;
+  margin-bottom:35px;
+}
+
+.product-notes-content{
+  position:relative;
+  max-width:900px;
+  margin:0 auto;
+  padding:0 90px;
+  color:#4f6f5f;
+  font-size:18px;
+  line-height:1.9;
+  text-align:center;
+}
+
+.product-notes-content p{
+  margin:0;
+}
+
+.quote-icon{
+  position:absolute;
+  width:55px;
+  height:auto;
+}
+
+.quote-left{
+  left:0;
+  top:10%;
+  transform:translateY(-50%);
+}
+
+.quote-right{
+  right:0;
+  top:90%;
+  transform:translateY(-50%) rotate(180deg);
+}
+
+@media(max-width:767px){
+
+  .product-notes-section{
+    padding:40px 15px;
+  }
+
+  .product-notes-content{
+    padding:0 45px;
+    font-size:15px;
+    line-height:1.7;
+  }
+
+  .quote-icon{
+    width:32px;
+  }
+}
+
+</style>
+
+{% schema %}
+{
+  "name": "Product Notes",
+  "templates": ["product"],
+  "settings": [],
+  "presets": [
+    {
+      "name": "Product Notes"
+    }
+  ]
+}
+{% endschema %}

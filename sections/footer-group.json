@@ -1,0 +1,315 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "footer",
+  "name": "Footer",
+  "sections": {
+    "footer_m9NzUG": {
+      "type": "footer",
+      "blocks": {
+        "text_FwGizg": {
+          "type": "text",
+          "name": "t:names.heading",
+          "settings": {
+            "text": "<h2>Let’s Stay Connected</h2>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "text_Va8wWC": {
+          "type": "text",
+          "name": "t:names.text",
+          "settings": {
+            "text": "<p>Sign up for10% offand be the first to know about new products, offers, and all the tea.<br/><br/></p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "email_signup_crihX7": {
+          "type": "email-signup",
+          "settings": {
+            "width": "custom",
+            "custom_width": 100,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "heading": "",
+            "heading_preset": "h3",
+            "border_style": "all",
+            "border_width": 1,
+            "border_radius": 100,
+            "input_type_preset": "paragraph",
+            "style_class": "button-unstyled",
+            "display_type": "arrow",
+            "label": "Sign up",
+            "integrated_button": true,
+            "button_type_preset": "paragraph",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_FwGizg",
+        "text_Va8wWC",
+        "email_signup_crihX7"
+      ],
+      "disabled": true,
+      "name": "t:names.footer",
+      "settings": {
+        "section_width": "page-width",
+        "gap": 20,
+        "color_scheme": "scheme-1",
+        "padding-block-start": 30,
+        "padding-block-end": 30
+      }
+    },
+    "footer_custom_MKfJ8B": {
+      "type": "footer-custom",
+      "blocks": {
+        "payment_niN4Ug": {
+          "type": "payment",
+          "settings": {
+            "icon": "shopify://shop_images/google-pay_1.svg"
+          }
+        },
+        "payment_C6gtyV": {
+          "type": "payment",
+          "settings": {
+            "icon": "shopify://shop_images/netbanking_1.svg"
+          }
+        },
+        "payment_aCcdzx": {
+          "type": "payment",
+          "settings": {
+            "icon": "shopify://shop_images/payment_1.svg"
+          }
+        },
+        "payment_b6Y8it": {
+          "type": "payment",
+          "settings": {
+            "icon": "shopify://shop_images/mastercard_1.svg"
+          }
+        },
+        "payment_qTaFii": {
+          "type": "payment",
+          "settings": {
+            "icon": "shopify://shop_images/visa_1.svg"
+          }
+        }
+      },
+      "block_order": [
+        "payment_niN4Ug",
+        "payment_C6gtyV",
+        "payment_aCcdzx",
+        "payment_b6Y8it",
+        "payment_qTaFii"
+      ],
+      "name": "Teapoz Footer",
+      "settings": {
+        "section_bg": "#000000",
+        "about_heading": "ABOUT",
+        "about_text": "At Sage & Soul, we create thoughtfully crafted wellness blends that inspire balance, mindfulness, and everyday well-being.",
+        "categories_heading": "CATEGORIES",
+        "categories_menu": "customer-account-main-menu",
+        "information_heading": "INFORMATIONS",
+        "information_menu": "main-menu",
+        "contact_heading": "CONTACT",
+        "address": "First Floor, SCO 67, Guru Nanak Enclave,\nOld Ambala Road, Dhakoli, Zirakpur,\nSAS Nagar, Punjab – 140603, India.",
+        "phone": "+91 771 757 6797 ",
+        "email": "wecare@mysagensoul.com",
+        "facebook_svg": "shopify://shop_images/facebook.png",
+        "facebook_link": "https://www.facebook.com/mysagensoul/",
+        "instagram_svg": "shopify://shop_images/instgram.png",
+        "instagram_link": "https://www.instagram.com/mysagensoul/",
+        "twitter_svg": "shopify://shop_images/x.png",
+        "twitter_link": "https://x.com/SageNSoul",
+        "linkedin_svg": "shopify://shop_images/whatsap.png",
+        "linkedin_link": "https://wa.me/917717576797?text=Hi%20there%2C%20I%20would%20like%20to%20connect"
+      }
+    },
+    "marqueenote_7kVBXf": {
+      "type": "marqueenote",
+      "blocks": {
+        "text_pVyxfw": {
+          "type": "text",
+          "settings": {
+            "icon": "|",
+            "text": "Detox Herbal Infusion"
+          }
+        },
+        "text_jgeDCM": {
+          "type": "text",
+          "settings": {
+            "icon": "|",
+            "text": "Premium Herbal Infusion Blends"
+          }
+        },
+        "text_LJYmdA": {
+          "type": "text",
+          "settings": {
+            "icon": "|",
+            "text": "Ayurvedic Herbal Wellness"
+          }
+        },
+        "text_xeTMNY": {
+          "type": "text",
+          "settings": {
+            "icon": "|",
+            "text": "Natural Wellness Support"
+          }
+        },
+        "text_mCE3Gf": {
+          "type": "text",
+          "settings": {
+            "icon": "|",
+            "text": "Flowers Based Wellness"
+          }
+        },
+        "text_RKP43C": {
+          "type": "text",
+          "settings": {
+            "icon": "|",
+            "text": "Herbal Wellness in India"
+          }
+        },
+        "text_xfFBBq": {
+          "type": "text",
+          "settings": {
+            "icon": "|",
+            "text": "Plant-Based Herbal Blends"
+          }
+        },
+        "text_atVMVr": {
+          "type": "text",
+          "settings": {
+            "icon": "|",
+            "text": "Botanical Wellness"
+          }
+        }
+      },
+      "block_order": [
+        "text_pVyxfw",
+        "text_jgeDCM",
+        "text_LJYmdA",
+        "text_xeTMNY",
+        "text_mCE3Gf",
+        "text_RKP43C",
+        "text_xfFBBq",
+        "text_atVMVr"
+      ],
+      "name": "Marquee Note",
+      "settings": {
+        "bg": "#706464",
+        "text_color": "#ffffff",
+        "direction": "left",
+        "speed": 40
+      }
+    },
+    "footer_utilities_jLGE8U": {
+      "type": "footer-utilities",
+      "blocks": {
+        "footer_copyright_jweRK8": {
+          "type": "footer-copyright",
+          "settings": {
+            "show_powered_by": true,
+            "font_size": "0.75rem",
+            "case": "none"
+          },
+          "blocks": {}
+        },
+        "footer_policy_list_VCdnpa": {
+          "type": "footer-policy-list",
+          "settings": {
+            "font_size": "0.75rem",
+            "case": "none"
+          },
+          "blocks": {}
+        },
+        "social_links_Ew63Kq": {
+          "type": "social-links",
+          "settings": {
+            "facebook_url": "https://www.facebook.com/",
+            "instagram_url": "https://www.instagram.com/",
+            "youtube_url": "https://www.youtube.com/",
+            "tiktok_url": "https://www.tiktok.com/",
+            "twitter_url": "https://x.com/",
+            "threads_url": "",
+            "linkedin_url": "",
+            "bluesky_url": "",
+            "snapchat_url": "",
+            "pinterest_url": "",
+            "tumblr_url": "",
+            "vimeo_url": "",
+            "custom_url": ""
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "footer_copyright_jweRK8",
+        "footer_policy_list_VCdnpa",
+        "social_links_Ew63Kq"
+      ],
+      "disabled": true,
+      "name": "t:names.utilities",
+      "settings": {
+        "section_width": "page-width",
+        "gap": 24,
+        "divider_thickness": 0,
+        "color_scheme": "",
+        "padding-block-start": 20,
+        "padding-block-end": 48
+      }
+    }
+  },
+  "order": [
+    "footer_m9NzUG",
+    "footer_custom_MKfJ8B",
+    "marqueenote_7kVBXf",
+    "footer_utilities_jLGE8U"
+  ]
+}

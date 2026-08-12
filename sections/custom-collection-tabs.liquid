@@ -1,0 +1,1284 @@
+<section class="xyt-section section page-width color-{{ section.settings.color_scheme }}">
+
+  {% if section.settings.section_title != blank %}
+    <h2 class="xyt-heading">{{ section.settings.section_title }}</h2>
+  {% endif %}
+
+  <!-- ░░ TAB BUTTONS ░░ -->
+  <div class="xyt-tab-controls">
+    {% for block in section.blocks %}
+      <button
+        class="xyt-tab-btn {% if forloop.first %}active{% endif %}"
+        data-target="xyt-pane-{{ block.id }}"
+        type="button"
+      >
+        {{ block.settings.title }}
+      </button>
+    {% endfor %}
+  </div>
+
+  <!-- ░░ TAB PANES ░░ -->
+  <div class="xyt-tabs-content">
+    {% for block in section.blocks %}
+      <div id="xyt-pane-{{ block.id }}" class="xyt-tab-pane {% if forloop.first %}active{% endif %}">
+
+        <!-- STAGE: skeleton + swiper stacked -->
+        <div class="xyt-stage" id="xyt-stage-{{ block.id }}">
+
+          <!-- ░░ SKELETON LOADER ░░ -->
+          <div class="xyt-skeleton-wrap" id="xyt-skeleton-{{ block.id }}">
+            {% for i in (1..4) %}
+              <div class="xyt-skeleton-card">
+                <div class="xyt-skel xyt-skel-img"></div>
+                <div class="xyt-skel xyt-skel-tags"></div>
+                <div class="xyt-skel xyt-skel-title"></div>
+                <div class="xyt-skel xyt-skel-title xyt-skel-title--short"></div>
+                <div class="xyt-skel xyt-skel-price"></div>
+                <div class="xyt-skel xyt-skel-btn"></div>
+              </div>
+            {% endfor %}
+          </div>
+
+          <!-- ░░ REAL SLIDER ░░ -->
+          <div
+            class="swiper xyt-swiper"
+            id="xyt-swiper-{{ block.id }}"
+            data-block-id="{{ block.id }}"
+            aria-label="{{ block.settings.title | escape }}"
+          >
+            <div class="swiper-wrapper">
+
+              {%- assign tab_collection = collections[block.settings.collection] -%}
+              {%- for product in tab_collection.products limit: 12 -%}
+
+                <div class="swiper-slide">
+                  <div class="xyt-card">
+
+                    <!-- IMAGE CAROUSEL -->
+                    <div class="xyt-img-slider" data-xyt-img-slider>
+                      <div class="xyt-img-track">
+                        {% for image in product.images limit: 6 %}
+                          <div class="xyt-img-item{% if forloop.first %} is-active{% endif %}">
+                            <a href="{{ product.url }}">
+                              <img
+                                src="{{ image | image_url: width: 600 }}"
+                                alt="{{ image.alt | default: product.title | escape }}"
+                                loading="{% if forloop.index <= 3 %}eager{% else %}lazy{% endif %}"
+                                width="600"
+                                height="600"
+                                draggable="false"
+                              >
+                            </a>
+                          </div>
+                        {% endfor %}
+                      </div>
+
+                      {% if product.images.size > 1 %}
+                        <button class="xyt-img-arrow xyt-img-arrow--prev" aria-label="Previous image" type="button">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <polyline points="15 18 9 12 15 6"/>
+                          </svg>
+                        </button>
+                        <button class="xyt-img-arrow xyt-img-arrow--next" aria-label="Next image" type="button">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <polyline points="9 18 15 12 9 6"/>
+                          </svg>
+                        </button>
+                        <div class="xyt-img-dots" aria-hidden="true">
+                          {% for image in product.images limit: 6 %}
+                            <button class="xyt-dot{% if forloop.first %} is-active{% endif %}" type="button" aria-label="Image {{ forloop.index }}"></button>
+                          {% endfor %}
+                        </div>
+                      {% endif %}
+
+                      {% if product.compare_at_price > product.price and section.settings.show_discount %}
+                        {% assign discount = product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price %}
+                        <div class="xyt-badge">{{ discount | round }}% OFF</div>
+                      {% endif %}
+                    </div>
+
+                    <!-- TITLE -->
+                    <h3 class="xyt-title">
+                      <a href="{{ product.url }}">
+                        {% if product.title.size > 40 %}
+                          {{ product.title | slice: 0, 40 }}…
+                        {% else %}
+                          {{ product.title }}
+                        {% endif %}
+                      </a>
+                    </h3>
+
+                    <!-- TAGS -->
+                    {% if product.metafields.custom.product_tabel221.value != blank %}
+                      <div class="xyt-tag-scroll" aria-label="Product features">
+                        {% for item in product.metafields.custom.product_tabel221.value %}
+                          <span class="xyt-tag-item">{{ item }}</span>
+                        {% endfor %}
+                      </div>
+                    {% endif %}
+
+                    <!-- REVIEWS -->
+                    {% if section.settings.show_reviews %}
+                      <div class="xyt-review">
+                        <div
+                          class="jdgm-widget jdgm-preview-badge"
+                          data-id="{{ product.id }}"
+                          data-auto-init="false"
+                        >{{ product.metafields.judgeme.badge }}</div>
+                      </div>
+                    {% endif %}
+
+                    <!-- PRICE -->
+                    <div class="xyt-price-wrap">
+                      <span class="xyt-price">{{ product.price | money }}</span>
+                      {% if product.compare_at_price > product.price %}
+                        <span class="xyt-compare">{{ product.compare_at_price | money }}</span>
+                      {% endif %}
+                    </div>
+
+                    <!-- BUTTONS -->
+                    <div class="xyt-btn-wrap">
+                      {% if section.settings.show_cart %}
+                        {% assign can_add = product.selected_or_first_available_variant.available %}
+                        <form
+                          method="post"
+                          action="/cart/add"
+                          class="xyt-cart-form"
+                          data-product-id="{{ product.id }}"
+                        >
+                          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+                          <input type="hidden" name="quantity" value="1">
+                          {% render 'add-to-cart-button',
+                            can_add_to_cart: can_add,
+                            product: product,
+                            add_to_cart_text: section.settings.cart_text,
+                            class: 'button-secondary'
+                          %}
+                        </form>
+                      {% endif %}
+
+                      {% if section.settings.show_buy %}
+                        <form class="xyt-buy-form">
+                          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+                          <button type="submit" class="xyt-buy-btn">{{ section.settings.buy_text }}</button>
+                        </form>
+                      {% endif %}
+                    </div>
+
+                  </div>
+                </div>
+
+              {%- endfor -%}
+            </div>
+
+            <!-- NAV ARROWS -->
+            <button class="xyt-nav-btn xyt-nav-btn--prev" id="xytPrev-{{ block.id }}" aria-label="Previous products" type="button">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="15 18 9 12 15 6"/>
+              </svg>
+            </button>
+            <button class="xyt-nav-btn xyt-nav-btn--next" id="xytNext-{{ block.id }}" aria-label="Next products" type="button">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="9 18 15 12 9 6"/>
+              </svg>
+            </button>
+
+            <div class="swiper-pagination xyt-pagination" role="tablist" aria-label="Slider pagination"></div>
+          </div>
+          <!-- /swiper -->
+
+        </div>
+        <!-- /stage -->
+
+      </div>
+    {% endfor %}
+  </div>
+
+</section>
+
+
+<!-- ░░░░░░░░░  STYLES  ░░░░░░░░░ -->
+<style>
+
+/* ─── SECTION ─── */
+.xyt-section {
+  padding: {{ section.settings.padding }}px 0;
+  position: relative;
+  margin: 0 auto;
+}
+
+@media (max-width: 767px) {
+  .xyt-section { padding: 15px 0 !important; }
+}
+
+/* ─── HEADING ─── */
+.xyt-heading {
+  text-align: center;
+  font-size: clamp(20px, 4vw, 32px);
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin: 0 0 25px;
+  color: #000;
+  line-height: 1.2;
+  padding: 0 20px;
+}
+
+@media (max-width: 767px) {
+  .xyt-heading { margin: 0 0 16px; padding: 0 12px; letter-spacing: 1px; }
+}
+
+/* ─── TAB CONTROLS ─── */
+.xyt-tab-controls {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 30px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  scroll-behavior: smooth;
+  padding-bottom: 8px;
+  scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch;
+  padding-left: 16px;
+  padding-right: 16px;
+  box-sizing: border-box;
+}
+
+.xyt-tab-controls::-webkit-scrollbar { height: 4px; }
+.xyt-tab-controls::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
+.xyt-tab-controls::-webkit-scrollbar-thumb { background: #999; border-radius: 10px; }
+
+@media (max-width: 768px) {
+  .xyt-tab-controls {
+    justify-content: flex-start;
+    margin-left: -16px;
+    margin-right: -16px;
+    padding-left: 16px;
+    padding-right: 16px;
+    width: calc(100% + 32px);
+    box-sizing: border-box;
+  }
+}
+
+@media (max-width: 480px) {
+  .xyt-tab-controls {
+    margin-left: -12px;
+    margin-right: -12px;
+    padding-left: 12px;
+    padding-right: 12px;
+    width: calc(100% + 24px);
+  }
+}
+
+.xyt-tab-btn {
+  min-width: 200px;
+  width: 200px;
+  flex: 0 0 auto;
+  padding: 14px 20px;
+  font-size: 15px;
+  border: 1px solid #e0e0e0;
+  background: #fff;
+  color: #555;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  font-weight: 400;
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+}
+
+.xyt-tab-btn:hover { border-color: #888; }
+
+.xyt-tab-btn.active {
+  background: #000;
+  color: #fff;
+  border-color: #000;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .xyt-tab-btn { min-width: 170px; width: 170px; padding: 12px 15px; font-size: 14px; }
+  .xyt-tab-controls { gap: 8px; padding-left: 5px; }
+}
+
+@media (max-width: 480px) {
+  .xyt-tab-btn { min-width: 140px; width: 100px; font-size: 13px; padding: 10px 12px; }
+  .xyt-tab-controls { gap: 6px; }
+}
+
+/* ─── TAB PANES ─── */
+.xyt-tab-pane {
+  display: none;
+  animation: xyt-fadeIn 0.4s ease;
+}
+.xyt-tab-pane.active { display: block; }
+
+@keyframes xyt-fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ─── STAGE ─── */
+.xyt-stage {
+  position: relative;
+}
+
+@media (max-width: 767px) {
+  .xyt-stage {
+    padding: 0px;
+    overflow: hidden;
+  }
+}
+
+/* ─── SKELETON ─── */
+.xyt-skeleton-wrap {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(1, 1fr);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 0 20px;
+  box-sizing: border-box;
+  z-index: 5;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+@media (max-width: 767px) {
+  .xyt-skeleton-wrap { padding: 0 12px; gap: 12px; }
+}
+
+@media (min-width: 768px) {
+  .xyt-skeleton-wrap { grid-template-columns: repeat(3, 1fr); }
+}
+@media (min-width: 1024px) {
+  .xyt-skeleton-wrap { grid-template-columns: repeat(4, 1fr); }
+}
+
+.xyt-skeleton-wrap.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.xyt-skeleton-card {
+  background: #fff;
+  border-radius: 18px;
+  padding: 12px;
+  border: 1px solid #efefef;
+}
+
+@media (max-width: 767px) {
+  .xyt-skeleton-card { border-radius: 14px; padding: 8px; }
+}
+
+@keyframes xyt-shimmer {
+  0%   { background-position: -600px 0; }
+  100% { background-position:  600px 0; }
+}
+
+.xyt-skel {
+  border-radius: 10px;
+  background: linear-gradient(90deg, #f3f3f3 25%, #e8e8e8 50%, #f3f3f3 75%);
+  background-size: 600px 100%;
+  animation: xyt-shimmer 1.6s ease infinite;
+}
+
+.xyt-skel-img          { height: 220px; margin-bottom: 12px; }
+.xyt-skel-tags         { height: 28px; margin-bottom: 10px; border-radius: 999px; }
+.xyt-skel-title        { height: 14px; margin-bottom: 8px; }
+.xyt-skel-title--short { width: 65%; }
+.xyt-skel-price        { height: 22px; width: 55%; margin-bottom: 16px; }
+.xyt-skel-btn          { height: 48px; border-radius: 999px; }
+
+@media (max-width: 767px) {
+  .xyt-skel-img { height: 180px; }
+  .xyt-skel-btn { height: 40px; }
+}
+
+/* ─── SWIPER CONTAINER ─── */
+.xyt-swiper {
+  width: 100%;
+  box-sizing: border-box;
+  visibility: hidden;
+  overflow: hidden;
+}
+
+.xyt-swiper.xyt-ready {
+  visibility: visible;
+  animation: xyt-fadein 0.35s ease forwards;
+}
+
+@keyframes xyt-fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@media (max-width: 767px) {
+  .xyt-swiper { overflow: visible; }
+}
+
+.xyt-swiper .swiper-wrapper { align-items: stretch; }
+.xyt-swiper .swiper-slide   { height: auto; display: flex; }
+
+/* ─── CARD ─── */
+.xyt-card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 10px;
+  border: 1px solid #ececec;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  /* iOS Safari: GPU layer forces border-radius to clip children */
+  overflow: hidden;
+  isolation: isolate;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.xyt-card:hover {
+  box-shadow: 0 8px 32px rgba(0,0,0,0.10);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 767px) {
+  .xyt-img-dots {
+
+    display: none !important;
+}
+  .xyt-card {
+    border-radius: 10px;
+    padding: 4px;
+    overflow: hidden;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+  .xyt-card:hover { box-shadow: none; transform: none; }
+}
+
+/* ─── IMAGE SLIDER ─────────────────────────────────────────
+   iPhone-safe square container:
+   - aspect-ratio alone fails on Safari < 15 (flex children get 0 height)
+   - ::before padding-top: 100% creates a real rendered height on ALL iOS
+   - position:absolute track fills that real height
+   - translate3d on wrapper + track = GPU layers so overflow:hidden clips
+─────────────────────────────────────────────────────────── */
+.xyt-img-slider {
+  position: relative;
+  overflow: hidden;
+  border-radius: 14px;
+  margin-bottom: 14px;
+  background: #f8f8f8;
+  width: 100%;
+  user-select: none;
+  -webkit-user-select: none;
+  isolation: isolate;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  /* touch-action removed — JS handles direction-based locking */
+}
+
+/* Forces the 1:1 square height on every iOS/Safari version */
+.xyt-img-slider::before {
+  content: "";
+  display: block;
+  padding-top: 100%;
+}
+
+@media (max-width: 767px) {
+  .xyt-img-slider { border-radius: 10px; margin-bottom: 10px; }
+}
+
+/* ─── IMAGE TRACK ─── */
+/* Absolutely fills the wrapper height created by ::before */
+.xyt-img-track {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  will-change: transform;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.xyt-img-item {
+  min-width: 100%;
+  flex-shrink: 0;
+  height: 100%;
+  position: relative;
+}
+.xyt-img-item a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.xyt-img-item img {
+  /* Absolute fill — works because parent has real height from ::before */
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+  /* GPU layer prevents white flash on slide transition (iPhone) */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* ─── IMAGE ARROWS ─── */
+.xyt-img-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255,255,255,0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 3;
+  opacity: 0;
+  transition: opacity 0.2s ease, background 0.2s ease;
+  color: #111;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.14);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.xyt-img-slider:hover .xyt-img-arrow { opacity: 1; }
+.xyt-img-arrow--prev { left: 8px; }
+.xyt-img-arrow--next { right: 8px; }
+.xyt-img-arrow:hover { background: #fff; transform: translateY(-50%) scale(1.08); }
+
+@media (max-width: 767px) {
+  .xyt-img-arrow { opacity: 1; width: 26px; height: 26px; }
+  .xyt-img-arrow--prev { left: 5px; }
+  .xyt-img-arrow--next { right: 5px; }
+  .xyt-img-arrow:hover { transform: translateY(-50%) scale(1); }
+}
+
+/* ─── DOTS ─── */
+.xyt-img-dots {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 5px;
+  z-index: 3;
+}
+
+.xyt-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.5);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s ease, width 0.2s ease;
+}
+
+.xyt-dot.is-active { background: #fff; width: 16px; border-radius: 4px; }
+
+@media (max-width: 767px) {
+  .xyt-dot { width: 8px; height: 8px; padding: 4px; box-sizing: content-box; }
+  .xyt-dot.is-active { width: 18px; }
+}
+
+/* ─── DISCOUNT BADGE ─── */
+.xyt-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #008000;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 9px;
+  border-radius: 6px;
+  z-index: 3;
+  letter-spacing: 0.3px;
+}
+
+@media (max-width: 767px) {
+  .xyt-badge { font-size: 10px; padding: 3px 7px; }
+}
+
+/* ─── TITLE ─── */
+.xyt-title {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.45;
+  margin: 0 0 8px;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 0.9em;
+}
+
+.xyt-title a { color: #111; text-decoration: none; }
+.xyt-title a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+@media (max-width: 767px) {
+  .xyt-title { font-size: 13px; margin: 0 0 3px; line-height: unset; }
+}
+
+/* ─── TAGS ─── */
+.xyt-tag-scroll {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  margin: 0 0 10px;
+  padding-bottom: 2px;
+  touch-action: pan-x;
+}
+.xyt-tag-scroll::-webkit-scrollbar { display: none; }
+
+.xyt-tag-item {
+  flex: 0 0 auto;
+  padding: 4px 10px;
+  border: 1px solid #e0e0e0;
+  border-radius: 999px;
+  background: #f6f8f3;
+  font-size: 11px;
+  font-weight: 500;
+  color: #333;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+@media (max-width: 767px) {
+  .xyt-tag-item { font-size: 10px; padding: 3px 8px; }
+}
+
+/* ─── REVIEWS ─── */
+.xyt-review {
+  min-height: 20px;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+}
+
+/* ─── PRICE ─── */
+.xyt-price-wrap {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+  margin-top: auto;
+}
+
+.xyt-price   { font-size: 22px; font-weight: 700; color: #111; }
+.xyt-compare { font-size: 14px; color: #999; text-decoration: line-through; }
+
+@media (max-width: 767px) {
+  .xyt-price   { font-size: 17px; }
+  .xyt-compare { font-size: 12px; }
+  .xyt-price-wrap { margin-bottom: 8px; gap: 4px; }
+}
+
+/* ─── BUTTONS ─── */
+.xyt-btn-wrap {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+}
+
+.xyt-btn-wrap .xyt-cart-form,
+.xyt-btn-wrap .xyt-buy-form {
+  flex: 1;
+  margin: 0;
+}
+
+.xyt-cart-form .button,
+.xyt-cart-form .button-secondary,
+.xyt-buy-btn {
+  width: 100%;
+  height: 46px;
+  min-height: 46px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 14px;
+  font-size: 14px;
+  font-weight: 600;
+  box-sizing: border-box;
+  transition: all 0.22s ease;
+  cursor: pointer;
+  letter-spacing: 0.2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.xyt-cart-form .button,
+.xyt-cart-form .button-secondary {
+  border: 1.5px solid #111;
+  background: #fff;
+  color: #111;
+}
+.xyt-cart-form .button:hover,
+.xyt-cart-form .button-secondary:hover {
+  background: #111;
+  color: #fff;
+}
+
+.xyt-buy-btn { border: none; background: #111; color: #fff; }
+.xyt-buy-btn:hover { background: #2a2a2a; }
+
+.xyt-cart-form .button.loading,
+.xyt-cart-form .button-secondary.loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+@media (max-width: 767px) {
+  .xyt-btn-wrap { gap: 6px; }
+  .xyt-cart-form .button,
+  .xyt-cart-form .button-secondary,
+  .xyt-buy-btn {
+    height: 38px;
+    min-height: 38px;
+    font-size: 11px;
+    padding: 0 8px;
+    letter-spacing: 0;
+  }
+}
+
+@media (max-width: 360px) {
+  .xyt-btn-wrap { flex-direction: column; gap: 5px; }
+  .xyt-cart-form .button,
+  .xyt-cart-form .button-secondary,
+  .xyt-buy-btn {
+    height: 38px;
+    min-height: 38px;
+    font-size: 13px;
+    padding: 0 14px;
+  }
+}
+
+/* ─── SWIPER NAV ARROWS ─── */
+.xyt-nav-btn {
+  position: absolute;
+  top: calc(50% - 18px);
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.22s ease;
+  color: #111;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+}
+
+.xyt-nav-btn--prev { left: 4px; }
+.xyt-nav-btn--next { right: 4px; }
+
+.xyt-nav-btn:hover {
+  background: #111;
+  color: #fff;
+  border-color: #111;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+}
+
+.xyt-nav-btn.swiper-button-disabled { opacity: 0; pointer-events: none; }
+
+@media (max-width: 767px) {
+  .xyt-nav-btn { display: none; }
+}
+
+/* ─── PAGINATION ─── */
+.xyt-pagination {
+  bottom: 0 !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+}
+
+.xyt-pagination .swiper-pagination-bullet {
+  width: 7px;
+  height: 7px;
+  background: #ccc;
+  opacity: 1;
+  border-radius: 50%;
+  transition: background 0.2s ease, width 0.2s ease, border-radius 0.2s ease;
+}
+
+.xyt-pagination .swiper-pagination-bullet-active {
+  background: #111;
+  width: 20px;
+  border-radius: 4px;
+}
+
+@media (max-width: 767px) {
+  .xyt-pagination .swiper-pagination-bullet { width: 8px; height: 8px; margin: 0 3px; }
+}
+
+</style>
+
+
+<!-- ░░░░░░░░░  SCRIPT  ░░░░░░░░░ -->
+<script>
+(function () {
+
+  /* ── helpers ── */
+  function qs(sel, ctx)  { return (ctx || document).querySelector(sel); }
+  function qsa(sel, ctx) { return (ctx || document).querySelectorAll(sel); }
+
+  /* ══════════════════════════════════════
+     INNER IMAGE SLIDER
+     iPhone-safe touch handling:
+     - touchstart disables outer Swiper immediately
+     - touchmove detects direction; vertical restores Swiper
+     - touchend always restores Swiper + snaps image
+  ══════════════════════════════════════ */
+  function initImgSlider(sliderEl, swiperInst) {
+    var track  = qs(".xyt-img-track",       sliderEl);
+    var items  = qsa(".xyt-img-item",       sliderEl);
+    var dots   = qsa(".xyt-dot",            sliderEl);
+    var prev   = qs(".xyt-img-arrow--prev", sliderEl);
+    var next   = qs(".xyt-img-arrow--next", sliderEl);
+
+    if (!track || items.length <= 1) return;
+
+    var current   = 0;
+    var total     = items.length;
+    var threshold = 45;
+
+    function goTo(idx) {
+      idx = ((idx % total) + total) % total;
+      current = idx;
+      track.style.transition = "transform 0.38s cubic-bezier(0.4,0,0.2,1)";
+      track.style.transform  = "translateX(-" + (current * 100) + "%)";
+      dots.forEach(function (d, i) {
+        d.classList.toggle("is-active", i === current);
+      });
+    }
+
+    function dragTo(offsetPx) {
+      track.style.transition = "none";
+      track.style.transform  = "translateX(calc(-" + (current * 100) + "% + " + offsetPx + "px))";
+    }
+
+    function settle(totalDx) {
+      if      (totalDx < -threshold) goTo(current + 1);
+      else if (totalDx >  threshold) goTo(current - 1);
+      else                            goTo(current);
+    }
+
+    /* Arrow / dot buttons */
+    if (prev) prev.addEventListener("click", function (e) { e.stopPropagation(); goTo(current - 1); });
+    if (next) next.addEventListener("click", function (e) { e.stopPropagation(); goTo(current + 1); });
+    dots.forEach(function (dot, i) {
+      dot.addEventListener("click", function (e) { e.stopPropagation(); goTo(i); });
+    });
+
+    /* ── DESKTOP MOUSE ── */
+    var mStartX = 0, mDragging = false, mMoved = false;
+
+    sliderEl.addEventListener("mousedown", function (e) {
+      if (e.button !== 0) return;
+      mStartX   = e.clientX;
+      mDragging = true;
+      mMoved    = false;
+      if (swiperInst) swiperInst.allowTouchMove = false;
+    });
+
+    window.addEventListener("mousemove", function (e) {
+      if (!mDragging) return;
+      var dx = e.clientX - mStartX;
+      if (Math.abs(dx) > 5) { mMoved = true; dragTo(dx); }
+    });
+
+    window.addEventListener("mouseup", function (e) {
+      if (!mDragging) return;
+      mDragging = false;
+      if (swiperInst) swiperInst.allowTouchMove = true;
+      if (!mMoved) return;
+      settle(e.clientX - mStartX);
+      mMoved = false;
+    });
+
+    sliderEl.addEventListener("click", function (e) {
+      if (mMoved) { e.preventDefault(); e.stopPropagation(); mMoved = false; }
+    }, true);
+
+    /* ── MOBILE TOUCH ── */
+    var tStartX = 0, tStartY = 0, tActive = false, tDecided = false;
+
+    sliderEl.addEventListener("touchstart", function (e) {
+      var t   = e.touches[0];
+      tStartX = t.clientX;
+      tStartY = t.clientY;
+      tActive = false; tDecided = false;
+      /* Disable outer Swiper immediately; restore if vertical swipe detected */
+      if (swiperInst) swiperInst.allowTouchMove = false;
+    }, { passive: true });
+
+    sliderEl.addEventListener("touchmove", function (e) {
+      if (!e.touches.length) return;
+      var dx = e.touches[0].clientX - tStartX;
+      var dy = e.touches[0].clientY - tStartY;
+
+      if (!tDecided) {
+        if (Math.abs(dx) < 6 && Math.abs(dy) < 6) return;
+        tDecided = true;
+        if (Math.abs(dx) >= Math.abs(dy)) {
+          tActive = true;   /* horizontal — inner slider handles */
+        } else {
+          tActive = false;
+          if (swiperInst) swiperInst.allowTouchMove = true; /* vertical — give back to Swiper */
+          goTo(current);
+          return;
+        }
+      }
+
+      if (!tActive) return;
+      dragTo(dx);
+    }, { passive: true });
+
+    function onTouchEnd(e) {
+      if (swiperInst) swiperInst.allowTouchMove = true;
+      if (!tActive) return;
+      var finalDx = (e.changedTouches && e.changedTouches[0])
+                    ? e.changedTouches[0].clientX - tStartX : 0;
+      settle(finalDx);
+      tActive = false; tDecided = false;
+    }
+
+    sliderEl.addEventListener("touchend",    onTouchEnd, { passive: true });
+    sliderEl.addEventListener("touchcancel", onTouchEnd, { passive: true });
+  }
+
+  /* ══════════════════════════════════════
+     INIT ONE SWIPER (per tab pane)
+  ══════════════════════════════════════ */
+  function initPaneSwiper(pane) {
+    var swiperEl = qs(".xyt-swiper", pane);
+    if (!swiperEl || swiperEl._xytInit) return;
+    swiperEl._xytInit = true;
+
+    var blockId  = swiperEl.dataset.blockId;
+    var skeleton = document.getElementById("xyt-skeleton-" + blockId);
+
+    var swiper = new Swiper(swiperEl, {
+      slidesPerView  : 1.15,
+      spaceBetween   : 14,
+      loop           : false,
+      speed          : 580,
+      grabCursor     : true,
+      watchOverflow  : true,
+      touchRatio     : 1,
+      touchAngle     : 45,
+      threshold      : 10,
+      resistanceRatio: 0.65,
+      centeredSlides : false,
+      slidesOffsetAfter: 60,
+
+      pagination: {
+        el            : qs(".xyt-pagination", pane),
+        clickable     : true,
+        dynamicBullets: true
+      },
+      navigation: {
+        prevEl: qs(".xyt-nav-btn--prev", pane),
+        nextEl: qs(".xyt-nav-btn--next", pane)
+      },
+      a11y: {
+        prevSlideMessage: "Previous slide",
+        nextSlideMessage: "Next slide"
+      },
+      breakpoints: {
+        0:    { slidesPerView: 1.9, spaceBetween: 8 },
+        480:  { slidesPerView: 1.5,  spaceBetween: 12 },
+        768:  { slidesPerView: 3,    spaceBetween: 14 },
+        1024: { slidesPerView: 4,    spaceBetween: 16 },
+        1440: { slidesPerView: 4,    spaceBetween: 18 }
+      },
+      on: {
+        init: function () {
+          var sw = this;
+          requestAnimationFrame(function () {
+            if (skeleton) skeleton.classList.add("is-hidden");
+            swiperEl.classList.add("xyt-ready");
+            /* Pass swiper instance so inner slider can lock/unlock it */
+            qsa("[data-xyt-img-slider]", swiperEl).forEach(function (el) {
+              initImgSlider(el, sw);
+            });
+            xytInitJudgeme();
+          });
+        }
+      }
+    });
+
+    swiperEl._xytInstance = swiper;
+  }
+
+  /* ══════════════════════════════════════
+     TAB SWITCHING
+  ══════════════════════════════════════ */
+  function initTabs() {
+    var btns  = qsa(".xyt-tab-btn");
+    var panes = qsa(".xyt-tab-pane");
+
+    btns.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        /* deactivate all */
+        btns.forEach(function (b) { b.classList.remove("active"); });
+        panes.forEach(function (p) { p.classList.remove("active"); });
+
+        /* activate clicked */
+        btn.classList.add("active");
+        var target = document.getElementById(btn.dataset.target);
+        if (!target) return;
+        target.classList.add("active");
+
+        /* init swiper if first time, else update */
+        var swiperEl = qs(".xyt-swiper", target);
+        if (swiperEl && !swiperEl._xytInit) {
+          initPaneSwiper(target);
+        } else if (swiperEl && swiperEl._xytInstance) {
+          setTimeout(function () { swiperEl._xytInstance.update(); }, 100);
+        }
+      });
+    });
+  }
+
+  /* ══════════════════════════════════════
+     BUY NOW
+  ══════════════════════════════════════ */
+  document.addEventListener("submit", function (e) {
+    var form = e.target.closest(".xyt-buy-form");
+    if (!form) return;
+    e.preventDefault();
+    var id  = form.querySelector("input[name='id']").value;
+    if (!id) return;
+    var btn = form.querySelector("button");
+    if (btn) { btn.disabled = true; btn.textContent = "…"; }
+    fetch("/cart/add.js", {
+      method : "POST",
+      headers: { "Content-Type": "application/json" },
+      body   : JSON.stringify({ id: parseInt(id, 10), quantity: 1 })
+    })
+    .then(function () { window.location.href = "/checkout"; })
+    .catch(function (err) {
+      console.error("Buy Now error:", err);
+      if (btn) { btn.disabled = false; btn.textContent = "{{ section.settings.buy_text | escape }}"; }
+    });
+  });
+
+  /* ══════════════════════════════════════
+     AJAX ADD TO CART
+  ══════════════════════════════════════ */
+  document.addEventListener("submit", function (e) {
+    var form = e.target.closest(".xyt-cart-form");
+    if (!form) return;
+    e.preventDefault();
+
+    var variantId = form.querySelector("input[name='id']").value;
+    var btn       = form.querySelector("button[type='submit']");
+    if (!variantId) return;
+
+    if (btn) { btn.disabled = true; btn.classList.add("loading"); }
+
+    fetch("/cart/add.js", {
+      method : "POST",
+      headers: { "Content-Type": "application/json", "X-Requested-With": "XMLHttpRequest" },
+      body   : JSON.stringify({ id: parseInt(variantId, 10), quantity: 1 })
+    })
+    .then(function (r) { if (!r.ok) throw new Error("Add failed"); return r.json(); })
+    .then(function ()  { return fetch("/cart.js"); })
+    .then(function (r) { return r.json(); })
+    .then(function (cart) {
+      qsa("[data-cart-count],[data-item-count],.cart-count,.cart__count,.header__cart-count,.cart-count-bubble span")
+        .forEach(function (el) { el.textContent = cart.item_count; });
+      document.dispatchEvent(new CustomEvent("cart:updated", { bubbles: true, detail: { cart: cart } }));
+      import("@theme/events").then(function (m) {
+        if (m.CartUpdateEvent) {
+          document.dispatchEvent(new m.CartUpdateEvent(cart, "manual-trigger", { itemCount: cart.item_count, sections: {} }));
+        }
+      }).catch(function () {});
+      xytOpenCartDrawer();
+    })
+    .catch(function (err) { console.error("Cart error:", err); })
+    .finally(function () {
+      setTimeout(function () {
+        if (btn) { btn.disabled = false; btn.classList.remove("loading"); }
+      }, 500);
+    });
+  });
+
+  /* ══════════════════════════════════════
+     OPEN CART DRAWER
+  ══════════════════════════════════════ */
+  function xytOpenCartDrawer() {
+    if (typeof window.openGokwikSideCart === "function") {
+      window.openGokwikSideCart(); return;
+    }
+    var drawer = document.querySelector("cart-drawer") ||
+                 document.querySelector("cart-drawer-component");
+    if (drawer) {
+      if (typeof drawer.open === "function") { drawer.open(); return; }
+      drawer.setAttribute("open", ""); drawer.removeAttribute("inert"); return;
+    }
+    var note = document.querySelector("cart-notification");
+    if (note && typeof note.open === "function") { note.open(); return; }
+    ["cart:open","cart:toggle","open-cart","theme:cart:open"].forEach(function (name) {
+      document.dispatchEvent(new CustomEvent(name, { bubbles: true }));
+    });
+    var trigger = document.querySelector(
+      "[data-cart-trigger],[data-open-cart],.header__cart,.cart-icon-bubble"
+    );
+    if (trigger) trigger.click();
+  }
+
+  /* ══════════════════════════════════════
+     JUDGE.ME
+  ══════════════════════════════════════ */
+  function xytInitJudgeme() {
+    if (window.jdgm) {
+      try { jdgm.init(document, window.jdgm_config || {}); } catch(e){}
+      return;
+    }
+    var tries = 0;
+    var t = setInterval(function () {
+      if (window.jdgm) { try { jdgm.init(document, window.jdgm_config || {}); } catch(e){} clearInterval(t); }
+      if (++tries > 30) clearInterval(t);
+    }, 300);
+  }
+
+  /* ══════════════════════════════════════
+     BOOT
+  ══════════════════════════════════════ */
+  function boot() {
+    initTabs();
+    /* init only the first (active) pane on load */
+    var firstPane = qs(".xyt-tab-pane.active");
+    if (firstPane) initPaneSwiper(firstPane);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", boot);
+  } else {
+    boot();
+  }
+
+})();
+</script>
+
+
+{% schema %}
+{
+  "name": "Collection Tabs Slider",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Heading",
+      "default": "SHOP BY CONCERN"
+    },
+    {
+      "type": "range",
+      "id": "padding",
+      "label": "Top / Bottom Padding (px)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 40
+    },
+    {
+      "type": "checkbox",
+      "id": "show_reviews",
+      "label": "Show Reviews (Judge.me)",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_discount",
+      "label": "Show Discount Badge",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_cart",
+      "label": "Show Add to Cart",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_buy",
+      "label": "Show Buy Now",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "cart_text",
+      "label": "Add to Cart Text",
+      "default": "Add to cart"
+    },
+    {
+      "type": "text",
+      "id": "buy_text",
+      "label": "Buy Now Text",
+      "default": "Buy it now"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color Scheme",
+      "default": "scheme-1"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tab",
+      "name": "Tab",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Tab Name",
+          "default": "Tab 1"
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Select Collection"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection Tabs Slider"
+    }
+  ]
+}
+{% endschema %}

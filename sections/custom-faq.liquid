@@ -1,0 +1,215 @@
+{% if product and product.metafields.custom.faq.value != blank %}
+
+<div class="faq-section page-width section">
+
+  <h2 class="faq-heading">Frequently asked questions</h2>
+
+  <!-- Skeleton -->
+  <div class="faq-skeleton" id="faqSkeleton">
+    {% for i in (1..3) %}
+      <div class="faq-skeleton-item">
+        <div class="faq-skeleton-title"></div>
+        <div class="faq-skeleton-line"></div>
+      </div>
+    {% endfor %}
+  </div>
+
+  <!-- FAQ Content -->
+  <div class="faq-content" id="faqContent" style="display:none;">
+
+    {% for item in product.metafields.custom.faq.value %}
+      <details class="faq-item {% if forloop.index > 3 %}faq-hidden{% endif %}">
+        <summary class="faq-summary">
+          <span class="faq-question">{{ item.question }}</span>
+          <span class="faq-icon">+</span>
+        </summary>
+
+        <div class="faq-answer-wrap">
+          <div class="faq-answer">
+            {{ item.answer | metafield_tag }}
+          </div>
+        </div>
+      </details>
+    {% endfor %}
+
+    {% if product.metafields.custom.faq.value.size > 3 %}
+      <div class="faq-readmore-wrap">
+        <button id="faqToggleBtn" class="faq-readmore-btn">Read More</button>
+      </div>
+    {% endif %}
+
+  </div>
+
+</div>
+
+<style>
+.faq-section{
+  padding:50px 0;
+  background:#FCFAF7 !important;
+}
+
+.faq-heading{
+  font-size:34px;
+  font-weight:700;
+  margin:0 0 25px;
+  color:#111;
+}
+
+.faq-item{
+  border:1px solid #e6e6e6;
+  border-radius:16px;
+  margin-bottom:14px;
+  overflow:hidden;
+  background:#fff;
+}
+
+.faq-item[open]{
+  box-shadow:0 8px 20px rgba(0,0,0,.05);
+}
+
+.faq-summary{
+  display:flex;
+  justify-content:space-between;
+  cursor:pointer;
+  padding:18px 22px;
+}
+
+.faq-summary::-webkit-details-marker{
+  display:none;
+}
+
+.faq-question{
+  font-size:18px;
+  font-weight:600;
+}
+
+.faq-icon{
+  font-size:26px;
+  transition:.3s;
+}
+
+.faq-item[open] .faq-icon{
+  transform:rotate(45deg);
+}
+
+.faq-answer-wrap{
+  display:grid;
+  grid-template-rows:0fr;
+  transition:.3s;
+}
+
+.faq-item[open] .faq-answer-wrap{
+  grid-template-rows:1fr;
+}
+
+.faq-answer{
+  overflow:hidden;
+  padding:0 22px;
+}
+
+.faq-item[open] .faq-answer{
+  padding:0 22px 20px;
+}
+
+/* HIDDEN */
+.faq-hidden{
+  display:none;
+}
+
+/* BUTTON */
+.faq-readmore-wrap{
+  text-align:center;
+  margin-top:20px;
+}
+
+.faq-readmore-btn{
+  padding:10px 22px;
+  background:#111;
+  color:#fff;
+  border-radius:30px;
+  cursor:pointer;
+}
+
+/* Skeleton */
+.faq-skeleton-item{
+  padding:18px 0;
+  border-bottom:1px solid #eee;
+}
+
+.faq-skeleton-title,
+.faq-skeleton-line{
+  height:14px;
+  border-radius:6px;
+  background:linear-gradient(90deg,#f2f2f2 25%,#e8e8e8 50%,#f2f2f2 75%);
+  background-size:200% 100%;
+  animation:shine 1.2s infinite;
+}
+
+.faq-skeleton-title{
+  width:65%;
+  margin-bottom:12px;
+}
+
+.faq-skeleton-line{
+  width:90%;
+}
+
+@keyframes shine{
+  0%{background-position:200% 0;}
+  100%{background-position:-200% 0;}
+}
+
+/* MOBILE */
+@media(max-width:767px){
+  .faq-heading{font-size:24px;}
+  .faq-question{font-size:16px;}
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+
+  const skeleton = document.getElementById("faqSkeleton");
+  const content = document.getElementById("faqContent");
+
+  if(skeleton && content){
+    setTimeout(function(){
+      skeleton.style.display = "none";
+      content.style.display = "block";
+    },800);
+  }
+
+  // Read More Toggle
+  const btn = document.getElementById("faqToggleBtn");
+
+  if(btn){
+    btn.addEventListener("click", function(){
+      const hiddenFaqs = document.querySelectorAll(".faq-hidden");
+
+      hiddenFaqs.forEach(item => {
+        if(item.style.display === "block"){
+          item.style.display = "none";
+        } else {
+          item.style.display = "block";
+        }
+      });
+
+      btn.innerText = btn.innerText === "Read More" ? "Read Less" : "Read More";
+    });
+  }
+
+});
+</script>
+
+{% endif %}
+
+{% schema %}
+{
+  "name": "Custom FAQ",
+  "presets": [
+    {
+      "name": "Custom FAQ"
+    }
+  ]
+}
+{% endschema %}

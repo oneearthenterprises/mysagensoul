@@ -1,0 +1,1557 @@
+
+
+
+
+<section class="section" style="background-color: {{ section.settings.bg_color }};">
+  <div class="svc-container svc-wrapper">
+    {% if section.settings.heading != blank %}
+      <h2 class="svc-heading">{{ section.settings.heading }}</h2>
+    {% endif %}
+
+    <div class="svc-carousel">
+      <div class="svc-track">
+        {% for block in section.blocks %}
+          <div class="svc-card">
+            <div class="svc-media-wrapper" data-video-modal-target="modal-{{ block.id }}-1">
+              {% if block.settings.video != blank %}
+                {{ block.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, playsinline: true, class: 'svc-video' }}
+              {% endif %}
+
+              <!-- Speaker Button -->
+              <button class="svc-speaker" aria-label="Toggle sound">
+                <svg class="icon-muted" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="20" height="20">
+                  <path d="M16.5 12A4.5 4.5 0 0 0 14 7.97v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51A8.796 8.796 0 0 0 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06A8.99 8.99 0 0 0 17.73 19L19 20.27 20.27 19 5.27 4 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>
+                </svg>
+                <svg class="icon-unmuted" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="20" height="20" style="display:none;">
+                  <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 7.97v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                </svg>
+              </button>
+
+              <div class="svc-products-row">
+                {% for i in (1..3) %}
+                  {% assign prod_key = 'product_' | append: i %}
+                  {% assign product_item = block.settings[prod_key] %}
+                  {% if product_item != blank %}
+                    {% assign second_image = product_item.images[1] %}
+                    <button type="button"
+                            class="svc-prod-thumb"
+                            data-modal-target="modal-{{ block.id }}-{{ i }}"
+                            aria-label="Quick view {{ product_item.title }}">
+                      {% if second_image != blank %}
+                        <img src="{{ second_image | image_url: width: 100 }}" alt="{{ product_item.title }}">
+                      {% else %}
+                        <img src="{{ product_item.featured_image | image_url: width: 100 }}" alt="{{ product_item.title }}">
+                      {% endif %}
+                    </button>
+                  {% endif %}
+                {% endfor %}
+              </div>
+            </div>
+
+            <div class="svc-info">
+              <h3 class="svc-title">{{ block.settings.title }}</h3>
+
+              {%- assign total_price = 0 -%}
+              <form method="post" action="/cart/add" class="svc-add-form"
+                    data-id-1="{{ block.settings.product_1.variants.first.id }}"
+                    data-id-2="{{ block.settings.product_2.variants.first.id }}"
+                    data-id-3="{{ block.settings.product_3.variants.first.id }}">
+
+                {% for i in (1..3) %}
+                  {% assign prod_key = 'product_' | append: i %}
+                  {% if block.settings[prod_key] != blank %}
+                    {% assign total_price = total_price | plus: block.settings[prod_key].price %}
+                  {% endif %}
+                {% endfor %}
+
+                <p class="svc-price">{{ total_price | money }}</p>
+                <button type="submit" class="svc-btn">ADD TO CART</button>
+              </form>
+            </div>
+          </div>
+
+          <!-- ===================== QUICK-VIEW MODALS (one per product on this card) ===================== -->
+          {% for i in (1..3) %}
+            {% assign prod_key = 'product_' | append: i %}
+            {% assign p = block.settings[prod_key] %}
+            {% if p != blank %}
+              {% assign modal_id = 'modal-' | append: block.id | append: '-' | append: i %}
+              {% assign benefits = p.metafields.custom.benefits.value %}
+              {% assign icons = p.metafields.custom.benefit_icon.value %}
+              {% assign tags = p.metafields.custom.custom_tags_products.value %}
+              {% assign blend_items = p.metafields.custom.blend_within_item.value %}
+              {% assign blend_count = blend_items | size %}
+
+              <div class="svc-modal-overlay" id="{{ modal_id }}" data-svc-modal hidden>
+
+                <!-- Prev / Next navigation between reels (desktop + mobile) -->
+                <button type="button" class="svc-modal-nav svc-modal-nav-prev" data-modal-nav="prev" aria-label="Previous reel">‹</button>
+                <button type="button" class="svc-modal-nav svc-modal-nav-next" data-modal-nav="next" aria-label="Next reel">›</button>
+
+                <div class="svc-modal">
+                  <button type="button" class="svc-modal-close" data-modal-close aria-label="Close">&times;</button>
+
+                   <button class="svc-modal-speaker" aria-label="Toggle sound" data-modal-speaker>
+                        <svg class="icon-muted" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="20" height="20">
+                          <path d="M16.5 12A4.5 4.5 0 0 0 14 7.97v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51A8.796 8.796 0 0 0 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06A8.99 8.99 0 0 0 17.73 19L19 20.27 20.27 19 5.27 4 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>
+                        </svg>
+                        <svg class="icon-unmuted" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="20" height="20" style="display:none;">
+                          <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 7.97v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                        </svg>
+                      </button>
+
+                  <div class="svc-modal-body">
+                    <div class="svc-modal-media">
+                      {% if block.settings.video != blank %}
+                        {{ block.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, playsinline: true, class: 'svc-modal-video' }}
+                      {% elsif p.featured_media.media_type == 'video' %}
+                        {{ p.featured_media | video_tag: autoplay: true, loop: true, muted: true, controls: false, playsinline: true, class: 'svc-modal-video' }}
+                      {% else %}
+                        <img src="{{ p.featured_image | image_url: width: 600 }}" alt="{{ p.title }}" class="svc-modal-image">
+                      {% endif %}
+                      <!-- Speaker/Sound Toggle -->
+                     
+
+                   
+
+                      <!-- ===== Mobile compact overlay card (visual only — mirrors desktop info) ===== -->
+                      <div class="svc-modal-mobile-info">
+                        <img src="{{ p.featured_image | image_url: width: 100 }}" alt="{{ p.title }}" class="svc-modal-mobile-thumb">
+                        <div class="svc-modal-mobile-text">
+                          <h4 class="svc-modal-mobile-title">{{ p.title }}</h4>
+                          <span class="svc-modal-mobile-price">{{ p.price | money }}</span>
+                        </div>
+                        <button type="button" class="svc-modal-mobile-shop" data-modal-mobile-shop>Shop Now</button>
+                      </div>
+                    </div>
+
+                    <div class="svc-modal-details">
+                      <div class="svc-modal-thumb-wrap">
+                        <img src="{{ p.featured_image | image_url: width: 300 }}" alt="{{ p.title }}" class="svc-modal-thumb-img" width="2000" height="2000">
+                      </div>
+                      <h3 class="svc-modal-title">{{ p.title }}</h3>
+                      {% if p.metafields.custom.subtitle != blank %}
+                        <p class="svc-modal-subtitle">{{ p.metafields.custom.subtitle }}</p>
+                      {% endif %}
+
+                      <!-- Product tags -->
+                      {% if tags != blank %}
+                        <div class="product-tag_news_new">
+                          {% for tag in tags %}
+                            <span
+                              class="product-tag_new"
+                              style="
+                                background-color: {{ tag.color | default: '#E37D76' }};
+                                color: {{ tag.text_colour | default: '#ffffff' }};
+                                border-color: {{ tag.color | default: '#d6e8d0' }};
+                              "
+                            >
+                              {{ tag.label }}
+                            </span>
+                          {% endfor %}
+                        </div>
+                      {% endif %}
+
+                      <div class="svc-modal-price-row">
+                        <span class="svc-modal-price">{{ p.price | money }}</span>
+                        {% if p.compare_at_price > p.price %}
+                          <span class="svc-modal-compare-price">{{ p.compare_at_price | money }}</span>
+                          {% assign discount = p.compare_at_price | minus: p.price | times: 100.0 | divided_by: p.compare_at_price %}
+                          <span class="svc-modal-save">Save {{ discount | round }}%</span>
+                        {% endif %}
+                      </div>
+
+                      <!-- Variant pack selector -->
+                      {% if p.variants.size > 1 %}
+                        <div class="svc-variant-select">
+                          <span class="svc-variant-label">Pack :</span>
+                          <div class="svc-variant-options" data-variant-group="{{ modal_id }}">
+                            {% for variant in p.variants %}
+                              <button type="button"
+                                      class="svc-variant-pill{% if forloop.first %} is-active{% endif %}"
+                                      data-variant-id="{{ variant.id }}"
+                                      data-variant-price="{{ variant.price }}"
+                                      data-variant-compare-price="{{ variant.compare_at_price }}">
+                                {{ forloop.index }}
+                              </button>
+                            {% endfor %}
+                          </div>
+                        </div>
+                      {% endif %}
+
+                      <!-- Tabs -->
+                      <div class="svc-tabs">
+                        <div class="svc-tab-buttons">
+                          <button type="button" class="svc-tab-btn is-active" data-tab="description">Description</button>
+                          <button type="button" class="svc-tab-btn" data-tab="ingredients">Ingredients</button>
+                          <button type="button" class="svc-tab-btn" data-tab="howtotake">How to take</button>
+                        </div>
+
+                        <div class="svc-tab-panel is-active" data-tab-panel="description">
+                          <div class="svc-modal-description">
+                            {{ p.description }}
+                          </div>
+
+                          {% if benefits != blank %}
+                            <div class="benefits-grid">
+                              {% for item in benefits %}
+                                {% assign current_index = forloop.index0 %}
+                                <div class="benefit-item">
+                                  {% for icon in icons %}
+                                    {% if forloop.index0 == current_index %}
+                                      <img src="{{ icon | image_url: width: 64 }}" alt="{{ item | escape }}" class="icon-img221" loading="lazy">
+                                    {% endif %}
+                                  {% endfor %}
+                                  <span>{{ item }}</span>
+                                </div>
+                              {% endfor %}
+                            </div>
+                          {% endif %}
+                        </div>
+
+                        <div class="svc-tab-panel" data-tab-panel="ingredients">
+                         
+
+                          <!-- ===== Blend Within (ported) — Ingredients tab ===== -->
+                          {% if blend_items != blank %}
+                            <div class="svc-blend-wrap">
+                              {% if section.settings.blend_heading != blank %}
+                                <h3 class="svc-blend-heading">{{ section.settings.blend_heading }}</h3>
+                              {% endif %}
+                              {% if blend_count == 1 %}
+                                <div class="svc-blend-single-wrap">
+                                  <div class="svc-blend-single-card-outer">
+                                    {% for item in blend_items %}
+                                      <div class="svc-blend-single-card">
+                                        {% if item.image != blank %}
+                                          <div class="svc-blend-single-img">
+                                            <img src="{{ item.image | image_url: width: 800 }}" alt="{{ item.title }}" loading="lazy">
+                                          </div>
+                                        {% endif %}
+                                        <div class="svc-blend-single-content">
+                                          {% if item.title != blank %}
+                                            <h3 class="svc-blend-title">{{ item.title }}</h3>
+                                          {% endif %}
+                                          {% if item.description != blank %}
+                                            <div class="svc-blend-desc-wrap">
+                                              <div class="svc-blend-desc">{{ item.description | metafield_tag }}</div>
+                                              <button type="button" class="svc-blend-read-more">Read More</button>
+                                            </div>
+                                          {% endif %}
+                                        </div>
+                                      </div>
+                                    {% endfor %}
+                                  </div>
+                                </div>
+                              {% elsif blend_count == 2 %}
+                                <div class="svc-blend-two-wrap">
+                                  <div class="svc-blend-two-grid">
+                                    {% for item in blend_items %}
+                                      <div class="svc-blend-card">
+                                        {% if item.image != blank %}
+                                          <div class="svc-blend-img">
+                                            <img src="{{ item.image | image_url: width: 800 }}" alt="{{ item.title }}" loading="lazy">
+                                          </div>
+                                        {% endif %}
+                                        {% if item.title != blank %}
+                                          <h3 class="svc-blend-title">{{ item.title }}</h3>
+                                        {% endif %}
+                                        {% if item.description != blank %}
+                                          <div class="svc-blend-desc-wrap">
+                                            <div class="svc-blend-desc">{{ item.description | metafield_tag }}</div>
+                                            <button type="button" class="svc-blend-read-more">Read More</button>
+                                          </div>
+                                        {% endif %}
+                                      </div>
+                                    {% endfor %}
+                                  </div>
+                                </div>
+                              {% else %}
+                                <!-- 3+ items: plain horizontal scroll, NO Swiper — every item renders in the DOM at once -->
+                                <div class="svc-blend-flex">
+                                  <div class="svc-blend-right">
+                                    <div class="svc-blend-grid" data-blend-scroll>
+                                      {% for item in blend_items %}
+                                        <div class="svc-blend-card">
+                                          {% if item.image != blank %}
+                                            <div class="svc-blend-img">
+                                              <img src="{{ item.image | image_url: width: 800 }}" alt="{{ item.title }}" loading="lazy">
+                                            </div>
+                                          {% endif %}
+                                          {% if item.title != blank %}
+                                            <h3 class="svc-blend-title">{{ item.title }}</h3>
+                                          {% endif %}
+                                          {% if item.description != blank %}
+                                            <div class="svc-blend-desc-wrap">
+                                              <div class="svc-blend-desc">{{ item.description | metafield_tag }}</div>
+                                              <button type="button" class="svc-blend-read-more">Read More</button>
+                                            </div>
+                                          {% endif %}
+                                        </div>
+                                      {% endfor %}
+                                    </div>
+                                    <button type="button" class="svc-blend-prev" data-blend-scroll-btn="prev" aria-label="Scroll left">‹</button>
+                                    <button type="button" class="svc-blend-next" data-blend-scroll-btn="next" aria-label="Scroll right">›</button>
+                                  </div>
+                                </div>
+                              {% endif %}
+                            </div>
+                          {% endif %}
+                        </div>
+
+                        <div class="svc-tab-panel" data-tab-panel="howtotake">
+                          {% if p.metafields.custom.how_to_take != blank %}
+                            {{ p.metafields.custom.how_to_take.value }}
+                          {% endif %}
+
+                          <!-- ===== User Guide (ported) — How to take tab ===== -->
+                          {% assign guide = p.metafields.custom.user_guide.value %}
+                          {% if guide != blank %}
+                            <div class="svc-guide-wrap">
+
+                              <!-- LEFT IMAGE -->
+                              {% if guide.image != blank %}
+                                <div class="svc-guide-left">
+                                  <img src="{{ guide.image | image_url: width: 1200 }}" alt="{{ guide.title }}" loading="lazy">
+                                </div>
+                              {% endif %}
+
+                              <!-- RIGHT CONTENT -->
+                              <div class="svc-guide-right">
+
+                                <!-- HOW TO USE -->
+                                {% if guide.title != blank or guide.how_to_use != blank %}
+                                  <div class="svc-guide-box">
+                                    <div class="svc-guidebox-padding">
+                                      {% if guide.title != blank %}
+                                        <h3>{{ guide.title }}</h3>
+                                      {% endif %}
+
+                                      {% if guide.how_to_use != blank %}
+                                        <ul class="svc-guide-how-to-list">
+                                          {% for step in guide.how_to_use.value %}
+                                            {% assign step_icon = step.how_to_use_icon | default: step.value.how_to_use_icon %}
+                                            {% assign step_text = step.how_to_use_text | default: step.value.how_to_use_text %}
+                                            {% if step_icon != blank or step_text != blank %}
+                                              <li>
+                                                {% if step_icon != blank %}
+                                                  <img src="{{ step_icon | image_url: width: 60 }}" alt="">
+                                                {% endif %}
+                                                <span>{{ step_text }}</span>
+                                              </li>
+                                            {% endif %}
+                                          {% endfor %}
+                                        </ul>
+                                      {% endif %}
+                                    </div>
+                                  </div>
+                                {% endif %}
+
+                                <!-- WHEN TO USE -->
+                                {% if guide.second_title != blank or guide.second_descripation != blank %}
+                                  <div class="svc-guide-box">
+                                    <div class="svc-guidebox-padding">
+                                      {% if guide.second_title != blank %}
+                                        <h4>{{ guide.second_title }}</h4>
+                                      {% endif %}
+
+                                      {% if guide.second_descripation != blank %}
+                                        <div class="svc-guide-readmore">
+                                          <p class="svc-guide-text">{{ guide.second_descripation }}</p>
+                                          <button class="svc-guide-read-more-btn" type="button">Read More</button>
+                                        </div>
+                                      {% endif %}
+                                    </div>
+                                  </div>
+                                {% endif %}
+
+                          
+
+                              </div>
+                            </div>
+                          {% endif %}
+
+                       
+                        </div>
+                      </div>
+                          <div class="svc-modal-footer">
+                    <a href="{{ p.url }}" class="svc-modal-more-info">More Info</a>
+                    <button type="button"
+                            class="svc-modal-add-btn"
+                            data-modal-add-to-cart
+                            data-default-variant-id="{{ p.variants.first.id }}">
+                      Add To Cart
+                    </button>
+               
+                  </div>
+                    </div>
+                  </div>
+
+              
+                </div>
+              </div>
+            {% endif %}
+          {% endfor %}
+
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.svc-wrapper { padding: 60px 0; }
+
+.svc-heading {
+  text-align: center;
+  font-size: 36px;
+  margin-bottom: 40px;
+}
+
+@media (max-width: 768px) {
+  .svc-heading { font-size: 28px; margin-bottom: 15px; }
+}
+
+@media (max-width: 480px) {
+  .svc-heading { font-size: 22px; margin-bottom: 12px; }
+  .svc-wrapper { padding: 10px 0px; }
+}
+
+.svc-carousel { overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 20px; scrollbar-width: none; }
+.svc-carousel::-webkit-scrollbar { display: none; }
+.svc-track { display: flex; gap: 20px; }
+.svc-card { flex: 0 0 240px; display: flex; flex-direction: column; gap: 15px; }
+.svc-media-wrapper { position: relative; aspect-ratio: 9/16; border-radius: 12px; overflow: hidden; background: #eee; }
+.svc-video { width: 100%; height: 100%; object-fit: cover; cursor: pointer; }
+.svc-products-row { position: absolute; bottom: 15px; left: 10px; display: flex; gap: 8px; }
+.svc-prod-thumb { width: 45px; height: 45px; border-radius: 8px; overflow: hidden; border: 2px solid #fff; background: #fff; padding: 0; cursor: pointer; }
+.svc-prod-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.svc-title { font-size: 16px; margin: 0; font-weight: 600; }
+.svc-price { font-size: 14px; margin: 5px 0; font-weight: 600; color: #111; }
+.svc-btn { display: block; width: 100%; background: #000; color: #fff; text-align: center; padding: 12px; text-decoration: none; font-size: 12px; font-weight: bold; border-radius: 4px; border: none; cursor: pointer; transition: background 0.3s; }
+.svc-btn:hover { background: #333; }
+
+/* Speaker Button (carousel) */
+.svc-speaker {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 10;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.45);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+.svc-speaker:hover { background: rgba(0, 0, 0, 0.7); }
+
+/* Speaker Button (modal) */
+.svc-modal-speaker {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 11;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  padding: 0;
+}
+.svc-modal-speaker:hover { background: rgba(0, 0, 0, 0.75); }
+
+/* ===================== MODAL ===================== */
+.svc-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.svc-modal-overlay[hidden] { display: none; }
+
+  .svc-modal {
+  background: #fff;
+  border-radius: 12px;
+  /* slightly wider modal on desktop to accommodate left-side video */
+  {% comment %} max-width: 1100px; {% endcomment %}
+  {% comment %} width: 100%; {% endcomment %}
+  {% comment %} max-height: 90vh; {% endcomment %}
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.svc-modal-close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  z-index: 20;
+  background: rgba(255,255,255,0.9);
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+/* ===== Prev / Next reel navigation arrows (sit on the dark overlay, outside the white modal box) ===== */
+.svc-modal-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  line-height: 1;
+  color: #111;
+  cursor: pointer;
+  z-index: 1001;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.18);
+  transition: background 0.2s;
+}
+.svc-modal-nav:hover { background: #fff; }
+.svc-modal-nav-prev { left: 16px; }
+.svc-modal-nav-next { right: 16px; }
+
+@media (max-width: 768px) {
+  .svc-modal-nav { width: 36px; height: 36px; font-size: 18px; }
+  .svc-modal-nav-prev { left: 8px; }
+  .svc-modal-nav-next { right: 8px; }
+}
+
+.svc-modal-body {
+    display: flex;
+    flex-wrap: nowrap;
+    height: calc(90vh - 100px);
+    justify-content: center;
+}
+
+.svc-modal-media {
+  position: relative;
+  /* allocate roughly half the modal width to media on desktop */
+  {% comment %} flex: 1 1 52%; {% endcomment %}
+  min-width: 360px;
+  background: #111;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.svc-modal-image,
+.svc-modal-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  min-height: 520px;
+  max-height: 100%;
+}
+.svc-modal-icons {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  display: flex;
+  gap: 8px;
+}
+.svc-modal-icon-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.9);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* ===== Mobile compact overlay card on top of the video (hidden on desktop) ===== */
+.svc-modal-mobile-info {
+  display: none;
+}
+
+.svc-modal-details {
+  flex: 0 0 420px;
+  min-width: 320px;
+  max-width: 520px;
+  height: 100%;
+  overflow-y: auto;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.svc-modal-thumb-wrap {
+  width: 100%;
+  {% comment %} height: 140px; {% endcomment %}
+  border-radius: 10px;
+  overflow: hidden;
+  background: #f5f5f5;
+  flex-shrink: 0;
+}
+.svc-modal-thumb-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.svc-modal-title { font-size: 22px; font-weight: 700; margin: 0; }
+.svc-modal-subtitle { font-size: 14px; font-style: italic; color: #4a6fa5; margin: 0; }
+
+.svc-modal-price-row { display: flex; align-items: baseline; gap: 10px; }
+.svc-modal-price { font-size: 22px; font-weight: 700; }
+.svc-modal-compare-price { font-size: 16px; color: #888; text-decoration: line-through; }
+.svc-modal-save { font-size: 14px; color: #2a8f4d; }
+
+.svc-variant-select { display: flex; align-items: center; gap: 10px; margin-top: 4px; }
+.svc-variant-label { font-weight: 600; font-size: 14px; }
+.svc-variant-options { display: flex; gap: 8px; }
+.svc-variant-pill {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  background: #fff;
+  cursor: pointer;
+  font-size: 13px;
+}
+.svc-variant-pill.is-active { background: #111; color: #fff; border-color: #111; }
+
+.svc-tabs { margin-top: 8px; }
+.svc-tab-buttons { display: flex; gap: 20px; border-bottom: 1px solid #eee; }
+.svc-tab-btn {
+  background: none;
+  border: none;
+  padding: 8px 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #888;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+}
+.svc-tab-btn.is-active { color: #111; border-bottom-color: #d4a017; }
+.svc-tab-panel { display: none; padding-top: 14px; font-size: 14px; line-height: 1.5; color: #333; }
+.svc-tab-panel.is-active { display: block; }
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 16px;
+}
+.benefit-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 6px;
+  font-size: 12px;
+}
+.icon-img221 { width: 36px; height: 36px; object-fit: contain; }
+
+.svc-modal-footer {
+    transform: translateY(50%);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    padding: 16px;
+    background: #fff;
+    border-radius: 12px;
+    z-index: 1100;
+    bottom: 14px;
+    position: sticky;
+}
+.svc-modal-more-info,
+.svc-modal-add-btn {
+  text-align: center;
+  padding: 12px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  border: 1px solid #111;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.svc-modal-more-info { background: #fff; color: #111; }
+.svc-modal-add-btn { background: #111; color: #fff; border-color: #111; }
+
+
+/* ===================== PRODUCT TAGS ===================== */
+.product-tag_news_new {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  overflow-x: auto !important;
+  gap: 8px !important;
+  width: 100% !important;
+  min-height: 39px !important;
+
+}
+
+.product-tag_new {
+  display: inline-flex !important;
+  flex: 0 0 auto !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  padding: 4px 12px !important;
+}
+.product-tag_news_new {
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 600px) {
+  .product-tag_news_new {
+
+  min-height: 30px !important;
+
+}
+.svc-modal-body {
+    flex-direction: column;
+    height: 100%;
+    justify-content: unset;
+}
+  .svc-modal-image, .svc-modal-video { min-height: 260px; }
+  .benefits-grid { grid-template-columns: repeat(2, 1fr); }
+.svc-modal-footer {
+    right: 10px;
+    bottom: -10px;
+    top: auto;
+    left: 10px;
+    transform: none;
+    /* width: auto; */
+    flex-direction: row;
+    padding: 12px;
+    justify-content: space-between;
+    width: 100%;
+}
+.svc-modal-more-info, .svc-modal-add-btn{
+width:100%;
+}
+
+}
+
+/* ===================== MOBILE QUICK-VIEW: video-first layout (image-1 style) ===================== */
+/* On small screens, the modal becomes a near-fullscreen video with a compact
+   "Shop Now" info card floating over the bottom of the video, matching the
+   reference design. The full details panel (description/ingredients/etc.)
+   stays in the DOM and becomes reachable by scrolling down — nothing is
+   removed, only restyled for this breakpoint. */
+@media (max-width: 600px) {
+  .svc-modal-overlay { padding: 0; }
+
+  .svc-modal {
+    max-width: 100%;
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    border-radius: 0;
+  }
+
+  .svc-modal-body { flex-direction: column; height: 100%; }
+
+  .svc-modal-media {
+    flex: none;
+    height: 100vh;
+    height: 100dvh;
+  }
+  .svc-modal-image,
+  .svc-modal-video {
+    height: 100%;
+    min-height: 0;
+  }
+
+.svc-modal-close {
+    background: rgba(0,0,0,0.45);
+    color: #fff;
+    right: 17px;
+    position: fixed;
+    top: 20px;
+}
+.svc-modal-speaker{
+    position: fixed !important;
+}
+
+  .svc-modal-icons {
+    top: 16px;
+    right: 16px;
+    left: auto;
+  }
+  .svc-modal-icon-btn { background: rgba(0,0,0,0.45); color: #fff; }
+  .svc-modal-icon-btn svg { stroke: #fff; }
+
+  /* Compact "Shop Now" overlay card */
+  .svc-modal-mobile-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    bottom: 16px;
+    background: rgba(255, 255, 255, 0.92);
+    border-radius: 12px;
+    padding: 10px;
+    backdrop-filter: blur(4px);
+  }
+  .svc-modal-mobile-thumb {
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+    border-radius: 8px;
+    flex-shrink: 0;
+    background: #fff;
+  }
+  .svc-modal-mobile-text { flex: 1; min-width: 0; }
+  .svc-modal-mobile-title {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 700;
+    color: #111;
+    line-height: 1.25;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .svc-modal-mobile-price {
+    display: block;
+    margin-top: 2px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #111;
+  }
+  .svc-modal-mobile-shop {
+    flex-shrink: 0;
+    background: #111;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 16px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  /* Full details panel becomes a scrollable sheet below the video */
+  .svc-modal-details {
+    min-width: 0;
+    max-height: 100vh;
+    max-height: 100dvh;
+    overflow-y: auto;
+      padding: 24px 20px 10px 20px;
+  }
+
+  .svc-modal-nav { top: 46%; }
+
+  .svc-modal-thumb-wrap { display: none; }
+}
+
+/* ===================== BLEND WITHIN (ported, svc- prefixed) ===================== */
+/* Renamed from the original "Blend Within" section's .blend-* classes so it
+   can live inside this carousel's quick-view modal (Ingredients / How to take
+   tabs) without clashing with the original section used elsewhere. */
+
+.svc-blend-wrap {
+  padding: 20px 0 4px;
+  margin-top: 8px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.svc-blend-heading {
+  font-size: 18px;
+  font-weight: 700;
+  color: #111;
+  margin: 0 0 14px;
+}
+
+.svc-blend-heading--center {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Single item layout */
+.svc-blend-single-wrap { text-align: center; }
+.svc-blend-single-card-outer { display: flex; justify-content: center; }
+.svc-blend-single-card {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  background: #fafafa;
+  border-radius: 16px;
+  padding: 18px 20px;
+  max-width: 100%;
+  width: 100%;
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+}
+.svc-blend-single-img {
+  flex-shrink: 0;
+  width: 110px;
+  height: 110px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.svc-blend-single-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.svc-blend-single-card:hover .svc-blend-single-img img { transform: scale(1.04); }
+.svc-blend-single-content { flex: 1; }
+
+/* Two item layout */
+.svc-blend-two-wrap { text-align: left; }
+.svc-blend-two-grid {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.svc-blend-two-grid .svc-blend-card {
+  flex: 1 1 200px;
+  background: #fafafa;
+  border-radius: 14px;
+  padding: 14px;
+}
+
+/* 3+ items layout — plain horizontal scroll, no slider library */
+.svc-blend-flex { display: block; }
+.svc-blend-right { position: relative; }
+.svc-blend-grid {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding-bottom: 6px;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.svc-blend-grid::-webkit-scrollbar { display: none; }
+.svc-blend-grid .svc-blend-card {
+  flex: 0 0 220px;
+  scroll-snap-align: start;
+}
+
+/* Card (shared) */
+.svc-blend-card { text-align: left; transition: transform 0.3s ease; background: #fafafa; border-radius: 14px; padding: 14px; }
+.svc-blend-card:hover { transform: translateY(-3px); }
+.svc-blend-img { border-radius: 10px; overflow: hidden; margin-bottom: 8px; }
+.svc-blend-img img { width: 100%; height: 140px; object-fit: cover; display: block; }
+
+/* Title & desc */
+.svc-blend-title { font-size: 14px; font-weight: 700; margin: 0 0 6px; color: #111; }
+.svc-blend-desc {
+  font-size: 13px;
+  color: #555;
+  line-height: 1.55;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.svc-blend-desc.is-expanded {
+  display: block !important;
+  -webkit-line-clamp: unset !important;
+  overflow: visible !important;
+}
+
+/* Read more button */
+.svc-blend-read-more {
+  display: none;
+  background: none;
+  border: none;
+  padding: 0;
+  margin-top: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  color: #000;
+  text-decoration: underline;
+}
+
+/* Arrows (now plain scroll buttons, no slider library) */
+.svc-blend-prev,
+.svc-blend-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #fff;
+  border: none;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  font-size: 16px;
+  color: #111;
+  user-select: none;
+}
+.svc-blend-prev { left: -10px; }
+.svc-blend-next { right: -10px; }
+
+@media (max-width: 600px) {
+  .svc-blend-single-card { flex-direction: column; padding: 16px; text-align: center; gap: 12px; }
+  .svc-blend-single-img { width: 100%; height: 160px; }
+  .svc-blend-two-grid { flex-direction: column; }
+  .svc-blend-img img { height: 130px; }
+}
+
+/* ===================== USER GUIDE (ported, svc-guide- prefixed) ===================== */
+/* Renamed from the original "User Guide" section's classes so it can live
+   inside this carousel's quick-view modal (How to take tab) without clashing
+   with the original section used elsewhere. Scaled down to fit a tab panel. */
+
+.svc-guide-wrap {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.svc-guide-left {
+  overflow: hidden;
+  border-radius: 14px;
+}
+.svc-guide-left img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease;
+}
+.svc-guide-left:hover img { transform: scale(1.06); }
+
+.svc-guide-right {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.svc-guide-box {
+  background: #fafafa;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+.svc-guide-box:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+}
+
+.svc-guidebox-padding { padding: 8px; }
+
+.svc-guide-box h3,
+.svc-guide-box h4 {
+  font-size: 15px;
+  margin: 0 0 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 700;
+  color: #111;
+}
+
+.svc-guide-how-to-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.svc-guide-how-to-list li {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 0px;
+  font-size: 10px;
+  color: #222;
+}
+.svc-guide-how-to-list img {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.svc-guide-readmore { position: relative; }
+.svc-guide-text {
+  font-size: 10px;
+  line-height: 1.55;
+  color: #333;
+  max-height: 110px;
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+  margin: 0;
+}
+.svc-guide-readmore.is-active .svc-guide-text {
+  max-height: 1000px;
+}
+.svc-guide-read-more-btn {
+  margin-top: 5px;
+  background: transparent;
+  border: none;
+  color: #000;
+  font-size: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.svc-guide-read-more-btn::after {
+  content: '↓';
+  display: inline-block;
+  transition: transform 0.4s ease;
+  font-size: 11px;
+}
+.svc-guide-readmore.is-active .svc-guide-read-more-btn::after {
+  transform: rotate(180deg);
+}
+
+.svc-guide-chef-secret {
+  grid-column: 1 / -1;
+  background: #ede1d799;
+  border-radius: 12px;
+  padding: 16px;
+  text-align: left;
+  position: relative;
+  margin-top: 2px;
+}
+.svc-guide-chef-icon {
+  display: flex;
+  justify-content: start;
+  margin-bottom: 6px;
+}
+.svc-guide-chef-icon svg {
+  width: 40px;
+  height: 40px;
+  transition: transform 0.3s ease;
+}
+.svc-guide-chef-icon svg:hover { transform: scale(1.1); }
+.svc-guide-chef-secret h3 {
+  margin: 0 0 8px;
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 700;
+  color: #111;
+}
+.svc-guide-chef-secret .svc-guide-desc {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.55;
+  color: #333;
+}
+
+@media (max-width: 600px) {
+  .svc-guide-right { grid-template-columns: 1fr; gap: 8px; }
+  .svc-guide-left img { height: 160px; }
+}
+</style>
+
+<script>
+// ── Shared modal-open / modal-close helpers (used by video clicks, thumbnail
+//    clicks, and the prev/next reel navigation) ──────────────────────
+function openSvcModal(targetId) {
+  const modal = document.getElementById(targetId);
+  if (!modal) return;
+  modal.hidden = false;
+  document.body.style.overflow = 'hidden';
+
+  const modalVideo = modal.querySelector('.svc-modal-video');
+  if (modalVideo) {
+    modalVideo.muted = true;
+    modalVideo.play().catch(() => {});
+  }
+
+  // Make sure any Blend Within widgets inside the now-visible modal are
+  // correctly measured/initialized (Read More buttons, scroll arrows).
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      initSvcBlendReadMore(modal);
+      initSvcBlendScrollArrows(modal);
+      initSvcGuideReadMore(modal);
+    });
+  });
+}
+
+function closeSvcModal(modal) {
+  if (!modal || modal.hidden) return;
+  modal.hidden = true;
+  document.body.style.overflow = '';
+  const modalVideo = modal.querySelector('.svc-modal-video');
+  if (modalVideo) modalVideo.pause();
+}
+
+// ── Prev / Next navigation between reels (cycles through every quick-view
+//    modal on the page in the order they appear in the DOM) ──────────
+function getAllSvcModals() {
+  return Array.from(document.querySelectorAll('.svc-modal-overlay'));
+}
+
+function navigateSvcModal(currentModal, direction) {
+  const modals = getAllSvcModals();
+  const currentIndex = modals.indexOf(currentModal);
+  if (currentIndex === -1) return;
+
+  const nextIndex = direction === 'next'
+    ? (currentIndex + 1) % modals.length
+    : (currentIndex - 1 + modals.length) % modals.length;
+
+  // Open the next modal FIRST (on top, same fixed-position backdrop) and only
+  // then hide the old one — this keeps the screen continuously covered so
+  // there is no black/blink frame in between, and avoids restarting the
+  // muted state of the next video twice.
+  const nextModal = modals[nextIndex];
+  nextModal.style.zIndex = 1002;
+  openSvcModal(nextModal.id);
+  closeSvcModal(currentModal);
+  requestAnimationFrame(() => { nextModal.style.zIndex = ''; });
+}
+
+document.querySelectorAll('.svc-modal-nav').forEach(navBtn => {
+  navBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const modal = navBtn.closest('.svc-modal-overlay');
+    navigateSvcModal(modal, navBtn.getAttribute('data-modal-nav'));
+  });
+});
+
+// ── Mobile "Shop Now" overlay card → scroll down to the full details panel ──
+document.querySelectorAll('[data-modal-mobile-shop]').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const modal = btn.closest('.svc-modal-overlay');
+    const details = modal && modal.querySelector('.svc-modal-details');
+    if (details) details.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+// ── Speaker toggle + one-active-video logic ──────────────────────────
+document.querySelectorAll('.svc-media-wrapper').forEach(wrapper => {
+  const video = wrapper.querySelector('.svc-video');
+  if (!video) return;
+  const speakerBtn = wrapper.querySelector('.svc-speaker');
+  const iconMuted = speakerBtn.querySelector('.icon-muted');
+  const iconUnmuted = speakerBtn.querySelector('.icon-unmuted');
+
+  // Click video → pause all others, play this one, and open Product 1's quick-view popup
+  video.addEventListener('click', () => {
+    document.querySelectorAll('.svc-video').forEach(v => {
+      if (v !== video) {
+        v.pause();
+        const otherWrapper = v.closest('.svc-media-wrapper');
+        otherWrapper.querySelector('.icon-muted').style.display = '';
+        otherWrapper.querySelector('.icon-unmuted').style.display = 'none';
+        v.muted = true;
+      }
+    });
+    video.play();
+
+    const modalTargetId = wrapper.getAttribute('data-video-modal-target');
+    if (modalTargetId) openSvcModal(modalTargetId);
+  });
+
+  // Speaker button → toggle mute
+  speakerBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    video.muted = !video.muted;
+    iconMuted.style.display = video.muted ? '' : 'none';
+    iconUnmuted.style.display = video.muted ? 'none' : '';
+  });
+});
+
+// ── Quick-view modal open/close ──────────────────────────────────────
+document.querySelectorAll('[data-modal-target]').forEach(thumbBtn => {
+  thumbBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    openSvcModal(thumbBtn.getAttribute('data-modal-target'));
+  });
+});
+
+document.querySelectorAll('.svc-modal-overlay').forEach(modal => {
+  const closeModal = () => closeSvcModal(modal);
+
+  modal.querySelector('[data-modal-close]')?.addEventListener('click', closeModal);
+
+  // Click on overlay background (outside the modal box) closes it
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+
+  // Escape key closes
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !modal.hidden) closeModal();
+  });
+
+  // ── Modal speaker/sound toggle ──
+  const modalSpeaker = modal.querySelector('[data-modal-speaker]');
+  const modalVideo = modal.querySelector('.svc-modal-video');
+  if (modalSpeaker && modalVideo) {
+    const iconMuted = modalSpeaker.querySelector('.icon-muted');
+    const iconUnmuted = modalSpeaker.querySelector('.icon-unmuted');
+
+    modalSpeaker.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      modalVideo.muted = !modalVideo.muted;
+      iconMuted.style.display = modalVideo.muted ? '' : 'none';
+      iconUnmuted.style.display = modalVideo.muted ? 'none' : '';
+    });
+  }
+
+  // ── Tabs ──
+  const tabButtons = modal.querySelectorAll('.svc-tab-btn');
+  const tabPanels = modal.querySelectorAll('.svc-tab-panel');
+  tabButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = btn.getAttribute('data-tab');
+      tabButtons.forEach(b => b.classList.toggle('is-active', b === btn));
+      tabPanels.forEach(p => p.classList.toggle('is-active', p.getAttribute('data-tab-panel') === target));
+
+      // Re-measure Blend Within "Read More" buttons revealed by switching tabs.
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          initSvcBlendReadMore(modal);
+          initSvcBlendScrollArrows(modal);
+          initSvcGuideReadMore(modal);
+        });
+      });
+    });
+  });
+
+  // ── Variant pack selector ──
+  let selectedVariantId = null;
+  const variantPills = modal.querySelectorAll('.svc-variant-pill');
+  const priceEl = modal.querySelector('.svc-modal-price');
+  const comparePriceEl = modal.querySelector('.svc-modal-compare-price');
+
+  variantPills.forEach(pill => {
+    if (pill.classList.contains('is-active')) {
+      selectedVariantId = pill.getAttribute('data-variant-id');
+    }
+    pill.addEventListener('click', () => {
+      variantPills.forEach(p => p.classList.toggle('is-active', p === pill));
+      selectedVariantId = pill.getAttribute('data-variant-id');
+
+      const newPrice = parseInt(pill.getAttribute('data-variant-price'), 10);
+      const newComparePrice = parseInt(pill.getAttribute('data-variant-compare-price'), 10);
+
+      if (priceEl && !isNaN(newPrice)) {
+        priceEl.textContent = formatMoney(newPrice);
+      }
+      if (comparePriceEl) {
+        if (newComparePrice > newPrice) {
+          comparePriceEl.textContent = formatMoney(newComparePrice);
+          comparePriceEl.style.display = '';
+        } else {
+          comparePriceEl.style.display = 'none';
+        }
+      }
+    });
+  });
+
+  // ── Add to cart from modal ──
+  const addBtn = modal.querySelector('[data-modal-add-to-cart]');
+  const cartCountEl = modal.querySelector('[data-cart-count]');
+  if (addBtn) {
+    addBtn.addEventListener('click', () => {
+      const variantId = selectedVariantId || addBtn.getAttribute('data-default-variant-id');
+      if (!variantId) return;
+
+      fetch(window.Shopify.routes.root + 'cart/add.js', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ items: [{ id: variantId, quantity: 1 }] })
+      })
+      .then(res => res.json())
+      .then(() => {
+        fetch('/cart.js')
+          .then(res => res.json())
+          .then(cart => {
+            if (cartCountEl) cartCountEl.textContent = cart.item_count;
+
+            if (typeof window.openGokwikSideCart === 'function') {
+              window.openGokwikSideCart();
+              return;
+            }
+
+            import('@theme/events').then(({ CartUpdateEvent }) => {
+              const cartDrawer = document.querySelector('cart-drawer-component');
+              const event = new CartUpdateEvent(cart, 'manual-trigger', { itemCount: cart.item_count });
+              document.dispatchEvent(event);
+              if (cartDrawer) cartDrawer.open();
+            }).catch(() => {});
+          });
+      })
+      .catch(err => console.error('Cart error:', err));
+    });
+  }
+
+  // Initialize Blend Within widgets that are already in the default-active tab (Description has none,
+  // but Ingredients/How-to-take are hidden by default — they'll init on first tab switch above).
+  initSvcBlendReadMore(modal);
+  initSvcBlendScrollArrows(modal);
+  initSvcGuideReadMore(modal);
+});
+
+// Basic money formatter fallback (adjust to match your store's currency format if needed)
+function formatMoney(cents) {
+  return '₹' + (cents / 100).toFixed(0);
+}
+
+// ── Add to cart with GoKwik support (card-level "ADD TO CART" — adds all 3 bundle items) ──
+document.querySelectorAll('.svc-add-form').forEach(form => {
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const productIds = [
+      this.getAttribute('data-id-1'),
+      this.getAttribute('data-id-2'),
+      this.getAttribute('data-id-3')
+    ].filter(id => id && id !== '');
+
+    const itemsToAdd = productIds.map(id => ({ id, quantity: 1 }));
+
+    fetch(window.Shopify.routes.root + 'cart/add.js', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ items: itemsToAdd })
+    })
+    .then(res => res.json())
+    .then(() => {
+      if (typeof window.openGokwikSideCart === 'function') {
+        window.openGokwikSideCart();
+        return;
+      }
+
+      import('@theme/events').then(({ CartUpdateEvent }) => {
+        const cartDrawer = document.querySelector('cart-drawer-component');
+        fetch('/cart.js')
+          .then(res => res.json())
+          .then(cart => {
+            const event = new CartUpdateEvent(cart, 'manual-trigger', { itemCount: cart.item_count });
+            document.dispatchEvent(event);
+            if (cartDrawer) cartDrawer.open();
+          });
+      });
+    })
+    .catch(err => console.error('Cart error:', err));
+  });
+});
+
+// ── Blend Within (ported): READ MORE / READ LESS ──────────────────────
+function initSvcBlendReadMore(scope) {
+  scope.querySelectorAll(".svc-blend-desc-wrap").forEach(function (wrap) {
+    const desc = wrap.querySelector(".svc-blend-desc");
+    const btn  = wrap.querySelector(".svc-blend-read-more");
+    if (!desc || !btn || btn.dataset.bound === "true") return;
+
+    if (desc.scrollHeight > desc.clientHeight) {
+      btn.style.display = "inline-block";
+    }
+
+    btn.dataset.bound = "true";
+    btn.addEventListener("click", function () {
+      const isExpanded = desc.classList.toggle("is-expanded");
+      btn.textContent  = isExpanded ? "Read Less" : "Read More";
+    });
+  });
+}
+
+// ── Blend Within (no library): prev/next buttons just scroll the plain
+//    flex row left/right by roughly one card's width. All items already
+//    exist in the DOM at once (nothing lazily rendered like Swiper did). ──
+function initSvcBlendScrollArrows(scope) {
+  scope.querySelectorAll("[data-blend-scroll]").forEach(function (track) {
+    const wrap = track.closest(".svc-blend-right");
+    if (!wrap || wrap.dataset.scrollBound === "true") return;
+    wrap.dataset.scrollBound = "true";
+
+    const prevBtn = wrap.querySelector('[data-blend-scroll-btn="prev"]');
+    const nextBtn = wrap.querySelector('[data-blend-scroll-btn="next"]');
+
+    function scrollByCard(direction) {
+      const card = track.querySelector(".svc-blend-card");
+      const amount = card ? card.getBoundingClientRect().width + 16 : 240;
+      track.scrollBy({ left: direction * amount, behavior: "smooth" });
+    }
+
+    prevBtn?.addEventListener("click", () => scrollByCard(-1));
+    nextBtn?.addEventListener("click", () => scrollByCard(1));
+  });
+}
+
+// ── User Guide (ported): READ MORE / READ LESS for "When to Use" text ──
+function initSvcGuideReadMore(scope) {
+  scope.querySelectorAll(".svc-guide-readmore").forEach(function (wrap) {
+    const btn = wrap.querySelector(".svc-guide-read-more-btn");
+    if (!btn || btn.dataset.bound === "true") return;
+
+    btn.dataset.bound = "true";
+    btn.addEventListener("click", function () {
+      const isActive = wrap.classList.toggle("is-active");
+      btn.textContent = isActive ? "Read Less" : "Read More";
+    });
+  });
+}
+</script>
+
+{% schema %}
+{
+  "name": "Shoppable Video Carousel",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Watch It. Love It" },
+    { "type": "color", "id": "bg_color", "label": "Background Color", "default": "#ffffff" },
+    { "type": "text", "id": "blend_heading", "label": "Blend Within heading (shown in modal Ingredients/How to take tabs)", "default": "Soul of the Blend" }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Video Slide",
+      "settings": [
+        { "type": "video", "id": "video", "label": "Upload Video" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Best Picks" },
+        { "type": "product", "id": "product_1", "label": "Product 1" },
+        { "type": "product", "id": "product_2", "label": "Product 2" },
+        { "type": "product", "id": "product_3", "label": "Product 3" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Shoppable Video Carousel" }]
+}
+{% endschema %}

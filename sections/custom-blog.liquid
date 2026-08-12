@@ -1,0 +1,816 @@
+{% assign word_count = article.content | strip_html | split: ' ' | size %}
+{% assign read_time = word_count | divided_by: 200 %}
+{% if read_time < 1 %}{% assign read_time = 1 %}{% endif %}
+
+{% assign primary_tag = article.tags.first %}
+{% assign share_url = shop.url | append: article.url %}
+
+<div class="custom-blog">
+
+  <!-- BREADCRUMB -->
+  <div class="cba-breadcrumb">
+    <a href="/">Home</a>
+    <span>&rsaquo;</span>
+    <a href="{{ blog.url }}">Blogs</a>
+    {% if primary_tag %}
+      <span>&rsaquo;</span>
+      <a href="{{ blog.url }}/tagged/{{ primary_tag | handleize }}">{{ primary_tag }}</a>
+    {% endif %}
+    <span>&rsaquo;</span>
+    <span class="cba-breadcrumb-current">{{ article.title }}</span>
+  </div>
+
+  <!-- HEADER -->
+  <div class="cba-header">
+    {% if primary_tag %}
+      <span class="cba-badge">{{ primary_tag }}</span>
+    {% endif %}
+
+    <h1 class="cba-title">{{ article.title }}</h1>
+
+    <div class="cba-meta-row">
+      <div class="cba-author-block">
+        {% assign author_image = article.metafields.custom.author_image %}
+        {% if author_image %}
+          <img src="{{ author_image | image_url: width: 60 }}" alt="{{ article.author }}" class="cba-author-avatar">
+        {% else %}
+          <span class="cba-author-avatar cba-author-initial">{{ article.author | slice: 0 }}</span>
+        {% endif %}
+        <span class="cba-author-name">BY {{ article.author | upcase }}</span>
+        <span class="cba-dot">|</span>
+        <span class="cba-date">{{ article.published_at | date: "%B %d, %Y" }}</span>
+        <span class="cba-dot">|</span>
+        <span class="cba-read-time">{{ read_time }} min read</span>
+      </div>
+
+      <div class="cba-share-row">
+        <span class="cba-share-label">Share</span>
+       <a href="https://www.facebook.com/sharer/sharer.php?u={{ share_url | url_encode }}"
+   target="_blank"
+   rel="noopener"
+   class="cba-share-btn"
+   aria-label="Share on Facebook">
+          F
+</a>
+        <a href="https://www.tumblr.com/widgets/share/tool?canonicalUrl={{ share_url | url_encode }}" target="_blank" rel="noopener" class="cba-share-btn" aria-label="Share on Tumblr">t</a>
+        <a href="https://t.me/share/url?url={{ share_url | url_encode }}&text={{ article.title | url_encode }}" target="_blank" rel="noopener" class="cba-share-btn" aria-label="Share on Telegram">tg</a>
+        <a href="mailto:?subject={{ article.title | url_encode }}&body={{ share_url | url_encode }}" class="cba-share-btn" aria-label="Share via Email">@</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN LAYOUT -->
+  <div class="blog-layout">
+
+    <!-- LEFT CONTENT -->
+    <div class="blog-main">
+
+      <!-- Sticky share icons (desktop only) -->
+      <div class="cba-sticky-share">
+        <span class="cba-share-label-vertical">Share</span>
+        <a href="https://www.facebook.com/sharer/sharer.php?u={{ share_url | url_encode }}" target="_blank" rel="noopener" class="cba-share-circle" aria-label="Share on Facebook">f</a>
+        <a href="https://www.tumblr.com/widgets/share/tool?canonicalUrl={{ share_url | url_encode }}" target="_blank" rel="noopener" class="cba-share-circle" aria-label="Share on Tumblr">t</a>
+      <a href="https://twitter.com/intent/tweet?url={{ share_url | url_encode }}&text={{ article.title | url_encode }}"
+   target="_blank"
+   rel="noopener"
+   class="cba-share-circle"
+   aria-label="Share on X (Twitter)">
+                x
+
+</a>
+        <a href="mailto:?subject={{ article.title | url_encode }}&body={{ share_url | url_encode }}" class="cba-share-circle" aria-label="Share via Email">@</a>
+      </div>
+
+      {% if article.image %}
+        <div class="cba-hero">
+          <img src="{{ article.image | image_url: width: 1600 }}" alt="{{ article.title }}" class="cba-hero-img">
+        </div>
+      {% endif %}
+
+      <!-- IN THIS ARTICLE (auto table of contents) -->
+      <div class="cba-toc" id="cba-toc" style="display:none;">
+        <h3>In This Article</h3>
+        <ul id="cba-toc-list"></ul>
+      </div>
+
+      <div class="section custom-content" id="cba-article-content">
+        {{ article.content }}
+      </div>
+    </div>
+
+    <!-- RIGHT SIDEBAR -->
+    <div class="blog-sidebar">
+
+      <!-- Most Read -->
+      <div class="sidebar-box">
+        <h3 class="cba-sidebar-title">{{ section.settings.mostread_heading }}</h3>
+
+        {% assign mr_blog = blogs[section.settings.blog_handle] %}
+        {% assign mostread_articles = mr_blog.articles %}
+        {% if section.settings.mostread_tag != blank %}
+          {% assign tagged = mr_blog.articles | where: "tags", section.settings.mostread_tag %}
+          {% if tagged.size > 0 %}
+            {% assign mostread_articles = tagged %}
+          {% endif %}
+        {% endif %}
+
+        {% for recent_article in mostread_articles limit: section.settings.mostread_limit %}
+          <a href="{{ recent_article.url }}" class="sidebar-link">
+            <div class="sidebar-item">
+              {% if recent_article.image %}
+                <img src="{{ recent_article.image | image_url: width: 120 }}" alt="{{ recent_article.title }}" />
+              {% endif %}
+              <div>
+                <span class="cba-mr-date">{{ recent_article.published_at | date: "%B %d, %Y" }}</span>
+                <p>{{ recent_article.title }}</p>
+              </div>
+            </div>
+          </a>
+        {% endfor %}
+      </div>
+
+            <!-- Recommended Products -->
+     <div class="sidebar-box">
+        <h3 class="cba-sidebar-title">{{ section.settings.products_heading }}</h3>
+
+        {% assign rec_products = article.metafields.custom.recommended_products.value %}
+        {% for product in rec_products %}
+          {% if product != blank %}
+            <a href="{{ product.url }}" class="sidebar-link">
+              <div class="sidebar-item">
+
+                <!-- PRODUCT IMAGE -->
+                <div class="sidebar-img-wrap">
+                  <img src="{{ product.featured_image | image_url: width: 120 }}" alt="{{ product.title }}" />
+                </div>
+
+                <!-- PRODUCT INFO -->
+                <div>
+                  <p class="sidebar-product-title">{{ product.title }}</p>
+
+                  <div class="sidebar-price-wrap">
+                    <span class="price-sale">{{ product.price | money }}</span>
+
+                    {% if product.compare_at_price > product.price %}
+                      {% assign discount = product.compare_at_price | minus: product.price %}
+                      {% assign percent_off = discount | times: 100 | divided_by: product.compare_at_price %}
+                      <span class="price-original">{{ product.compare_at_price | money }}</span>
+                      <span class="badge-off">{{ percent_off }}% OFF</span>
+                    {% endif %}
+                  </div>
+                </div>
+
+              </div>
+            </a>
+          {% endif %}
+        {% endfor %}
+      </div>
+
+      <!-- Stay In Touch -->
+      <div class="sidebar-box">
+        <h3 class="cba-sidebar-title">{{ section.settings.social_heading }}</h3>
+        <div class="cba-social-grid">
+          {% if section.settings.facebook_url != blank %}
+            <a href="{{ section.settings.facebook_url }}" target="_blank" rel="noopener" class="cba-social-btn">
+              <span class="cba-social-icon cba-fb"><svg xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" version="1.1" id="svg9" width="666.66669" height="666.66718" viewBox="0 0 666.66668 666.66717">
+  <defs id="defs13">
+    <clipPath clipPathUnits="userSpaceOnUse" id="clipPath25">
+      <path d="M 0,700 H 700 V 0 H 0 Z" id="path23"/>
+    </clipPath>
+  </defs>
+  <g id="g17" transform="matrix(1.3333333,0,0,-1.3333333,-133.33333,799.99999)">
+    <g id="g19">
+      <g id="g21" clip-path="url(#clipPath25)">
+        <g id="g27" transform="translate(600,350)">
+          <path d="m 0,0 c 0,138.071 -111.929,250 -250,250 -138.071,0 -250,-111.929 -250,-250 0,-117.245 80.715,-215.622 189.606,-242.638 v 166.242 h -51.552 V 0 h 51.552 v 32.919 c 0,85.092 38.508,124.532 122.048,124.532 15.838,0 43.167,-3.105 54.347,-6.211 V 81.986 c -5.901,0.621 -16.149,0.932 -28.882,0.932 -40.993,0 -56.832,-15.528 -56.832,-55.9 V 0 h 81.659 l -14.028,-76.396 h -67.631 V -248.169 C -95.927,-233.218 0,-127.818 0,0" style="fill:#0866ff;fill-opacity:1;fill-rule:nonzero;stroke:none" id="path29"/>
+        </g>
+        <g id="g31" transform="translate(447.9175,273.6036)">
+          <path d="M 0,0 14.029,76.396 H -67.63 v 27.019 c 0,40.372 15.838,55.899 56.831,55.899 12.733,0 22.981,-0.31 28.882,-0.931 v 69.253 c -11.18,3.106 -38.509,6.212 -54.347,6.212 -83.539,0 -122.048,-39.441 -122.048,-124.533 V 76.396 h -51.552 V 0 h 51.552 v -166.242 c 19.343,-4.798 39.568,-7.362 60.394,-7.362 10.254,0 20.358,0.632 30.288,1.831 L -67.63,0 Z" style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none" id="path33"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg></span> Facebook
+            </a>
+       
+        
+          {% endif %}
+          {% if section.settings.instagram_url != blank %}
+            <a href="{{ section.settings.instagram_url }}" target="_blank" rel="noopener" class="cba-social-btn">
+              <span class="cba-social-icon cba-ig"><svg xmlns="http://www.w3.org/2000/svg" width="800px" height="800px" viewBox="0 0 3364.7 3364.7"><defs><radialGradient id="0" cx="217.76" cy="3290.99" r="4271.92" gradientUnits="userSpaceOnUse"><stop offset=".09" stop-color="#fa8f21"/><stop offset=".78" stop-color="#d82d7e"/></radialGradient><radialGradient id="1" cx="2330.61" cy="3182.95" r="3759.33" gradientUnits="userSpaceOnUse"><stop offset=".64" stop-color="#8c3aaa" stop-opacity="0"/><stop offset="1" stop-color="#8c3aaa"/></radialGradient></defs><path d="M853.2,3352.8c-200.1-9.1-308.8-42.4-381.1-70.6-95.8-37.3-164.1-81.7-236-153.5S119.7,2988.6,82.6,2892.8c-28.2-72.3-61.5-181-70.6-381.1C2,2295.4,0,2230.5,0,1682.5s2.2-612.8,11.9-829.3C21,653.1,54.5,544.6,82.5,472.1,119.8,376.3,164.3,308,236,236c71.8-71.8,140.1-116.4,236-153.5C544.3,54.3,653,21,853.1,11.9,1069.5,2,1134.5,0,1682.3,0c548,0,612.8,2.2,829.3,11.9,200.1,9.1,308.6,42.6,381.1,70.6,95.8,37.1,164.1,81.7,236,153.5s116.2,140.2,153.5,236c28.2,72.3,61.5,181,70.6,381.1,9.9,216.5,11.9,281.3,11.9,829.3,0,547.8-2,612.8-11.9,829.3-9.1,200.1-42.6,308.8-70.6,381.1-37.3,95.8-81.7,164.1-153.5,235.9s-140.2,116.2-236,153.5c-72.3,28.2-181,61.5-381.1,70.6-216.3,9.9-281.3,11.9-829.3,11.9-547.8,0-612.8-1.9-829.1-11.9" fill="url(#0)"/><path d="M853.2,3352.8c-200.1-9.1-308.8-42.4-381.1-70.6-95.8-37.3-164.1-81.7-236-153.5S119.7,2988.6,82.6,2892.8c-28.2-72.3-61.5-181-70.6-381.1C2,2295.4,0,2230.5,0,1682.5s2.2-612.8,11.9-829.3C21,653.1,54.5,544.6,82.5,472.1,119.8,376.3,164.3,308,236,236c71.8-71.8,140.1-116.4,236-153.5C544.3,54.3,653,21,853.1,11.9,1069.5,2,1134.5,0,1682.3,0c548,0,612.8,2.2,829.3,11.9,200.1,9.1,308.6,42.6,381.1,70.6,95.8,37.1,164.1,81.7,236,153.5s116.2,140.2,153.5,236c28.2,72.3,61.5,181,70.6,381.1,9.9,216.5,11.9,281.3,11.9,829.3,0,547.8-2,612.8-11.9,829.3-9.1,200.1-42.6,308.8-70.6,381.1-37.3,95.8-81.7,164.1-153.5,235.9s-140.2,116.2-236,153.5c-72.3,28.2-181,61.5-381.1,70.6-216.3,9.9-281.3,11.9-829.3,11.9-547.8,0-612.8-1.9-829.1-11.9" fill="url(#1)"/><path d="M1269.25,1689.52c0-230.11,186.49-416.7,416.6-416.7s416.7,186.59,416.7,416.7-186.59,416.7-416.7,416.7-416.6-186.59-416.6-416.7m-225.26,0c0,354.5,287.36,641.86,641.86,641.86s641.86-287.36,641.86-641.86-287.36-641.86-641.86-641.86S1044,1335,1044,1689.52m1159.13-667.31a150,150,0,1,0,150.06-149.94h-0.06a150.07,150.07,0,0,0-150,149.94M1180.85,2707c-121.87-5.55-188.11-25.85-232.13-43-58.36-22.72-100-49.78-143.78-93.5s-70.88-85.32-93.5-143.68c-17.16-44-37.46-110.26-43-232.13-6.06-131.76-7.27-171.34-7.27-505.15s1.31-373.28,7.27-505.15c5.55-121.87,26-188,43-232.13,22.72-58.36,49.78-100,93.5-143.78s85.32-70.88,143.78-93.5c44-17.16,110.26-37.46,232.13-43,131.76-6.06,171.34-7.27,505-7.27S2059.13,666,2191,672c121.87,5.55,188,26,232.13,43,58.36,22.62,100,49.78,143.78,93.5s70.78,85.42,93.5,143.78c17.16,44,37.46,110.26,43,232.13,6.06,131.87,7.27,171.34,7.27,505.15s-1.21,373.28-7.27,505.15c-5.55,121.87-25.95,188.11-43,232.13-22.72,58.36-49.78,100-93.5,143.68s-85.42,70.78-143.78,93.5c-44,17.16-110.26,37.46-232.13,43-131.76,6.06-171.34,7.27-505.15,7.27s-373.28-1.21-505-7.27M1170.5,447.09c-133.07,6.06-224,27.16-303.41,58.06-82.19,31.91-151.86,74.72-221.43,144.18S533.39,788.47,501.48,870.76c-30.9,79.46-52,170.34-58.06,303.41-6.16,133.28-7.57,175.89-7.57,515.35s1.41,382.07,7.57,515.35c6.06,133.08,27.16,223.95,58.06,303.41,31.91,82.19,74.62,152,144.18,221.43s139.14,112.18,221.43,144.18c79.56,30.9,170.34,52,303.41,58.06,133.35,6.06,175.89,7.57,515.35,7.57s382.07-1.41,515.35-7.57c133.08-6.06,223.95-27.16,303.41-58.06,82.19-32,151.86-74.72,221.43-144.18s112.18-139.24,144.18-221.43c30.9-79.46,52.1-170.34,58.06-303.41,6.06-133.38,7.47-175.89,7.47-515.35s-1.41-382.07-7.47-515.35c-6.06-133.08-27.16-224-58.06-303.41-32-82.19-74.72-151.86-144.18-221.43S2586.8,537.06,2504.71,505.15c-79.56-30.9-170.44-52.1-303.41-58.06C2068,441,2025.41,439.52,1686,439.52s-382.1,1.41-515.45,7.57" fill="#ffffff"/></svg></span> Instagram
+            </a>
+          {% endif %}
+          {% if section.settings.youtube_url != blank %}
+            <a href="{{ section.settings.youtube_url }}" target="_blank" rel="noopener" class="cba-social-btn">
+              <span class="cba-social-icon cba-yt"><svg xmlns="http://www.w3.org/2000/svg" class="external-icon" viewBox="0 0 28.57  20" focusable="false" style="pointer-events: none; display: block; width: 100%; height: 100%;">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28.57 20" preserveAspectRatio="xMidYMid meet">
+    <g>
+      <path d="M27.9727 3.12324C27.6435 1.89323 26.6768 0.926623 25.4468 0.597366C23.2197 2.24288e-07 14.285 0 14.285 0C14.285 0 5.35042 2.24288e-07 3.12323 0.597366C1.89323 0.926623 0.926623 1.89323 0.597366 3.12324C2.24288e-07 5.35042 0 10 0 10C0 10 2.24288e-07 14.6496 0.597366 16.8768C0.926623 18.1068 1.89323 19.0734 3.12323 19.4026C5.35042 20 14.285 20 14.285 20C14.285 20 23.2197 20 25.4468 19.4026C26.6768 19.0734 27.6435 18.1068 27.9727 16.8768C28.5701 14.6496 28.5701 10 28.5701 10C28.5701 10 28.5677 5.35042 27.9727 3.12324Z" fill="#FF0000"/>
+      <path d="M11.4253 14.2854L18.8477 10.0004L11.4253 5.71533V14.2854Z" fill="white"/>
+    </g>
+  </svg>
+</svg></span> Youtube
+            </a>
+          {% endif %}
+        {% if section.settings.pinterest_url != blank %}
+<a href="{{ section.settings.pinterest_url }}" target="_blank" rel="noopener" class="cba-social-btn">
+    
+    <span class="cba-social-icon cba-pinterest">
+        <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 16 16" width="18" height="18">
+            <path fill="#D32F2F" d="M8.717 0C4.332 0 2 2.81 2 5.874c0 1.421.794 3.193 2.065 3.755.193.087.298.05.341-.129.038-.136.205-.791.286-1.1a.283.283 0 0 0-.068-.278c-.422-.488-.757-1.377-.757-2.211 0-2.137 1.699-4.212 4.59-4.212 2.5 0 4.249 1.624 4.249 3.947 0 2.625-1.389 4.441-3.194 4.441-.999 0-1.743-.784-1.507-1.754.285-1.155.844-2.397.844-3.23 0-.747-.422-1.365-1.284-1.365-1.017 0-1.842 1.007-1.842 2.359 0 .859.304 1.439.304 1.439l-1.193 4.823c-.316 1.285.043 3.366.074 3.545.019.099.13.13.192.049.099-.13 1.315-1.865 1.656-3.119.124-.457.633-2.31.633-2.31.335.605 1.302 1.112 2.332 1.112 3.064 0 5.278-2.693 5.278-6.035C14.988 2.397 12.246 0 8.717 0"></path>
+        </svg>
+    </span>
+
+    Pinterest
+</a>
+{% endif %}
+        </div>
+      </div>
+
+
+
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var content = document.getElementById('cba-article-content');
+    var toc = document.getElementById('cba-toc');
+    var list = document.getElementById('cba-toc-list');
+    if (!content || !toc || !list) return;
+
+    var headings = content.querySelectorAll('h2, h3');
+    if (headings.length === 0) return;
+
+    headings.forEach(function (heading, index) {
+      var slug = heading.textContent.trim().toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/(^-|-$)/g, '') || ('section-' + index);
+      heading.id = slug;
+
+      var li = document.createElement('li');
+      var a = document.createElement('a');
+      a.href = '#' + slug;
+      a.textContent = heading.textContent;
+      if (heading.tagName.toLowerCase() === 'h3') {
+        li.className = 'cba-toc-sub';
+      }
+      li.appendChild(a);
+      list.appendChild(li);
+    });
+
+    toc.style.display = 'block';
+  });
+</script>
+
+<style>
+
+/* ===== BREADCRUMB ===== */
+.cba-breadcrumb {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 20px 0;
+  font-size: 13px;
+  color: #999;
+}
+
+.cba-breadcrumb a {
+  color: #999;
+  text-decoration: none;
+}
+
+.cba-breadcrumb a:hover {
+  color: #1a1a1a;
+}
+
+.cba-breadcrumb span {
+  margin: 0 6px;
+}
+
+.cba-breadcrumb-current {
+  color: #1a1a1a;
+  font-weight: 600;
+}
+
+/* ===== HEADER ===== */
+.cba-header {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px 20px 24px;
+}
+
+.cba-badge {
+  display: inline-block;
+  background: var(--cba-accent, #e8a33d);
+  color: #1a1a1a;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 3px;
+  margin-bottom: 16px;
+}
+
+.cba-title {
+  font-size: 34px;
+  line-height: 1.3;
+  margin: 0 0 18px;
+  color: #1a1a1a;
+}
+
+.cba-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.cba-author-block {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #555;
+}
+
+.cba-author-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.cba-author-initial {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--cba-accent, #e8a33d);
+  color: #1a1a1a;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.cba-author-name {
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.cba-dot {
+  opacity: 0.5;
+}
+
+.cba-share-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cba-share-label {
+  font-size: 13px;
+  color: #555;
+  margin-right: 4px;
+}
+
+.cba-share-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #f2f2f2;
+  color: #1a1a1a;
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.cba-share-btn:hover {
+  background: var(--cba-accent, #e8a33d);
+}
+
+/* ===== STICKY SHARE (left rail) ===== */
+.cba-sticky-share {
+  position: sticky;
+  top: 120px;
+  float: left;
+  margin-left: -70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.cba-share-label-vertical {
+  font-size: 12px;
+  color: #777;
+  margin-bottom: 4px;
+}
+
+.cba-share-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #f2f2f2;
+  color: #1a1a1a;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.cba-share-circle:hover {
+  background: var(--cba-accent, #e8a33d);
+}
+
+/* ===== TOC ===== */
+.cba-toc {
+  background: #faf6ee;
+  border: 1px solid #f0e2c4;
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin: 0 0 30px;
+}
+
+.cba-toc h3 {
+  margin: 0 0 12px;
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: #1a1a1a;
+}
+
+.cba-toc ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cba-toc li {
+  margin: 6px 0;
+}
+
+.cba-toc a {
+  color: #555;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.cba-toc a:hover {
+  color: var(--cba-accent, #e8a33d);
+}
+
+.cba-toc-sub {
+  padding-left: 5px;
+}
+
+/* ===== HERO ===== */
+.cba-hero {
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+
+.cba-hero-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ===== PRODUCT IMAGE WRAP ===== */
+.sidebar-img-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.sidebar-img-wrap img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  display: block;
+}
+
+/* ===== % OFF BADGE ===== */
+.badge-off {
+  background: #008000;
+  color: #fff;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 2px 4px;
+  border-radius: 2px;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+/* ===== PRICE ===== */
+.sidebar-price-wrap {
+  display: flex;
+  flex-direction: row;
+  gap: 6px;
+  align-items: center;
+  margin-top: 4px;
+}
+
+.price-sale {
+  font-size: 13px;
+  font-weight: 700;
+  color: #e53935;
+}
+
+.price-original {
+  font-size: 11px;
+  color: #999;
+  text-decoration: line-through;
+}
+
+.sidebar-product-title {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.3;
+}
+
+/* ===== TYPOGRAPHY SPACING ===== */
+.custom-content p,
+.custom-content h2,
+.custom-content h3,
+.custom-content h4,
+.custom-content h5,
+.custom-content ul,
+.custom-content ol {
+  margin: 6px 0;
+}
+
+.custom-content li {
+  margin: 4px 0;
+}
+
+/* ===== BLOG WRAPPER ===== */
+.custom-blog {
+  width: 100%;
+}
+
+/* ===== LAYOUT ===== */
+.blog-layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 40px;
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 20px 40px;
+}
+
+.blog-main {
+    position: relative;
+    padding: 10px;
+}
+
+/* ===== CONTENT ===== */
+.custom-content img {
+  width: 100%;
+  max-width: 877px;
+  height: 500px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.blog-sidebar {
+  position: sticky;
+  top: 30px;
+  align-self: start;
+}
+
+.sidebar-box {
+    background: #ffffff;
+    padding: 20px;
+    margin-bottom: 25px;
+    border: 2px solid #8080801a;
+    border-radius: 15px;
+    box-shadow: -1px 2px 5px #8080801a;
+}
+
+.cba-sidebar-title {
+  margin: 0 0 15px;
+  padding-left: 12px;
+  border-left: 4px solid var(--cba-accent, #e8a33d);
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
+/* ITEM */
+.sidebar-item {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 15px;
+  align-items: center;
+}
+
+.sidebar-item img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.sidebar-item p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.cba-mr-date {
+  font-size: 11px;
+  color: #999;
+  display: block;
+  margin-bottom: 4px;
+}
+
+/* ===== SIDEBAR LINKS ===== */
+.sidebar-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.sidebar-link:hover .sidebar-item {
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+/* ===== STAY IN TOUCH ===== */
+.cba-social-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.cba-social-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px;
+  border: 1px solid #e2e2e2;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #1a1a1a;
+  text-decoration: none;
+}
+
+.cba-social-btn:hover {
+  border-color: var(--cba-accent, #e8a33d);
+}
+
+.cba-social-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #f2f2f2;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 900px) {
+  .cba-sticky-share {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .cba-title {
+    font-size: 24px;
+  }
+
+  .cba-meta-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .custom-content ul {
+    padding-inline-start: 20px;
+  }
+
+  .blog-layout {
+    grid-template-columns: 1fr;
+    padding: 0 0 20px;
+  }
+
+  .custom-content img {
+    height: 220px;
+  }
+
+  .cba-social-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+</style>
+
+{% schema %}
+{
+  "name": "Custom Blog",
+  "settings": [
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color",
+      "default": "#e8a33d"
+    },
+    {
+      "type": "header",
+      "content": "Most Read"
+    },
+    {
+      "type": "text",
+      "id": "mostread_heading",
+      "label": "Most Read Heading",
+      "default": "Most Read"
+    },
+    {
+      "type": "blog",
+      "id": "blog_handle",
+      "label": "Select Blog"
+    },
+    {
+      "type": "text",
+      "id": "mostread_tag",
+      "label": "Filter tag (optional)",
+      "info": "Only show articles with this tag. Leave blank to show recent articles instead.",
+      "default": "most-read"
+    },
+    {
+      "type": "range",
+      "id": "mostread_limit",
+      "label": "Number of Most Read Posts",
+      "min": 1,
+      "max": 8,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "header",
+      "content": "Stay In Touch"
+    },
+    {
+      "type": "text",
+      "id": "social_heading",
+      "label": "Social Section Heading",
+      "default": "Stay In Touch"
+    },
+    {
+      "type": "url",
+      "id": "facebook_url",
+      "label": "Facebook URL"
+    },
+  
+    {
+      "type": "url",
+      "id": "instagram_url",
+      "label": "Instagram URL"
+    },
+    {
+      "type": "url",
+      "id": "youtube_url",
+      "label": "Youtube URL"
+    },
+ {
+  "type": "url",
+  "id": "pinterest_url",
+  "label": "Pinterest URL"
+},
+    {
+      "type": "header",
+      "content": "Recommended Products"
+    },
+    {
+      "type": "text",
+      "id": "products_heading",
+      "label": "Products Section Heading",
+      "default": "Recommended Products"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Select Product"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

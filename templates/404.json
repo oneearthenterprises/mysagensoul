@@ -1,0 +1,35 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "404",
+      "settings": {}
+    },
+    "blog_list_Tx9hQz": {
+      "type": "blog-list",
+      "disabled": true,
+      "name": "Custom Blog List",
+      "settings": {
+        "blog_handle": "sage-herbal-tea",
+        "accent_color": "#e8a33d",
+        "latest_heading": "Latest Posts",
+        "latest_limit": 5,
+        "mostread_heading": "Most Read",
+        "mostread_tag": "most-read",
+        "mostread_limit": 4
+      }
+    }
+  },
+  "order": [
+    "main",
+    "blog_list_Tx9hQz"
+  ]
+}

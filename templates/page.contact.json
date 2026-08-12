@@ -1,0 +1,325 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "blocks": {
+        "title": {
+          "type": "text",
+          "name": "t:names.title",
+          "settings": {
+            "text": "<h1>{{ closest.page.title }}</h1>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "center",
+            "type_preset": "h2",
+            "font": "var(--font-primary--family)",
+            "font_size": "",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "content": {
+          "type": "text",
+          "name": "t:names.content",
+          "settings": {
+            "text": "{{ closest.page.content }}",
+            "width": "100%",
+            "max_width": "narrow",
+            "alignment": "center",
+            "type_preset": "rte",
+            "font": "var(--font-primary--family)",
+            "font_size": "",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "title",
+        "content"
+      ],
+      "disabled": true,
+      "settings": {
+        "content_direction": "column",
+        "gap": 32,
+        "color_scheme": "",
+        "padding-block-start": 40,
+        "padding-block-end": 0
+      }
+    },
+    "form": {
+      "type": "section",
+      "blocks": {
+        "custom_liquid_iz8F6T": {
+          "type": "custom-liquid",
+          "name": "t:names.custom_liquid",
+          "settings": {
+            "custom_liquid": "<section class=\"custom-contact-section\">\n  <div class=\"contact-container\">\n\n    <h2 class=\"contact-title\">\n      Contact us | Sage & Soul\n    </h2>\n\n    <div class=\"contact-content\">\n\n      <p class=\"contact-text\">\n        Toll Free Number: 18001234567\n      </p>\n\n      <p class=\"contact-text\">\n        <strong>WhatsApp:</strong>\n        <a href=\"#\">Chat With us</a>\n      </p>\n\n      <p class=\"contact-text\">\n        <strong>Product & Service Support:</strong>\n        <a href=\"mailto:support@mysagensoul.com\">\n          support@mysagensoul.com\n        </a>\n      </p>\n\n      <div class=\"contact-block\">\n        <h4>The One Earth Enterprises</h4>\n\n        <h4>Sage & Soul</h4>\n\n        <p>\n          First Floor, SCO 67, Guru Nanak Enclave,<br>\n          Old Ambala Road, Dhakoli, Zirakpur,<br>\n          SAS Nagar, Punjab – 140603, India.\n        </p>\n      </div>\n\n      <div class=\"contact-block\">\n        <p>Support from</p>\n\n        <p>\n          Monday - Friday (11:00 am to 6:00 pm)\n        </p>\n      </div>\n\n      <div class=\"shipping-box\">\n        <p>Free standard shipping</p>\n        <strong>on all orders above Rs. 499</strong>\n      </div>\n\n    </div>\n\n  </div>\n</section>\n\n<style>\n.custom-contact-section{\n  background:#ede1d7;\n  padding:30px 20px;\n  color:#333333;\nborder-radius:20px;\n}\n\n.contact-container{\n  max-width:900px;\n  margin:0 auto;\n}\n\n.contact-title{\n  font-size:28px;\n  font-weight:700;\n  margin-bottom:25px;\n  line-height:1.2;\n}\n\n.contact-content{\n  max-width:520px;\n}\n\n.contact-text{\n  font-size:15px;\n  line-height:1.7;\n  margin-bottom:10px;\n}\n\n.contact-text strong{\n  font-weight:700;\n}\n\n.contact-text a{\n  color:#333333;\n  text-decoration:underline;\n}\n\n.contact-block{\n  margin-top:18px;\n}\n\n.contact-block h4{\n  font-size:18px;\n  font-weight:700;\n  margin-bottom:6px;\n  line-height:1.3;\n}\n\n.contact-block p{\n  font-size:15px;\n  line-height:1.8;\n  margin-bottom:4px;\n}\n\n.shipping-box{\n  margin-top:20px;\n}\n\n.shipping-box p{\n  font-size:18px;\n  margin-bottom:6px;\n}\n\n.shipping-box strong{\n  font-size:18px;\n  font-weight:700;\n  line-height:1.5;\n}\n\n@media screen and (max-width:768px){\n\n  .custom-contact-section{\n    padding:30px 16px;\n  }\n\n  .contact-title{\n    font-size:22px;\n    margin-bottom:20px;\n  }\n\n  .contact-text,\n  .contact-block p{\n    font-size:14px;\n    margin-top: -2px;\n  }\n\n  .contact-block h4{\n    font-size:16px;\n  }\n\n  .shipping-box p,\n  .shipping-box strong{\n    font-size:16px;\n  }\n}\n</style>"
+          },
+          "blocks": {}
+        },
+        "contact_form_UwiCkQ": {
+          "type": "contact-form",
+          "settings": {
+            "width": "custom",
+            "custom_width": 50,
+            "width_mobile": "custom",
+            "custom_width_mobile": 100,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "submit-button": {
+              "type": "contact-form-submit-button",
+              "static": true,
+              "settings": {
+                "label": "Submit",
+                "style_class": "button",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": []
+        }
+      },
+      "block_order": [
+        "custom_liquid_iz8F6T",
+        "contact_form_UwiCkQ"
+      ],
+      "name": "t:names.contact_form",
+      "settings": {
+        "content_direction": "row",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "center",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 32,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "scheme-3",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 32,
+        "padding-block-end": 84
+      }
+    },
+    "benefits_strip_agTVNE": {
+      "type": "benefits-strip",
+      "blocks": {
+        "item_xKLym8": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/icons8-loyalty.gif",
+            "title": "Cash on Delivery Available"
+          }
+        },
+        "item_djCpTp": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/icons8-cash-on-delivery-100.png",
+            "title": "Cash on Delivery Available"
+          }
+        },
+        "item_TB3pCM": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/icons8-in-transit-100.gif",
+            "title": "Cash on Delivery Available"
+          }
+        },
+        "item_VWAKRW": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/icons8-discount-100.png",
+            "title": "Cash on Delivery Available"
+          }
+        },
+        "item_DxVmwx": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/icons8-protect-100.png",
+            "title": "Cash on Delivery Available"
+          }
+        },
+        "item_QHb9a9": {
+          "type": "item",
+          "settings": {
+            "title": "Cash on Delivery Available"
+          }
+        }
+      },
+      "block_order": [
+        "item_xKLym8",
+        "item_djCpTp",
+        "item_TB3pCM",
+        "item_VWAKRW",
+        "item_DxVmwx",
+        "item_QHb9a9"
+      ],
+      "disabled": true,
+      "name": "Trust Icons Strip",
+      "settings": {}
+    },
+    "about_us_tabs_VYmNHX": {
+      "type": "about-us-tabs",
+      "blocks": {
+        "item_MrUdRr": {
+          "type": "item",
+          "settings": {
+            "title": "100% Natural Herbal Blends",
+            "text": "Every infusion is crafted with carefully selected herbs, flowers, spices, and botanicals to deliver a pure, flavorful wellness experience."
+          }
+        },
+        "item_dhHwi9": {
+          "type": "item",
+          "settings": {
+            "title": "Wellness in Every Cup",
+            "text": "Designed to support your daily lifestyle with calming, energizing, detoxifying, and immunity-focused herbal infusions."
+          }
+        },
+        "item_7yxtqw": {
+          "type": "item",
+          "settings": {
+            "title": "Premium Quality Ingredients",
+            "text": "We source high-quality natural ingredients and prepare every blend with strict quality standards for freshness and consistency."
+          }
+        },
+        "item_Ei6QBx": {
+          "type": "item",
+          "settings": {
+            "title": "Sustainable & Ethical",
+            "text": "Thoughtfully sourced ingredients and eco-friendly packaging for a healthier future"
+          }
+        }
+      },
+      "block_order": [
+        "item_MrUdRr",
+        "item_dhHwi9",
+        "item_7yxtqw",
+        "item_Ei6QBx"
+      ],
+      "name": "About Us Tabs",
+      "settings": {
+        "heading": "Grounded In Nature, Growing With Science"
+      }
+    },
+    "certifications_slider_k8Ng3P": {
+      "type": "certifications-slider",
+      "blocks": {
+        "item_NCkrnE": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/caffeine_free.png",
+            "title": ""
+          }
+        },
+        "item_R4RAQe": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/no_added_sugar.png",
+            "title": ""
+          }
+        },
+        "item_dpC8Wx": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/hypollegen.png",
+            "title": ""
+          }
+        },
+        "item_EWMHgP": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/vegan.png",
+            "title": ""
+          }
+        },
+        "item_QV88qh": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/caffeine_free_fcb94a3a-efa3-48c1-a833-d2fb90bde0a9.png",
+            "title": ""
+          }
+        },
+        "item_N6MDbU": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/gbi.png",
+            "title": ""
+          }
+        }
+      },
+      "block_order": [
+        "item_NCkrnE",
+        "item_R4RAQe",
+        "item_dpC8Wx",
+        "item_EWMHgP",
+        "item_QV88qh",
+        "item_N6MDbU"
+      ],
+      "name": "Certifications Slider",
+      "settings": {
+        "heading": "With Humble Roots, Sage & Soul Cares for Your Trust",
+        "bg": "#ede1d7"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "form",
+    "benefits_strip_agTVNE",
+    "about_us_tabs_VYmNHX",
+    "certifications_slider_k8Ng3P"
+  ]
+}

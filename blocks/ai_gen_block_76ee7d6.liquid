@@ -1,0 +1,1265 @@
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-hero-slider-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background-color: {{ block.settings.background_color }};
+    display: block;
+  }
+
+  /* Hide right column when empty or no image */
+  .ai-hero-slider__right-{{ ai_gen_id }}:empty {
+    display: none;
+  }
+
+  /* When right column is hidden, make left column full width */
+  .ai-hero-slider__content-wrapper-{{ ai_gen_id }}:has(.ai-hero-slider__right-{{ ai_gen_id }}:empty) {
+    grid-template-columns: 1fr;
+  }
+
+  .ai-hero-slider__container-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+    height: {{ block.settings.slider_height }}px;
+    overflow: hidden;
+  }
+
+  .ai-hero-slider__track-{{ ai_gen_id }} {
+    display: flex;
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    height: 100%;
+    will-change: transform;
+    cursor: grab;
+  }
+
+  .ai-hero-slider__track-{{ ai_gen_id }}:active {
+    cursor: grabbing;
+  }
+
+  .ai-hero-slider__slide-{{ ai_gen_id }} {
+    min-width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 40px;
+    flex-shrink: 0;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  /* Gradient background support for slides */
+  .ai-hero-slider__slide--gradient-{{ ai_gen_id }} {
+    position: relative;
+  }
+
+  .ai-hero-slider__slide--gradient-{{ ai_gen_id }}::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--slide-gradient);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  /* Mobile background image support */
+ @media screen and (max-width: 768px) {
+  .ai-hero-slider__slide-{{ ai_gen_id }}[data-mobile-bg="true"] {
+    background-image: attr(data-mobile-image url) !important;
+    background-size: cover;
+    background-position: center;
+  }
+}
+
+  .ai-hero-slider__content-wrapper-{{ ai_gen_id }} {
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 40px;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .ai-hero-slider__overlay-{{ ai_gen_id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: {{ block.settings.overlay_color }};
+    opacity: {{ block.settings.overlay_opacity | divided_by: 100.0 }};
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  /* Mobile overlay opacity override */
+  @media screen and (max-width: 768px) {
+    .ai-hero-slider__overlay-{{ ai_gen_id }} {
+      opacity: {{ block.settings.mobile_overlay_opacity | divided_by: 100.0 | default: block.settings.overlay_opacity | divided_by: 100.0 }};
+    }
+  }
+
+  .ai-hero-slider__left-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .ai-hero-slider__title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.title_size }}px;
+    font-weight: 700;
+    color: {{ block.settings.text_color }};
+    margin: 0;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  /* Mobile title size */
+  @media screen and (max-width: 768px) {
+    .ai-hero-slider__title-{{ ai_gen_id }} {
+      font-size: {{ block.settings.mobile_title_size | default: block.settings.title_size | times: 0.65 }}px;
+    }
+  }
+
+  .ai-hero-slider__divider-{{ ai_gen_id }} {
+    width: 70px;
+    height: 3px;
+    background-color: {{ block.settings.divider_color }};
+  }
+
+  .ai-hero-slider__features-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  /* Mobile features visibility - show/hide based on setting */
+  @media screen and (max-width: 768px) {
+    .ai-hero-slider__features-{{ ai_gen_id }} {
+      display: {{ block.settings.mobile_show_features | default: 'flex' }};
+    }
+  }
+
+  .ai-hero-slider__feature-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .ai-hero-slider__checkmark-{{ ai_gen_id }} {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: {{ block.settings.checkmark_bg_color }};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .ai-hero-slider__checkmark-{{ ai_gen_id }} svg {
+    width: 14px;
+    height: 14px;
+    stroke: {{ block.settings.checkmark_color }};
+    stroke-width: 3;
+    fill: none;
+  }
+
+  .ai-hero-slider__feature-text-{{ ai_gen_id }} {
+    font-size: {{ block.settings.feature_text_size }}px;
+    color: {{ block.settings.text_color }};
+    margin: 0;
+    font-weight: 500;
+  }
+
+  /* Mobile feature text size */
+  @media screen and (max-width: 768px) {
+    .ai-hero-slider__feature-text-{{ ai_gen_id }} {
+      font-size: {{ block.settings.mobile_feature_text_size | default: block.settings.feature_text_size }}px;
+    }
+  }
+
+  .ai-hero-slider__cta-{{ ai_gen_id }} {
+    display: inline-block;
+    padding: 14px 36px;
+    background-color: {{ block.settings.button_bg_color }};
+    color: {{ block.settings.button_text_color }};
+    text-decoration: none;
+    border-radius: {{ block.settings.button_border_radius }}px;
+    font-size: {{ block.settings.button_text_size }}px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    width: fit-content;
+  }
+
+  /* Mobile button size */
+  @media screen and (max-width: 768px) {
+    .ai-hero-slider__cta-{{ ai_gen_id }} {
+      padding: {{ block.settings.mobile_button_padding | default: '12px 28px' }};
+      font-size: {{ block.settings.mobile_button_text_size | default: block.settings.button_text_size }}px;
+    }
+  }
+
+  .ai-hero-slider__cta-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_bg_color }};
+    color: {{ block.settings.button_hover_text_color }};
+    transform: translateY(-2px);
+  }
+
+  .ai-hero-slider__right-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  /* Mobile hide image column */
+  @media screen and (max-width: 768px) {
+    .ai-hero-slider__right-{{ ai_gen_id }} {
+      display: {{ block.settings.mobile_show_image | default: 'flex' }};
+    }
+  }
+
+  .ai-hero-slider__lifestyle-image-{{ ai_gen_id }} {
+    width: 100%;
+    border-radius: {{ block.settings.lifestyle_border_radius }}px;
+    overflow: hidden;
+    aspect-ratio: 6 / 5;
+  }
+
+  .ai-hero-slider__lifestyle-image-{{ ai_gen_id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-hero-slider__nav-button-{{ ai_gen_id }} {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: {{ block.settings.nav_button_bg_color }};
+    border: none;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 20;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Mobile nav buttons */
+  @media screen and (max-width: 768px) {
+    .ai-hero-slider__nav-button-{{ ai_gen_id }} {
+      width: 36px;
+      height: 36px;
+      display: {{ block.settings.mobile_show_nav_buttons | default: 'flex' }};
+    }
+    .ai-hero-slider__nav-button-{{ ai_gen_id }} svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  .ai-hero-slider__nav-button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.nav_button_hover_bg_color }};
+    transform: translateY(-50%) scale(1.05);
+  }
+
+  .ai-hero-slider__nav-button-{{ ai_gen_id }} svg {
+    width: 22px;
+    height: 22px;
+    stroke: {{ block.settings.nav_button_icon_color }};
+    stroke-width: 2;
+    fill: none;
+  }
+
+  .ai-hero-slider__nav-button--prev-{{ ai_gen_id }} {
+    left: 20px;
+  }
+
+  .ai-hero-slider__nav-button--next-{{ ai_gen_id }} {
+    right: 20px;
+  }
+
+  .ai-hero-slider__dots-{{ ai_gen_id }} {
+    position: absolute;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 12px;
+    z-index: 15;
+  }
+
+  /* Mobile dots */
+  @media screen and (max-width: 768px) {
+    .ai-hero-slider__dots-{{ ai_gen_id }} {
+      display: {{ block.settings.mobile_show_dots | default: 'flex' }};
+      bottom: 15px;
+      gap: 8px;
+    }
+  }
+
+  .ai-hero-slider__dot-{{ ai_gen_id }} {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: {{ block.settings.dot_color }};
+    opacity: 0.35;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    padding: 0;
+  }
+
+  .ai-hero-slider__dot-{{ ai_gen_id }}.active {
+    opacity: 1;
+    width: 28px;
+    border-radius: 5px;
+  }
+
+  @media screen and (max-width: 1024px) {
+    .ai-hero-slider__content-wrapper-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+      gap: 30px;
+      text-align: center;
+    }
+
+    .ai-hero-slider__left-{{ ai_gen_id }} {
+      align-items: center;
+      text-align: center;
+    }
+
+    .ai-hero-slider__divider-{{ ai_gen_id }} {
+      margin: 0 auto;
+    }
+
+    .ai-hero-slider__cta-{{ ai_gen_id }} {
+      margin: 0 auto;
+    }
+
+    .ai-hero-slider__right-{{ ai_gen_id }} {
+      justify-content: center;
+    }
+
+    .ai-hero-slider__lifestyle-image-{{ ai_gen_id }} {
+      max-width: 320px;
+    }
+
+    .ai-hero-slider__nav-button-{{ ai_gen_id }} {
+      width: 40px;
+      height: 40px;
+    }
+
+    .ai-hero-slider__nav-button--prev-{{ ai_gen_id }} {
+      left: 10px;
+    }
+
+    .ai-hero-slider__nav-button--next-{{ ai_gen_id }} {
+      right: 10px;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .ai-hero-slider__container-{{ ai_gen_id }} {
+      height: auto;
+      min-height: {{ block.settings.mobile_slider_height | default: 600 }}px;
+    }
+
+    .ai-hero-slider__slide-{{ ai_gen_id }} {
+      padding: 40px 20px;
+    }
+  }
+{% endstyle %}
+
+<hero-slider-{{ ai_gen_id }} class="ai-hero-slider-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-hero-slider__container-{{ ai_gen_id }}">
+    <div class="ai-hero-slider__track-{{ ai_gen_id }}" data-track>
+      {% for i in (1..3) %}
+        {% liquid
+          assign slide_title_key = 'slide_' | append: i | append: '_title'
+          assign slide_feature_1_key = 'slide_' | append: i | append: '_feature_1'
+          assign slide_feature_2_key = 'slide_' | append: i | append: '_feature_2'
+          assign slide_feature_3_key = 'slide_' | append: i | append: '_feature_3'
+          assign slide_button_text_key = 'slide_' | append: i | append: '_button_text'
+          assign slide_button_link_key = 'slide_' | append: i | append: '_button_link'
+          assign slide_disclaimer_key = 'slide_' | append: i | append: '_disclaimer'
+          assign slide_background_image_key = 'slide_' | append: i | append: '_background_image'
+          assign slide_background_color_key = 'slide_' | append: i | append: '_background_color'
+          assign slide_background_gradient_key = 'slide_' | append: i | append: '_background_gradient'
+          assign slide_background_type_key = 'slide_' | append: i | append: '_background_type'
+          assign slide_lifestyle_image_key = 'slide_' | append: i | append: '_lifestyle_image'
+          assign slide_mobile_background_image_key = 'slide_' | append: i | append: '_mobile_background_image'
+
+          assign slide_title = block.settings[slide_title_key]
+          assign slide_feature_1 = block.settings[slide_feature_1_key]
+          assign slide_feature_2 = block.settings[slide_feature_2_key]
+          assign slide_feature_3 = block.settings[slide_feature_3_key]
+          assign slide_button_text = block.settings[slide_button_text_key]
+          assign slide_button_link = block.settings[slide_button_link_key]
+          assign slide_disclaimer = block.settings[slide_disclaimer_key]
+          assign slide_background_image = block.settings[slide_background_image_key]
+          assign slide_background_color = block.settings[slide_background_color_key]
+          assign slide_background_gradient = block.settings[slide_background_gradient_key]
+          assign slide_background_type = block.settings[slide_background_type_key]
+          assign slide_lifestyle_image = block.settings[slide_lifestyle_image_key]
+          assign slide_mobile_background_image = block.settings[slide_mobile_background_image_key]
+        %}
+        
+        {% capture slide_bg_style %}
+          {% if slide_background_type == 'image' and slide_background_image %}
+            background-image: url('{{ slide_background_image | image_url: width: 2000 }}');
+            background-color: {{ slide_background_color | default: block.settings.background_color }};
+          {% elsif slide_background_type == 'gradient' and slide_background_gradient != blank %}
+            background: {{ slide_background_gradient }};
+          {% else %}
+            background-color: {{ slide_background_color | default: block.settings.background_color }};
+          {% endif %}
+        {% endcapture %}
+
+   {% capture mobile_bg_attr %}
+  {% if slide_mobile_background_image %}
+    data-mobile-bg="true"
+    data-mobile-image="{{ slide_mobile_background_image | image_url: width: 800 }}"
+  {% endif %}
+{% endcapture %}
+
+       <div 
+  class="ai-hero-slider__slide-{{ ai_gen_id }} {% if slide_background_type == 'gradient' %}ai-hero-slider__slide--gradient-{{ ai_gen_id }}{% endif %}" 
+  style="
+    {% if slide_mobile_background_image %}
+      background-image: url('{{ slide_mobile_background_image | image_url: width: 800 }}');
+    {% else %}
+      {{ slide_bg_style }}
+    {% endif %}
+    {% if slide_background_type == 'gradient' and slide_background_gradient != blank %}
+      --slide-gradient: {{ slide_background_gradient }};
+    {% endif %}
+  "
+>
+          <div class="ai-hero-slider__overlay-{{ ai_gen_id }}"></div>
+          
+          <div class="ai-hero-slider__content-wrapper-{{ ai_gen_id }}">
+            <div class="ai-hero-slider__left-{{ ai_gen_id }}">
+              {% if slide_title != blank %}
+                <h2 class="ai-hero-slider__title-{{ ai_gen_id }}">{{ slide_title }}</h2>
+              {% endif %}
+
+              <div class="ai-hero-slider__divider-{{ ai_gen_id }}"></div>
+
+              <div class="ai-hero-slider__features-{{ ai_gen_id }}">
+                {% if slide_feature_1 != blank %}
+                  <div class="ai-hero-slider__feature-{{ ai_gen_id }}">
+                    <div class="ai-hero-slider__checkmark-{{ ai_gen_id }}">
+                      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                    </div>
+                    <p class="ai-hero-slider__feature-text-{{ ai_gen_id }}">{{ slide_feature_1 }}</p>
+                  </div>
+                {% endif %}
+
+                {% comment %} {% if slide_feature_2 != blank %}
+                  <div class="ai-hero-slider__feature-{{ ai_gen_id }}">
+                    <div class="ai-hero-slider__checkmark-{{ ai_gen_id }}">
+                      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                    </div>
+                    <p class="ai-hero-slider__feature-text-{{ ai_gen_id }}">{{ slide_feature_2 }}</p>
+                  </div>
+                {% endif %} {% endcomment %}
+
+                {% comment %} {% if slide_feature_3 != blank %}
+                  <div class="ai-hero-slider__feature-{{ ai_gen_id }}">
+                    <div class="ai-hero-slider__checkmark-{{ ai_gen_id }}">
+                      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                    </div>
+                    <p class="ai-hero-slider__feature-text-{{ ai_gen_id }}">{{ slide_feature_3 }}</p>
+                  </div>
+                {% endif %} {% endcomment %}
+              </div>
+
+              {% if slide_button_text != blank %}
+                <a href="{{ slide_button_link | default: '#' }}" class="ai-hero-slider__cta-{{ ai_gen_id }}">
+                  {{ slide_button_text }}
+                </a>
+              {% endif %}
+
+              {% if slide_disclaimer != blank and block.settings.show_disclaimer %}
+                <div class="ai-hero-slider__disclaimer-{{ ai_gen_id }}">
+                  {{ slide_disclaimer }}
+                </div>
+              {% endif %}
+            </div>
+
+            {% if slide_lifestyle_image %}
+              <div class="ai-hero-slider__right-{{ ai_gen_id }}">
+                <div class="ai-hero-slider__lifestyle-image-{{ ai_gen_id }}">
+                  <img
+                    src="{{ slide_lifestyle_image | image_url: width: 600 }}"
+                    alt="{{ slide_lifestyle_image.alt | escape }}"
+                    loading="lazy"
+                    width="500"
+                    height="500"
+                  >
+                </div>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <button class="ai-hero-slider__nav-button-{{ ai_gen_id }} ai-hero-slider__nav-button--prev-{{ ai_gen_id }}" aria-label="Previous slide" data-prev>
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+    </button>
+
+    <button class="ai-hero-slider__nav-button-{{ ai_gen_id }} ai-hero-slider__nav-button--next-{{ ai_gen_id }}" aria-label="Next slide" data-next>
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </button>
+
+    <div class="ai-hero-slider__dots-{{ ai_gen_id }}" data-dots></div>
+  </div>
+</hero-slider-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class HeroSlider{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.currentSlide = 0;
+        this.totalSlides = 3;
+        this.autoplayInterval = null;
+        this.isDragging = false;
+        this.startPos = 0;
+        this.currentTranslate = 0;
+        this.prevTranslate = 0;
+      }
+
+      connectedCallback() {
+        this.track = this.querySelector('[data-track]');
+        this.prevButton = this.querySelector('[data-prev]');
+        this.nextButton = this.querySelector('[data-next]');
+        this.dotsContainer = this.querySelector('[data-dots]');
+        this.slides = this.querySelectorAll('.ai-hero-slider__slide-{{ ai_gen_id }}');
+
+        this.createDots();
+        this.setupEventListeners();
+        this.setupDragEvents();
+        this.startAutoplay();
+        this.updateSlider();
+      }
+
+      disconnectedCallback() {
+        this.stopAutoplay();
+        this.removeDragEvents();
+      }
+
+      createDots() {
+        for (let i = 0; i < this.totalSlides; i++) {
+          const dot = document.createElement('button');
+          dot.classList.add('ai-hero-slider__dot-{{ ai_gen_id }}');
+          if (i === 0) dot.classList.add('active');
+          dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+          dot.addEventListener('click', () => this.goToSlide(i));
+          this.dotsContainer.appendChild(dot);
+        }
+      }
+
+      setupEventListeners() {
+        this.prevButton.addEventListener('click', () => this.previousSlide());
+        this.nextButton.addEventListener('click', () => this.nextSlide());
+        this.addEventListener('mouseenter', () => this.stopAutoplay());
+        this.addEventListener('mouseleave', () => this.startAutoplay());
+      }
+
+      setupDragEvents() {
+        this.track.addEventListener('mousedown', this.dragStart.bind(this));
+        this.track.addEventListener('touchstart', this.dragStart.bind(this));
+        window.addEventListener('mousemove', this.dragMove.bind(this));
+        window.addEventListener('touchmove', this.dragMove.bind(this));
+        window.addEventListener('mouseup', this.dragEnd.bind(this));
+        window.addEventListener('touchend', this.dragEnd.bind(this));
+      }
+
+      removeDragEvents() {
+        window.removeEventListener('mousemove', this.dragMove);
+        window.removeEventListener('touchmove', this.dragMove);
+        window.removeEventListener('mouseup', this.dragEnd);
+        window.removeEventListener('touchend', this.dragEnd);
+      }
+
+      dragStart(event) {
+        this.stopAutoplay();
+        this.isDragging = true;
+        this.startPos = this.getPositionX(event);
+        this.track.style.transition = 'none';
+        this.prevTranslate = -this.currentSlide * this.getSlideWidth();
+        this.currentTranslate = this.prevTranslate;
+        event.preventDefault();
+      }
+
+      dragMove(event) {
+        if (!this.isDragging) return;
+        const currentPosition = this.getPositionX(event);
+        const diff = currentPosition - this.startPos;
+        this.currentTranslate = this.prevTranslate + diff;
+        this.track.style.transform = `translateX(${this.currentTranslate}px)`;
+      }
+
+      dragEnd() {
+        if (!this.isDragging) return;
+        this.isDragging = false;
+        this.track.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        
+        const movedBy = this.currentTranslate - this.prevTranslate;
+        const slideWidth = this.getSlideWidth();
+        const threshold = slideWidth * 0.2;
+        
+        if (movedBy < -threshold && this.currentSlide < this.totalSlides - 1) {
+          this.nextSlide();
+        } else if (movedBy > threshold && this.currentSlide > 0) {
+          this.previousSlide();
+        } else {
+          this.goToSlide(this.currentSlide);
+        }
+        
+        this.startAutoplay();
+      }
+
+      getPositionX(event) {
+        return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
+      }
+
+      getSlideWidth() {
+        const slide = this.slides[0];
+        return slide ? slide.offsetWidth : window.innerWidth;
+      }
+
+      goToSlide(index) {
+        if (index === this.currentSlide) {
+          this.updateSliderPosition();
+          return;
+        }
+        this.currentSlide = index;
+        this.updateSlider();
+      }
+
+      nextSlide() {
+        if (this.currentSlide < this.totalSlides - 1) {
+          this.currentSlide++;
+        } else {
+          this.currentSlide = 0;
+        }
+        this.updateSlider();
+      }
+
+      previousSlide() {
+        if (this.currentSlide > 0) {
+          this.currentSlide--;
+        } else {
+          this.currentSlide = this.totalSlides - 1;
+        }
+        this.updateSlider();
+      }
+
+      updateSlider() {
+        const offset = -this.currentSlide * 100;
+        this.track.style.transform = `translateX(${offset}%)`;
+        this.updateDots();
+      }
+
+      updateSliderPosition() {
+        const offset = -this.currentSlide * 100;
+        this.track.style.transform = `translateX(${offset}%)`;
+      }
+
+      updateDots() {
+        const dots = this.dotsContainer.querySelectorAll('.ai-hero-slider__dot-{{ ai_gen_id }}');
+        dots.forEach((dot, index) => {
+          if (index === this.currentSlide) {
+            dot.classList.add('active');
+          } else {
+            dot.classList.remove('active');
+          }
+        });
+      }
+
+      startAutoplay() {
+        if ({{ block.settings.autoplay_enabled | default: true }}) {
+          this.stopAutoplay();
+          this.autoplayInterval = setInterval(() => {
+            this.nextSlide();
+          }, {{ block.settings.autoplay_speed | times: 1000 | default: 5000 }});
+        }
+      }
+
+      stopAutoplay() {
+        if (this.autoplayInterval) {
+          clearInterval(this.autoplayInterval);
+          this.autoplayInterval = null;
+        }
+      }
+    }
+
+    customElements.define('hero-slider-{{ ai_gen_id }}', HeroSlider{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Hero Slider - Silk Style",
+  "settings": [
+    {
+      "type": "header",
+      "content": "⚙️ General Settings"
+    },
+    {
+      "type": "range",
+      "id": "slider_height",
+      "label": "Slider Height (Desktop)",
+      "min": 500,
+      "max": 900,
+      "step": 10,
+      "unit": "px",
+      "default": 650
+    },
+    {
+      "type": "range",
+      "id": "mobile_slider_height",
+      "label": "Slider Height (Mobile)",
+      "min": 400,
+      "max": 800,
+      "step": 10,
+      "unit": "px",
+      "default": 600
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay_enabled",
+      "label": "Enable Autoplay",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "autoplay_speed",
+      "label": "Autoplay Speed (seconds)",
+      "min": 3,
+      "max": 10,
+      "step": 0.5,
+      "default": 5
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Global Background Color (fallback)",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "🎨 Background Overlay"
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Overlay Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Overlay Opacity (Desktop %)",
+      "min": 0,
+      "max": 90,
+      "step": 5,
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "mobile_overlay_opacity",
+      "label": "Overlay Opacity (Mobile %)",
+      "min": 0,
+      "max": 90,
+      "step": 5,
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "📝 Typography & Colors"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#111111"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "label": "Title Font Size (Desktop)",
+      "min": 32,
+      "max": 64,
+      "step": 2,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "mobile_title_size",
+      "label": "Title Font Size (Mobile)",
+      "min": 24,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "feature_text_size",
+      "label": "Feature Text Size (Desktop)",
+      "min": 14,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "mobile_feature_text_size",
+      "label": "Feature Text Size (Mobile)",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "divider_color",
+      "label": "Divider Color",
+      "default": "#111111"
+    },
+    {
+      "type": "header",
+      "content": "📱 Mobile Visibility Controls"
+    },
+    {
+      "type": "checkbox",
+      "id": "mobile_show_features",
+      "label": "Show Features List on Mobile",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "mobile_show_image",
+      "label": "Show Lifestyle Image on Mobile",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "mobile_show_nav_buttons",
+      "label": "Show Navigation Buttons on Mobile",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "mobile_show_dots",
+      "label": "Show Dots on Mobile",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "✅ Checkmark Style"
+    },
+    {
+      "type": "color",
+      "id": "checkmark_bg_color",
+      "label": "Checkmark Background",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "checkmark_color",
+      "label": "Checkmark Icon Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "🔘 Button Style"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Button Background",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_bg_color",
+      "label": "Button Hover Background",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_text_color",
+      "label": "Button Hover Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "button_text_size",
+      "label": "Button Text Size (Desktop)",
+      "min": 14,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "mobile_button_text_size",
+      "label": "Button Text Size (Mobile)",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "text",
+      "id": "mobile_button_padding",
+      "label": "Mobile Button Padding",
+      "default": "12px 28px",
+      "info": "Example: 10px 24px"
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "label": "Button Border Radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "🖼️ Lifestyle Image"
+    },
+    {
+      "type": "range",
+      "id": "lifestyle_border_radius",
+      "label": "Image Border Radius",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "disclaimer_size",
+      "label": "Disclaimer Font Size",
+      "min": 10,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "🧭 Navigation"
+    },
+    {
+      "type": "color",
+      "id": "nav_button_bg_color",
+      "label": "Nav Button Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "nav_button_hover_bg_color",
+      "label": "Nav Button Hover Background",
+      "default": "#f0f0f0"
+    },
+    {
+      "type": "color",
+      "id": "nav_button_icon_color",
+      "label": "Nav Icon Color",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "dot_color",
+      "label": "Dot Color",
+      "default": "#111111"
+    },
+    {
+      "type": "header",
+      "content": "📱 Slide 1"
+    },
+    {
+      "type": "select",
+      "id": "slide_1_background_type",
+      "label": "Background Type",
+      "options": [
+        { "value": "color", "label": "Solid Color" },
+        { "value": "image", "label": "Image" },
+        { "value": "gradient", "label": "Gradient" }
+      ],
+      "default": "color"
+    },
+    {
+      "type": "color",
+      "id": "slide_1_background_color",
+      "label": "Slide Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "image_picker",
+      "id": "slide_1_background_image",
+      "label": "Background Image (Desktop)"
+    },
+    {
+      "type": "image_picker",
+      "id": "slide_1_mobile_background_image",
+      "label": "Background Image (Mobile - overrides desktop)"
+    },
+    {
+      "type": "textarea",
+      "id": "slide_1_background_gradient",
+      "label": "CSS Gradient",
+      "placeholder": "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
+    },
+    {
+      "type": "text",
+      "id": "slide_1_title",
+      "label": "Title",
+      "default": "Vitamin C 10% Face Serum"
+    },
+    {
+      "type": "text",
+      "id": "slide_1_feature_1",
+      "label": "Feature 1",
+      "default": "Brightens dull skin"
+    },
+    {
+      "type": "text",
+      "id": "slide_1_feature_2",
+      "label": "Feature 2",
+      "default": "Reduces dark spots"
+    },
+    {
+      "type": "text",
+      "id": "slide_1_feature_3",
+      "label": "Feature 3",
+      "default": "Helps maintain healthy-looking skin"
+    },
+    {
+      "type": "text",
+      "id": "slide_1_button_text",
+      "label": "Button Text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "slide_1_button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "image_picker",
+      "id": "slide_1_lifestyle_image",
+      "label": "Lifestyle / Model Image"
+    },
+    {
+      "type": "header",
+      "content": "📱 Slide 2"
+    },
+    {
+      "type": "select",
+      "id": "slide_2_background_type",
+      "label": "Background Type",
+      "options": [
+        { "value": "color", "label": "Solid Color" },
+        { "value": "image", "label": "Image" },
+        { "value": "gradient", "label": "Gradient" }
+      ],
+      "default": "color"
+    },
+    {
+      "type": "color",
+      "id": "slide_2_background_color",
+      "label": "Slide Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "image_picker",
+      "id": "slide_2_background_image",
+      "label": "Background Image (Desktop)"
+    },
+    {
+      "type": "image_picker",
+      "id": "slide_2_mobile_background_image",
+      "label": "Background Image (Mobile - overrides desktop)"
+    },
+    {
+      "type": "textarea",
+      "id": "slide_2_background_gradient",
+      "label": "CSS Gradient",
+      "placeholder": "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
+    },
+    {
+      "type": "text",
+      "id": "slide_2_title",
+      "label": "Title",
+      "default": "Hyaluronic Acid Moisturizer"
+    },
+    {
+      "type": "text",
+      "id": "slide_2_feature_1",
+      "label": "Feature 1",
+      "default": "24-hour hydration"
+    },
+    {
+      "type": "text",
+      "id": "slide_2_feature_2",
+      "label": "Feature 2",
+      "default": "Clinically tested formula"
+    },
+    {
+      "type": "text",
+      "id": "slide_2_feature_3",
+      "label": "Feature 3",
+      "default": "Suitable for all skin types"
+    },
+    {
+      "type": "text",
+      "id": "slide_2_button_text",
+      "label": "Button Text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "slide_2_button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "image_picker",
+      "id": "slide_2_lifestyle_image",
+      "label": "Lifestyle / Model Image"
+    },
+    {
+      "type": "header",
+      "content": "📱 Slide 3"
+    },
+    {
+      "type": "select",
+      "id": "slide_3_background_type",
+      "label": "Background Type",
+      "options": [
+        { "value": "color", "label": "Solid Color" },
+        { "value": "image", "label": "Image" },
+        { "value": "gradient", "label": "Gradient" }
+      ],
+      "default": "color"
+    },
+    {
+      "type": "color",
+      "id": "slide_3_background_color",
+      "label": "Slide Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "image_picker",
+      "id": "slide_3_background_image",
+      "label": "Background Image (Desktop)"
+    },
+    {
+      "type": "image_picker",
+      "id": "slide_3_mobile_background_image",
+      "label": "Background Image (Mobile - overrides desktop)"
+    },
+    {
+      "type": "textarea",
+      "id": "slide_3_background_gradient",
+      "label": "CSS Gradient",
+      "placeholder": "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
+    },
+    {
+      "type": "text",
+      "id": "slide_3_title",
+      "label": "Title",
+      "default": "Retinol Night Cream"
+    },
+    {
+      "type": "text",
+      "id": "slide_3_feature_1",
+      "label": "Feature 1",
+      "default": "Reduces fine lines"
+    },
+    {
+      "type": "text",
+      "id": "slide_3_feature_2",
+      "label": "Feature 2",
+      "default": "Improves skin texture"
+    },
+    {
+      "type": "text",
+      "id": "slide_3_feature_3",
+      "label": "Feature 3",
+      "default": "Gentle formula"
+    },
+    {
+      "type": "text",
+      "id": "slide_3_button_text",
+      "label": "Button Text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "slide_3_button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "image_picker",
+      "id": "slide_3_lifestyle_image",
+      "label": "Lifestyle / Model Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Slider - Silk Style",
+      "category": "Hero Sections"
+    }
+  ]
+}
+{% endschema %}

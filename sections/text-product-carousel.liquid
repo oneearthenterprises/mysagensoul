@@ -1,0 +1,274 @@
+<section class="text-image-carousel">
+  <div class="page-width">
+
+    {% if section.settings.heading != blank %}
+      <div class="tic-heading">
+        <h2>{{ section.settings.heading }}</h2>
+      </div>
+    {% endif %}
+
+    <div class="tic-slider-wrapper">
+      <div class="tic-slider swiper">
+        <div class="swiper-wrapper">
+          {% for block in section.blocks %}
+            <div class="swiper-slide">
+
+              {% if block.settings.image_link != blank %}
+                <a href="{{ block.settings.image_link }}">
+              {% endif %}
+
+              <picture>
+                {% if block.settings.mobile_image != blank %}
+                  <source
+                    media="(max-width: 767px)"
+                    srcset="{{ block.settings.mobile_image | image_url: width: 900 }}"
+                  >
+                {% endif %}
+
+                {% if block.settings.desktop_image != blank %}
+                  <img
+                    src="{{ block.settings.desktop_image | image_url: width: 1800 }}"
+                    alt=""
+                    loading="lazy"
+                    class="slider-img"
+                  >
+                {% endif %}
+              </picture>
+
+              {% if block.settings.image_link != blank %}
+                </a>
+              {% endif %}
+
+            </div>
+          {% endfor %}
+        </div>
+
+        <!-- Navigation Arrows -->
+        <div class="tic-button-prev">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </div>
+        <div class="tic-button-next">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+.text-image-carousel {
+  padding: 40px 0;
+  overflow: hidden;
+}
+
+.tic-heading {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.tic-heading h2 {
+  margin: 0;
+  font-size: 42px;
+  line-height: 1.2;
+  font-weight: 600;
+}
+
+.tic-slider-wrapper {
+  width: 100%;
+  overflow: hidden;
+}
+
+.tic-slider {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.tic-slider .swiper-slide {
+  width: 100%;
+}
+
+.slider-img {
+  width: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Arrow Buttons */
+.tic-button-prev,
+.tic-button-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 44px;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tic-button-prev:hover,
+.tic-button-next:hover {
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+}
+
+.tic-button-prev {
+  left: 16px;
+}
+
+.tic-button-next {
+  right: 16px;
+}
+
+.tic-button-prev svg,
+.tic-button-next svg {
+  width: 20px;
+  height: 20px;
+  color: #333;
+}
+
+.tic-button-prev.swiper-button-disabled,
+.tic-button-next.swiper-button-disabled {
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+/* Tablet */
+@media (max-width: 991px) {
+  .tic-heading h2 {
+    font-size: 32px;
+  }
+
+  .slider-img {
+    height: 300px;
+  }
+
+  .tic-button-prev,
+  .tic-button-next {
+    width: 38px;
+    height: 38px;
+  }
+
+  .tic-button-prev svg,
+  .tic-button-next svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .text-image-carousel {
+    padding: 20px 10px;
+  }
+
+  .tic-heading {
+    margin-bottom: 15px;
+  }
+
+  .tic-heading h2 {
+    font-size: 24px;
+  }
+
+  .slider-img {
+    height: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+  }
+
+  .tic-button-prev,
+  .tic-button-next {
+    width: 32px;
+    height: 32px;
+  }
+
+  .tic-button-prev svg,
+  .tic-button-next svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .tic-button-prev {
+    left: 8px;
+  }
+
+  .tic-button-next {
+    right: 8px;
+  }
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  new Swiper(".tic-slider", {
+    loop: true,
+    slidesPerView: 1,
+    spaceBetween: 20,
+    speed: 700,
+   autoplay: {
+  delay: 3000,
+  disableOnInteraction: false,
+  pauseOnMouseEnter: true
+},
+    navigation: {
+      prevEl: ".tic-button-prev",
+      nextEl: ".tic-button-next"
+    }
+  });
+});
+</script>
+
+{% schema %}
+{
+  "name": "Heading Image Carousel",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Our Collection"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "desktop_image",
+          "label": "Desktop Banner Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "mobile_image",
+          "label": "Mobile Banner Image"
+        },
+        {
+          "type": "url",
+          "id": "image_link",
+          "label": "Banner Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Heading Image Carousel"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,105 @@
+<section class="guided-sage-section">
+  <div class="page-width">
+
+    <div class="guided-sage-wrapper">
+
+      {% if section.settings.heading != blank %}
+        <h2 class="guided-sage-heading">
+          {{ section.settings.heading }}
+        </h2>
+      {% endif %}
+
+      <div class="guided-sage-content">
+        {{ section.settings.content }}
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+.guided-sage-section{
+  padding:80px 20px;
+  background:#EEF1EA;
+}
+
+.guided-sage-section .page-width{
+  max-width:1299px;
+  margin:0 auto;
+}
+
+.guided-sage-wrapper{
+  max-width:950px;
+}
+
+.guided-sage-heading{
+  font-size:clamp(32px,4vw,58px);
+  line-height:1.15;
+  font-weight:700;
+  color:#111;
+  margin-bottom:30px;
+}
+
+.guided-sage-content{
+  font-size:clamp(16px,1.5vw,20px);
+  line-height:1.9;
+  color:#222;
+}
+
+.guided-sage-content p {
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+
+/* Tablet */
+@media(max-width:991px){
+
+  .guided-sage-section{
+    padding:60px 20px;
+  }
+
+}
+
+/* Mobile */
+@media(max-width:768px){
+
+  .guided-sage-section{
+    padding:45px 15px;
+  }
+
+  .guided-sage-heading{
+    margin-bottom:20px;
+  }
+
+  .guided-sage-content{
+    line-height:1.7;
+  }
+
+}
+</style>
+
+{% schema %}
+{
+  "name": "Guided Sage Text",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Guided by Sage, From Earth’s Quiet Corners to Your Daily Ritual Cup"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Content",
+      "default": "<p>We do not just make tea; we curate wellness rituals. Every blend we create is a testament to our commitment to purity and purpose.</p><p>We journey to the earth's quiet corners to source whole, potent botanicals at their absolute peak.</p>"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Guided Sage Text"
+    }
+  ]
+}
+{% endschema %} 

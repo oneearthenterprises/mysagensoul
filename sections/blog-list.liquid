@@ -1,0 +1,562 @@
+{% comment %}
+  Custom Blog Listing Page — Foxtale-inspired design
+  - Top: featured grid (2 large cards + 4 small cards)
+  - Bottom: "Latest Posts" list (left) + "Most Read" sidebar (right)
+{% endcomment %}
+
+{% assign blog = blogs[section.settings.blog_handle] %}
+{% assign latest_limit = section.settings.latest_limit %}
+{% assign page_size = latest_limit | plus: 6 %}
+
+<div class="cbl-wrapper">
+
+  {% if blog.articles.size > 0 %}
+
+    <!-- ================= FEATURED GRID ================= -->
+    <div class="cbl-featured">
+
+      <!-- Large cards (first 2 articles) -->
+      <div class="cbl-featured-large">
+        {% for article in blog.articles limit: 2 %}
+          <a href="{{ article.url }}" class="cbl-large-card">
+            {% if article.image %}
+              <img src="{{ article.image | image_url: width: 900 }}" alt="{{ article.title }}" loading="lazy">
+            {% endif %}
+            <div class="cbl-large-overlay"></div>
+
+            {% if article.tags.size > 0 %}
+              <span class="cbl-badge">{{ article.tags.first }}</span>
+            {% endif %}
+
+            <div class="cbl-large-text">
+              <h2>{{ article.title }}</h2>
+              <div class="cbl-meta">
+                {% if article.author %}
+                  <span class="cbl-author-icon"></span>
+                  <span>{{ article.author }}</span>
+                  <span class="cbl-dot">|</span>
+                {% endif %}
+                <span>{{ article.published_at | date: "%B %d, %Y" }}</span>
+              </div>
+            </div>
+          </a>
+        {% endfor %}
+      </div>
+
+      <!-- Small cards (next 4 articles) -->
+      <div class="cbl-featured-small">
+        {% for article in blog.articles offset: 2 limit: 4 %}
+          <a href="{{ article.url }}" class="cbl-small-card">
+            <div class="cbl-small-img-wrap">
+              {% if article.image %}
+                <img src="{{ article.image | image_url: width: 400 }}" alt="{{ article.title }}" loading="lazy">
+              {% endif %}
+              {% if article.tags.size > 0 %}
+                <span class="cbl-badge cbl-badge-onimg">{{ article.tags.first }}</span>
+              {% endif %}
+            </div>
+            <div class="cbl-small-body">
+              <h3>{{ article.title }}</h3>
+              <div class="cbl-meta cbl-meta-dark">
+                {% if article.author %}
+                  <span>BY {{ article.author | upcase }}</span>
+                  <span class="cbl-dot">|</span>
+                {% endif %}
+                <span>{{ article.published_at | date: "%b %d, %Y" }}</span>
+              </div>
+            </div>
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- ================= LATEST POSTS + MOST READ ================= -->
+    <div class="cbl-lower">
+
+      <!-- LATEST POSTS -->
+      <div class="cbl-latest-col">
+        <h2 class="cbl-section-title">{{ section.settings.latest_heading }}</h2>
+
+        {% paginate blog.articles by page_size %}
+          {% for article in blog.articles %}
+            {% if paginate.current_page == 1 and forloop.index0 < 6 %}
+              {% continue %}
+            {% endif %}
+            <a href="{{ article.url }}" class="cbl-latest-item">
+              {% if article.image %}
+                <img src="{{ article.image | image_url: width: 300 }}" alt="{{ article.title }}" loading="lazy">
+              {% endif %}
+              <div class="cbl-latest-body">
+                <div class="cbl-latest-meta">
+                  {% if article.tags.size > 0 %}
+                    <span class="cbl-category">{{ article.tags.first | upcase }}</span>
+                    <span class="cbl-dot">|</span>
+                  {% endif %}
+                  <span>{{ article.published_at | date: "%B %d, %Y" | upcase }}</span>
+                </div>
+                <h3>{{ article.title }}</h3>
+                <p>{{ article.excerpt_or_content | strip_html | truncate: 140 }}</p>
+              </div>
+            </a>
+          {% endfor %}
+
+          {% if paginate.pages > 1 %}
+            <nav class="cbl-pagination" role="navigation" aria-label="Pagination">
+              {% if paginate.previous %}
+                <a href="{{ paginate.previous.url }}" class="cbl-page-link cbl-page-prev">&larr; Prev</a>
+              {% endif %}
+
+              {% for part in paginate.parts %}
+                {% if part.is_link %}
+                  <a href="{{ part.url }}" class="cbl-page-link">{{ part.title }}</a>
+                {% else %}
+                  {% if part.title == paginate.current_page %}
+                    <span class="cbl-page-link cbl-page-current">{{ part.title }}</span>
+                  {% else %}
+                    <span class="cbl-page-link cbl-page-dots">{{ part.title }}</span>
+                  {% endif %}
+                {% endif %}
+              {% endfor %}
+
+              {% if paginate.next %}
+                <a href="{{ paginate.next.url }}" class="cbl-page-link cbl-page-next">Next &rarr;</a>
+              {% endif %}
+            </nav>
+          {% endif %}
+        {% endpaginate %}
+      </div>
+
+      <!-- MOST READ -->
+      <div class="cbl-mostread-col">
+        <h2 class="cbl-section-title">{{ section.settings.mostread_heading }}</h2>
+
+        {% assign mostread_articles = blog.articles %}
+        {% if section.settings.mostread_tag != blank %}
+          {% assign tagged = blog.articles | where: "tags", section.settings.mostread_tag %}
+          {% if tagged.size > 0 %}
+            {% assign mostread_articles = tagged %}
+          {% endif %}
+        {% endif %}
+
+        {% for article in mostread_articles limit: section.settings.mostread_limit %}
+          <a href="{{ article.url }}" class="cbl-mostread-item">
+            {% if article.image %}
+              <img src="{{ article.image | image_url: width: 160 }}" alt="{{ article.title }}" loading="lazy">
+            {% endif %}
+            <div>
+              <span class="cbl-mostread-date">{{ article.published_at | date: "%B %d, %Y" }}</span>
+              <h4>{{ article.title }}</h4>
+            </div>
+          </a>
+        {% endfor %}
+      </div>
+
+    </div>
+
+  {% else %}
+    <p class="cbl-empty">No blog posts yet.</p>
+  {% endif %}
+
+</div>
+
+<style>
+.cbl-wrapper {
+  --cbl-accent: {{ section.settings.accent_color }};
+  --cbl-dark: #1a1a1a;
+  --cbl-gray: #6b6b6b;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 40px 20px 60px;
+}
+
+a.cbl-large-card,
+a.cbl-small-card,
+a.cbl-latest-item,
+a.cbl-mostread-item {
+  text-decoration: none;
+  color: inherit;
+
+}
+
+/* ===== FEATURED GRID ===== */
+.cbl-featured-large {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.cbl-large-card {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  height: 400px;
+}
+
+.cbl-large-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  transition: transform 0.4s ease;
+}
+
+.cbl-large-card:hover img {
+  transform: scale(1.03);
+}
+
+.cbl-large-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.75), rgba(0,0,0,0.15) 55%, rgba(0,0,0,0.35));
+}
+
+.cbl-large-text {
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  bottom: 20px;
+  color: #fff;
+}
+
+.cbl-large-text h2 {
+  margin: 0 0 10px;
+  font-size: 26px;
+  line-height: 1.3;
+}
+
+.cbl-meta {
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  opacity: 0.95;
+}
+
+.cbl-dot {
+  opacity: 0.6;
+}
+
+.cbl-badge {
+  position: absolute;
+  top: 18px;
+  left: 20px;
+  background: var(--cbl-accent);
+  color: #1a1a1a;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  border-radius: 3px;
+  z-index: 2;
+}
+
+.cbl-featured-small {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.cbl-small-card {
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+}
+
+.cbl-small-img-wrap {
+  position: relative;
+  width: 100%;
+  height: 160px;
+}
+
+.cbl-small-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.cbl-badge-onimg {
+  top: 12px;
+  left: 12px;
+}
+
+.cbl-small-body {
+  padding: 16px;
+}
+
+.cbl-small-body h3 {
+  margin: 0 0 8px;
+  font-size: 15px;
+  line-height: 1.35;
+  color: var(--cbl-dark);
+}
+
+.cbl-meta-dark {
+  color: var(--cbl-gray);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* ===== LOWER LAYOUT ===== */
+.cbl-lower {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 40px;
+  margin-top: 50px;
+}
+
+.cbl-section-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--cbl-dark);
+  padding-left: 14px;
+  border-left: 4px solid var(--cbl-accent);
+  margin: 0 0 24px;
+}
+
+/* LATEST POSTS */
+.cbl-latest-item {
+  display: flex;
+  gap: 20px;
+  padding-bottom: 22px;
+  margin-bottom: 22px;
+  border-bottom: 1px solid #eee;
+}
+
+.cbl-latest-item:last-child {
+  border-bottom: none;
+}
+
+.cbl-latest-item img {
+  width: 220px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.cbl-latest-meta {
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--cbl-gray);
+}
+
+.cbl-category {
+  color: var(--cbl-accent);
+}
+
+.cbl-latest-body h3 {
+  margin: 0 0 8px;
+  font-size: 18px;
+  color: var(--cbl-dark);
+}
+
+.cbl-latest-body p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--cbl-gray);
+  line-height: 1.5;
+}
+
+/* MOST READ */
+.cbl-mostread-col {
+    background: #f6f6f6;
+    border-radius: 12px;
+    padding: 24px;
+    align-self: start;
+    position: sticky;
+    top: 30px;
+}
+
+.cbl-mostread-item {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin-bottom: 18px;
+}
+
+.cbl-mostread-item:last-child {
+  margin-bottom: 0;
+}
+
+.cbl-mostread-item img {
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+.cbl-mostread-date {
+  font-size: 11px;
+  color: var(--cbl-gray);
+}
+
+.cbl-mostread-item h4 {
+  margin: 4px 0 0;
+  font-size: 13.5px;
+  line-height: 1.35;
+  color: var(--cbl-dark);
+  font-weight: 600;
+}
+
+.cbl-empty {
+  text-align: center;
+  padding: 60px 0;
+  color: var(--cbl-gray);
+}
+
+/* ===== PAGINATION ===== */
+.cbl-pagination {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.cbl-page-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 34px;
+  height: 34px;
+  padding: 0 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--cbl-dark);
+  text-decoration: none;
+  border: 1px solid #e2e2e2;
+  background: #fff;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+a.cbl-page-link:hover {
+  border-color: var(--cbl-accent);
+  color: var(--cbl-accent);
+}
+
+.cbl-page-current {
+  background: var(--cbl-accent);
+  border-color: var(--cbl-accent);
+  color: #1a1a1a;
+}
+
+.cbl-page-dots {
+  border: none;
+  background: none;
+  color: var(--cbl-gray);
+}
+
+.cbl-page-prev,
+.cbl-page-next {
+  font-weight: 700;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .cbl-featured-large {
+    grid-template-columns: 1fr;
+  }
+  .cbl-featured-small {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .cbl-lower {
+    grid-template-columns: 1fr;
+  }
+  .cbl-latest-item img {
+    width: 140px;
+    height: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cbl-featured-small {
+    grid-template-columns: 1fr;
+  }
+  .cbl-large-card {
+    height: 300px;
+  }
+  .cbl-latest-item {
+    flex-direction: column;
+  }
+  .cbl-latest-item img {
+    width: 100%;
+    height: 180px;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Custom Blog List",
+  "settings": [
+    {
+      "type": "blog",
+      "id": "blog_handle",
+      "label": "Select Blog"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent / Badge Color",
+      "default": "#e8a33d"
+    },
+    {
+      "type": "header",
+      "content": "Latest Posts"
+    },
+    {
+      "type": "text",
+      "id": "latest_heading",
+      "label": "Latest Posts Heading",
+      "default": "Latest Posts"
+    },
+    {
+      "type": "range",
+      "id": "latest_limit",
+      "label": "Number of Latest Posts",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "header",
+      "content": "Most Read"
+    },
+    {
+      "type": "text",
+      "id": "mostread_heading",
+      "label": "Most Read Heading",
+      "default": "Most Read"
+    },
+    {
+      "type": "text",
+      "id": "mostread_tag",
+      "label": "Filter tag (optional)",
+      "info": "Only show articles with this tag under Most Read. Leave blank to show recent articles instead.",
+      "default": "most-read"
+    },
+    {
+      "type": "range",
+      "id": "mostread_limit",
+      "label": "Number of Most Read Posts",
+      "min": 1,
+      "max": 8,
+      "step": 1,
+      "default": 4
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Blog List"
+    }
+  ]
+}
+{% endschema %}

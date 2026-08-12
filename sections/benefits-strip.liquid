@@ -1,0 +1,268 @@
+<section class="trust-icons-strip section">
+  <div class="page-width">
+    <div class="trust-icons-grid">
+
+      {% for block in section.blocks %}
+        <div class="trust-icons-item" {{ block.shopify_attributes }}>
+
+          {% if block.settings.icon != blank %}
+            <img
+              src="{{ block.settings.icon | image_url: width: 100 }}"
+              alt="{{ block.settings.title | escape }}"
+              loading="lazy"
+              width="44"
+              height="44"
+            >
+          {% endif %}
+
+          {% if block.settings.title != blank %}
+            <span>{{ block.settings.title }}</span>
+          {% endif %}
+
+        </div>
+      {% endfor %}
+
+    </div>
+  </div>
+
+</section>
+  <div class="review-madein-badge">
+  <div class="badge-left">
+    <span class="stars">★★★★★</span>
+    <span class="reviews">+ 20,472 Reviews</span>
+  </div>
+
+  <div class="badge-divider"></div>
+
+  <div class="badge-right">
+    <span class="made-for">Made in</span>
+    <span class="country-svg">
+      <svg xmlns="http://www.w3.org/2000/svg" width="82" height="26" viewBox="0 0 82 26" fill="none">
+        <path d="M82 0L73.25 13L82 26H0L8.75 13L0 0H82Z" fill="black"></path>
+        <path d="M20.51 6.18V20H17.87V6.18H20.51ZM33.9489 20H30.5289L25.7889 8.82C25.9089 9.80667 25.9956 10.7 26.0489 11.5C26.1156 12.3 26.1489 13.2533 26.1489 14.36V20H23.7489V6.18H27.0889L31.9089 17.38C31.8289 16.8467 31.7489 16.1467 31.6689 15.28C31.5889 14.4 31.5489 13.5267 31.5489 12.66V6.18H33.9489V20ZM40.5864 6.18C42.7331 6.18 44.4464 6.66667 45.7264 7.64C47.0197 8.61333 47.6664 10.4067 47.6664 13.02C47.6664 15.58 47.0331 17.3867 45.7664 18.44C44.4997 19.48 42.8931 20 40.9464 20H37.1864V6.18H40.5864ZM39.8264 8.16V18.02H41.1264C42.2997 18.02 43.2197 17.66 43.8864 16.94C44.5531 16.2067 44.8864 14.9 44.8864 13.02C44.8864 11.7133 44.7131 10.7067 44.3664 10C44.0331 9.28 43.5864 8.79333 43.0264 8.54C42.4797 8.28667 41.8197 8.16 41.0464 8.16H39.8264ZM52.7952 6.18V20H50.1552V6.18H52.7952ZM63.3541 20L62.4941 16.8H57.9141L57.0541 20H54.3141L58.6141 6.18H61.8741L66.1541 20H63.3541ZM58.4341 14.8H61.9541L60.1941 8.2L58.4341 14.8Z" fill="white"></path>
+      </svg>
+    </span>
+  </div>
+</div>
+
+<style>
+
+
+
+.review-madein-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    padding: 8px 16px;
+    background: #f6f5ee;
+    border-radius: 10px;
+    max-width: 100%;
+    box-sizing: border-box;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    width: fit-content;
+    margin: auto auto 20px auto;
+}
+.badge-left, .badge-right {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+}
+.made-for {
+    font-size: 14px;
+    color: #444;
+    font-style: italic;
+    white-space: nowrap;
+    line-height: 1;
+}
+.country-svg {
+    display: block;
+    line-height: 0;
+    flex: 0 0 auto;
+}
+.country-svg svg {
+    display: block;
+    height: 18px;
+    width: auto;
+}
+.stars {
+    color: #f5a623;
+    font-size: 18px;
+    line-height: 1;
+    letter-spacing: 1px;
+    display: inline-block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* SECTION */
+.trust-icons-strip{
+  background:#f8f6f2;
+  padding:40px 0;
+}
+
+/* DESKTOP */
+.trust-icons-grid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:24px;
+  align-items:start;
+  
+}
+
+.trust-icons-item{
+  text-align:center;
+}
+
+.trust-icons-item img{
+  width:46px;
+  height:46px;
+  object-fit:contain;
+  display:block;
+  margin:0 auto 16px;
+}
+
+.trust-icons-item span{
+  display:block;
+  font-size:14px;
+  line-height:1.5;
+  color:#4a4a4a;
+  font-weight:500;
+}
+
+/* TABLET */
+@media(max-width:991px){
+  .trust-icons-grid{
+    grid-template-columns:repeat(3,1fr);
+    gap:24px;
+  }
+
+  .trust-icons-item span{
+    font-size:16px;
+  }
+}
+
+/* MOBILE */
+@media(max-width:767px){
+.review-madein-badge {
+    max-width: 95%;
+    margin: auto auto 10px auto;
+    padding: 5px 5px;
+    gap: 0px;
+    overflow: scroll;
+}
+
+  .trust-icons-strip{
+    padding:10px 0;
+    overflow-x:auto;
+  }
+
+  .trust-icons-strip .page-width{
+    padding:0;
+  }
+
+  .trust-icons-grid{
+    display:flex;
+    flex-wrap:nowrap;
+    gap:0;
+    width:max-content;
+    min-width:100%;
+    margin-bottom: 10px;
+  }
+
+  .trust-icons-item{
+    {% comment %} width:100vw; 
+    min-width:100vw; {% endcomment %}
+    padding:0 18px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:14px;
+    text-align:left;
+    box-sizing:border-box;
+  }
+
+  .trust-icons-item img{
+    width:28px;
+    height:28px;
+    margin:0;
+    flex-shrink:0;
+  }
+
+  .trust-icons-item span{
+    font-size:14px;
+    line-height:1.45;
+    font-weight:500;
+  }
+}
+
+/* SMALL MOBILE */
+@media(max-width:480px){
+
+  .trust-icons-item{
+    padding:0 14px;
+  }
+
+  .trust-icons-item span{
+    font-size:13px;
+  }
+
+  .trust-icons-item img{
+    width:24px;
+    height:24px;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Trust Icons Strip",
+  "max_blocks": 10,
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Trust Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Upload Icon"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Text",
+          "default": "Cash on Delivery Available"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Trust Icons Strip",
+      "blocks": [
+        { "type": "item" },
+        { "type": "item" },
+        { "type": "item" },
+        { "type": "item" },
+        { "type": "item" }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,74 @@
+{% assign week_wise = product.metafields.custom.week_wise.value %}
+
+{% if week_wise != blank %}
+<section class="week-wise-image-section">
+
+  <div class="week-wise-image-wrapper">
+    <picture>
+      
+      <!-- Mobile Image (425px tak) -->
+      {% if week_wise.mobile != blank %}
+        <source
+          media="(max-width: 520px)"
+          srcset="{{ week_wise.mobile | image_url: width: 900 }}">
+      {% endif %}
+
+      <!-- Desktop Image -->
+      {% if week_wise.desktop != blank %}
+        <img
+          src="{{ week_wise.desktop | image_url: width: 2000 }}"
+          alt="Week Wise Banner"
+          loading="lazy"
+          width="2000"
+          height="1200">
+      {% endif %}
+
+    </picture>
+  </div>
+
+</section>
+{% endif %}
+
+<style>
+.week-wise-image-section{
+  width:100%;
+  padding:0px 0px;
+}
+
+.week-wise-image-wrapper{
+  width:100%;
+}
+
+.week-wise-image-wrapper picture,
+.week-wise-image-wrapper img{
+  width:100%;
+  display:block;
+}
+
+.week-wise-image-wrapper img{
+
+  object-fit:cover;
+}
+
+@media(max-width:425px){
+  .week-wise-image-section{
+    padding:20px 10px;
+  }
+
+  .week-wise-image-wrapper img{
+    border-radius:10px;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Week Wise Image",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Week Wise Image"
+    }
+  ]
+}
+{% endschema %}

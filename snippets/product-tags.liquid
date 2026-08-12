@@ -1,0 +1,29 @@
+{% assign p = product | default: card_product %}
+
+{% if p %}
+
+  {% if template.name == 'index' or template.name == 'collection' %}
+    
+    <!-- Home + Collection -->
+    <div class="product-tags">
+      {% for tag in p.tags limit:4 %}
+        <span class="tag-badge">
+          {{ tag | capitalize }}
+        </span>
+      {% endfor %}
+    </div>
+
+  {% elsif template.name == 'product' %}
+    
+    <!-- Product page -->
+    <div class="product-tags" style="margin-top:10px;">
+      {% for tag in p.tags limit:6 %}
+        <span class="tag-badge">
+          {{ tag | capitalize }}
+        </span>
+      {% endfor %}
+    </div>
+
+  {% endif %}
+
+{% endif %}

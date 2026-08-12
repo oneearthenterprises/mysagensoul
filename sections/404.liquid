@@ -1,0 +1,240 @@
+{% comment %}
+  404.liquid — Custom "Page Not Found" template for Shopify
+  --------------------------------------------------------
+  HOW TO INSTALL:
+  1. Go to Online Store > Themes > Edit Code
+  2. Under "Templates", find or create "404.liquid" (Shopify requires this exact file for the not-found page)
+  3. Paste this entire file in, replacing whatever is there
+  4. Save. Shopify automatically serves this template on any broken/unknown URL.
+
+  CUSTOMIZE:
+  - Replace the emoji/icon, headline, and subtext below
+  - Adjust colors in the CSS variables at the top of the <style> block
+  - The "Popular Links" section pulls from your main menu automatically
+{% endcomment %}
+
+<div class="error-404-page">
+  <div class="error-404-page__container">
+
+    <div class="error-404-page__icon" aria-hidden="true">🧭</div>
+
+    <p class="error-404-page__eyebrow">Error 404</p>
+    <h1 class="error-404-page__title">This page has wandered off</h1>
+    <p class="error-404-page__subtitle">
+      The page you're looking for doesn't exist or may have been moved.
+      Let's get you back on track.
+    </p>
+
+    <!-- Search bar -->
+    <form action="{{ routes.search_url }}" method="get" role="search" class="error-404-page__search">
+      <input
+        type="search"
+        name="q"
+        placeholder="Search our store..."
+        class="error-404-page__search-input"
+        required
+        aria-label="Search"
+      >
+      <button type="submit" class="error-404-page__search-btn">
+        Search
+      </button>
+    </form>
+
+    <!-- Primary actions -->
+    <div class="error-404-page__actions">
+      <a href="{{ routes.root_url }}" class="error-404-page__btn error-404-page__btn--primary">
+        Back to Homepage
+      </a>
+      {% if collections.size > 0 %}
+        <a href="{{ routes.all_products_collection_url }}" class="error-404-page__btn error-404-page__btn--secondary">
+          Shop All Products
+        </a>
+      {% endif %}
+    </div>
+
+    <!-- Popular links pulled from main menu -->
+    {% assign nav = linklists.main-menu %}
+    {% if nav.links.size > 0 %}
+      <div class="error-404-page__links">
+        <p class="error-404-page__links-title">You might be looking for:</p>
+        <ul class="error-404-page__links-list">
+          {% for link in nav.links limit: 6 %}
+            <li>
+              <a href="{{ link.url }}">{{ link.title }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+
+  </div>
+</div>
+
+<style>
+  .error-404-page {
+    --error-404-accent: #1a1a1a;
+    --error-404-accent-text: #ffffff;
+    --error-404-muted: #6b6b6b;
+    --error-404-border: #e5e5e5;
+    --error-404-bg: #fafafa;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 70vh;
+    padding: 60px 20px;
+    background: var(--error-404-bg);
+    text-align: center;
+  }
+
+  .error-404-page__container {
+    max-width: 560px;
+    width: 100%;
+  }
+
+  .error-404-page__icon {
+    font-size: 56px;
+    line-height: 1;
+    margin-bottom: 20px;
+  }
+
+  .error-404-page__eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--error-404-muted);
+    margin: 0 0 12px;
+  }
+
+  .error-404-page__title {
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 700;
+    margin: 0 0 12px;
+    color: var(--error-404-accent);
+  }
+
+  .error-404-page__subtitle {
+    font-size: 16px;
+    color: var(--error-404-muted);
+    line-height: 1.6;
+    margin: 0 0 32px;
+  }
+
+  .error-404-page__search {
+    display: flex;
+    gap: 8px;
+    max-width: 420px;
+    margin: 0 auto 28px;
+  }
+
+  .error-404-page__search-input {
+    flex: 1;
+    padding: 12px 16px;
+    border: 1px solid var(--error-404-border);
+    border-radius: 6px;
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.2s ease;
+  }
+
+  .error-404-page__search-input:focus {
+    border-color: var(--error-404-accent);
+  }
+
+  .error-404-page__search-btn {
+    padding: 12px 20px;
+    background: var(--error-404-accent);
+    color: var(--error-404-accent-text);
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .error-404-page__search-btn:hover {
+    opacity: 0.85;
+  }
+
+  .error-404-page__actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+  }
+
+  .error-404-page__btn {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: opacity 0.2s ease, background 0.2s ease;
+  }
+
+  .error-404-page__btn--primary {
+    background: var(--error-404-accent);
+    color: var(--error-404-accent-text);
+  }
+
+  .error-404-page__btn--primary:hover {
+    opacity: 0.85;
+  }
+
+  .error-404-page__btn--secondary {
+    background: transparent;
+    color: var(--error-404-accent);
+    border: 1px solid var(--error-404-border);
+  }
+
+  .error-404-page__btn--secondary:hover {
+    background: #f0f0f0;
+  }
+
+  .error-404-page__links {
+    border-top: 1px solid var(--error-404-border);
+    padding-top: 24px;
+  }
+
+  .error-404-page__links-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--error-404-muted);
+    margin: 0 0 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .error-404-page__links-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px 20px;
+    margin: 0;
+    padding: 0;
+  }
+
+  .error-404-page__links-list a {
+    font-size: 14px;
+    color: var(--error-404-accent);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s ease;
+  }
+
+  .error-404-page__links-list a:hover {
+    border-color: var(--error-404-accent);
+  }
+
+  @media (max-width: 480px) {
+    .error-404-page__search {
+      flex-direction: column;
+    }
+  }
+</style>

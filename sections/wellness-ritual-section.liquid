@@ -1,0 +1,200 @@
+<section class="wellness-ritual-section">
+  <div class="page-width">
+
+    <div class="wellness-ritual-wrapper">
+
+      <!-- Left Content -->
+      <div class="wellness-content">
+
+        {% if section.settings.heading != blank %}
+          <h2 class="wellness-heading">
+            {{ section.settings.heading }}
+          </h2>
+        {% endif %}
+
+        <div class="wellness-richtext">
+          {{ section.settings.content }}
+        </div>
+
+      </div>
+
+      <!-- Right Image -->
+      <div class="wellness-image">
+
+        {% if section.settings.image != blank %}
+          <img
+            src="{{ section.settings.image | image_url: width: 1400 }}"
+            alt="{{ section.settings.heading }}"
+            loading="lazy"
+          >
+        {% endif %}
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+.wellness-ritual-section{
+  padding:40px 10px;
+  background:{{ section.settings.bg_color }};
+  overflow:hidden;
+}
+
+.wellness-ritual-section .page-width{
+  max-width:1299px;
+  margin:0 auto;
+}
+
+.wellness-ritual-wrapper{
+  display:grid;
+  grid-template-columns:1.1fr 0.9fr;
+  gap:60px;
+  align-items:center;
+  background:#fff;
+  border-radius:34px;
+  overflow:hidden;
+
+}
+
+/* Left */
+.wellness-content{
+  padding:30px;
+}
+
+.wellness-heading{
+  font-size:clamp(34px,5vw,54px);
+  line-height:1.1;
+  font-weight:700;
+  color:#111;
+  margin-bottom:35px;
+  letter-spacing:-1px;
+}
+
+.wellness-richtext{
+  font-size:clamp(16px,1.4vw,20px);
+  line-height:1.9;
+  color:#222;
+}
+
+.wellness-richtext p{
+  margin-bottom:15px;
+  font-size:16px;
+}
+
+.wellness-richtext ul{
+  padding-left:24px;
+  margin-top:25px;
+}
+
+.wellness-richtext li {
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.wellness-richtext strong{
+  font-weight:700;
+  color:#111;
+}
+
+/* Right */
+.wellness-image{
+  height:100%;
+}
+
+.wellness-image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+/* Tablet */
+@media(max-width:991px){
+
+  .wellness-ritual-wrapper{
+    grid-template-columns:1fr;
+  }
+
+  .wellness-content{
+    padding:30px;
+  }
+
+  .wellness-image{
+    min-height:450px;
+  }
+
+}
+
+/* Mobile */
+@media(max-width:768px){
+
+  .wellness-ritual-section{
+    padding:60px 15px;
+  }
+
+  .wellness-ritual-wrapper{
+    border-radius:20px;
+    gap:0px;
+  }
+
+  .wellness-content{
+    padding:20px 20px;
+  }
+
+  .wellness-heading{
+    margin-bottom:22px;
+  }
+
+  .wellness-richtext{
+    line-height:1.7;
+  }
+
+  .wellness-richtext ul{
+    padding-left:20px;
+  }
+
+  .wellness-image{
+    min-height:300px;
+  }
+
+}
+</style>
+
+{% schema %}
+{
+  "name": "Wellness Ritual",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#EEF1EA"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Our Philosophy: Wellness as a Daily Ritual"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Content",
+      "default": "<p>Your body carries more than most people understand—everyday stress, hormonal shifts, environmental toxins, and the quiet exhaustion of modern life.</p><ul><li><strong>Healing is unhurried:</strong> Our botanicals work with your body’s rhythm.</li><li><strong>Purity is non-negotiable:</strong> No artificial sugars or fillers.</li><li><strong>Every sip is an intention:</strong> Wellness begins with small rituals.</li></ul>"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Right Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Wellness Ritual"
+    }
+  ]
+}
+{% endschema %}

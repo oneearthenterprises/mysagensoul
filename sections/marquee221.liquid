@@ -1,0 +1,162 @@
+
+{% comment %}
+  Custom Marquee Section with Color Controls
+{% endcomment %}
+
+<div 
+  class="custom-marquee"
+  style="
+    --marquee-speed: {{ section.settings.speed }}s;
+    background: {{ section.settings.bg_color }};
+    color: {{ section.settings.text_color }};
+  "
+>
+  <div class="marquee-track">
+
+    {% for block in section.blocks %}
+      <span class="marquee-item">
+
+        {% if block.settings.icon_image != blank %}
+          <img 
+            src="{{ block.settings.icon_image | image_url: width: 30 }}" 
+            alt="icon" 
+            class="icon-img"
+            width=""
+            height=""
+          >
+        {% elsif block.settings.icon != blank %}
+          <span class="icon">{{ block.settings.icon }}</span>
+        {% endif %}
+
+        {{ block.settings.text }}
+      </span>
+    {% endfor %}
+
+    {% comment %} Duplicate for smooth loop {% endcomment %}
+    {% for block in section.blocks %}
+      <span class="marquee-item">
+
+        {% if block.settings.icon_image != blank %}
+          <img 
+            src="{{ block.settings.icon_image | image_url: width: 30 }}" 
+            alt="icon" 
+            class="icon-img"
+            width=""
+            height=""
+          >
+        {% elsif block.settings.icon != blank %}
+          <span class="icon">{{ block.settings.icon }}</span>
+        {% endif %}
+
+        {{ block.settings.text }}
+      </span>
+    {% endfor %}
+
+  </div>
+</div>
+
+<style>
+.custom-marquee {
+  width: 100%;
+  overflow: hidden;
+  padding: 8px 0;
+  white-space: nowrap;
+}
+
+.marquee-track {
+  display: inline-flex;
+  animation: scroll-marquee var(--marquee-speed) linear infinite;
+}
+
+.marquee-item {
+  margin-right: 10px;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.icon {
+  font-size: 16px;
+}
+
+.icon-img {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
+
+/* Pause on hover */
+.custom-marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes scroll-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Custom Marquee",
+  "settings": [
+    {
+      "type": "range",
+      "id": "speed",
+      "label": "Marquee Speed (Seconds)",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "default": 50
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#ffffff"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Marquee Text",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon_image",
+          "label": "Upload SVG/Icon (optional)"
+        },
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Emoji Icon (Fallback)",
+          "default": "🔥"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Enter text",
+          "default": "Free Shipping on Orders Above ₹999"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Marquee"
+    }
+  ]
+}
+{% endschema %}

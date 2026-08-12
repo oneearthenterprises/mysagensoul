@@ -1,0 +1,1550 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "webpage_crousal_twi4Yg": {
+      "type": "webpage-crousal",
+      "blocks": {
+        "banner_TNWWEd": {
+          "type": "banner",
+          "settings": {
+            "desktop_image": "shopify://shop_images/happy-heart-herbal-wellness-homepage-banner.webp",
+            "mobile_image": "shopify://shop_images/heart_mobile_banner_new.webp",
+            "banner_link": "shopify://products/heart-health-herbal-tea-natural-cardiovascular-support"
+          }
+        },
+        "banner_qxgNtG": {
+          "type": "banner",
+          "settings": {
+            "desktop_image": "shopify://shop_images/herbal-wellness-skin-glow-products.webp",
+            "mobile_image": "shopify://shop_images/mobile_banner_of_skin_glow_1.jpg",
+            "banner_link": "shopify://products/skin-glow-herbal-wellness-infusion"
+          }
+        },
+        "banner_Tw3hp4": {
+          "type": "banner",
+          "settings": {
+            "desktop_image": "shopify://shop_images/BUTTERFLY_PEA_FLOWER_WEBSITE_BANNER_DEISGN_1.png",
+            "mobile_image": "shopify://shop_images/butterfly_pea_flower_mobile_banner_of_home_pages.png",
+            "banner_link": "shopify://products/butterfly-pea-flower-tea-antioxidant-rich-herbal-infusion"
+          }
+        },
+        "banner_yx6FFa": {
+          "type": "banner",
+          "settings": {
+            "desktop_image": "shopify://shop_images/banner_all_packaging_uidyknzgwedgw_1_1.png",
+            "mobile_image": "shopify://shop_images/BANNER_ALL_PACAKING_MOBILE_1_1.png",
+            "banner_link": "shopify://collections/shop-all"
+          }
+        },
+        "banner_4WVdyw": {
+          "type": "banner",
+          "settings": {
+            "desktop_image": "shopify://shop_images/slim_tea_final_banner_deisgn.png",
+            "mobile_image": "shopify://shop_images/slim_tea_mobile_banner_final_e8aaf6c0-bf5f-4ef6-aad4-b1d61231952d.png",
+            "banner_link": "shopify://products/slim-herbal-tea-weight-management-detox-infusion"
+          }
+        },
+        "banner_AhXVgg": {
+          "type": "banner",
+          "settings": {
+            "desktop_image": "shopify://shop_images/pcod_banner_tempoarary_final_c76318d2-b23c-4d6f-ad0d-7213b9ebffb8.webp",
+            "mobile_image": "shopify://shop_images/pcod_mobile_banner_deisgn_4e474522-e869-4254-8958-d3fa6a97bd6a.webp",
+            "banner_link": "shopify://products/lady-bloom-women-s-herbal-wellness-infusion"
+          }
+        }
+      },
+      "block_order": [
+        "banner_TNWWEd",
+        "banner_qxgNtG",
+        "banner_Tw3hp4",
+        "banner_yx6FFa",
+        "banner_4WVdyw",
+        "banner_AhXVgg"
+      ],
+      "name": "sage Hero Carousel",
+      "settings": {}
+    },
+    "counter_custom_CrVRYy": {
+      "type": "counter-custom",
+      "name": "Counter Custom",
+      "settings": {
+        "heading": "Hurry! Offer Ends Soon",
+        "button_text": "SHOP NOW!",
+        "button_link": "shopify://collections/shop-all"
+      }
+    },
+    "collection_list_nmnhVB": {
+      "type": "collection-list",
+      "blocks": {
+        "group_J7RHYE": {
+          "type": "group",
+          "name": "t:names.header",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 12,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "text_FEKwqK": {
+              "type": "text",
+              "name": "t:names.text",
+              "settings": {
+                "text": "<h3><strong>Shop by collection</strong></h3>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "center",
+                "type_preset": "custom",
+                "font": "var(--font-body--family)",
+                "font_size": "2rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground-heading)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 16,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_FEKwqK"
+          ]
+        },
+        "static-collection-card": {
+          "type": "_collection-card",
+          "name": "t:names.collection_card",
+          "static": true,
+          "settings": {
+            "placement": "below_image",
+            "horizontal_alignment": "center",
+            "vertical_alignment": "flex-end",
+            "collection_card_gap": 10,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "border": "none",
+            "border_width": 0,
+            "border_opacity": 100,
+            "border_radius": 0
+          },
+          "blocks": {
+            "collection_title_UVTgPp": {
+              "type": "collection-title",
+              "name": "t:names.collection_title",
+              "settings": {
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "center",
+                "type_preset": "custom",
+                "font": "var(--font-body--family)",
+                "font_size": "",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "balance",
+                "color": "var(--color-primary)",
+                "background": true,
+                "background_color": "#000000",
+                "corner_radius": 15,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "collection-card-image": {
+              "type": "_collection-card-image",
+              "name": "t:names.collection_card_image",
+              "static": true,
+              "settings": {
+                "image_ratio": "square",
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "collection_title_UVTgPp"
+          ]
+        }
+      },
+      "block_order": [
+        "group_J7RHYE"
+      ],
+      "name": "t:names.collections_carousel",
+      "settings": {
+        "collection_list": [
+          "butterfly-pea-flower",
+          "rose-flower",
+          "hibiscus-flower",
+          "moringa",
+          "jasmine-flower",
+          "chamomile-flower"
+        ],
+        "layout_type": "carousel",
+        "carousel_on_mobile": false,
+        "columns": 6,
+        "mobile_columns": "2",
+        "mobile_card_size": "44cqw",
+        "columns_gap": 10,
+        "bento_gap": 8,
+        "rows_gap": 8,
+        "max_collections": 4,
+        "icons_style": "arrow",
+        "icons_shape": "circle",
+        "section_width": "page-width",
+        "gap": 12,
+        "color_scheme": "",
+        "padding-block-start": 30,
+        "padding-block-end": 30
+      }
+    },
+    "product_list_fa6P9H": {
+      "type": "product-list",
+      "blocks": {
+        "product_description_kNPKXz": {
+          "type": "product-description",
+          "name": "t:names.product_description",
+          "settings": {
+            "text": "<p>{{ closest.product.description }}</p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "static-header": {
+          "type": "_product-list-content",
+          "name": "t:names.header",
+          "static": true,
+          "settings": {
+            "content_direction": "row",
+            "vertical_on_mobile": false,
+            "horizontal_alignment": "space-between",
+            "vertical_alignment": "flex-end",
+            "align_baseline": true,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 12,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "product_list_text_YFtzcL": {
+              "type": "_product-list-text",
+              "name": "t:names.collection_title",
+              "settings": {
+                "text": "<h2><strong>Explore Our Herbal Infusions</strong></h2>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "center",
+                "type_preset": "custom",
+                "font": "var(--font-body--family)",
+                "font_size": "",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground-heading)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "product_list_button_MWeP9V": {
+              "type": "_product-list-button",
+              "name": "t:names.product_list_button",
+              "disabled": true,
+              "settings": {
+                "label": "View all",
+                "open_in_new_tab": false,
+                "style_class": "button",
+                "width": "custom",
+                "custom_width": 21,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "product_list_text_YFtzcL",
+            "product_list_button_MWeP9V"
+          ]
+        },
+        "static-product-card": {
+          "type": "_product-card",
+          "name": "t:names.product_card",
+          "static": true,
+          "settings": {
+            "product_card_gap": 3,
+            "inherit_color_scheme": true,
+            "color_scheme": "scheme-1",
+            "border": "solid",
+            "border_width": 42,
+            "border_opacity": 18,
+            "border_radius": 5,
+            "padding-block-start": 0,
+            "padding-block-end": 5,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "product_card_gallery_677WP3": {
+              "type": "_product-card-gallery",
+              "name": "t:names.product_card_media",
+              "settings": {
+                "image_ratio": "adapt",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 15,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "product_title_YXxMTj": {
+              "type": "product-title",
+              "name": "t:names.product_title",
+              "settings": {
+                "width": "100%",
+                "font_weight": "600",
+                "max_width": "narrow",
+                "alignment": "left",
+                "type_preset": "custom",
+                "font": "var(--font-subheading--family)",
+                "font_size": "1rem",
+                "line_height": "tight",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "balance",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 6,
+                "padding-block-end": 6,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "custom_liquid_RXxpWN": {
+              "type": "custom-liquid",
+              "name": "t:names.custom_liquid",
+              "settings": {
+                "custom_liquid": ""
+              },
+              "blocks": {}
+            },
+            "judge_me_reviews_preview_badge_peWqjp": {
+              "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+              "settings": {}
+            },
+            "price_JQzVV4": {
+              "type": "price",
+              "name": "t:names.product_price",
+              "settings": {
+                "show_sale_price_first": true,
+                "show_installments": false,
+                "show_tax_info": false,
+                "type_preset": "",
+                "width": "100%",
+                "alignment": "left",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "tight",
+                "letter_spacing": "tight",
+                "case": "none",
+                "color": "var(--color-foreground)",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "buy_buttons_LG4KnN": {
+              "type": "buy-buttons",
+              "name": "t:names.product_buy_buttons",
+              "settings": {
+                "stacking": true,
+                "show_pickup_availability": true,
+                "gift_card_form": true,
+                "padding-block-start": 0,
+                "padding-block-end": 2,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "quantity": {
+                  "type": "quantity",
+                  "disabled": true,
+                  "static": true,
+                  "settings": {},
+                  "blocks": {}
+                },
+                "add-to-cart": {
+                  "type": "add-to-cart",
+                  "static": true,
+                  "settings": {
+                    "style_class": "button"
+                  },
+                  "blocks": {}
+                },
+                "accelerated-checkout": {
+                  "type": "accelerated-checkout",
+                  "disabled": true,
+                  "static": true,
+                  "settings": {},
+                  "blocks": {}
+                }
+              },
+              "block_order": []
+            }
+          },
+          "block_order": [
+            "product_card_gallery_677WP3",
+            "product_title_YXxMTj",
+            "custom_liquid_RXxpWN",
+            "judge_me_reviews_preview_badge_peWqjp",
+            "price_JQzVV4",
+            "buy_buttons_LG4KnN"
+          ]
+        }
+      },
+      "block_order": [
+        "product_description_kNPKXz"
+      ],
+      "name": "Featured collection",
+      "settings": {
+        "collection": "all",
+        "layout_type": "carousel",
+        "carousel_on_mobile": true,
+        "max_products": 8,
+        "columns": 4,
+        "mobile_columns": "2",
+        "mobile_card_size": "44cqw",
+        "columns_gap": 8,
+        "rows_gap": 24,
+        "icons_style": "none",
+        "icons_shape": "none",
+        "section_width": "page-width",
+        "horizontal_alignment": "center",
+        "gap": 15,
+        "color_scheme": "scheme-1",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    },
+    "1780301960be49e1d7": {
+      "type": "_blocks",
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "shop_by_concern_z4QrGz": {
+      "type": "shop-by-concern",
+      "blocks": {
+        "tab_R78EaM": {
+          "type": "tab",
+          "settings": {
+            "label": "Best Sellers",
+            "link_type": "collection",
+            "collection": "best-sellers",
+            "product": "",
+            "custom_url": ""
+          }
+        },
+        "tab_NQragQ": {
+          "type": "tab",
+          "settings": {
+            "label": "Immunity",
+            "link_type": "collection",
+            "collection": "immunity",
+            "product": "",
+            "custom_url": ""
+          }
+        },
+        "tab_F8VaAP": {
+          "type": "tab",
+          "settings": {
+            "label": "Sleep & Stress",
+            "link_type": "collection",
+            "collection": "sleep-stress",
+            "product": "",
+            "custom_url": ""
+          }
+        },
+        "tab_6WYfFX": {
+          "type": "tab",
+          "settings": {
+            "label": "Weight",
+            "link_type": "collection",
+            "collection": "weight",
+            "product": "",
+            "custom_url": ""
+          }
+        },
+        "tab_LJ6fRW": {
+          "type": "tab",
+          "settings": {
+            "label": "Women Health",
+            "link_type": "collection",
+            "collection": "women-health",
+            "product": "",
+            "custom_url": ""
+          }
+        },
+        "tab_YBxN8A": {
+          "type": "tab",
+          "settings": {
+            "label": "Gut Health",
+            "link_type": "collection",
+            "collection": "gut-health",
+            "product": "",
+            "custom_url": ""
+          }
+        },
+        "tab_w3xELj": {
+          "type": "tab",
+          "settings": {
+            "label": "Detox",
+            "link_type": "collection",
+            "collection": "detox",
+            "product": "",
+            "custom_url": ""
+          }
+        },
+        "tab_hpc7aF": {
+          "type": "tab",
+          "settings": {
+            "label": "Skin, Hair & Nails",
+            "link_type": "collection",
+            "collection": "skin-hair-nails",
+            "product": "",
+            "custom_url": ""
+          }
+        },
+        "tab_4D4TpG": {
+          "type": "tab",
+          "settings": {
+            "label": "Energy & Metabolism",
+            "link_type": "collection",
+            "collection": "energy-metabolism",
+            "product": "",
+            "custom_url": ""
+          }
+        },
+        "tab_rgRihC": {
+          "type": "tab",
+          "settings": {
+            "label": "Sugar Balance",
+            "link_type": "collection",
+            "collection": "sugar-balance",
+            "product": "",
+            "custom_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "tab_R78EaM",
+        "tab_NQragQ",
+        "tab_F8VaAP",
+        "tab_6WYfFX",
+        "tab_LJ6fRW",
+        "tab_YBxN8A",
+        "tab_w3xELj",
+        "tab_hpc7aF",
+        "tab_4D4TpG",
+        "tab_rgRihC"
+      ],
+      "name": "Shop by concern",
+      "settings": {
+        "title": "Shop by concern",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "wellness_tea_section_NrGM7i": {
+      "type": "wellness-tea-section",
+      "name": "Wellness Tea Section",
+      "settings": {
+        "image": "shopify://shop_images/home_page_happy_heart_image_e_1.jpg",
+        "heading": "Discover Wellness in Every Cup",
+        "description": "Experience handcrafted herbal wellness infusions made with premium botanicals, flowers, herbs and functional ingredients. Designed to support daily wellness, mindful living and natural vitality—without compromising on taste or quality.",
+        "icon1": "shopify://shop_images/premium_herbal_blends.png",
+        "feature1_title": "Premium Herbal Blends",
+        "feature1_text": "Made with carefully selected herbs, flowers, and natural botanicals.",
+        "icon2": "shopify://shop_images/Daily_Wellness.png",
+        "feature2_title": "Daily Wellness",
+        "feature2_text": "Crafted to support a balanced lifestyle with every cup.Crafted to support a balanced lifestyle with every cup.",
+        "button_text": "Shop The Collection",
+        "button_link": "https://www.mysagensoul.com/collections/shop-all"
+      }
+    },
+    "custom_image_cards_dpnjat": {
+      "type": "custom-image-cards",
+      "blocks": {
+        "card_xRtmcK": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/product_packaging.webp",
+            "card_link": "shopify://collections/butterfly-pea-flower",
+            "button_text": "Shop Now"
+          }
+        },
+        "card_EFaBfj": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/thrree_berification_3_1.webp",
+            "card_link": "shopify://products/chamomile-herbal-tea-relaxation-sleep-support-infusion",
+            "button_text": "Shop Now"
+          }
+        },
+        "card_Jfx34r": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/three_berification_2_2.webp",
+            "card_link": "shopify://products/jasmine-herbal-tea-natural-relaxation-mood-support-infusion",
+            "button_text": "Shop Now"
+          }
+        }
+      },
+      "block_order": [
+        "card_xRtmcK",
+        "card_EFaBfj",
+        "card_Jfx34r"
+      ],
+      "name": "Custom Image Cards",
+      "settings": {
+        "heading": "Curated Herbal Wellness Collections"
+      }
+    },
+    "product_list_iVzKdt": {
+      "type": "product-list",
+      "blocks": {
+        "product_description_9qpiax": {
+          "type": "product-description",
+          "name": "t:names.product_description",
+          "settings": {
+            "text": "<p>{{ closest.product.description }}</p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "static-header": {
+          "type": "_product-list-content",
+          "name": "t:names.header",
+          "static": true,
+          "settings": {
+            "content_direction": "row",
+            "vertical_on_mobile": false,
+            "horizontal_alignment": "space-between",
+            "vertical_alignment": "flex-end",
+            "align_baseline": true,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 12,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "product_list_text_pHtE3G": {
+              "type": "_product-list-text",
+              "name": "t:names.collection_title",
+              "settings": {
+                "text": "<h2><strong>You May Also Like</strong></h2>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "center",
+                "type_preset": "custom",
+                "font": "var(--font-body--family)",
+                "font_size": "",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground-heading)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "product_list_button_kagMyD": {
+              "type": "_product-list-button",
+              "name": "t:names.product_list_button",
+              "disabled": true,
+              "settings": {
+                "label": "View all",
+                "open_in_new_tab": false,
+                "style_class": "button",
+                "width": "custom",
+                "custom_width": 21,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "product_list_text_pHtE3G",
+            "product_list_button_kagMyD"
+          ]
+        },
+        "static-product-card": {
+          "type": "_product-card",
+          "name": "t:names.product_card",
+          "static": true,
+          "settings": {
+            "product_card_gap": 3,
+            "inherit_color_scheme": true,
+            "color_scheme": "scheme-1",
+            "border": "solid",
+            "border_width": 42,
+            "border_opacity": 18,
+            "border_radius": 5,
+            "padding-block-start": 0,
+            "padding-block-end": 5,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "product_card_gallery_P9JEP7": {
+              "type": "_product-card-gallery",
+              "name": "t:names.product_card_media",
+              "settings": {
+                "image_ratio": "adapt",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 15,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "product_title_nNfawL": {
+              "type": "product-title",
+              "name": "t:names.product_title",
+              "settings": {
+                "width": "100%",
+                "font_weight": "600",
+                "max_width": "narrow",
+                "alignment": "left",
+                "type_preset": "custom",
+                "font": "var(--font-subheading--family)",
+                "font_size": "1rem",
+                "line_height": "tight",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "balance",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 6,
+                "padding-block-end": 6,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "custom_liquid_J3AALz": {
+              "type": "custom-liquid",
+              "name": "t:names.custom_liquid",
+              "settings": {
+                "custom_liquid": ""
+              },
+              "blocks": {}
+            },
+            "judge_me_reviews_preview_badge_wBkFbF": {
+              "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+              "settings": {}
+            },
+            "price_8HYwik": {
+              "type": "price",
+              "name": "t:names.product_price",
+              "settings": {
+                "show_sale_price_first": true,
+                "show_installments": false,
+                "show_tax_info": false,
+                "type_preset": "",
+                "width": "100%",
+                "alignment": "left",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "tight",
+                "letter_spacing": "tight",
+                "case": "none",
+                "color": "var(--color-foreground)",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "buy_buttons_9yFNNQ": {
+              "type": "buy-buttons",
+              "name": "t:names.product_buy_buttons",
+              "settings": {
+                "stacking": true,
+                "show_pickup_availability": true,
+                "gift_card_form": true,
+                "padding-block-start": 0,
+                "padding-block-end": 2,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "quantity": {
+                  "type": "quantity",
+                  "disabled": true,
+                  "static": true,
+                  "settings": {},
+                  "blocks": {}
+                },
+                "add-to-cart": {
+                  "type": "add-to-cart",
+                  "static": true,
+                  "settings": {
+                    "style_class": "button"
+                  },
+                  "blocks": {}
+                },
+                "accelerated-checkout": {
+                  "type": "accelerated-checkout",
+                  "disabled": true,
+                  "static": true,
+                  "settings": {},
+                  "blocks": {}
+                }
+              },
+              "block_order": []
+            }
+          },
+          "block_order": [
+            "product_card_gallery_P9JEP7",
+            "product_title_nNfawL",
+            "custom_liquid_J3AALz",
+            "judge_me_reviews_preview_badge_wBkFbF",
+            "price_8HYwik",
+            "buy_buttons_9yFNNQ"
+          ]
+        }
+      },
+      "block_order": [
+        "product_description_9qpiax"
+      ],
+      "name": "Featured collection",
+      "settings": {
+        "collection": "all",
+        "layout_type": "carousel",
+        "carousel_on_mobile": true,
+        "max_products": 8,
+        "columns": 4,
+        "mobile_columns": "2",
+        "mobile_card_size": "44cqw",
+        "columns_gap": 8,
+        "rows_gap": 24,
+        "icons_style": "none",
+        "icons_shape": "none",
+        "section_width": "page-width",
+        "horizontal_alignment": "center",
+        "gap": 15,
+        "color_scheme": "scheme-1",
+        "padding-block-start": 30,
+        "padding-block-end": 10
+      }
+    },
+    "shoppable_video_carousel_cjpKQK": {
+      "type": "shoppable-video-carousel",
+      "blocks": {
+        "slide_n3KPA7": {
+          "type": "slide",
+          "settings": {
+            "video": "shopify://files/videos/Video-964.mp4",
+            "title": "Best Picks",
+            "product_1": "heart-health-herbal-tea-natural-cardiovascular-support",
+            "product_2": "",
+            "product_3": ""
+          }
+        },
+        "slide_69CepG": {
+          "type": "slide",
+          "settings": {
+            "video": "shopify://files/videos/Video-97.mp4",
+            "title": "Best Picks",
+            "product_1": "slim-herbal-tea-weight-management-detox-infusion",
+            "product_2": "",
+            "product_3": ""
+          }
+        },
+        "slide_MweWj8": {
+          "type": "slide",
+          "settings": {
+            "video": "shopify://files/videos/From Klickpin.com- Discover Stylish workwear outfit ideas for a polished look people will notice with simple details that elevate the final look-p.mp4",
+            "title": "Best Picks",
+            "product_1": "slim-herbal-tea-weight-management-detox-infusion",
+            "product_2": "",
+            "product_3": ""
+          }
+        },
+        "slide_tB38rq": {
+          "type": "slide",
+          "settings": {
+            "video": "shopify://files/videos/From Klickpin.com- Need fresh inspiration Pin these easy neutral layers ideas that feel luxe without spending a fortune using simple ideas you can.mp4",
+            "title": "Best Picks",
+            "product_1": "slim-herbal-tea-weight-management-detox-infusion",
+            "product_2": "",
+            "product_3": ""
+          }
+        },
+        "slide_8rMLMa": {
+          "type": "slide",
+          "settings": {
+            "video": "shopify://files/videos/From Klickpin.com- Hopeful daily blessings for people who love beauty for creative people for calm spiritual moments-pin-id-1067775392919994875.mp4",
+            "title": "Best Picks",
+            "product_1": "slim-herbal-tea-weight-management-detox-infusion",
+            "product_2": "",
+            "product_3": ""
+          }
+        },
+        "slide_TXEB8t": {
+          "type": "slide",
+          "settings": {
+            "video": "shopify://files/videos/Bougainvillea-tea-🌿✨.mp4",
+            "title": "Best Picks",
+            "product_1": "slim-herbal-tea-weight-management-detox-infusion",
+            "product_2": "diabetes-support-herbal-tea-natural-blood-sugar-wellness-infusion",
+            "product_3": "body-cleanse-herbal-infusion-natural-detox-digestive-support"
+          }
+        }
+      },
+      "block_order": [
+        "slide_n3KPA7",
+        "slide_69CepG",
+        "slide_MweWj8",
+        "slide_tB38rq",
+        "slide_8rMLMa",
+        "slide_TXEB8t"
+      ],
+      "name": "Shoppable Video Carousel",
+      "settings": {
+        "heading": "Watch It. Love It",
+        "bg_color": "#ffffff",
+        "blend_heading": "Soul of the Blend"
+      }
+    },
+    "1781864830adbd5da5": {
+      "type": "_blocks",
+      "blocks": {
+        "judge_me_reviews_cards_carousel_TEcNkP": {
+          "type": "shopify://apps/judge-me-reviews/blocks/cards_carousel/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "show_sample_reviews": false,
+            "reviews_selection": "all",
+            "products": [
+              "slim-herbal-tea-weight-management-detox-infusion",
+              "chamomile-herbal-tea-relaxation-sleep-support-infusion",
+              "diabetes-support-herbal-tea-natural-blood-sugar-wellness-infusion",
+              "heart-health-herbal-tea-natural-cardiovascular-support",
+              "body-cleanse-herbal-infusion-natural-detox-digestive-support"
+            ],
+            "filter_pinned": true,
+            "filter_featured": false,
+            "filter_custom_tags": "",
+            "star_rating": "all",
+            "show_review_media": true,
+            "display_order": "media_first",
+            "no_image_fallback": "review_text_only",
+            "max_reviews": 20,
+            "review_length": "large",
+            "text_size": "large",
+            "image_ratio": "0.75",
+            "reviews_shown": 4,
+            "show_reviewer_name": true,
+            "show_product_name": true,
+            "hide_arrows_mobile": true,
+            "arrows_position": "sides",
+            "max_width": 1100,
+            "corner_styling": "soft",
+            "header_text_color": "#000000",
+            "text_color": "#000000",
+            "card_color": "#f9f9f9",
+            "stars_color": "",
+            "arrows_color": "#000000",
+            "transition_speed": 5,
+            "header_text": "Customers are saying",
+            "show_average_rating": true,
+            "rating_display": "default"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_cards_carousel_TEcNkP"
+      ],
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "benefits_tea_FcLRie": {
+      "type": "benefits-tea",
+      "blocks": {
+        "benefit_77TJew": {
+          "type": "benefit",
+          "settings": {
+            "position": "right",
+            "icon": "shopify://shop_images/Support_an_Active_Lifestyle.png",
+            "title": "Support an Active Lifestyle",
+            "desc": "Our herbal wellness infusions help you stay refreshed, hydrated, and balanced before or after your daily routine."
+          }
+        },
+        "benefit_8nBEnn": {
+          "type": "benefit",
+          "settings": {
+            "position": "left",
+            "icon": "shopify://shop_images/Natural_Energy_Vitality.png",
+            "title": "Natural Energy & Vitality",
+            "desc": "Experience naturally refreshing herbal blends that help you stay energized, focused, and ready for your day."
+          }
+        },
+        "benefit_thVnp4": {
+          "type": "benefit",
+          "settings": {
+            "position": "left",
+            "icon": "shopify://shop_images/Pure_Clean_Ingredients.png",
+            "title": "Pure & Clean Ingredients",
+            "desc": "Made with premium herbs, flowers, and botanicals. No artificial flavours, preservatives, or unnecessary additives."
+          }
+        },
+        "benefit_zQaGED": {
+          "type": "benefit",
+          "settings": {
+            "position": "right",
+            "icon": "shopify://shop_images/Strengthen_Daily_Immunity.png",
+            "title": "Strengthen Daily Immunity",
+            "desc": "Antioxidant-rich herbal blends help support your body's natural immune system and overall wellness."
+          }
+        },
+        "benefit_ManMfJ": {
+          "type": "benefit",
+          "settings": {
+            "position": "left",
+            "icon": "shopify://shop_images/Relax_Recharge_Restore.png",
+            "title": "Relax, Recharge & Restore",
+            "desc": "Calming herbal infusions promote relaxation, reduce daily stress, and help you unwind naturally after a busy day."
+          }
+        },
+        "benefit_CPhE7p": {
+          "type": "benefit",
+          "settings": {
+            "position": "right",
+            "icon": "shopify://shop_images/Burn_More._Feel_Better..png",
+            "title": "Burn More. Feel Better.",
+            "desc": "Our thoughtfully crafted herbal infusions help support healthy metabolism"
+          }
+        }
+      },
+      "block_order": [
+        "benefit_77TJew",
+        "benefit_8nBEnn",
+        "benefit_thVnp4",
+        "benefit_zQaGED",
+        "benefit_ManMfJ",
+        "benefit_CPhE7p"
+      ],
+      "name": "Benefits Tea",
+      "settings": {
+        "heading": "Nature's Wellness in Every Sip",
+        "subtext": "Discover premium herbal wellness\n infusions crafted with natural botanicals to nourish your body, calm your mind, and support a healthier lifestyle—naturally.",
+        "center_img": "shopify://shop_images/Frame_7.webp"
+      }
+    },
+    "custom_blog_slider_Pt7Ybn": {
+      "type": "custom-blog-slider",
+      "name": "Blog Slider",
+      "settings": {
+        "heading": "Discover Stories That Inspire Your Journey",
+        "blog": "sage-herbal-tea",
+        "post_limit": 6,
+        "bg_color": "#ffffff"
+      }
+    },
+    "sub_footer_newsletter_MLWUXR": {
+      "type": "sub-footer-newsletter",
+      "name": "Sub Footer Newsletter",
+      "settings": {
+        "heading": "Let’s Stay Connected",
+        "text": "Sign up for 10% off and be the first to know about new products, offers, and all the tea."
+      }
+    },
+    "product_list_rUYMLK": {
+      "type": "product-list",
+      "blocks": {
+        "product_description_GYzwzN": {
+          "type": "product-description",
+          "name": "t:names.product_description",
+          "settings": {
+            "text": "<p>{{ closest.product.description }}</p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "static-header": {
+          "type": "_product-list-content",
+          "name": "t:names.header",
+          "static": true,
+          "settings": {
+            "content_direction": "row",
+            "vertical_on_mobile": false,
+            "horizontal_alignment": "space-between",
+            "vertical_alignment": "flex-end",
+            "align_baseline": true,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 12,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "product_list_text_XWyWXQ": {
+              "type": "_product-list-text",
+              "name": "t:names.collection_title",
+              "settings": {
+                "text": "<h3>{{ closest.collection.title }}</h3>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "h4",
+                "font": "var(--font-body--family)",
+                "font_size": "",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "product_list_button_rCDBEV": {
+              "type": "_product-list-button",
+              "name": "t:names.product_list_button",
+              "settings": {
+                "label": "View all",
+                "open_in_new_tab": false,
+                "style_class": "link",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "product_list_text_XWyWXQ",
+            "product_list_button_rCDBEV"
+          ]
+        },
+        "static-product-card": {
+          "type": "_product-card",
+          "name": "t:names.product_card",
+          "static": true,
+          "settings": {
+            "product_card_gap": 2,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 10,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "product_card_gallery_CrYDer": {
+              "type": "_product-card-gallery",
+              "name": "t:names.product_card_media",
+              "settings": {
+                "image_ratio": "square",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 10,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "product_title_B6WCkY": {
+              "type": "product-title",
+              "name": "t:names.product_title",
+              "settings": {
+                "width": "100%",
+                "font_weight": "400",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "custom",
+                "font": "var(--font-subheading--family)",
+                "font_size": "1.125rem",
+                "line_height": "tight",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "balance",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 5,
+                "padding-block-end": 5,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "judge_me_reviews_preview_badge_EhdbRf": {
+              "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+              "settings": {}
+            },
+            "price_c8Hx3j": {
+              "type": "price",
+              "name": "t:names.product_price",
+              "settings": {
+                "show_sale_price_first": true,
+                "show_installments": false,
+                "show_tax_info": false,
+                "type_preset": "custom",
+                "width": "100%",
+                "alignment": "left",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "color": "var(--color-foreground)",
+                "padding-block-start": 5,
+                "padding-block-end": 7,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "buy_buttons_VVpaMw": {
+              "type": "buy-buttons",
+              "name": "t:names.product_buy_buttons",
+              "settings": {
+                "stacking": false,
+                "show_pickup_availability": true,
+                "gift_card_form": true,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "quantity": {
+                  "type": "quantity",
+                  "disabled": true,
+                  "static": true,
+                  "settings": {},
+                  "blocks": {}
+                },
+                "add-to-cart": {
+                  "type": "add-to-cart",
+                  "static": true,
+                  "settings": {
+                    "style_class": "button-secondary"
+                  },
+                  "blocks": {}
+                },
+                "accelerated-checkout": {
+                  "type": "accelerated-checkout",
+                  "static": true,
+                  "settings": {},
+                  "blocks": {}
+                }
+              },
+              "block_order": []
+            }
+          },
+          "block_order": [
+            "product_card_gallery_CrYDer",
+            "product_title_B6WCkY",
+            "judge_me_reviews_preview_badge_EhdbRf",
+            "price_c8Hx3j",
+            "buy_buttons_VVpaMw"
+          ]
+        }
+      },
+      "block_order": [
+        "product_description_GYzwzN"
+      ],
+      "disabled": true,
+      "name": "Featured collection",
+      "settings": {
+        "collection": "best-sellers",
+        "layout_type": "grid",
+        "carousel_on_mobile": true,
+        "max_products": 4,
+        "columns": 4,
+        "mobile_columns": "2",
+        "mobile_card_size": "60cqw",
+        "columns_gap": 10,
+        "rows_gap": 24,
+        "icons_style": "none",
+        "icons_shape": "none",
+        "section_width": "page-width",
+        "horizontal_alignment": "flex-start",
+        "gap": 28,
+        "color_scheme": "scheme-1",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    }
+  },
+  "order": [
+    "webpage_crousal_twi4Yg",
+    "counter_custom_CrVRYy",
+    "collection_list_nmnhVB",
+    "product_list_fa6P9H",
+    "1780301960be49e1d7",
+    "shop_by_concern_z4QrGz",
+    "wellness_tea_section_NrGM7i",
+    "custom_image_cards_dpnjat",
+    "product_list_iVzKdt",
+    "shoppable_video_carousel_cjpKQK",
+    "1781864830adbd5da5",
+    "benefits_tea_FcLRie",
+    "custom_blog_slider_Pt7Ybn",
+    "sub_footer_newsletter_MLWUXR",
+    "product_list_rUYMLK"
+  ]
+}

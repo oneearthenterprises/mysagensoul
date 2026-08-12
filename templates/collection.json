@@ -1,0 +1,401 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "section": {
+      "type": "section",
+      "blocks": {
+        "text_tqQTNE": {
+          "type": "text",
+          "name": "Title",
+          "settings": {
+            "text": "<h1>{{ closest.collection.title }}</h1>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h2",
+            "font": "var(--font-primary--family)",
+            "font_size": "",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "text_twGGkJ": {
+          "type": "text",
+          "name": "Description",
+          "settings": {
+            "text": "{{ closest.collection.description }}",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-primary--family)",
+            "font_size": "",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_tqQTNE",
+        "text_twGGkJ"
+      ],
+      "disabled": true,
+      "name": "Collection heading",
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "scheme-1",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    },
+    "webpage_crousal_L4pfRA": {
+      "type": "webpage-crousal",
+      "blocks": {
+        "banner_iwHHbU": {
+          "type": "banner",
+          "settings": {
+            "desktop_image": "shopify://shop_images/banner_all_packaging_uidyknzgwedgw_1_1_2.webp",
+            "mobile_image": "shopify://shop_images/BANNER_ALL_PACAKING_MOBILE_1_1_3d7b5998-f39e-405d-872a-f6f8ce2741f4.png",
+            "banner_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "banner_iwHHbU"
+      ],
+      "name": "sage Hero Carousel",
+      "settings": {}
+    },
+    "counter_custom_8F34xj": {
+      "type": "counter-custom",
+      "name": "Counter Custom",
+      "settings": {
+        "heading": "The Payday Sale ends in:",
+        "button_text": "SHOP NOW!",
+        "button_link": ""
+      }
+    },
+    "marquee221_NpPBzA": {
+      "type": "marquee221",
+      "blocks": {
+        "text_eAw9ie": {
+          "type": "text",
+          "settings": {
+            "icon": "|",
+            "text": "MEGA WEEKEND SALE • UNBEATABLE PRICES • LIMITED STOCK • GRAB YOUR DEAL"
+          }
+        },
+        "text_eGfbTV": {
+          "type": "text",
+          "settings": {
+            "icon": "|",
+            "text": "WEEKEND SPECIAL SALE • EXTRA DISCOUNTS • HOT DEALS TODAY • BUY MORE SAVE MORE"
+          }
+        },
+        "text_6UiQ3b": {
+          "type": "text",
+          "settings": {
+            "icon": "|",
+            "text": "FLASH WEEKEND DEALS • HUGE SAVINGS • BESTSELLERS ON SALE • ENDS SOON"
+          }
+        }
+      },
+      "block_order": [
+        "text_eAw9ie",
+        "text_eGfbTV",
+        "text_6UiQ3b"
+      ],
+      "name": "Custom Marquee",
+      "settings": {
+        "speed": 50,
+        "bg_color": "#a4b660",
+        "text_color": "#ffffff"
+      }
+    },
+    "main": {
+      "type": "main-collection",
+      "blocks": {
+        "filters": {
+          "type": "filters",
+          "static": true,
+          "settings": {
+            "enable_filtering": true,
+            "filter_style": "horizontal",
+            "filter_width": "centered",
+            "text_label_case": "default",
+            "show_swatch_label": false,
+            "show_filter_label": false,
+            "enable_sorting": true,
+            "enable_grid_density": true,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "padding-block-start": 8,
+            "padding-block-end": 8,
+            "padding-inline-start": 8,
+            "padding-inline-end": 8,
+            "facets_margin_bottom": 8,
+            "facets_margin_right": 20
+          },
+          "blocks": {}
+        },
+        "product-card": {
+          "type": "_product-card",
+          "static": true,
+          "settings": {
+            "product_card_gap": 5,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "border": "solid",
+            "border_width": 1,
+            "border_opacity": 49,
+            "border_radius": 11,
+            "padding-block-start": 8,
+            "padding-block-end": 8,
+            "padding-inline-start": 8,
+            "padding-inline-end": 8
+          },
+          "blocks": {
+            "card-gallery": {
+              "type": "_product-card-gallery",
+              "settings": {
+                "image_ratio": "adapt",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 10,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "product_title_4nY4eT": {
+              "type": "product-title",
+              "name": "t:names.product_title",
+              "settings": {
+                "width": "100%",
+                "font_weight": "400",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "custom",
+                "font": "var(--font-subheading--family)",
+                "font_size": "1rem",
+                "line_height": "loose",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground-heading)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "judge_me_reviews_preview_badge_rmhqt4": {
+              "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+              "settings": {}
+            },
+            "price_EzJzMm": {
+              "type": "price",
+              "settings": {
+                "show_sale_price_first": true,
+                "show_installments": false,
+                "show_tax_info": false,
+                "type_preset": "custom",
+                "width": "100%",
+                "alignment": "left",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "color": "var(--color-foreground)",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "buy_buttons_mMcKT3": {
+              "type": "buy-buttons",
+              "name": "t:names.product_buy_buttons",
+              "settings": {
+                "stacking": true,
+                "show_pickup_availability": true,
+                "gift_card_form": true,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "quantity": {
+                  "type": "quantity",
+                  "disabled": true,
+                  "static": true,
+                  "settings": {},
+                  "blocks": {}
+                },
+                "add-to-cart": {
+                  "type": "add-to-cart",
+                  "static": true,
+                  "settings": {
+                    "style_class": "button"
+                  },
+                  "blocks": {}
+                },
+                "accelerated-checkout": {
+                  "type": "accelerated-checkout",
+                  "disabled": true,
+                  "static": true,
+                  "settings": {},
+                  "blocks": {}
+                }
+              },
+              "block_order": []
+            },
+            "kwik_cod_checkout_buy_now_button_fpqWcH": {
+              "type": "shopify://apps/kwik-cod-checkout/blocks/buy_now_button/74f36c20-677c-4aa2-b179-1769aa61abaa",
+              "disabled": true,
+              "settings": {
+                "gkc_button_text": "Buy Now",
+                "gkc_button_subtext": "",
+                "gkc_button_bg": "#000000",
+                "gkc_text_color": "#ffffff",
+                "gk_image": false
+              }
+            }
+          },
+          "block_order": [
+            "card-gallery",
+            "product_title_4nY4eT",
+            "judge_me_reviews_preview_badge_rmhqt4",
+            "price_EzJzMm",
+            "buy_buttons_mMcKT3",
+            "kwik_cod_checkout_buy_now_button_fpqWcH"
+          ]
+        }
+      },
+      "settings": {
+        "layout_type": "grid",
+        "product_card_size": "large",
+        "mobile_product_card_size": "small",
+        "enable_infinite_scroll": true,
+        "products_per_page": 24,
+        "product_grid_width": "centered",
+        "full_width_on_mobile": true,
+        "columns_gap_horizontal": 10,
+        "columns_gap_vertical": 10,
+        "padding-inline-start": 10,
+        "padding-inline-end": 2,
+        "color_scheme": "scheme-58084d4c-a86e-4d0a-855e-a0966e5043f7",
+        "padding-block-start": 15,
+        "padding-block-end": 32
+      }
+    },
+    "feature_custom_gbQajR": {
+      "type": "feature-custom",
+      "disabled": true,
+      "name": "custom Product Slider",
+      "settings": {
+        "heading": "You may also like",
+        "collection": "",
+        "products": [
+          "slim-herbal-tea-weight-management-detox-infusion",
+          "chamomile-herbal-tea-relaxation-sleep-support-infusion",
+          "diabetes-support-herbal-tea-natural-blood-sugar-wellness-infusion",
+          "heart-health-herbal-tea-natural-cardiovascular-support",
+          "body-cleanse-herbal-infusion-natural-detox-digestive-support",
+          "hibiscus-flower-tea-immunity-boost-antioxidant-herbal-infusion",
+          "jasmine-herbal-tea-natural-relaxation-mood-support-infusion",
+          "lady-bloom-women-s-herbal-wellness-infusion",
+          "moringa-herbal-tea-superfood-nutrition-immunity-boost-infusion",
+          "butterfly-pea-flower-tea-antioxidant-rich-herbal-infusion",
+          "blush-bloom-rose-flower-wellness-infusion",
+          "skin-glow-herbal-wellness-infusion"
+        ],
+        "limit": 12,
+        "mobile_layout": "grid",
+        "tablet_layout": "grid",
+        "desktop_layout": "grid",
+        "mobile": 2,
+        "tablet": 3,
+        "desktop": 4,
+        "heading_size": 28,
+        "padding": 40,
+        "show_reviews": true,
+        "show_discount": true,
+        "show_cart": true,
+        "show_buy": true,
+        "color_scheme": "",
+        "cart_text": "Add to cart",
+        "buy_text": "Buy it now"
+      }
+    }
+  },
+  "order": [
+    "section",
+    "webpage_crousal_L4pfRA",
+    "counter_custom_8F34xj",
+    "marquee221_NpPBzA",
+    "main",
+    "feature_custom_gbQajR"
+  ]
+}

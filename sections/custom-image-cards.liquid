@@ -1,0 +1,228 @@
+<div class="custom-cards-section">
+
+  {% if section.settings.heading != blank %}
+    <div class="custom-cards-heading">
+      <h2>{{ section.settings.heading }}</h2>
+    </div>
+  {% endif %}
+
+  <div class="custom-cards-wrapper">
+    <div class="custom-cards-track">
+
+      {% for block in section.blocks %}
+        <div class="custom-card" {{ block.shopify_attributes }}>
+          <div class="card-inner">
+            {% if block.settings.image %}
+              {% if block.settings.card_link != blank %}
+                <a href="{{ block.settings.card_link }}">
+              {% endif %}
+
+              <img
+                src="{{ block.settings.image | image_url: width: 1000 }}"
+                alt="{{ block.settings.image.alt | escape }}"
+                loading="lazy"
+              >
+
+              {% if block.settings.card_link != blank %}
+                </a>
+              {% endif %}
+            {% endif %}
+
+            {% if block.settings.button_text != blank %}
+              <div class="card-button-wrap">
+                {% if block.settings.card_link != blank %}
+                  <a href="{{ block.settings.card_link }}" class="card-btn">
+                    {{ block.settings.button_text }}
+                  </a>
+                {% else %}
+                  <span class="card-btn">{{ block.settings.button_text }}</span>
+                {% endif %}
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+
+    </div>
+  </div>
+</div>
+
+<style>
+.custom-cards-section {
+  padding: 60px 0;
+}
+
+.custom-cards-wrapper {
+  width: 100%;
+  position: relative;
+}
+
+.custom-cards-track {
+  display: flex;
+  gap: 15px;
+}
+
+.custom-card {
+  transition: transform 0.4s ease;
+  flex-shrink: 0;
+}
+
+.card-inner {
+  overflow: hidden;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-inner a {
+  display: block;
+}
+
+.card-inner img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.card-inner:hover img {
+  transform: scale(1.03);
+}
+
+/* Bottom button */
+.card-button-wrap {
+  text-align: center;
+  padding: 14px 10px;
+}
+
+.card-btn {
+    display: inline-block;
+    width: 65%;
+    padding: 12px 20px;
+    background: #111827;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background 0.3s ease, transform 0.2s ease;
+    cursor: pointer;
+    margin: 0 auto;
+}
+
+.card-btn:hover {
+  background: #ede1d7;
+  color: #111827;
+  transform: translateY(-2px);
+}
+
+/* Mobile: horizontal scroll with snap */
+@media (max-width: 767px) {
+  .custom-cards-section {
+    padding: 15px 10px;
+  }
+
+  .custom-cards-track {
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 5px;
+  }
+
+  .custom-cards-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .custom-card {
+    width: 82%;
+    scroll-snap-align: center;
+  }
+
+  .card-inner {
+    border-radius: 30px;
+  }
+}
+
+/* Desktop grid */
+@media (min-width: 768px) {
+  .custom-cards-track {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+  }
+
+  .custom-card {
+    width: 100%;
+  }
+}
+
+.custom-cards-heading{
+  text-align:center;
+  margin-bottom:40px;
+}
+
+.custom-cards-heading h2{
+  font-size:42px;
+  font-weight:700;
+  line-height:1.2;
+  margin:0;
+  color:#1f2937;
+  padding:30px 0px;
+  background:#ede1d7;
+}
+
+@media(max-width:767px){
+  .custom-cards-heading{
+    margin-bottom:20px;
+  }
+
+  .custom-cards-heading h2{
+    font-size:28px;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Custom Image Cards",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Why Choose Sage & Soul"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Image Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Card Image"
+        },
+        {
+          "type": "url",
+          "id": "card_link",
+          "label": "Card Link"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text",
+          "default": "Shop Now"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Image Cards"
+    }
+  ]
+}
+{% endschema %}

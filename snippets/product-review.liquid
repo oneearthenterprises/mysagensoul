@@ -1,0 +1,11 @@
+{% if product.metafields.custom.rating and product.metafields.custom.review_count %}
+  <div class="product-review">
+    <span style="color:#2e7d32; font-weight:600;">
+      ★ {{ product.metafields.custom.rating }}
+    </span>
+    <span style="color:#999;">|</span>
+    <span style="color:#6b7280;">
+      {{ product.metafields.custom.review_count }} Reviews
+    </span>
+  </div>
+{% endif %}

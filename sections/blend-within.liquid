@@ -1,0 +1,493 @@
+{% schema %}
+{
+  "name": "Blend Within",
+  "tag": "section",
+  "class": "section blend-within-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "The Ace Within"
+    },
+    {
+      "type": "color",
+      "id": "bg",
+      "label": "Background",
+      "default": "#f4f4f4"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Blend Within"
+    }
+  ]
+}
+{% endschema %}
+
+{% assign items = product.metafields.custom.blend_within_item.value %}
+{% assign item_count = items | size %}
+
+{% if items != blank %}
+
+<section class="blend-wrap">
+  <div class="page-width">
+
+    {% if item_count == 1 %}
+
+      <!-- SINGLE ITEM — Creative Centered Layout -->
+      <div class="blend-single-wrap">
+        <h2 class="blend-heading blend-heading--center">{{ section.settings.heading }}</h2>
+        <div class="blend-single-card-outer">
+          {% for item in items %}
+          <div class="blend-single-card">
+            {% if item.image != blank %}
+            <div class="blend-single-img">
+              <img
+                src="{{ item.image | image_url: width: 2000 }}"
+                alt="{{ item.title }}"
+                width=""
+                height=""
+                loading="lazy"
+              >
+            </div>
+            {% endif %}
+            <div class="blend-single-content">
+              {% if item.title != blank %}
+                <h3 class="blend-title">{{ item.title }}</h3>
+              {% endif %}
+              {% if item.description != blank %}
+              <div class="blend-desc-wrap">
+                <div class="blend-desc">{{ item.description | metafield_tag }}</div>
+                <button type="button" class="blend-read-more">Read More</button>
+              </div>
+              {% endif %}
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+    {% elsif item_count == 2 %}
+
+      <!-- TWO ITEMS — Centered 2-column -->
+      <div class="blend-two-wrap">
+        <h2 class="blend-heading blend-heading--center">{{ section.settings.heading }}</h2>
+        <div class="blend-two-grid">
+          {% for item in items %}
+          <div class="blend-card">
+            {% if item.image != blank %}
+            <div class="blend-img">
+              <img
+                src="{{ item.image | image_url: width: 2000 }}"
+                alt="{{ item.title }}"
+                width=""
+                height=""
+                loading="lazy"
+              >
+            </div>
+            {% endif %}
+            {% if item.title != blank %}
+              <h3 class="blend-title">{{ item.title }}</h3>
+            {% endif %}
+            {% if item.description != blank %}
+            <div class="blend-desc-wrap">
+              <div class="blend-desc">{{ item.description | metafield_tag }}</div>
+              <button type="button" class="blend-read-more">Read More</button>
+            </div>
+            {% endif %}
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+    {% else %}
+
+      <!-- SLIDER MODE (3+ items) — Original Left+Right Layout -->
+      <div class="blend-flex">
+        <div class="blend-left">
+          <h2 class="blend-heading">{{ section.settings.heading }}</h2>
+        </div>
+        <div class="blend-right">
+          <div class="blend-grid swiper">
+            <div class="swiper-wrapper">
+              {% for item in items %}
+              <div class="blend-card swiper-slide">
+                {% if item.image != blank %}
+                <div class="blend-img">
+                  <img
+                    src="{{ item.image | image_url: width: 2000 }}"
+                    alt="{{ item.title }}"
+                    width=""
+                    height=""
+                    loading="lazy"
+                  >
+                </div>
+                {% endif %}
+                {% if item.title != blank %}
+                  <h3 class="blend-title">{{ item.title }}</h3>
+                {% endif %}
+                {% if item.description != blank %}
+                <div class="blend-desc-wrap">
+                  <div class="blend-desc">{{ item.description | metafield_tag }}</div>
+                  <button type="button" class="blend-read-more">Read More</button>
+                </div>
+                {% endif %}
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+          <div class="blend-prev">‹</div>
+          <div class="blend-next">›</div>
+        </div>
+      </div>
+
+    {% endif %}
+
+  </div>
+</section>
+
+{% endif %}
+
+<style>
+/* =====================
+   SECTION BG
+===================== */
+.blend-within-section {
+  background: {{ section.settings.bg }};
+}
+
+.blend-wrap {
+  padding: 60px 0;
+}
+
+/* =====================
+   HEADING
+===================== */
+.blend-heading {
+  font-size: 36px;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 0;
+}
+
+.blend-heading--center {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+/* =====================
+   SINGLE ITEM LAYOUT
+===================== */
+.blend-single-wrap {
+  text-align: center;
+}
+
+.blend-single-card-outer {
+  display: flex;
+  justify-content: center;
+}
+
+.blend-single-card {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  background: #fff;
+  border-radius: 24px;
+  padding: 32px 40px;
+  max-width: 820px;
+  width: 100%;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+}
+
+.blend-single-card::before {
+  content: '';
+  position: absolute;
+  top: -40px;
+  left: -40px;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.03);
+  pointer-events: none;
+}
+
+.blend-single-img {
+  flex-shrink: 0;
+  width: 260px;
+  height: 260px;
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.blend-single-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.blend-single-card:hover .blend-single-img img {
+  transform: scale(1.04);
+}
+
+.blend-single-content {
+  flex: 1;
+}
+
+/* =====================
+   TWO ITEMS LAYOUT
+===================== */
+.blend-two-wrap {
+  text-align: center;
+}
+
+.blend-two-grid {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.blend-two-grid .blend-card {
+  flex: 1;
+  background: #fff;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 6px 28px rgba(0,0,0,0.07);
+}
+
+/* =====================
+   SLIDER LAYOUT (3+)
+===================== */
+.blend-flex {
+  display: flex;
+  align-items: flex-start;
+  gap: 50px;
+}
+
+.blend-left {
+  width: 25%;
+  padding-top: 30px;
+}
+
+.blend-right {
+  width: 75%;
+  position: relative;
+}
+
+.blend-grid {
+  position: relative;
+  overflow: hidden;
+}
+
+.swiper-slide {
+  overflow: visible !important;
+}
+
+/* =====================
+   CARD (shared)
+===================== */
+.blend-card {
+  text-align: left;
+  transition: transform 0.3s ease;
+}
+
+.blend-card:hover {
+  transform: translateY(-5px);
+}
+
+.blend-img {
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.blend-img img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+/* =====================
+   TITLE & DESC
+===================== */
+.blend-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #111;
+}
+
+.blend-desc {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.blend-desc.expanded {
+  display: block !important;
+  -webkit-line-clamp: unset !important;
+  overflow: visible !important;
+}
+
+/* =====================
+   READ MORE BUTTON
+===================== */
+.blend-read-more {
+  display: none; /* JS will show only if text exceeds 3 lines */
+  background: none;
+  border: none;
+  padding: 0;
+  margin-top: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  color: #000;
+  text-decoration: underline;
+}
+
+/* =====================
+   ARROWS
+===================== */
+.blend-prev,
+.blend-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  font-size: 20px;
+  color: #111;
+  user-select: none;
+}
+
+.blend-prev { left: -20px; }
+.blend-next { right: -20px; }
+
+/* =====================
+   MOBILE
+===================== */
+@media (max-width: 768px) {
+  .blend-left {
+    padding-top: 0px;
+  }
+
+  .blend-wrap {
+    padding: 20px 0;
+  }
+
+  .blend-heading {
+    font-size: 24px;
+  }
+
+  /* Single */
+  .blend-single-card {
+    flex-direction: column;
+    padding: 24px 20px;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .blend-single-img {
+    width: 100%;
+    height: 220px;
+  }
+
+  /* Two */
+  .blend-two-grid {
+    flex-direction: column;
+  }
+
+  /* Slider */
+  .blend-flex {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .blend-left,
+  .blend-right {
+    width: 100%;
+  }
+
+  .blend-prev,
+  .blend-next {
+    display: none;
+  }
+
+  .blend-img img {
+    height: 180px;
+  }
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  // ── READ MORE / READ LESS ──────────────────────────────────────
+  // Use requestAnimationFrame to ensure browser has fully painted
+  // before we measure heights — fixes the clamped-but-not-detected bug
+  function initReadMore() {
+    document.querySelectorAll(".blend-desc-wrap").forEach(function (wrap) {
+      const desc = wrap.querySelector(".blend-desc");
+      const btn  = wrap.querySelector(".blend-read-more");
+
+      if (!desc || !btn) return;
+
+      // scrollHeight > clientHeight means text IS being clamped
+      if (desc.scrollHeight > desc.clientHeight) {
+        btn.style.display = "inline-block"; // show button only when needed
+      }
+
+      btn.addEventListener("click", function () {
+        const isExpanded = desc.classList.toggle("expanded");
+        btn.textContent  = isExpanded ? "Read Less" : "Read More";
+      });
+    });
+  }
+
+  // Double rAF ensures layout is fully complete before measuring
+  requestAnimationFrame(function () {
+    requestAnimationFrame(function () {
+      initReadMore();
+    });
+  });
+
+  // ── SWIPER ────────────────────────────────────────────────────
+  const swiperEl = document.querySelector(".blend-grid");
+  if (swiperEl) {
+    new Swiper(".blend-grid", {
+      slidesPerView: 1.2,
+      spaceBetween: 20,
+      loop: true,
+      speed: 1000,
+      grabCursor: true,
+      simulateTouch: true,
+      autoplay: { delay: 3000, disableOnInteraction: false },
+      navigation: { nextEl: ".blend-next", prevEl: ".blend-prev" },
+      breakpoints: {
+        768:  { slidesPerView: 2.2 },
+        1024: { slidesPerView: 3 },
+        1280: { slidesPerView: 3.3 }
+      }
+    });
+  }
+
+});
+</script>

@@ -1,0 +1,392 @@
+{% comment %}
+  Improved Teapoz Footer - Single Line Payments + Custom SVG Social Icons + Mobile Accordion
+{% endcomment %}
+
+<div class="bg-section section" >
+  <div class="teapoz-footer">
+
+    <!-- ABOUT -->
+    <div class="footer-column">
+      <div class="footer-heading" data-accordion-header>
+        <h4>{{ section.settings.about_heading | default: 'ABOUT' }}</h4>
+        <span class="accordion-icon">+</span>
+      </div>
+      <div class="footer-content">
+        <p>{{ section.settings.about_text }}</p>
+        
+        <!-- Payment Icons - Single Line -->
+        <div class="payments-single">
+          {% for block in section.blocks %}
+            {% if block.type == 'payment' and block.settings.icon != blank %}
+              <img src="{{ block.settings.icon | image_url: width: 120 }}" 
+                   alt="Payment Method" 
+                   loading="lazy">
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <!-- CATEGORIES -->
+    <div class="footer-column">
+      <div class="footer-heading" data-accordion-header>
+        <h4>{{ section.settings.categories_heading | default: 'CATEGORIES' }}</h4>
+        <span class="accordion-icon">+</span>
+      </div>
+      <div class="footer-content">
+        <ul>
+          {% for link in section.settings.categories_menu.links %}
+            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+
+    <!-- INFORMATIONS -->
+    <div class="footer-column">
+      <div class="footer-heading" data-accordion-header>
+        <h4>{{ section.settings.information_heading | default: 'INFORMATIONS' }}</h4>
+        <span class="accordion-icon">+</span>
+      </div>
+      <div class="footer-content">
+        <ul>
+          {% for link in section.settings.information_menu.links %}
+            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+
+    <!-- CONTACT + SOCIAL -->
+    <div class="footer-column">
+      <div class="footer-heading" data-accordion-header>
+        <h4>{{ section.settings.contact_heading | default: 'CONTACT' }}</h4>
+        <span class="accordion-icon">+</span>
+      </div>
+      <div class="footer-content">
+        {% if section.settings.address != blank %}
+          <p><strong>Address:</strong><br>{{ section.settings.address }}</p>
+        {% endif %}
+
+        {% if section.settings.phone != blank %}
+          <p><strong>Phone:</strong> {{ section.settings.phone }}</p>
+        {% endif %}
+
+        {% if section.settings.email != blank %}
+          <p><strong>Email:</strong> <a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a></p>
+        {% endif %}
+
+        <!-- Social Icons -->
+        <div class="social-custom">
+          {% if section.settings.facebook_svg != blank and section.settings.facebook_link != blank %}
+            <a href="{{ section.settings.facebook_link }}" target="_blank">
+              <img src="{{ section.settings.facebook_svg | image_url }}" alt="Facebook">
+            </a>
+          {% endif %}
+
+          {% if section.settings.instagram_svg != blank and section.settings.instagram_link != blank %}
+            <a href="{{ section.settings.instagram_link }}" target="_blank">
+              <img src="{{ section.settings.instagram_svg | image_url }}" alt="Instagram">
+            </a>
+          {% endif %}
+
+          {% if section.settings.twitter_svg != blank and section.settings.twitter_link != blank %}
+            <a href="{{ section.settings.twitter_link }}" target="_blank">
+              <img src="{{ section.settings.twitter_svg | image_url }}" alt="Twitter">
+            </a>
+          {% endif %}
+
+          {% if section.settings.linkedin_svg != blank and section.settings.linkedin_link != blank %}
+            <a href="{{ section.settings.linkedin_link }}" target="_blank">
+              <img src="{{ section.settings.linkedin_svg | image_url }}" alt="LinkedIn">
+            </a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer Bottom -->
+  <div class="footer-bottom">
+    <a href="#" class="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+      BACK TO TOP ↑
+    </a>
+    <p>Copyright © {{ 'now' | date: "%Y" }} {{ shop.name }} . All rights reserved.
+Sage & Soul is a brand of The One Earth Enterprises.</p>
+  
+
+  </div>
+</div>
+
+<style>
+  .bg-section {
+    background: {{ section.settings.section_bg }} !important;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+
+  {% comment %} .bg-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url('https://cdn.shopify.com/s/files/1/0741/6958/1722/files/bgimage221gaurav.png?v=1776423910') no-repeat center;
+    background-size: cover;
+    z-index: 0;
+  } {% endcomment %}
+
+  .teapoz-footer {
+    position: relative;
+    z-index: 1;
+    padding: 60px 20px 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 40px 30px;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  /* Accordion Heading */
+  .footer-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    padding: 12px 0;
+  }
+
+  .footer-column h4 {
+    color: #ffffffff;
+    font-size: 14px;
+    font-weight: 400;
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  .accordion-icon {
+    font-size: 20px;
+    font-weight: 300;
+    transition: transform 0.3s ease;
+  }
+
+  .footer-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+
+  /* Desktop: Show content normally */
+  @media (min-width: 769px) {
+    .footer-heading {
+      display: none; /* Hide accordion header on desktop */
+    }
+    .footer-content {
+      max-height: none;
+      overflow: visible;
+    }
+    .footer-column p { 
+      font-size: 14px; 
+      line-height: 1.6; 
+      opacity: 0.9; 
+      margin-bottom: 15px; 
+    }
+  }
+
+  /* Mobile Accordion */
+  @media (max-width: 768px) {
+    .teapoz-footer { 
+      grid-template-columns: 1fr; 
+      gap:10px !important;
+      padding: 60px 0px 23px;
+    }
+    .footer-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    padding: 5px 0;
+}
+
+    .footer-content {
+      padding-bottom: 0px;
+    }
+
+    .footer-column {
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 5px 10px;
+      margin: 1px;
+      border-radius:15px;
+    }
+
+   
+
+    .payments-single {
+      justify-content: center;
+      margin: 15px 0 20px 0;
+    }
+
+    .social-custom {
+      justify-content: center;
+      margin-top: 15px;
+    }
+  }
+
+  /* Active State */
+  .footer-column.active .accordion-icon {
+    transform: rotate(45deg);
+  }
+
+  .footer-column.active .footer-content {
+    max-height: 500px; /* Adjust if you have more content */
+  }
+
+  /* Rest of your styles */
+  .footer-column ul { 
+    list-style: none; 
+    padding: 0; 
+    margin: 0; 
+  }
+  .footer-column li { margin-bottom: 10px; }
+  .footer-column a { 
+    color: #ddd; 
+    text-decoration: none; 
+  }
+  .footer-column a:hover { color: #8bc34a; }
+
+  .payments-single {
+    display: flex;
+    gap: 12px;
+    margin: 20px 0 25px 0;
+  }
+
+  .payments-single img {
+    height: 38px;
+    background: #fff;
+    padding: 5px;
+    border-radius: 8px;
+    object-fit: contain;
+  }
+
+  .social-custom {
+    display: flex;
+    gap: 14px;
+  }
+
+  .social-custom a {
+    display: block;
+    width: 42px;
+    height: 42px;
+
+    overflow: hidden;
+    transition: transform 0.3s;
+  }
+
+  .social-custom a:hover {
+    transform: scale(1.1);
+  }
+
+  .social-custom img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .footer-bottom {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 25px 20px 35px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-size: 13.5px;
+  }
+
+  .back-top {
+    color: #8bc34a;
+    text-decoration: none;
+    font-weight: 500;
+    display: inline-block;
+    margin-bottom: 12px;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const headers = document.querySelectorAll('.footer-heading');
+
+    headers.forEach(header => {
+      header.addEventListener('click', function() {
+        const column = this.parentElement;
+        const isActive = column.classList.contains('active');
+
+        // Close all other accordions
+        document.querySelectorAll('.footer-column').forEach(col => {
+          col.classList.remove('active');
+        });
+
+        // Toggle current one (unless it was already open - then just close it)
+        if (!isActive) {
+          column.classList.add('active');
+        }
+      });
+    });
+
+    // Optional: Open first accordion by default on mobile
+    if (window.innerWidth <= 768) {
+      const firstColumn = document.querySelector('.footer-column');
+      if (firstColumn) firstColumn.classList.add('active');
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Improved Teapoz Footer",
+  "settings": [
+
+{
+  "type": "color",
+  "id": "section_bg",
+  "label": "Background Color",
+  "default": "#1b5e3c"
+},
+
+    { "type": "text", "id": "about_heading", "label": "About Heading", "default": "ABOUT" },
+    { "type": "textarea", "id": "about_text", "label": "About Text", "default": "Lorem ipsum dolor sit amet..." },
+
+    { "type": "text", "id": "categories_heading", "label": "Categories Heading", "default": "CATEGORIES" },
+    { "type": "link_list", "id": "categories_menu", "label": "Categories Menu" },
+
+    { "type": "text", "id": "information_heading", "label": "Informations Heading", "default": "INFORMATIONS" },
+    { "type": "link_list", "id": "information_menu", "label": "Informations Menu" },
+
+    { "type": "text", "id": "contact_heading", "label": "Contact Heading", "default": "CONTACT" },
+    { "type": "textarea", "id": "address", "label": "Address", "info": "Full address with pin code" },
+    { "type": "text", "id": "phone", "label": "Phone Number" },
+    { "type": "text", "id": "email", "label": "Email Address" },
+
+    { "type": "header", "content": "Social Icons (Upload SVG + Link)" },
+    { "type": "image_picker", "id": "facebook_svg", "label": "Facebook SVG Icon" },
+    { "type": "url", "id": "facebook_link", "label": "Facebook Link" },
+
+    { "type": "image_picker", "id": "instagram_svg", "label": "Instagram SVG Icon" },
+    { "type": "url", "id": "instagram_link", "label": "Instagram Link" },
+
+    { "type": "image_picker", "id": "twitter_svg", "label": "Twitter / X SVG Icon" },
+    { "type": "url", "id": "twitter_link", "label": "Twitter Link" },
+
+    { "type": "image_picker", "id": "linkedin_svg", "label": "LinkedIn SVG Icon" },
+    { "type": "url", "id": "linkedin_link", "label": "LinkedIn Link" }
+  ],
+  "blocks": [
+    {
+      "type": "payment",
+      "name": "Payment Icon",
+      "settings": [
+        { "type": "image_picker", "id": "icon", "label": "Upload Payment Icon (PNG/SVG)" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Improved Teapoz Footer" }]
+}
+{% endschema %}

@@ -1,0 +1,322 @@
+{% assign blog_handle = section.settings.blog %}
+{% assign blog_obj = blogs[blog_handle] %}
+{% assign post_limit = section.settings.post_limit %}
+
+<section class="custom-blog-slider-section">
+  <div class="page-width">
+
+    {% if section.settings.heading != blank %}
+      <h2 class="cbs-heading">{{ section.settings.heading }}</h2>
+    {% endif %}
+
+    <div class="cbs-wrap">
+
+      <div class="cbs-track" id="cbsTrack-{{ section.id }}">
+        {% for article in blog_obj.articles limit: post_limit %}
+        <div class="cbs-card">
+
+          {% if article.image %}
+          <a href="{{ article.url }}" class="cbs-img-wrap">
+            <img
+              src="{{ article.image | image_url: width: 800 }}"
+              alt="{{ article.title }}"
+              loading="lazy" width="" height=""
+            >
+          </a>
+          {% endif %}
+
+          <div class="cbs-content">
+            <p class="cbs-meta">
+              {{ article.published_at | date: "%b %d, %Y" }}
+              {% if article.author %} &bull; {{ article.author }}{% endif %}
+            </p>
+            <h3 class="cbs-title">
+              <a href="{{ article.url }}">{{ article.title }}</a>
+            </h3>
+            <p class="cbs-desc">{{ article.excerpt_or_content | strip_html }}</p>
+            <a href="{{ article.url }}" class="cbs-btn">Read More</a>
+          </div>
+
+        </div>
+        {% endfor %}
+      </div>
+
+      <div class="cbs-prev" id="cbsPrev-{{ section.id }}">‹</div>
+      <div class="cbs-next" id="cbsNext-{{ section.id }}">›</div>
+
+    </div>
+
+  </div>
+</section>
+
+<script>
+(function () {
+  var track = document.getElementById("cbsTrack-{{ section.id }}");
+  var prevBtn = document.getElementById("cbsPrev-{{ section.id }}");
+  var nextBtn = document.getElementById("cbsNext-{{ section.id }}");
+  if (!track) return;
+
+  function scrollByCard(direction) {
+    var card = track.querySelector(".cbs-card");
+    if (!card) return;
+    var gap = parseFloat(getComputedStyle(track).gap) || 0;
+    var amount = card.getBoundingClientRect().width + gap;
+    track.scrollBy({ left: direction * amount, behavior: "smooth" });
+  }
+
+  if (prevBtn) prevBtn.addEventListener("click", function () { scrollByCard(-1); });
+  if (nextBtn) nextBtn.addEventListener("click", function () { scrollByCard(1); });
+})();
+</script>
+
+<style>
+/* SECTION */
+.custom-blog-slider-section {
+  padding: 60px 0;
+  background: {{ section.settings.bg_color }};
+}
+
+/* HEADING */
+.cbs-heading {
+  font-size: clamp(22px, 4vw, 38px);
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 40px;
+  color: #111;
+  line-height: 1.2;
+}
+
+/* WRAP */
+.cbs-wrap {
+  position: relative;
+  padding: 0 10px;
+}
+
+/* TRACK - manual scroll, no JS library */
+.cbs-track {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 4px;
+}
+
+.cbs-track::-webkit-scrollbar {
+  height: 6px;
+}
+.cbs-track::-webkit-scrollbar-thumb {
+  background: #ddd;
+  border-radius: 4px;
+}
+
+/* CARD */
+.cbs-card {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid #dddddd66;
+  scroll-snap-align: start;
+  flex: 0 0 78%;
+}
+
+.cbs-card:hover {
+  transform: translateY(-6px);
+}
+
+/* IMAGE */
+.cbs-img-wrap {
+  display: block;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.cbs-img-wrap img {
+  width: 100%;
+  height: clamp(160px, 25vw, 300px);
+  object-fit: cover;
+  transition: transform 0.4s ease;
+  display: block;
+}
+
+.cbs-card:hover .cbs-img-wrap img {
+  transform: scale(1.05);
+}
+
+/* CONTENT */
+.cbs-content {
+  padding: clamp(14px, 2vw, 22px);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* META */
+.cbs-meta {
+  font-size: clamp(10px, 1.2vw, 12px);
+  color: #999;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* TITLE */
+.cbs-title {
+  font-size: clamp(15px, 2vw, 18px);
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 5px;
+  margin-top: 0;
+}
+
+.cbs-title a {
+  color: #111;
+  text-decoration: none;
+}
+
+.cbs-title a:hover {
+  color: #555;
+}
+
+/* DESC */
+.cbs-desc {
+  font-size: clamp(13px, 1.5vw, 14px);
+  color: #666;
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 8px;
+  margin-top: 0px !important;
+  flex: 1;
+}
+
+/* READ MORE BTN */
+.cbs-btn {
+  display: inline-block;
+  font-size: clamp(12px, 1.3vw, 13px);
+  font-weight: 600;
+  color: #111;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  margin-top: auto;
+}
+
+/* ARROWS */
+.cbs-prev,
+.cbs-next {
+  position: absolute;
+  top: 40%;
+  transform: translateY(-50%);
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  color: #111;
+  cursor: pointer;
+  z-index: 10;
+  user-select: none;
+  transition: background 0.2s;
+}
+
+.cbs-prev:hover,
+.cbs-next:hover {
+  background: #f5f5f5;
+}
+
+.cbs-prev { left: -22px; }
+.cbs-next { right: -22px; }
+
+/* RESPONSIVE */
+@media (min-width: 1280px) {
+  .custom-blog-slider-section { padding: 80px 0; }
+}
+
+@media (min-width: 768px) {
+  .cbs-card { flex: 0 0 60%; }
+}
+
+@media (min-width: 1024px) {
+  .cbs-card { flex: 0 0 31%; }
+}
+
+@media (max-width: 1024px) {
+  .custom-blog-slider-section { padding: 50px 0; }
+  .cbs-heading { margin-bottom: 30px; }
+  .cbs-prev { left: -10px; }
+  .cbs-next { right: -10px; }
+}
+
+@media (max-width: 768px) {
+  .cbs-title {
+    margin-top: 0;
+    margin-bottom: 0px;
+  }
+  .cbs-desc {
+    margin-top: 0;
+    margin-bottom: 8px;
+    flex: 1;
+  }
+  .custom-blog-slider-section { padding: 30px 0; }
+  .cbs-heading { margin-bottom: 20px; }
+  .cbs-wrap { padding: 0 4px; }
+  .cbs-prev, .cbs-next { display: none; }
+  .cbs-card { border-radius: 12px; }
+}
+
+@media (max-width: 480px) {
+  .custom-blog-slider-section { padding: 24px 0; }
+  .cbs-content { padding: 14px 14px 18px; }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Blog Slider",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Latest from our Blog"
+    },
+    {
+      "type": "blog",
+      "id": "blog",
+      "label": "Select Blog"
+    },
+    {
+      "type": "range",
+      "id": "post_limit",
+      "label": "Number of posts",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "default": 6
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#f9f9f9"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Blog Slider"
+    }
+  ]
+}
+{% endschema %}

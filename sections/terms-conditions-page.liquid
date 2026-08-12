@@ -1,0 +1,122 @@
+<section class="terms-page">
+  <div class="page-width">
+    <div class="terms-wrapper">
+
+      {% if section.settings.heading != blank %}
+        <h1 class="terms-title">{{ section.settings.heading }}</h1>
+      {% endif %}
+
+      {% if section.settings.subheading != blank %}
+        <p class="terms-subtitle">{{ section.settings.subheading }}</p>
+      {% endif %}
+
+      <div class="terms-content rte">
+        {{ page.content }}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+.terms-page{
+  padding:70px 20px;
+  background:#EEF1EA;
+}
+
+.terms-wrapper{
+  max-width:900px;
+  margin:0 auto;
+}
+
+.terms-title{
+  font-size:42px;
+  font-weight:700;
+  line-height:1.2;
+  text-align:center;
+  margin-bottom:12px;
+}
+
+.terms-subtitle{
+  font-size:18px;
+  color:#666;
+  text-align:center;
+  margin-bottom:40px;
+}
+
+.terms-content{
+  font-size:16px;
+  line-height:1.8;
+  color:#222;
+}
+
+.terms-content h2,
+.terms-content h3,
+.terms-content h4{
+  margin-top:28px;
+  margin-bottom:14px;
+  font-weight:700;
+}
+
+.terms-content p{
+  margin-bottom:16px;
+}
+
+.terms-content ul,
+.terms-content ol{
+  padding-left:22px;
+  margin-bottom:20px;
+}
+
+.terms-content li{
+  margin-bottom:10px;
+}
+
+.terms-content a{
+  text-decoration:underline;
+}
+
+@media screen and (max-width:768px){
+  .terms-page{
+    padding:40px 15px;
+  }
+
+  .terms-title{
+    font-size:28px;
+  }
+
+  .terms-subtitle{
+    font-size:15px;
+  }
+
+  .terms-content{
+    font-size:15px;
+    line-height:1.7;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Terms Conditions Page",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Terms & Conditions"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Sub Heading",
+      "default": "Please read our terms and conditions carefully before using our website."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Terms Conditions Page"
+    }
+  ]
+}
+{% endschema %}

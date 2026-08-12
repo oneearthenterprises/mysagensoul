@@ -1,0 +1,245 @@
+<section class="sage-promise-section">
+  <div class="page-width">
+    <div class="promise-wrapper">
+      
+      <!-- Left Content -->
+      <div class="promise-content">
+        {% if section.settings.heading != blank %}
+          <h2 class="promise-heading">
+            {{ section.settings.heading }}
+          </h2>
+        {% endif %}
+
+        {% if section.settings.content != blank %}
+          <div class="promise-richtext">
+            {{ section.settings.content }}
+          </div>
+        {% endif %}
+
+        <!-- Promises Blocks -->
+        <div class="promises-grid">
+          {% for block in section.blocks %}
+            {% if block.type == 'promise' %}
+              <div class="promise-item" {{ block.shopify_attributes }}>
+                {% if block.settings.title != blank %}
+                  <h3 class="promise-item-title">{{ block.settings.title }}</h3>
+                {% endif %}
+                {% if block.settings.text != blank %}
+                  <p class="promise-item-text">{{ block.settings.text }}</p>
+                {% endif %}
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- Right Image -->
+      <div class="promise-image">
+        {% if section.settings.image != blank %}
+          <img
+            src="{{ section.settings.image | image_url: width: 1400 }}"
+            alt="{{ section.settings.heading | escape }}"
+            loading="lazy"
+          >
+        {% endif %}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+.sage-promise-section {
+  padding: 80px 20px;
+  background: {{ section.settings.bg_color }};
+  overflow: hidden;
+}
+
+.sage-promise-section .page-width {
+  max-width: 1290px;
+  margin: 0 auto;
+}
+
+.promise-wrapper {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 60px;
+  align-items: center;
+  background: #ffffff;
+  border-radius: 34px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+}
+
+/* Left Content */
+.promise-content {
+  padding: 60px;
+}
+
+.promise-heading {
+  font-size: clamp(32px, 4vw, 48px);
+  line-height: 1.15;
+  font-weight: 700;
+  color: #111111;
+  margin-bottom: 24px;
+  letter-spacing: -0.5px;
+}
+
+.promise-richtext {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #4a4a4a;
+  margin-bottom: 40px;
+}
+
+.promise-richtext p {
+  margin: 0;
+}
+
+/* Promises Grid */
+.promises-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px 24px;
+}
+
+.promise-item {
+  border-left: 2px solid #111111;
+  padding-left: 16px;
+}
+
+.promise-item-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #111111;
+  margin: 0 0 8px 0;
+}
+
+.promise-item-text {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #666666;
+  margin: 0;
+}
+
+/* Right Image */
+.promise-image {
+  height: 100%;
+  align-self: stretch;
+}
+
+.promise-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+  .promise-wrapper {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  
+  .promise-content {
+    padding: 40px;
+  }
+  
+  .promise-image {
+    height: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .sage-promise-section {
+    padding: 40px 15px;
+  }
+  
+  .promise-wrapper {
+    border-radius: 24px;
+  }
+
+  .promise-content {
+    padding: 30px 20px;
+  }
+  
+  .promise-heading {
+    margin-bottom: 16px;
+  }
+  
+  .promise-richtext {
+    margin-bottom: 30px;
+  }
+
+  .promises-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .promise-image {
+    height: 300px;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Sage Soul Promise",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#EEF1EA"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "The Sage & Soul Promise"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Content",
+      "default": "<p>When you choose Sage & Soul, you are choosing a brand that operates with radical transparency and deep respect for the planet and your body.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Right Image"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "promise",
+      "name": "Promise",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "100% Hand-Packed"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Crafted with human touch and care."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Sage Soul Promise",
+      "blocks": [
+        {
+          "type": "promise"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
