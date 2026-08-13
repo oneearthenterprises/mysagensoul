@@ -379,8 +379,6 @@
         "mobile_product_card_size": "small",
         "enable_infinite_scroll": true,
         "products_per_page": 24,
-        "extra_image_1": "shopify://shop_images/4_632895bb-43b0-40e5-90ac-587b4c28c190.png",
-        "extra_image_2": "shopify://shop_images/ChatGPTImageJun16_2026_02_45_25PM.png",
         "product_grid_width": "centered",
         "full_width_on_mobile": true,
         "columns_gap_horizontal": 10,

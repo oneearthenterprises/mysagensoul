@@ -77,7 +77,7 @@
       "name": "Counter Custom",
       "settings": {
         "heading": "Hurry! Offer Ends Soon",
-        "button_text": "SHOP NOW!",
+        "button_text": "SHOP NOW",
         "button_link": "shopify://collections/shop-all"
       }
     },

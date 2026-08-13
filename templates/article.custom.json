@@ -32,10 +32,7 @@
         "heading": "Latest from our Blog",
         "blog": "sage-herbal-tea",
         "post_limit": 6,
-        "bg_color": "#ffffff",
-        "autoplay": true,
-        "autoplay_delay": 3,
-        "loop": true
+        "bg_color": "#ffffff"
       }
     }
   },
