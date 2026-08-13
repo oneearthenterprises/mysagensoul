@@ -1,4 +1,4 @@
-{% comment %} {{ 'overflow-list.css' | asset_url | preload_tag: as: 'style' }} {% endcomment %}
-{{ 'overflow-list.css' | asset_url | stylesheet_tag: preload: true }}
+<link rel="stylesheet" href="{{ 'overflow-list.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>{{ 'overflow-list.css' | asset_url | stylesheet_tag }}</noscript>
 
 {{ 'base.css' | asset_url | stylesheet_tag: preload: true }}

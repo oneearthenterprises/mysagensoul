@@ -167,8 +167,7 @@
 }
 
 .cert-arrow{
-  width:34px;
-  height:34px;
+  display: none !important;
 }
 
 }
@@ -186,7 +185,8 @@ document.addEventListener("DOMContentLoaded", function () {
       nextEl: ".cert-prev",
       prevEl: ".cert-next"
     },
-    slidesPerView: 1.5,
+    slidesPerView: 2,
+    spaceBetween: 15,
     breakpoints: {
       480: { slidesPerView: 2 },
       768: { slidesPerView: 4 }

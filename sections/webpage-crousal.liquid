@@ -22,7 +22,7 @@
                     {{ block.settings.mobile_image | image_url: width: 320 }} 320w,
                     {{ block.settings.mobile_image | image_url: width: 390 }} 390w,
                     {{ block.settings.mobile_image | image_url: width: 480 }} 480w,
-                    {{ block.settings.mobile_image | image_url: width: 600 }} 600w
+                    {{ block.settings.mobile_image | image_url: width: 500 }} 500w
                   "
                 >
               {% endif %}
@@ -125,6 +125,8 @@
 }
 
 
+
+
 /* PAGINATION */
 
 .sage-hero-pagination{
@@ -192,6 +194,14 @@
   lastClone.setAttribute("aria-hidden", "true");
   track.appendChild(firstClone);
   track.insertBefore(lastClone, track.firstChild);
+
+  // Force browser to evaluate cloned picture sources to prevent white screen flash
+  [firstClone, lastClone].forEach(function (clone) {
+    var imgs = clone.querySelectorAll("img");
+    imgs.forEach(function (img) {
+      if (img.src) img.src = img.src;
+    });
+  });
 
   // trackIndex 0 = lastClone, 1..total = real slides, total+1 = firstClone
   var trackIndex = 1;
