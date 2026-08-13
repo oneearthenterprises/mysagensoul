@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "section": {
@@ -93,20 +102,6 @@
     "webpage_crousal_L4pfRA": {
       "type": "webpage-crousal",
       "blocks": {
-        "banner_cxjVnR": {
-          "type": "banner",
-          "settings": {
-            "desktop_image": "shopify://shop_images/1_2_af0829e6-fe64-4d54-823a-52544efdf1a4.webp",
-            "banner_link": ""
-          }
-        },
-        "banner_UtEzMg": {
-          "type": "banner",
-          "settings": {
-            "desktop_image": "shopify://shop_images/2_2_5a6718d5-ec72-4ac3-9f93-35c93dc78569.webp",
-            "banner_link": ""
-          }
-        },
         "banner_MtTpTz": {
           "type": "banner",
           "settings": {
@@ -125,8 +120,6 @@
         }
       },
       "block_order": [
-        "banner_cxjVnR",
-        "banner_UtEzMg",
         "banner_MtTpTz",
         "banner_iwHHbU"
       ],
@@ -313,12 +306,13 @@
                   "type": "add-to-cart",
                   "static": true,
                   "settings": {
-                    "style_class": "button-secondary"
+                    "style_class": "button"
                   },
                   "blocks": {}
                 },
                 "accelerated-checkout": {
                   "type": "accelerated-checkout",
+                  "disabled": true,
                   "static": true,
                   "settings": {},
                   "blocks": {}
@@ -336,10 +330,9 @@
           ]
         }
       },
-      "disabled": true,
       "settings": {
         "layout_type": "grid",
-        "product_card_size": "large",
+        "product_card_size": "medium",
         "mobile_product_card_size": "small",
         "enable_infinite_scroll": true,
         "products_per_page": 24,

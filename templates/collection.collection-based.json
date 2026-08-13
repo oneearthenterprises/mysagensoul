@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "section": {
@@ -96,7 +105,7 @@
         "banner_kGf4xF": {
           "type": "banner",
           "settings": {
-            "desktop_image": "shopify://shop_images/Frame_5_1.webp",
+            "desktop_image": "shopify://shop_images/herbal-infusion-new-arrivals-banner.webp",
             "mobile_image": "shopify://shop_images/ChatGPT_Image_Jun_30_2026_02_04_21_PM.webp",
             "banner_link": ""
           }
@@ -311,7 +320,6 @@
           ]
         }
       },
-      "disabled": true,
       "settings": {
         "layout_type": "grid",
         "product_card_size": "medium",
