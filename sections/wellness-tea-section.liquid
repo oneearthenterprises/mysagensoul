@@ -5,7 +5,7 @@
 
     <!-- LEFT IMAGE -->
     <div class="tea-image">
-      <img src="{{ section.settings.image | image_url }}" width="400" height="400" alt="Tea">
+      <img src="{{ section.settings.image | image_url: width: 800 }}" width="400" height="400" alt="Tea">
     </div>
 
     <!-- RIGHT CONTENT -->
@@ -15,7 +15,7 @@
 
       <div class="tea-features">
         <div class="tea-feature">
-          <img src="{{ section.settings.icon1 | image_url }}" width="40" height="40" alt="icon">
+          <img src="{{ section.settings.icon1 | image_url: width: 80 }}" width="40" height="40" alt="icon">
           <div>
             <h4>{{ section.settings.feature1_title }}</h4>
             <p>{{ section.settings.feature1_text }}</p>
@@ -23,7 +23,7 @@
         </div>
 
         <div class="tea-feature">
-          <img src="{{ section.settings.icon2 | image_url }}" width="40" height="40" alt="icon">
+          <img src="{{ section.settings.icon2 | image_url: width: 80 }}" width="40" height="40" alt="icon">
           <div>
             <h4>{{ section.settings.feature2_title }}</h4>
             <p>{{ section.settings.feature2_text }}</p>
@@ -166,7 +166,9 @@ img.img222r {
     gap: 0px;
   }
   .tea-section {
-    padding: 20px 0;
+    padding: 12px 0 !important;
+    margin-top: 8px !important;
+    margin-bottom: 8px !important;
   }
   .tea-wrapper {
     flex-direction: column;

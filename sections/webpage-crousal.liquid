@@ -13,34 +13,50 @@
             class="sage-hero-banner-item"
           >
 
-            <!-- DESKTOP IMAGE -->
-      {% if block.settings.desktop_image != blank %}
-  {{
-    block.settings.desktop_image
-    | image_url: width: 2000
-    | image_tag:
-      class: 'sage-desktop-banner',
-      widths: '768,1024,1440,1600,2000',
-      sizes: '100vw',
-      loading: 'eager',
-      fetchpriority: 'high',
-      alt: 'Desktop Banner'
-  }}
-{% endif %}
-            <!-- MOBILE IMAGE -->
-     {% if block.settings.mobile_image != blank %}
-  {{
-    block.settings.mobile_image
-    | image_url: width: 600
-    | image_tag:
-      class: 'sage-mobile-banner',
-      widths: '320,390,480,600',
-      sizes: '100vw',
-      loading: 'eager',
-      fetchpriority: 'high',
-      alt: 'Mobile Banner'
-  }}
-{% endif %}
+            <picture>
+              {% if block.settings.mobile_image != blank %}
+                <!-- Mobile source -->
+                <source
+                  media="(max-width: 768px)"
+                  srcset="
+                    {{ block.settings.mobile_image | image_url: width: 320 }} 320w,
+                    {{ block.settings.mobile_image | image_url: width: 390 }} 390w,
+                    {{ block.settings.mobile_image | image_url: width: 480 }} 480w,
+                    {{ block.settings.mobile_image | image_url: width: 600 }} 600w
+                  "
+                >
+              {% endif %}
+              
+              {% if block.settings.desktop_image != blank %}
+                <!-- Desktop source -->
+                <source
+                  media="(min-width: 769px)"
+                  srcset="
+                    {{ block.settings.desktop_image | image_url: width: 768 }} 768w,
+                    {{ block.settings.desktop_image | image_url: width: 1024 }} 1024w,
+                    {{ block.settings.desktop_image | image_url: width: 1440 }} 1440w,
+                    {{ block.settings.desktop_image | image_url: width: 1600 }} 1600w,
+                    {{ block.settings.desktop_image | image_url: width: 2000 }} 2000w
+                  "
+                >
+              {% endif %}
+
+              <!-- Fallback Img -->
+              {%- assign fallback_image = block.settings.desktop_image | default: block.settings.mobile_image -%}
+              {% if fallback_image != blank %}
+                <img
+                  src="{{ fallback_image | image_url: width: 1440 }}"
+                  alt="Banner"
+                  class="sage-responsive-banner"
+                  {% if forloop.first %}
+                    loading="eager"
+                    fetchpriority="high"
+                  {% else %}
+                    loading="lazy"
+                  {% endif %}
+                >
+              {% endif %}
+            </picture>
 
           </a>
 
@@ -108,11 +124,6 @@
   display:block;
 }
 
-/* MOBILE IMAGE HIDE */
-
-.sage-mobile-banner{
-  display:none !important;
-}
 
 /* PAGINATION */
 
@@ -143,19 +154,6 @@
   opacity:1;
 }
 
-/* MOBILE */
-
-@media(max-width:768px){
-
-  .sage-desktop-banner{
-    display:none !important;
-  }
-
-  .sage-mobile-banner{
-    display:block !important;
-  }
-
-}
 
 </style>
 

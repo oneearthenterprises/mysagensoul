@@ -153,31 +153,24 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-
-new Swiper(".hscrollSwiper", {
-
-  loop: true,
-  speed: 700,
-
-  effect: "fade",
-  fadeEffect: {
-    crossFade: true
-  },
-
-  allowTouchMove: false,
-
-  autoplay: {
-    delay: 3000,
-    disableOnInteraction: false
-  },
-
-  pagination: {
-    el: ".hscroll-banner-carousel .hscroll-pagination",
-    clickable: true
+  var isHomePage = {% if template == 'index' or template.name == 'index' or request.page_type == 'index' %}true{% else %}false{% endif %};
+  var options = {
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false
+    },
+    pagination: {
+      el: ".hscroll-banner-carousel .hscroll-pagination",
+      clickable: true
+    },
+    slidesPerView: 1,
+    loop: true
+  };
+  if (isHomePage) {
+    new CustomSlider(".hscrollSwiper", options);
+  } else {
+    new Swiper(".hscrollSwiper", options);
   }
-
-});
-
 });
 </script>
 

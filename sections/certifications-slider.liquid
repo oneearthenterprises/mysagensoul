@@ -176,29 +176,26 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-
-  new Swiper(".certSlider", {
-    slidesPerView: 2,
-    spaceBetween: 20,
-    loop: true,
-    speed: 800,
-
-    autoplay:{
-      delay:2500,
-      disableOnInteraction:false
+  var isHomePage = {% if template == 'index' or template.name == 'index' or request.page_type == 'index' %}true{% else %}false{% endif %};
+  var options = {
+    autoplay: {
+      delay: 2500,
+      disableOnInteraction: false
     },
-
-    navigation:{
-      nextEl: ".cert-next",
-      prevEl: ".cert-prev"
+    navigation: {
+      nextEl: ".cert-prev",
+      prevEl: ".cert-next"
     },
-
-    breakpoints:{
-      768:{ slidesPerView:2 },
-      991:{ slidesPerView:3 }
+    slidesPerView: 1.5,
+    breakpoints: {
+      480: { slidesPerView: 2 },
+      768: { slidesPerView: 4 }
     }
-
-  });
-
+  };
+  if (isHomePage) {
+    new CustomSlider(".certSlider", options);
+  } else {
+    new Swiper(".certSlider", options);
+  }
 });
 </script>

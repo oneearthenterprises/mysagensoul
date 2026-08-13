@@ -472,7 +472,8 @@ document.addEventListener("DOMContentLoaded", function () {
   // ── SWIPER ────────────────────────────────────────────────────
   const swiperEl = document.querySelector(".blend-grid");
   if (swiperEl) {
-    new Swiper(".blend-grid", {
+    var isHomePage = {% if template == 'index' or template.name == 'index' or request.page_type == 'index' %}true{% else %}false{% endif %};
+    var options = {
       slidesPerView: 1.2,
       spaceBetween: 20,
       loop: true,
@@ -486,7 +487,12 @@ document.addEventListener("DOMContentLoaded", function () {
         1024: { slidesPerView: 3 },
         1280: { slidesPerView: 3.3 }
       }
-    });
+    };
+    if (isHomePage) {
+      new CustomSlider(".blend-grid", options);
+    } else {
+      new Swiper(".blend-grid", options);
+    }
   }
 
 });

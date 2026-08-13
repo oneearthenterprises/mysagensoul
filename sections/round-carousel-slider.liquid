@@ -408,20 +408,14 @@
       // still remove the skeleton after 2.5s so section never stays "broken".
       var fallback = setTimeout(revealSlider, 2500);
 
-      if (typeof Swiper === 'undefined') {
-        revealSlider();
-        return;
-      }
-
-      new Swiper(wrapperEl, {
-        slidesPerView: 'auto',
-        spaceBetween: 16,
+      var isHomePage = {% if template == 'index' or template.name == 'index' or request.page_type == 'index' %}true{% else %}false{% endif %};
+      var options = {
+        slidesPerView: 1.8,
+        spaceBetween: 14,
         loop: true,
-        speed: 600,
         autoplay: {
           delay: 3000,
-          disableOnInteraction: false,
-          pauseOnMouseEnter: true
+          disableOnInteraction: false
         },
         navigation: {
           nextEl: wrapperEl.querySelector('.vcat-nav-next'),
@@ -432,19 +426,19 @@
           clickable: true
         },
         breakpoints: {
-          320: { slidesPerView: 2, spaceBetween: 2 },
-          480: { slidesPerView: 3, spaceBetween: 12 },
-          768: { slidesPerView: 3, spaceBetween: 16 },
-          1024: { slidesPerView: 5, spaceBetween: 20 },
-          1200: { slidesPerView: 5, spaceBetween: 15 }
-        },
-        on: {
-          init: function () {
-            clearTimeout(fallback);
-            revealSlider();
-          }
+          480: { slidesPerView: 2.5 },
+          768: { slidesPerView: 3.5 },
+          1024: { slidesPerView: 5.5 }
         }
-      });
+      };
+
+      if (isHomePage) {
+        new CustomSlider(wrapperEl, options);
+      } else {
+        new Swiper(wrapperEl, options);
+      }
+      clearTimeout(fallback);
+      revealSlider();
     }
 
     if (document.readyState === 'loading') {

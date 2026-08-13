@@ -213,21 +213,24 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-  new Swiper(".tic-slider", {
-    loop: true,
-    slidesPerView: 1,
-    spaceBetween: 20,
-    speed: 700,
-   autoplay: {
-  delay: 3000,
-  disableOnInteraction: false,
-  pauseOnMouseEnter: true
-},
+  var isHomePage = {% if template == 'index' or template.name == 'index' or request.page_type == 'index' %}true{% else %}false{% endif %};
+  var options = {
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false
+    },
     navigation: {
       prevEl: ".tic-button-prev",
       nextEl: ".tic-button-next"
-    }
-  });
+    },
+    slidesPerView: 1,
+    loop: true
+  };
+  if (isHomePage) {
+    new CustomSlider(".tic-slider", options);
+  } else {
+    new Swiper(".tic-slider", options);
+  }
 });
 </script>
 
