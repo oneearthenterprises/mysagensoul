@@ -20,9 +20,9 @@
                   media="(max-width: 768px)"
                   srcset="
                     {{ block.settings.mobile_image | image_url: width: 320 }} 320w,
+                    {{ block.settings.mobile_image | image_url: width: 360 }} 360w,
                     {{ block.settings.mobile_image | image_url: width: 390 }} 390w,
-                    {{ block.settings.mobile_image | image_url: width: 480 }} 480w,
-                    {{ block.settings.mobile_image | image_url: width: 500 }} 500w
+                    {{ block.settings.mobile_image | image_url: width: 412 }} 412w
                   "
                 >
               {% endif %}
