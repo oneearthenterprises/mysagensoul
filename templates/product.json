@@ -147,10 +147,6 @@
                   "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
                   "settings": {}
                 },
-                "judge_me_reviews_all_reviews_text_nKf6Ap": {
-                  "type": "shopify://apps/judge-me-reviews/blocks/all_reviews_text/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-                  "settings": {}
-                },
                 "custom_liquid_tHFpAH": {
                   "type": "custom-liquid",
                   "name": "t:names.custom_liquid",
@@ -303,7 +299,6 @@
                 "text_xrnftG",
                 "custom_liquid_4tkfq3",
                 "judge_me_reviews_preview_badge_8XFyT8",
-                "judge_me_reviews_all_reviews_text_nKf6Ap",
                 "custom_liquid_tHFpAH",
                 "price_tVjtKg",
                 "custom_liquid_Mr84Xy",
