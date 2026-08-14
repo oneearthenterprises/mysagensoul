@@ -362,6 +362,197 @@
         "padding-block-start": 15,
         "padding-block-end": 32
       }
+    },
+    "custom_liquid_zcHhwt": {
+      "type": "custom-liquid",
+      "name": "t:names.custom_liquid",
+      "settings": {
+        "custom_liquid": "<div class=\"jh-benefits\">\n  <div class=\"jh-benefit\">\n    <span class=\"jh-benefit-icon\">\n      <img src=\"https://cdn.shopify.com/s/files/1/0674/9972/0775/files/icon_leaf.svg?v=1786689274\" alt=\"Natural\">\n    </span>\n    <span class=\"jh-benefit-text\">100% NATURAL</span>\n  </div>\n\n  <div class=\"jh-benefit\">\n    <span class=\"jh-benefit-icon\">\n      <img src=\"https://cdn.shopify.com/s/files/1/0674/9972/0775/files/water_droplets_leaf.svg?v=1786689274\" alt=\"No Chemicals\">\n    </span>\n    <span class=\"jh-benefit-text\">NO CHEMICALS</span>\n  </div>\n</div>\n\n<style>\n.jh-benefits {\n  display: flex;\n  flex-direction: row;\n  justify-content: center;\n  align-items: center;\n  gap: 16px;\n  width: 100%;\n  margin-top: 10px;\n  margin-bottom: 10px;\nposition: relative;\n\n}\n\n.jh-benefit {\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n  justify-content: center;\n  gap: 6px;\n}\n\n.jh-benefit-icon {\n  width: 18px;\n  height: 18px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  flex-shrink: 0;\n}\n\n.jh-benefit-icon img {\n  width: 16px;\n  height: 16px;\n  object-fit: contain;\n  display: block;\n}\n\n.jh-benefit-text {\n  font-size: 10px;\n  line-height: 1;\n  font-weight: 600;\n  color: #1a1a1a;\n  letter-spacing: 0.3px;\n  white-space: nowrap;\n}\n\n/* Mobile */\n@media (max-width: 767px) {\n.jh-benefits {\n    flex-direction: row;\n    align-items: center;\n    justify-content: center;\n    gap: 5px;\n    margin: 5px 0px 5px 0px !important;\n}\n\n  .jh-benefit {\n    align-items: center;\n    justify-content: center;\n    gap: 05px;\n  }\n\n  .jh-benefit-icon {\n    width: 12px;\n    height: 12px;\n  }\n\n  .jh-benefit-icon img {\n    width: 12px;\n    height: 12px;\n  }\n\n  .jh-benefit-text {\n    font-size: 8px;\n    line-height: 1;\n    letter-spacing: 0.2px;\n  }\n}\n\n/* Very small screens */\n@media (max-width: 319px) {\n  .jh-benefits {\n    flex-direction: column;\n    align-items: center;\n    justify-content: center;\n    gap: 7px;\n  }\n\n  .jh-benefit {\n    justify-content: center;\n    align-items: center;\n  }\n}\n</style>",
+        "color_scheme": "",
+        "section_width": "page-width",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "marquee221_Qh93KX": {
+      "type": "marquee221",
+      "blocks": {
+        "text_cMdBLQ": {
+          "type": "text",
+          "settings": {
+            "icon": "🔥",
+            "text": "Brew Your Calm • Embrace Your Balance"
+          }
+        },
+        "text_G8XA7G": {
+          "type": "text",
+          "settings": {
+            "icon": "🔥",
+            "text": "Taste Wellness • Feel the Difference"
+          }
+        },
+        "text_cPnq8H": {
+          "type": "text",
+          "settings": {
+            "icon": "🔥",
+            "text": "Free Shipping on Orders Above ₹999"
+          }
+        },
+        "text_yNcgMR": {
+          "type": "text",
+          "settings": {
+            "icon": "🔥",
+            "text": "Pure Herbs • Better Moments"
+          }
+        },
+        "text_xg9aUf": {
+          "type": "text",
+          "settings": {
+            "icon": "🔥",
+            "text": "Brewed for Balance • Made for You"
+          }
+        },
+        "text_rYJYwM": {
+          "type": "text",
+          "settings": {
+            "icon": "🔥",
+            "text": "Nature’s Goodness • Every Day"
+          }
+        },
+        "text_yiHx7Q": {
+          "type": "text",
+          "settings": {
+            "icon": "🔥",
+            "text": "Sip • Soothe • Restore"
+          }
+        }
+      },
+      "block_order": [
+        "text_cMdBLQ",
+        "text_G8XA7G",
+        "text_cPnq8H",
+        "text_yNcgMR",
+        "text_xg9aUf",
+        "text_rYJYwM",
+        "text_yiHx7Q"
+      ],
+      "name": "Custom Marquee",
+      "settings": {
+        "speed": 50,
+        "bg_color": "#FFFFFF",
+        "text_color": "#000000"
+      }
+    },
+    "shoppable_video_carousel_enMXYL": {
+      "type": "shoppable-video-carousel",
+      "blocks": {
+        "slide_repYb8": {
+          "type": "slide",
+          "settings": {
+            "video": "shopify://files/videos/Happy Heart.mp4",
+            "title": "Best Picks",
+            "product_1": "happy-heart-gluco-balance-herbal-combo",
+            "product_2": "",
+            "product_3": ""
+          }
+        },
+        "slide_QGdjfT": {
+          "type": "slide",
+          "settings": {
+            "video": "shopify://files/videos/Happy Heart.mp4",
+            "title": "Best Picks",
+            "product_1": "happy-heart-gluco-balance-herbal-combo",
+            "product_2": "",
+            "product_3": ""
+          }
+        },
+        "slide_LYmEnV": {
+          "type": "slide",
+          "settings": {
+            "video": "shopify://files/videos/Happy Liver & Body Detox.mp4",
+            "title": "Best Picks",
+            "product_1": "skin-glow-liver-detox-herbal-combo",
+            "product_2": "",
+            "product_3": ""
+          }
+        },
+        "slide_VPPfwR": {
+          "type": "slide",
+          "settings": {
+            "video": "shopify://files/videos/download (6) (2).mp4",
+            "title": "Best Picks",
+            "product_1": "moringa-superfood-jasmine-uplift-wellness-combo-1",
+            "product_2": "",
+            "product_3": ""
+          }
+        },
+        "slide_94JFeM": {
+          "type": "slide",
+          "settings": {
+            "video": "shopify://files/videos/Happy Heart.mp4",
+            "title": "Best Picks",
+            "product_1": "happy-heart-gluco-balance-herbal-combo",
+            "product_2": "",
+            "product_3": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_repYb8",
+        "slide_QGdjfT",
+        "slide_LYmEnV",
+        "slide_VPPfwR",
+        "slide_94JFeM"
+      ],
+      "name": "Shoppable Video Carousel",
+      "settings": {
+        "heading": "Watch It. Love It",
+        "bg_color": "#ffffff",
+        "blend_heading": "Soul of the Blend"
+      }
+    },
+    "about_us_tabs_UfMdNn": {
+      "type": "about-us-tabs",
+      "blocks": {
+        "item_iLFCe3": {
+          "type": "item",
+          "settings": {
+            "title": "Milk Is Our Signature Ingredient",
+            "text": "Our products are made with the goodness of Goat Milk, Rice Milk, Oat Milk, Almond Milk & Soy Milk."
+          }
+        },
+        "item_69w8UA": {
+          "type": "item",
+          "settings": {
+            "title": "Milk Is Our Signature Ingredient",
+            "text": "Our products are made with the goodness of Goat Milk, Rice Milk, Oat Milk, Almond Milk & Soy Milk."
+          }
+        },
+        "item_pmdwmz": {
+          "type": "item",
+          "settings": {
+            "title": "Milk Is Our Signature Ingredient",
+            "text": "Our products are made with the goodness of Goat Milk, Rice Milk, Oat Milk, Almond Milk & Soy Milk."
+          }
+        },
+        "item_Q6Y83j": {
+          "type": "item",
+          "settings": {
+            "title": "Milk Is Our Signature Ingredient",
+            "text": "Our products are made with the goodness of Goat Milk, Rice Milk, Oat Milk, Almond Milk & Soy Milk."
+          }
+        }
+      },
+      "block_order": [
+        "item_iLFCe3",
+        "item_69w8UA",
+        "item_pmdwmz",
+        "item_Q6Y83j"
+      ],
+      "name": "About Us Tabs",
+      "settings": {
+        "heading": "Grounded In Nature, Growing With Science"
+      }
     }
   },
   "order": [
@@ -369,6 +560,10 @@
     "hscroll_banner_carousel_p8yy9d",
     "counter_custom_8F34xj",
     "marquee221_NpPBzA",
-    "main"
+    "main",
+    "custom_liquid_zcHhwt",
+    "marquee221_Qh93KX",
+    "shoppable_video_carousel_enMXYL",
+    "about_us_tabs_UfMdNn"
   ]
 }
