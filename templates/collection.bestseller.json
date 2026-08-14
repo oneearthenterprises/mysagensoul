@@ -235,7 +235,7 @@
               "name": "t:names.product_title",
               "settings": {
                 "width": "100%",
-                "font_weight": "400",
+                "font_weight": "600",
                 "max_width": "normal",
                 "alignment": "left",
                 "type_preset": "custom",

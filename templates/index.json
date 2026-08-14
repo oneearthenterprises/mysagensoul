@@ -451,7 +451,7 @@
               "type": "custom-liquid",
               "name": "t:names.custom_liquid",
               "settings": {
-                "custom_liquid": "<div class=\"jh-benefits\">\n  <div class=\"jh-benefit\">\n    <span class=\"jh-benefit-icon\">\n      <img src=\"https://cdn.shopify.com/s/files/1/0674/9972/0775/files/icon_leaf.svg?v=1786689274\" alt=\"Natural\">\n    </span>\n    <span class=\"jh-benefit-text\">100% NATURAL</span>\n  </div>\n\n  <div class=\"jh-benefit\">\n    <span class=\"jh-benefit-icon\">\n      <img src=\"https://cdn.shopify.com/s/files/1/0674/9972/0775/files/water_droplets_leaf.svg?v=1786689274\" alt=\"No Chemicals\">\n    </span>\n    <span class=\"jh-benefit-text\">NO CHEMICALS</span>\n  </div>\n</div>\n\n<style>\n.jh-benefits {\n  display: flex;\n  flex-direction: row;\n  justify-content: center;\n  align-items: center;\n  gap: 16px;\n  width: 100%;\n  margin-top: 10px;\n  margin-bottom: 10px;\nposition: relative;\n\n}\n\n.jh-benefit {\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n  justify-content: center;\n  gap: 6px;\n}\n\n.jh-benefit-icon {\n  width: 18px;\n  height: 18px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  flex-shrink: 0;\n}\n\n.jh-benefit-icon img {\n  width: 16px;\n  height: 16px;\n  object-fit: contain;\n  display: block;\n}\n\n.jh-benefit-text {\n  font-size: 10px;\n  line-height: 1;\n  font-weight: 600;\n  color: #1a1a1a;\n  letter-spacing: 0.3px;\n  white-space: nowrap;\n}\n\n/* Mobile */\n@media (max-width: 767px) {\n.jh-benefits {\n    flex-direction: row;\n    align-items: center;\n    justify-content: center;\n    gap: 5px;\n    margin: 5px 0px 5px 0px !important;\n}\n\n  .jh-benefit {\n    align-items: center;\n    justify-content: center;\n    gap: 05px;\n  }\n\n  .jh-benefit-icon {\n    width: 12px;\n    height: 12px;\n  }\n\n  .jh-benefit-icon img {\n    width: 12px;\n    height: 12px;\n  }\n\n  .jh-benefit-text {\n    font-size: 8px;\n    line-height: 1;\n    letter-spacing: 0.2px;\n  }\n}\n\n/* Very small screens */\n@media (max-width: 319px) {\n  .jh-benefits {\n    flex-direction: column;\n    align-items: center;\n    justify-content: center;\n    gap: 7px;\n  }\n\n  .jh-benefit {\n    justify-content: center;\n    align-items: center;\n  }\n}\n</style>"
+                "custom_liquid": "<div class=\"jh-benefits\">\n  <div class=\"jh-benefit\">\n    <span class=\"jh-benefit-icon\">\n      <img src=\"https://cdn.shopify.com/s/files/1/0674/9972/0775/files/icon_leaf.svg?v=1786689274\" alt=\"Natural\">\n    </span>\n    <span class=\"jh-benefit-text\">100% NATURAL</span>\n  </div>\n\n  <div class=\"jh-benefit\">\n    <span class=\"jh-benefit-icon\">\n      <img src=\"https://cdn.shopify.com/s/files/1/0674/9972/0775/files/water_droplets_leaf.svg?v=1786689274\" alt=\"No Chemicals\">\n    </span>\n    <span class=\"jh-benefit-text\">NO CHEMICALS</span>\n  </div>\n</div>"
               },
               "blocks": {}
             }
@@ -487,8 +487,8 @@
         "horizontal_alignment": "center",
         "gap": 15,
         "color_scheme": "scheme-1",
-        "padding-block-start": 30,
-        "padding-block-end": 48
+        "padding-block-start": 10,
+        "padding-block-end": 10
       }
     },
     "collection_list_nmnhVB": {
@@ -861,10 +861,10 @@
           "name": "t:names.product_card",
           "static": true,
           "settings": {
-            "product_card_gap": 3,
-            "inherit_color_scheme": true,
+            "product_card_gap": 0,
+            "inherit_color_scheme": false,
             "color_scheme": "scheme-1",
-            "border": "solid",
+            "border": "none",
             "border_width": 42,
             "border_opacity": 18,
             "border_radius": 5,
@@ -882,7 +882,7 @@
                 "border": "none",
                 "border_width": 1,
                 "border_opacity": 100,
-                "border_radius": 15,
+                "border_radius": 10,
                 "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
@@ -909,18 +909,10 @@
                 "background": false,
                 "background_color": "#00000026",
                 "corner_radius": 0,
-                "padding-block-start": 6,
-                "padding-block-end": 6,
+                "padding-block-start": 4,
+                "padding-block-end": 0,
                 "padding-inline-start": 0,
                 "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "custom_liquid_J3AALz": {
-              "type": "custom-liquid",
-              "name": "t:names.custom_liquid",
-              "settings": {
-                "custom_liquid": ""
               },
               "blocks": {}
             },
@@ -935,11 +927,11 @@
                 "show_sale_price_first": true,
                 "show_installments": false,
                 "show_tax_info": false,
-                "type_preset": "",
+                "type_preset": "custom",
                 "width": "100%",
                 "alignment": "left",
                 "font": "var(--font-body--family)",
-                "font_size": "1rem",
+                "font_size": "0.875rem",
                 "line_height": "tight",
                 "letter_spacing": "tight",
                 "case": "none",
@@ -993,7 +985,7 @@
               "type": "custom-liquid",
               "name": "t:names.custom_liquid",
               "settings": {
-                "custom_liquid": "<div class=\"jh-benefits\">\n  <div class=\"jh-benefit\">\n    <span class=\"jh-benefit-icon\">\n      <img src=\"https://cdn.shopify.com/s/files/1/0674/9972/0775/files/icon_leaf.svg?v=1786689274\" alt=\"Natural\">\n    </span>\n    <span class=\"jh-benefit-text\">100% NATURAL</span>\n  </div>\n\n  <div class=\"jh-benefit\">\n    <span class=\"jh-benefit-icon\">\n      <img src=\"https://cdn.shopify.com/s/files/1/0674/9972/0775/files/water_droplets_leaf.svg?v=1786689274\" alt=\"No Chemicals\">\n    </span>\n    <span class=\"jh-benefit-text\">NO CHEMICALS</span>\n  </div>\n</div>\n\n<style>\n.jh-benefits {\n  display: flex;\n  flex-direction: row;\n  justify-content: center;\n  align-items: center;\n  gap: 16px;\n  width: 100%;\n  margin-top: 10px;\n  margin-bottom: 10px;\nposition: relative;\n\n}\n\n.jh-benefit {\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n  justify-content: center;\n  gap: 6px;\n}\n\n.jh-benefit-icon {\n  width: 18px;\n  height: 18px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  flex-shrink: 0;\n}\n\n.jh-benefit-icon img {\n  width: 16px;\n  height: 16px;\n  object-fit: contain;\n  display: block;\n}\n\n.jh-benefit-text {\n  font-size: 10px;\n  line-height: 1;\n  font-weight: 600;\n  color: #1a1a1a;\n  letter-spacing: 0.3px;\n  white-space: nowrap;\n}\n\n/* Mobile */\n@media (max-width: 767px) {\n.jh-benefits {\n    flex-direction: row;\n    align-items: center;\n    justify-content: center;\n    gap: 5px;\n    margin: 5px 0px 5px 0px !important;\n}\n\n  .jh-benefit {\n    align-items: center;\n    justify-content: center;\n    gap: 05px;\n  }\n\n  .jh-benefit-icon {\n    width: 12px;\n    height: 12px;\n  }\n\n  .jh-benefit-icon img {\n    width: 12px;\n    height: 12px;\n  }\n\n  .jh-benefit-text {\n    font-size: 8px;\n    line-height: 1;\n    letter-spacing: 0.2px;\n  }\n}\n\n/* Very small screens */\n@media (max-width: 319px) {\n  .jh-benefits {\n    flex-direction: column;\n    align-items: center;\n    justify-content: center;\n    gap: 7px;\n  }\n\n  .jh-benefit {\n    justify-content: center;\n    align-items: center;\n  }\n}\n</style>"
+                "custom_liquid": "<div class=\"jh-benefits\">\n  <div class=\"jh-benefit\">\n    <span class=\"jh-benefit-icon\">\n      <img src=\"https://cdn.shopify.com/s/files/1/0674/9972/0775/files/icon_leaf.svg?v=1786689274\" alt=\"Natural\">\n    </span>\n    <span class=\"jh-benefit-text\">100% NATURAL</span>\n  </div>\n\n  <div class=\"jh-benefit\">\n    <span class=\"jh-benefit-icon\">\n      <img src=\"https://cdn.shopify.com/s/files/1/0674/9972/0775/files/water_droplets_leaf.svg?v=1786689274\" alt=\"No Chemicals\">\n    </span>\n    <span class=\"jh-benefit-text\">NO CHEMICALS</span>\n  </div>\n</div>"
               },
               "blocks": {}
             }
@@ -1001,7 +993,6 @@
           "block_order": [
             "product_card_gallery_P9JEP7",
             "product_title_nNfawL",
-            "custom_liquid_J3AALz",
             "judge_me_reviews_preview_badge_wBkFbF",
             "price_8HYwik",
             "buy_buttons_9yFNNQ",
