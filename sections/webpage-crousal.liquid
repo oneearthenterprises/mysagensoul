@@ -197,6 +197,10 @@
 
   // Force browser to evaluate cloned picture sources to prevent white screen flash
   [firstClone, lastClone].forEach(function (clone) {
+    var sources = clone.querySelectorAll("source");
+    sources.forEach(function (source) {
+      if (source.srcset) source.srcset = source.srcset;
+    });
     var imgs = clone.querySelectorAll("img");
     imgs.forEach(function (img) {
       if (img.src) img.src = img.src;
@@ -231,7 +235,7 @@
   // after each slide animation, if we've landed on a clone, silently
   // snap back to the matching real slide with no transition (invisible to the eye)
   track.addEventListener("transitionend", function (e) {
-    if (e.propertyName !== "transform") return;
+    if (e.propertyName && !e.propertyName.includes("transform")) return;
     if (trackIndex === total + 1) {
       trackIndex = 1;
       setTransform(trackIndex, false);
