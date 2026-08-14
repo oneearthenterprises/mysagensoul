@@ -81,174 +81,127 @@
         "button_link": "shopify://collections/shop-all"
       }
     },
-    "collection_list_nmnhVB": {
-      "type": "collection-list",
+    "shop_by_concern_z4QrGz": {
+      "type": "shop-by-concern",
       "blocks": {
-        "group_J7RHYE": {
-          "type": "group",
-          "name": "t:names.header",
+        "tab_R78EaM": {
+          "type": "tab",
           "settings": {
-            "content_direction": "column",
-            "vertical_on_mobile": true,
-            "horizontal_alignment": "flex-start",
-            "vertical_alignment": "center",
-            "align_baseline": false,
-            "horizontal_alignment_flex_direction_column": "flex-start",
-            "vertical_alignment_flex_direction_column": "center",
-            "gap": 12,
-            "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fit",
-            "custom_height": 100,
-            "inherit_color_scheme": true,
-            "color_scheme": "",
-            "background_media": "none",
-            "video_position": "cover",
-            "background_image_position": "cover",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "toggle_overlay": false,
-            "overlay_color": "#00000026",
-            "overlay_style": "solid",
-            "gradient_direction": "to top",
-            "link": "",
-            "open_in_new_tab": false,
-            "placeholder": "",
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "text_FEKwqK": {
-              "type": "text",
-              "name": "t:names.text",
-              "settings": {
-                "text": "<h3><strong>Shop by collection</strong></h3>",
-                "width": "100%",
-                "max_width": "normal",
-                "alignment": "center",
-                "type_preset": "custom",
-                "font": "var(--font-body--family)",
-                "font_size": "2rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "color": "var(--color-foreground-heading)",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 16,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "text_FEKwqK"
-          ]
+            "label": "Best Sellers",
+            "link_type": "collection",
+            "collection": "best-sellers",
+            "product": "",
+            "custom_url": ""
+          }
         },
-        "static-collection-card": {
-          "type": "_collection-card",
-          "name": "t:names.collection_card",
-          "static": true,
+        "tab_NQragQ": {
+          "type": "tab",
           "settings": {
-            "placement": "below_image",
-            "horizontal_alignment": "center",
-            "vertical_alignment": "flex-end",
-            "collection_card_gap": 10,
-            "inherit_color_scheme": true,
-            "color_scheme": "",
-            "border": "none",
-            "border_width": 0,
-            "border_opacity": 100,
-            "border_radius": 0
-          },
-          "blocks": {
-            "collection_title_UVTgPp": {
-              "type": "collection-title",
-              "name": "t:names.collection_title",
-              "settings": {
-                "width": "100%",
-                "max_width": "normal",
-                "alignment": "center",
-                "type_preset": "custom",
-                "font": "var(--font-body--family)",
-                "font_size": "",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "balance",
-                "color": "var(--color-primary)",
-                "background": true,
-                "background_color": "#000000",
-                "corner_radius": 15,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "collection-card-image": {
-              "type": "_collection-card-image",
-              "name": "t:names.collection_card_image",
-              "static": true,
-              "settings": {
-                "image_ratio": "square",
-                "toggle_overlay": false,
-                "overlay_color": "#00000026",
-                "overlay_style": "solid",
-                "gradient_direction": "to top",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_radius": 0
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "collection_title_UVTgPp"
-          ]
+            "label": "Immunity",
+            "link_type": "collection",
+            "collection": "immunity",
+            "product": "",
+            "custom_url": ""
+          }
+        },
+        "tab_F8VaAP": {
+          "type": "tab",
+          "settings": {
+            "label": "Sleep & Stress",
+            "link_type": "collection",
+            "collection": "sleep-stress",
+            "product": "",
+            "custom_url": ""
+          }
+        },
+        "tab_6WYfFX": {
+          "type": "tab",
+          "settings": {
+            "label": "Weight",
+            "link_type": "collection",
+            "collection": "weight",
+            "product": "",
+            "custom_url": ""
+          }
+        },
+        "tab_LJ6fRW": {
+          "type": "tab",
+          "settings": {
+            "label": "Women Health",
+            "link_type": "collection",
+            "collection": "women-health",
+            "product": "",
+            "custom_url": ""
+          }
+        },
+        "tab_YBxN8A": {
+          "type": "tab",
+          "settings": {
+            "label": "Gut Health",
+            "link_type": "collection",
+            "collection": "gut-health",
+            "product": "",
+            "custom_url": ""
+          }
+        },
+        "tab_w3xELj": {
+          "type": "tab",
+          "settings": {
+            "label": "Detox",
+            "link_type": "collection",
+            "collection": "detox",
+            "product": "",
+            "custom_url": ""
+          }
+        },
+        "tab_hpc7aF": {
+          "type": "tab",
+          "settings": {
+            "label": "Skin, Hair & Nails",
+            "link_type": "collection",
+            "collection": "skin-hair-nails",
+            "product": "",
+            "custom_url": ""
+          }
+        },
+        "tab_4D4TpG": {
+          "type": "tab",
+          "settings": {
+            "label": "Energy & Metabolism",
+            "link_type": "collection",
+            "collection": "energy-metabolism",
+            "product": "",
+            "custom_url": ""
+          }
+        },
+        "tab_rgRihC": {
+          "type": "tab",
+          "settings": {
+            "label": "Sugar Balance",
+            "link_type": "collection",
+            "collection": "sugar-balance",
+            "product": "",
+            "custom_url": ""
+          }
         }
       },
       "block_order": [
-        "group_J7RHYE"
+        "tab_R78EaM",
+        "tab_NQragQ",
+        "tab_F8VaAP",
+        "tab_6WYfFX",
+        "tab_LJ6fRW",
+        "tab_YBxN8A",
+        "tab_w3xELj",
+        "tab_hpc7aF",
+        "tab_4D4TpG",
+        "tab_rgRihC"
       ],
-      "name": "t:names.collections_carousel",
+      "name": "Shop by concern",
       "settings": {
-        "collection_list": [
-          "butterfly-pea-flower",
-          "rose-flower",
-          "hibiscus-flower",
-          "moringa",
-          "jasmine-flower",
-          "chamomile-flower"
-        ],
-        "layout_type": "carousel",
-        "carousel_on_mobile": false,
-        "columns": 6,
-        "mobile_columns": "2",
-        "mobile_card_size": "44cqw",
-        "columns_gap": 10,
-        "bento_gap": 8,
-        "rows_gap": 8,
-        "max_collections": 4,
-        "icons_style": "arrow",
-        "icons_shape": "circle",
-        "section_width": "page-width",
-        "gap": 12,
-        "color_scheme": "",
-        "padding-block-start": 30,
-        "padding-block-end": 30
+        "title": "Shop by concern",
+        "padding_top": 36,
+        "padding_bottom": 36
       }
     },
     "product_list_fa6P9H": {
@@ -493,6 +446,14 @@
                 }
               },
               "block_order": []
+            },
+            "custom_liquid_FJaNK8": {
+              "type": "custom-liquid",
+              "name": "t:names.custom_liquid",
+              "settings": {
+                "custom_liquid": "<div class=\"jh-benefits\">\n  <div class=\"jh-benefit\">\n    <span class=\"jh-benefit-icon\">\n      <img src=\"https://cdn.shopify.com/s/files/1/0674/9972/0775/files/icon_leaf.svg?v=1786689274\" alt=\"Natural\">\n    </span>\n    <span class=\"jh-benefit-text\">100% NATURAL</span>\n  </div>\n\n  <div class=\"jh-benefit\">\n    <span class=\"jh-benefit-icon\">\n      <img src=\"https://cdn.shopify.com/s/files/1/0674/9972/0775/files/water_droplets_leaf.svg?v=1786689274\" alt=\"No Chemicals\">\n    </span>\n    <span class=\"jh-benefit-text\">NO CHEMICALS</span>\n  </div>\n</div>\n\n<style>\n.jh-benefits {\n  display: flex;\n  flex-direction: row;\n  justify-content: center;\n  align-items: center;\n  gap: 16px;\n  width: 100%;\n  margin-top: 10px;\n  margin-bottom: 10px;\nposition: relative;\n\n}\n\n.jh-benefit {\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n  justify-content: center;\n  gap: 6px;\n}\n\n.jh-benefit-icon {\n  width: 18px;\n  height: 18px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  flex-shrink: 0;\n}\n\n.jh-benefit-icon img {\n  width: 16px;\n  height: 16px;\n  object-fit: contain;\n  display: block;\n}\n\n.jh-benefit-text {\n  font-size: 10px;\n  line-height: 1;\n  font-weight: 600;\n  color: #1a1a1a;\n  letter-spacing: 0.3px;\n  white-space: nowrap;\n}\n\n/* Mobile */\n@media (max-width: 767px) {\n.jh-benefits {\n    flex-direction: row;\n    align-items: center;\n    justify-content: center;\n    gap: 5px;\n    margin: 5px 0px 5px 0px !important;\n}\n\n  .jh-benefit {\n    align-items: center;\n    justify-content: center;\n    gap: 05px;\n  }\n\n  .jh-benefit-icon {\n    width: 12px;\n    height: 12px;\n  }\n\n  .jh-benefit-icon img {\n    width: 12px;\n    height: 12px;\n  }\n\n  .jh-benefit-text {\n    font-size: 8px;\n    line-height: 1;\n    letter-spacing: 0.2px;\n  }\n}\n\n/* Very small screens */\n@media (max-width: 319px) {\n  .jh-benefits {\n    flex-direction: column;\n    align-items: center;\n    justify-content: center;\n    gap: 7px;\n  }\n\n  .jh-benefit {\n    justify-content: center;\n    align-items: center;\n  }\n}\n</style>"
+              },
+              "blocks": {}
             }
           },
           "block_order": [
@@ -501,7 +462,8 @@
             "custom_liquid_RXxpWN",
             "judge_me_reviews_preview_badge_peWqjp",
             "price_JQzVV4",
-            "buy_buttons_LG4KnN"
+            "buy_buttons_LG4KnN",
+            "custom_liquid_FJaNK8"
           ]
         }
       },
@@ -525,8 +487,178 @@
         "horizontal_alignment": "center",
         "gap": 15,
         "color_scheme": "scheme-1",
-        "padding-block-start": 48,
+        "padding-block-start": 30,
         "padding-block-end": 48
+      }
+    },
+    "collection_list_nmnhVB": {
+      "type": "collection-list",
+      "blocks": {
+        "group_J7RHYE": {
+          "type": "group",
+          "name": "t:names.header",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 12,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "text_FEKwqK": {
+              "type": "text",
+              "name": "t:names.text",
+              "settings": {
+                "text": "<h3><strong>Shop by collection</strong></h3>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "center",
+                "type_preset": "custom",
+                "font": "var(--font-body--family)",
+                "font_size": "2rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground-heading)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 16,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_FEKwqK"
+          ]
+        },
+        "static-collection-card": {
+          "type": "_collection-card",
+          "name": "t:names.collection_card",
+          "static": true,
+          "settings": {
+            "placement": "below_image",
+            "horizontal_alignment": "center",
+            "vertical_alignment": "flex-end",
+            "collection_card_gap": 10,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "border": "none",
+            "border_width": 0,
+            "border_opacity": 100,
+            "border_radius": 0
+          },
+          "blocks": {
+            "collection_title_UVTgPp": {
+              "type": "collection-title",
+              "name": "t:names.collection_title",
+              "settings": {
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "center",
+                "type_preset": "custom",
+                "font": "var(--font-body--family)",
+                "font_size": "",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "balance",
+                "color": "var(--color-primary)",
+                "background": true,
+                "background_color": "#000000",
+                "corner_radius": 15,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "collection-card-image": {
+              "type": "_collection-card-image",
+              "name": "t:names.collection_card_image",
+              "static": true,
+              "settings": {
+                "image_ratio": "square",
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "collection_title_UVTgPp"
+          ]
+        }
+      },
+      "block_order": [
+        "group_J7RHYE"
+      ],
+      "name": "t:names.collections_carousel",
+      "settings": {
+        "collection_list": [
+          "butterfly-pea-flower",
+          "rose-flower",
+          "hibiscus-flower",
+          "moringa",
+          "jasmine-flower",
+          "chamomile-flower"
+        ],
+        "layout_type": "carousel",
+        "carousel_on_mobile": false,
+        "columns": 6,
+        "mobile_columns": "2",
+        "mobile_card_size": "44cqw",
+        "columns_gap": 10,
+        "bento_gap": 8,
+        "rows_gap": 8,
+        "max_collections": 4,
+        "icons_style": "arrow",
+        "icons_shape": "circle",
+        "section_width": "page-width",
+        "gap": 12,
+        "color_scheme": "",
+        "padding-block-start": 30,
+        "padding-block-end": 30
       }
     },
     "1780301960be49e1d7": {
@@ -557,129 +689,6 @@
         "gradient_direction": "to top",
         "padding-block-start": 0,
         "padding-block-end": 0
-      }
-    },
-    "shop_by_concern_z4QrGz": {
-      "type": "shop-by-concern",
-      "blocks": {
-        "tab_R78EaM": {
-          "type": "tab",
-          "settings": {
-            "label": "Best Sellers",
-            "link_type": "collection",
-            "collection": "best-sellers",
-            "product": "",
-            "custom_url": ""
-          }
-        },
-        "tab_NQragQ": {
-          "type": "tab",
-          "settings": {
-            "label": "Immunity",
-            "link_type": "collection",
-            "collection": "immunity",
-            "product": "",
-            "custom_url": ""
-          }
-        },
-        "tab_F8VaAP": {
-          "type": "tab",
-          "settings": {
-            "label": "Sleep & Stress",
-            "link_type": "collection",
-            "collection": "sleep-stress",
-            "product": "",
-            "custom_url": ""
-          }
-        },
-        "tab_6WYfFX": {
-          "type": "tab",
-          "settings": {
-            "label": "Weight",
-            "link_type": "collection",
-            "collection": "weight",
-            "product": "",
-            "custom_url": ""
-          }
-        },
-        "tab_LJ6fRW": {
-          "type": "tab",
-          "settings": {
-            "label": "Women Health",
-            "link_type": "collection",
-            "collection": "women-health",
-            "product": "",
-            "custom_url": ""
-          }
-        },
-        "tab_YBxN8A": {
-          "type": "tab",
-          "settings": {
-            "label": "Gut Health",
-            "link_type": "collection",
-            "collection": "gut-health",
-            "product": "",
-            "custom_url": ""
-          }
-        },
-        "tab_w3xELj": {
-          "type": "tab",
-          "settings": {
-            "label": "Detox",
-            "link_type": "collection",
-            "collection": "detox",
-            "product": "",
-            "custom_url": ""
-          }
-        },
-        "tab_hpc7aF": {
-          "type": "tab",
-          "settings": {
-            "label": "Skin, Hair & Nails",
-            "link_type": "collection",
-            "collection": "skin-hair-nails",
-            "product": "",
-            "custom_url": ""
-          }
-        },
-        "tab_4D4TpG": {
-          "type": "tab",
-          "settings": {
-            "label": "Energy & Metabolism",
-            "link_type": "collection",
-            "collection": "energy-metabolism",
-            "product": "",
-            "custom_url": ""
-          }
-        },
-        "tab_rgRihC": {
-          "type": "tab",
-          "settings": {
-            "label": "Sugar Balance",
-            "link_type": "collection",
-            "collection": "sugar-balance",
-            "product": "",
-            "custom_url": ""
-          }
-        }
-      },
-      "block_order": [
-        "tab_R78EaM",
-        "tab_NQragQ",
-        "tab_F8VaAP",
-        "tab_6WYfFX",
-        "tab_LJ6fRW",
-        "tab_YBxN8A",
-        "tab_w3xELj",
-        "tab_hpc7aF",
-        "tab_4D4TpG",
-        "tab_rgRihC"
-      ],
-      "name": "Shop by concern",
-      "settings": {
-        "title": "Shop by concern",
-        "padding_top": 36,
-        "padding_bottom": 36
       }
     },
     "wellness_tea_section_NrGM7i": {
@@ -979,6 +988,14 @@
                 }
               },
               "block_order": []
+            },
+            "custom_liquid_AFPAaB": {
+              "type": "custom-liquid",
+              "name": "t:names.custom_liquid",
+              "settings": {
+                "custom_liquid": "<div class=\"jh-benefits\">\n  <div class=\"jh-benefit\">\n    <span class=\"jh-benefit-icon\">\n      <img src=\"https://cdn.shopify.com/s/files/1/0674/9972/0775/files/icon_leaf.svg?v=1786689274\" alt=\"Natural\">\n    </span>\n    <span class=\"jh-benefit-text\">100% NATURAL</span>\n  </div>\n\n  <div class=\"jh-benefit\">\n    <span class=\"jh-benefit-icon\">\n      <img src=\"https://cdn.shopify.com/s/files/1/0674/9972/0775/files/water_droplets_leaf.svg?v=1786689274\" alt=\"No Chemicals\">\n    </span>\n    <span class=\"jh-benefit-text\">NO CHEMICALS</span>\n  </div>\n</div>\n\n<style>\n.jh-benefits {\n  display: flex;\n  flex-direction: row;\n  justify-content: center;\n  align-items: center;\n  gap: 16px;\n  width: 100%;\n  margin-top: 10px;\n  margin-bottom: 10px;\nposition: relative;\n\n}\n\n.jh-benefit {\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n  justify-content: center;\n  gap: 6px;\n}\n\n.jh-benefit-icon {\n  width: 18px;\n  height: 18px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  flex-shrink: 0;\n}\n\n.jh-benefit-icon img {\n  width: 16px;\n  height: 16px;\n  object-fit: contain;\n  display: block;\n}\n\n.jh-benefit-text {\n  font-size: 10px;\n  line-height: 1;\n  font-weight: 600;\n  color: #1a1a1a;\n  letter-spacing: 0.3px;\n  white-space: nowrap;\n}\n\n/* Mobile */\n@media (max-width: 767px) {\n.jh-benefits {\n    flex-direction: row;\n    align-items: center;\n    justify-content: center;\n    gap: 5px;\n    margin: 5px 0px 5px 0px !important;\n}\n\n  .jh-benefit {\n    align-items: center;\n    justify-content: center;\n    gap: 05px;\n  }\n\n  .jh-benefit-icon {\n    width: 12px;\n    height: 12px;\n  }\n\n  .jh-benefit-icon img {\n    width: 12px;\n    height: 12px;\n  }\n\n  .jh-benefit-text {\n    font-size: 8px;\n    line-height: 1;\n    letter-spacing: 0.2px;\n  }\n}\n\n/* Very small screens */\n@media (max-width: 319px) {\n  .jh-benefits {\n    flex-direction: column;\n    align-items: center;\n    justify-content: center;\n    gap: 7px;\n  }\n\n  .jh-benefit {\n    justify-content: center;\n    align-items: center;\n  }\n}\n</style>"
+              },
+              "blocks": {}
             }
           },
           "block_order": [
@@ -987,7 +1004,8 @@
             "custom_liquid_J3AALz",
             "judge_me_reviews_preview_badge_wBkFbF",
             "price_8HYwik",
-            "buy_buttons_9yFNNQ"
+            "buy_buttons_9yFNNQ",
+            "custom_liquid_AFPAaB"
           ]
         }
       },
@@ -1527,10 +1545,10 @@
   "order": [
     "webpage_crousal_twi4Yg",
     "counter_custom_CrVRYy",
-    "collection_list_nmnhVB",
-    "product_list_fa6P9H",
-    "1780301960be49e1d7",
     "shop_by_concern_z4QrGz",
+    "product_list_fa6P9H",
+    "collection_list_nmnhVB",
+    "1780301960be49e1d7",
     "wellness_tea_section_NrGM7i",
     "custom_image_cards_dpnjat",
     "product_list_iVzKdt",
