@@ -4,7 +4,7 @@ import { Component } from '@theme/component';
 
 const MIN_ZOOM = 1;
 const MAX_ZOOM = 5;
-const DEFAULT_ZOOM = 1.5;
+const DEFAULT_ZOOM = 1;
 const DOUBLE_TAP_DELAY = 300;
 const DOUBLE_TAP_DISTANCE = 50;
 const DRAG_THRESHOLD = 10;
@@ -208,10 +208,10 @@ export class DragZoomWrapper extends Component {
       const tolerance = 0.05; // Small tolerance for floating point comparison
 
       if (Math.abs(this.#scale - MIN_ZOOM) < tolerance) {
-        // Currently at 1x, go to 1.5x
-        targetZoom = DEFAULT_ZOOM;
+        // Currently at 1x, go to 2x
+        targetZoom = 2;
       } else {
-        // Currently at 1.5x or any other level, go to 1x
+        // Go back to 1x
         targetZoom = MIN_ZOOM;
       }
     }

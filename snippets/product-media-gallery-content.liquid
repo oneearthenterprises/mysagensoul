@@ -778,6 +778,10 @@
     cursor: zoom-out;
   }
 
+  .dialog-zoomed-gallery img.product-media__image {
+    object-fit: contain !important;
+  }
+
   .dialog--preloading {
     opacity: 0;
   }
@@ -879,6 +883,10 @@
     .media-gallery__mobile-controls[thumbnails] .slideshow-controls__thumbnail {
       width: var(--thumbnail-width);
       height: auto;
+    }
+
+    .dialog-thumbnails-list {
+      --thumbnail-width: 64px !important;
     }
   }
 
@@ -1047,5 +1055,62 @@
 
   slideshow-slide.product-media-container--tallest {
     content-visibility: visible;
+  }
+
+  @media screen and (min-width: 750px) {
+    .dialog-zoomed-gallery__dialog {
+      width: 100vw;
+      height: 100vh;
+      max-width: 100vw;
+      max-height: 100vh;
+      border: none;
+      padding: 0;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    .dialog-zoomed-gallery {
+      height: 100vh;
+      overflow-y: scroll;
+      scroll-snap-type: y mandatory;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .dialog-zoomed-gallery::-webkit-scrollbar {
+      display: none;
+    }
+
+    .dialog-zoomed-gallery .product-media-container {
+      height: 100vh;
+      width: 100%;
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+    }
+
+    .dialog-zoomed-gallery .product-media-container img {
+      max-height: 90vh;
+      max-width: calc(100vw - 220px);
+      object-fit: contain;
+      width: auto !important;
+      height: auto !important;
+      display: block;
+      margin: auto;
+    }
+
+    .dialog-zoomed-gallery .product-media-container--video deferred-media,
+    .dialog-zoomed-gallery .product-media-container--external_video deferred-media {
+      max-height: 90vh;
+      max-width: calc(100vw - 220px);
+      width: auto;
+      margin: auto;
+    }
   }
 {% endstylesheet %}
