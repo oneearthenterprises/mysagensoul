@@ -18,19 +18,17 @@
     <div class="video-player-outer-wrap" style="max-width: {{ section.settings.video_max_width }}px;">
       <div class="video-player-inner">
         
-        {% if section.settings.video_url != blank %}
-          <!-- Native HTML5 Video for local MP4 files (Autoplay, Loop, Silent - Perfect for clean background loop) -->
-          <video 
-            class="sustainability-video"
-            playsinline 
-            {% if section.settings.autoplay %}autoplay muted{% endif %} 
-            {% if section.settings.loop %}loop{% endif %} 
-            {% if section.settings.show_controls %}controls{% endif %}
-            {% if section.settings.poster_image != blank %}poster="{{ section.settings.poster_image | image_url: width: 1400 }}"{% endif %}
-          >
-            <source src="{{ section.settings.video_url }}" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
+        {% if section.settings.video != blank %}
+          <!-- Native Shopify Video Tag (Autoplays based on settings, no custom overlays) -->
+          {{ section.settings.video | video_tag: 
+            class: 'sustainability-video', 
+            image_size: '1400x', 
+            autoplay: section.settings.autoplay, 
+            loop: section.settings.loop, 
+            muted: true, 
+            controls: section.settings.show_controls, 
+            playsinline: true 
+          }}
 
         {% elsif section.settings.external_video_url != blank %}
           <!-- External Video Embed (YouTube / Vimeo) -->
@@ -67,7 +65,7 @@
               <path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="1.5"/>
               <path d="M10 9L15 12L10 15V9Z" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
             </svg>
-            <span>Configure a Video URL (MP4 / YouTube / Vimeo) in Customizer settings</span>
+            <span>Select a Video or enter an External Video link in Customizer settings</span>
           </div>
         {% endif %}
 
@@ -247,21 +245,15 @@
       "content": "Video Files & Controls"
     },
     {
-      "type": "text",
-      "id": "video_url",
-      "label": "Direct MP4 Video File URL (Recommended)",
-      "info": "Upload an MP4 file to Shopify Files, copy the link and paste it here."
+      "type": "video",
+      "id": "video",
+      "label": "Select Video (Shopify Files)"
     },
     {
       "type": "text",
       "id": "external_video_url",
       "label": "Or External Video (YouTube / Vimeo Link)",
       "info": "YouTube or Vimeo links (e.g. https://www.youtube.com/watch?v=xxxxxx)"
-    },
-    {
-      "type": "image_picker",
-      "id": "poster_image",
-      "label": "Video Poster Image"
     },
     {
       "type": "range",

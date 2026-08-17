@@ -187,7 +187,7 @@
         "section_bg": "#ffffff",
         "padding_top": 40,
         "padding_bottom": 40,
-        "c1_bg": "#B5C7A9",
+        "c1_bg": "#b5c7a9",
         "c1_text_color": "#111111",
         "c1_title": "Cleaning up the planet",
         "c1_desc": "Our team is actively working to clean up the planet from pollution in order to restore its natural beauty.",
@@ -208,12 +208,46 @@
         "c3_btn_link": "",
         "c3_image": "shopify://shop_images/videoframe_26487.png"
       }
+    },
+    "sustainability_video_pVHzib": {
+      "type": "sustainability-video",
+      "name": "Sustainability Video",
+      "settings": {
+        "bg_color": "#ffffff",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "heading": "Quantifying Greenhouse Gas Removals and Reductions in Real-Time",
+        "description": "Hyphen empowers your projects with precision real-time GHG quantification, helping you seamlessly deliver high-quality carbon credits to market faster.",
+        "video_url": "",
+        "external_video_url": "",
+        "video_max_width": 1200,
+        "autoplay": true,
+        "loop": true,
+        "show_controls": true
+      }
+    },
+    "sustainability_community_GLkfMQ": {
+      "type": "sustainability-community",
+      "name": "Community Effort Banner",
+      "settings": {
+        "bg_color": "#ffffff",
+        "image_position": "right",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "heading": "Community Efforts in Tree Planting",
+        "description": "Tree planting becomes more effective when it is a community effort. Schools, organizations, and neighborhoods.",
+        "btn_text": "Explore More",
+        "btn_link": "",
+        "image": "shopify://shop_images/videoframe_26487.png"
+      }
     }
   },
   "order": [
     "main",
     "sustainability_highlights_nRHPTb",
     "sustainability_marquee_DFDEDW",
-    "sustainability_cards_grid_ziarJM"
+    "sustainability_cards_grid_ziarJM",
+    "sustainability_video_pVHzib",
+    "sustainability_community_GLkfMQ"
   ]
 }
