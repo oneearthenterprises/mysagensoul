@@ -218,12 +218,12 @@
         "padding_bottom": 60,
         "heading": "Quantifying Greenhouse Gas Removals and Reductions in Real-Time",
         "description": "Hyphen empowers your projects with precision real-time GHG quantification, helping you seamlessly deliver high-quality carbon credits to market faster.",
-        "video_url": "",
+        "video": "shopify://files/videos/From Klickpin.com- Refresh these clever brunch board tips that make everything look instantly polished for a stylish result that still feels effor (1).mp4",
         "external_video_url": "",
         "video_max_width": 1200,
         "autoplay": true,
         "loop": true,
-        "show_controls": true
+        "show_controls": false
       }
     },
     "sustainability_community_GLkfMQ": {
@@ -240,6 +240,73 @@
         "btn_link": "",
         "image": "shopify://shop_images/videoframe_26487.png"
       }
+    },
+    "sticky_stacking_steps_RXzDzM": {
+      "type": "sticky-stacking-steps",
+      "blocks": {
+        "step_card_FMNrqf": {
+          "type": "step_card",
+          "settings": {
+            "card_bg": "#f7f5ef",
+            "card_text_color": "#111111",
+            "step_tag": "Step 1: Book Your Plan",
+            "title": "Upload/book blood test",
+            "bullet1": "Upload recent medical records (last 3 months)",
+            "bullet2": "Or schedule at home blood test appointment",
+            "bullet3": "NABL & CAP accredited partner lab",
+            "bullet4": "",
+            "btn_text": "Start Your Plan",
+            "btn_link": ""
+          }
+        },
+        "step_card_FNWzyH": {
+          "type": "step_card",
+          "settings": {
+            "card_bg": "#f7f5ef",
+            "card_text_color": "#111111",
+            "step_tag": "Step 2: Tell Us About Your Health Goals",
+            "title": "Personal health assessment",
+            "bullet1": "Answer a 3-minute health assessment",
+            "bullet2": "Define your primary & secondary health goals",
+            "bullet3": "Share your health history and lifestyle habits",
+            "bullet4": "",
+            "btn_text": "Book Your Test",
+            "btn_link": ""
+          }
+        },
+        "step_card_mmTN7E": {
+          "type": "step_card",
+          "settings": {
+            "card_bg": "#f7f5ef",
+            "card_text_color": "#111111",
+            "step_tag": "Step 3: Get Your Supplement Plan",
+            "title": "Health insights & supplement plan",
+            "bullet1": "Personalised health coaching",
+            "bullet2": "Curated by doctors, clinicians & nutritionists",
+            "bullet3": "Expert-led clinical analysis",
+            "bullet4": "Nutrition & lifestyle recommendations",
+            "btn_text": "Unlock Your Benefits",
+            "btn_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "step_card_FMNrqf",
+        "step_card_FNWzyH",
+        "step_card_mmTN7E"
+      ],
+      "name": "Sticky Stacking Steps",
+      "settings": {
+        "section_bg": "#ffffff",
+        "accent_color": "#e5a45b",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "sticky_top_offset": 100,
+        "sticky_spacing": 50,
+        "title_part1": "How Sage & Soul",
+        "title_part2_italic": "works",
+        "description": "We analyse your biomarkers and translate them into a personalised supplement plan built just for you."
+      }
     }
   },
   "order": [
@@ -248,6 +315,7 @@
     "sustainability_marquee_DFDEDW",
     "sustainability_cards_grid_ziarJM",
     "sustainability_video_pVHzib",
-    "sustainability_community_GLkfMQ"
+    "sustainability_community_GLkfMQ",
+    "sticky_stacking_steps_RXzDzM"
   ]
 }

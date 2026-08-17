@@ -1,0 +1,544 @@
+<section class="sticky-stacking-section" style="padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px; background-color: {{ section.settings.section_bg }};">
+  <div class="page-width">
+    
+    <!-- Centered Header -->
+    {% if section.settings.title_part1 != blank or section.settings.description != blank %}
+      <div class="stacking-header text-center">
+        <h2 class="stack-section-title">
+          {{ section.settings.title_part1 }} <em>{{ section.settings.title_part2_italic }}</em>
+        </h2>
+        {% if section.settings.description != blank %}
+          <p class="stack-section-desc">{{ section.settings.description }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <!-- Stacking Cards Deck -->
+    <div class="stacking-cards-container">
+      {% for block in section.blocks %}
+        
+        <!-- Calculate dynamic sticky offset for each card -->
+        {% assign step_offset = forloop.index0 | multiply: section.settings.sticky_spacing %}
+        {% assign final_top = section.settings.sticky_top_offset | plus: step_offset %}
+        
+        <div class="stacking-card block-{{ block.id }}" 
+             style="top: {{ final_top }}px; z-index: {{ forloop.index }}; background-color: {{ block.settings.card_bg }}; color: {{ block.settings.card_text_color }};" 
+             {{ block.shopify_attributes }}>
+          
+          <div class="card-inner-layout">
+            
+            <!-- Left Text Content -->
+            <div class="card-left-text">
+              {% if block.settings.step_tag != blank %}
+                <span class="step-tag" style="color: {{ section.settings.accent_color }};">{{ block.settings.step_tag }}</span>
+              {% endif %}
+              
+              {% if block.settings.title != blank %}
+                <h3 class="step-card-title">{{ block.settings.title }}</h3>
+              {% endif %}
+              
+              <ul class="step-checklist">
+                {% if block.settings.bullet1 != blank %}
+                  <li>
+                    <span class="check-icon" style="color: {{ section.settings.accent_color }};">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                    </span>
+                    <span>{{ block.settings.bullet1 }}</span>
+                  </li>
+                {% endif %}
+                {% if block.settings.bullet2 != blank %}
+                  <li>
+                    <span class="check-icon" style="color: {{ section.settings.accent_color }};">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                    </span>
+                    <span>{{ block.settings.bullet2 }}</span>
+                  </li>
+                {% endif %}
+                {% if block.settings.bullet3 != blank %}
+                  <li>
+                    <span class="check-icon" style="color: {{ section.settings.accent_color }};">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                    </span>
+                    <span>{{ block.settings.bullet3 }}</span>
+                  </li>
+                {% endif %}
+                {% if block.settings.bullet4 != blank %}
+                  <li>
+                    <span class="check-icon" style="color: {{ section.settings.accent_color }};">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                    </span>
+                    <span>{{ block.settings.bullet4 }}</span>
+                  </li>
+                {% endif %}
+              </ul>
+              
+              {% if block.settings.btn_text != blank %}
+                <a href="{{ block.settings.btn_link | default: '#' }}" 
+                   class="step-action-btn" 
+                   style="background-color: {{ section.settings.accent_color }}; border-color: {{ section.settings.accent_color }}; color: #ffffff;">
+                  {{ block.settings.btn_text }}
+                </a>
+              {% endif %}
+            </div>
+
+            <!-- Right Image Showcase -->
+            <div class="card-right-image">
+              <div class="showcase-img-wrap">
+                {% if block.settings.image != blank %}
+                  <img src="{{ block.settings.image | image_url: width: 800 }}" alt="{{ block.settings.title | escape }}" loading="lazy">
+                {% else %}
+                  <div class="image-placeholder-art">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                      <circle cx="8.5" cy="8.5" r="1.5" fill="currentColor"/>
+                      <path d="M21 15L16 10L5 21" stroke="currentColor" stroke-width="1.5"/>
+                    </svg>
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+<style>
+.sticky-stacking-section {
+  overflow: visible; /* Important for sticky child alignment */
+}
+
+.sticky-stacking-section .page-width {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.stacking-header {
+  max-width: 700px;
+  margin: 0 auto 60px auto;
+}
+
+.stack-section-title {
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 700;
+  line-height: 1.15;
+  color: #1a1a1a;
+  margin: 0 0 16px 0;
+  letter-spacing: -1px;
+}
+
+/* Beautiful serif handwriting style */
+.stack-section-title em {
+  font-family: "Playfair Display", "Georgia", "Times New Roman", serif;
+  font-style: italic;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.stack-section-desc {
+  font-size: 17px;
+  line-height: 1.6;
+  color: #4a4a4a;
+  margin: 0;
+}
+
+/* Stacking Container */
+.stacking-cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 50px; /* Pre-sticky spacing */
+  position: relative;
+  padding-bottom: 80px;
+}
+
+/* Individual Sticky Card */
+.stacking-card {
+  position: -webkit-sticky;
+  position: sticky;
+  border-radius: 34px;
+  box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.02), 0 20px 50px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  transition: transform 0.3s ease;
+}
+
+.card-inner-layout {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 50px;
+  padding: 60px 70px;
+  align-items: center;
+}
+
+/* Left Text Column */
+.card-left-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.step-tag {
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 16px;
+}
+
+.step-card-title {
+  font-size: clamp(24px, 3.2vw, 36px);
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0 0 28px 0;
+  letter-spacing: -0.5px;
+  color: inherit;
+}
+
+/* Checklist list */
+.step-checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 35px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.step-checklist li {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  font-size: 15px;
+  line-height: 1.5;
+  color: inherit;
+}
+
+.step-checklist li span:not(.check-icon) {
+  flex-grow: 1;
+}
+
+.check-icon {
+  width: 22px;
+  height: 22px;
+  background-color: rgba(0, 0, 0, 0.03);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* Make checkmark icon clean on colored backgrounds */
+[style*="color: #ffffff"] .check-icon {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.check-icon svg {
+  width: 12px;
+  height: 12px;
+}
+
+/* Action button styles */
+.step-action-btn {
+  display: inline-block;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 14px 34px;
+  border-radius: 100px;
+  width: fit-content;
+  border: 1px solid;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+}
+
+.step-action-btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(0.92);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Right Image Column */
+.showcase-img-wrap {
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.03);
+  background-color: transparent;
+}
+
+.showcase-img-wrap img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.image-placeholder-art {
+  height: 250px;
+  background-color: rgba(0, 0, 0, 0.03);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(0, 0, 0, 0.2);
+}
+
+.image-placeholder-art svg {
+  width: 48px;
+  height: 48px;
+}
+
+/* Responsive Overrides */
+@media (max-width: 991px) {
+  .card-inner-layout {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 40px;
+  }
+}
+
+@media (max-width: 767px) {
+  .stacking-cards-container {
+    gap: 30px;
+  }
+  .stacking-card {
+    position: relative !important; /* Disable sticky stacking on mobile to make scrolling easier */
+    top: 0 !important;
+    border-radius: 24px;
+  }
+  .card-inner-layout {
+    padding: 30px 20px;
+    gap: 30px;
+  }
+  .step-checklist {
+    margin-bottom: 25px;
+  }
+  .step-action-btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Sticky Stacking Steps",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Styles"
+    },
+    {
+      "type": "color",
+      "id": "section_bg",
+      "label": "Section Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color (Buttons & Icons)",
+      "default": "#e5a45b"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 80
+    },
+    {
+      "type": "header",
+      "content": "Sticky Settings"
+    },
+    {
+      "type": "range",
+      "id": "sticky_top_offset",
+      "min": 40,
+      "max": 240,
+      "step": 10,
+      "unit": "px",
+      "label": "Sticky Top Offset",
+      "default": 100,
+      "info": "Adjust this if you have a sticky header on your store."
+    },
+    {
+      "type": "range",
+      "id": "sticky_spacing",
+      "min": 20,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Spacing Between Sticky Cards",
+      "default": 50,
+      "info": "Offset height visible of stacked cards underneath."
+    },
+    {
+      "type": "header",
+      "content": "Section Title"
+    },
+    {
+      "type": "text",
+      "id": "title_part1",
+      "label": "Title Part 1",
+      "default": "How Sage & Soul"
+    },
+    {
+      "type": "text",
+      "id": "title_part2_italic",
+      "label": "Title Part 2 (Italic)",
+      "default": "works"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description Under Title",
+      "default": "We analyse your biomarkers and translate them into a personalised supplement plan built just for you."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step_card",
+      "name": "Step Card",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Card Styling"
+        },
+        {
+          "type": "color",
+          "id": "card_bg",
+          "label": "Card Background",
+          "default": "#f7f5ef"
+        },
+        {
+          "type": "color",
+          "id": "card_text_color",
+          "label": "Card Text Color",
+          "default": "#111111"
+        },
+        {
+          "type": "header",
+          "content": "Card Content"
+        },
+        {
+          "type": "text",
+          "id": "step_tag",
+          "label": "Step Tag",
+          "default": "Step 1: Book Your Plan"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Upload/book blood test"
+        },
+        {
+          "type": "text",
+          "id": "bullet1",
+          "label": "Checklist Point 1",
+          "default": "Upload recent medical records (last 3 months)"
+        },
+        {
+          "type": "text",
+          "id": "bullet2",
+          "label": "Checklist Point 2",
+          "default": "Or schedule at home blood test appointment"
+        },
+        {
+          "type": "text",
+          "id": "bullet3",
+          "label": "Checklist Point 3",
+          "default": "NABL & CAP accredited partner lab"
+        },
+        {
+          "type": "text",
+          "id": "bullet4",
+          "label": "Checklist Point 4"
+        },
+        {
+          "type": "text",
+          "id": "btn_text",
+          "label": "Button Text",
+          "default": "Start Your Plan"
+        },
+        {
+          "type": "url",
+          "id": "btn_link",
+          "label": "Button Link"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Showcase Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Sticky Stacking Steps",
+      "blocks": [
+        {
+          "type": "step_card",
+          "settings": {
+            "step_tag": "Step 1: Book Your Plan",
+            "title": "Upload/book blood test",
+            "bullet1": "Upload recent medical records (last 3 months)",
+            "bullet2": "Or schedule at home blood test appointment",
+            "bullet3": "NABL & CAP accredited partner lab",
+            "btn_text": "Start Your Plan"
+          }
+        },
+        {
+          "type": "step_card",
+          "settings": {
+            "step_tag": "Step 2: Tell Us About Your Health Goals",
+            "title": "Personal health assessment",
+            "bullet1": "Answer a 3-minute health assessment",
+            "bullet2": "Define your primary & secondary health goals",
+            "bullet3": "Share your health history and lifestyle habits",
+            "btn_text": "Book Your Test"
+          }
+        },
+        {
+          "type": "step_card",
+          "settings": {
+            "step_tag": "Step 3: Get Your Supplement Plan",
+            "title": "Health insights & supplement plan",
+            "bullet1": "Personalised health coaching",
+            "bullet2": "Curated by doctors, clinicians & nutritionists",
+            "bullet3": "Expert-led clinical analysis",
+            "bullet4": "Nutrition & lifestyle recommendations",
+            "btn_text": "Unlock Your Benefits"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
