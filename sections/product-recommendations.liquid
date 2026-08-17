@@ -23,6 +23,19 @@
     echo '--column-count: ' | append: section.settings.columns | append: ';'
     echo '--column-count-mobile: ' | append: section.settings.mobile_columns | append: ';'
   endcapture
+
+  assign has_metafield_products = false
+  if page.metafields.custom.recommended_products.value != blank
+    assign products = page.metafields.custom.recommended_products.value
+    assign has_metafield_products = true
+  endif
+
+  assign recommendations_performed = recommendations.performed
+  if has_metafield_products
+    assign recommendations_performed = 'true'
+  endif
+
+  assign target_product_id = section.settings.product.id | default: product.id | default: page.id
 %}
 
 {% render 'quick-add-styles' %}
@@ -33,10 +46,10 @@
   class="product-recommendations"
   data-url="{{ routes.product_recommendations_url }}?limit={{ section.settings.max_products }}"
   data-section-id="{{ section.id }}"
-  data-product-id="{{ section.settings.product.id | default: product.id }}"
+  data-product-id="{{ target_product_id }}"
   data-intent="{{ section.settings.recommendation_type }}"
   data-testid="product-recommendations-section"
-  data-recommendations-performed="{{ recommendations.performed }}"
+  data-recommendations-performed="{{ recommendations_performed }}"
   data-hydration-key="product-recommendations-{{ section.id }}"
   {{ section.shopify_attributes }}
 >
@@ -60,27 +73,29 @@
       {% content_for 'blocks' %}
     </div>
 
-    {%- if recommendations.performed or section.settings.product == blank -%}
+    {%- if has_metafield_products or recommendations.performed or section.settings.product == blank -%}
       {% liquid
-        if section.settings.product == blank
-          assign products = null
-          # Onboarding mode: Show placeholder products
-          for i in (1..section.settings.max_products)
-            assign products = products | append: ', '
-            assign products = products | split: ','
-          endfor
-        elsif recommendations.performed and recommendations.products_count == 0
-          # No recommendations found, pull from catalog
-          if section.settings.recommendation_type == 'related'
-            assign products = collections.all.products | reject: 'id', section.settings.product.id
-          elsif section.settings.recommendation_type == 'complementary'
-            # Do not recommend the All collection as complementary products
+        unless has_metafield_products
+          if section.settings.product == blank
             assign products = null
-          endif
+            # Onboarding mode: Show placeholder products
+            for i in (1..section.settings.max_products)
+              assign products = products | append: ', '
+              assign products = products | split: ','
+            endfor
+          elsif recommendations.performed and recommendations.products_count == 0
+            # No recommendations found, pull from catalog
+            if section.settings.recommendation_type == 'related'
+              assign products = collections.all.products | reject: 'id', section.settings.product.id
+            elsif section.settings.recommendation_type == 'complementary'
+              # Do not recommend the All collection as complementary products
+              assign products = null
+            endif
 
-        else
-          assign products = recommendations.products
-        endif
+          else
+            assign products = recommendations.products
+          endif
+        endunless
       %}
       {% capture list_items %}
         {% for product in products limit: section.settings.max_products %}
@@ -128,7 +143,7 @@
             {% render 'resource-list-carousel',
               ref: 'resourceListCarousel',
               slides: slides,
-              slide_count: recommendations.products.size,
+              slide_count: products.size,
               settings: section.settings
             %}
         {% endcase %}
@@ -152,7 +167,7 @@
           {% render 'resource-list-carousel',
             ref: 'resourceListCarouselMobile',
             slides: slides,
-            slide_count: recommendations.products.size,
+            slide_count: products.size,
             settings: section.settings
           %}
         </div>
