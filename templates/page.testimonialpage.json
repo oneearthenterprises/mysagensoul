@@ -1,5 +1,13 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
-  "name": "Testimonials Page",
   "sections": {
     "testimonials_header": {
       "type": "testimonials-header",
@@ -12,12 +20,140 @@
     },
     "testimonials_slider": {
       "type": "sustainability-testimonials",
+      "blocks": {
+        "testimonial_6HB98c": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "I was taking multiple supplements because of things I'd read online. The personalised plan helped me focus on what my body actually needed.",
+            "author": "Kabir Bharara"
+          }
+        },
+        "testimonial_ykEgJg": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "I was taking multiple supplements because of things I'd read online. The personalised plan helped me focus on what my body actually needed.",
+            "author": "Kabir Bharara"
+          }
+        },
+        "testimonial_mXKG7D": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "I was taking multiple supplements because of things I'd read online. The personalised plan helped me focus on what my body actually needed.",
+            "author": "Kabir Bharara"
+          }
+        },
+        "testimonial_qW6wFr": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "I was taking multiple supplements because of things I'd read online. The personalised plan helped me focus on what my body actually needed.",
+            "author": "Kabir Bharara"
+          }
+        },
+        "testimonial_CqhthX": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "I was taking multiple supplements because of things I'd read online. The personalised plan helped me focus on what my body actually needed.",
+            "author": "Kabir Bharara"
+          }
+        },
+        "testimonial_LrT7gi": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "I was taking multiple supplements because of things I'd read online. The personalised plan helped me focus on what my body actually needed.",
+            "author": "Kabir Bharara"
+          }
+        },
+        "testimonial_Rdb99a": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "I was taking multiple supplements because of things I'd read online. The personalised plan helped me focus on what my body actually needed.",
+            "author": "Kabir Bharara"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_6HB98c",
+        "testimonial_ykEgJg",
+        "testimonial_mXKG7D",
+        "testimonial_qW6wFr",
+        "testimonial_CqhthX",
+        "testimonial_LrT7gi",
+        "testimonial_Rdb99a"
+      ],
       "settings": {
-        "heading": "Love from Our Customers"
+        "bg_color": "#fbfcf9",
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "title": "Real people, real results.",
+        "description": "Discover how people found their perfect supplement fit with Wellbeing BloodView."
       }
     },
     "testimonials_video_grid": {
       "type": "testimonials-video-grid",
+      "blocks": {
+        "video_card_Lbm9cM": {
+          "type": "video_card",
+          "settings": {
+            "video": "shopify://files/videos/download (6) (2).mp4",
+            "customer_name": "Verified Customer",
+            "customer_tag": "Verified Buyer",
+            "review_text": ""
+          }
+        },
+        "video_card_PDdz7K": {
+          "type": "video_card",
+          "settings": {
+            "video": "shopify://files/videos/download (6) (2).mp4",
+            "customer_name": "Verified Customer",
+            "customer_tag": "Verified Buyer",
+            "review_text": ""
+          }
+        },
+        "video_card_Gt4j8e": {
+          "type": "video_card",
+          "settings": {
+            "video": "shopify://files/videos/download (6) (2).mp4",
+            "customer_name": "Verified Customer",
+            "customer_tag": "Verified Buyer",
+            "review_text": ""
+          }
+        },
+        "video_card_dFjAir": {
+          "type": "video_card",
+          "settings": {
+            "video": "shopify://files/videos/download (6) (2).mp4",
+            "customer_name": "Verified Customer",
+            "customer_tag": "Verified Buyer",
+            "review_text": ""
+          }
+        },
+        "video_card_rF8dgf": {
+          "type": "video_card",
+          "settings": {
+            "video": "shopify://files/videos/download (6) (2).mp4",
+            "customer_name": "Verified Customer",
+            "customer_tag": "Verified Buyer",
+            "review_text": ""
+          }
+        },
+        "video_card_teii6g": {
+          "type": "video_card",
+          "settings": {
+            "video": "shopify://files/videos/download (6) (2).mp4",
+            "customer_name": "Verified Customer",
+            "customer_tag": "Verified Buyer",
+            "review_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "video_card_Lbm9cM",
+        "video_card_PDdz7K",
+        "video_card_Gt4j8e",
+        "video_card_dFjAir",
+        "video_card_rF8dgf",
+        "video_card_teii6g"
+      ],
       "settings": {
         "heading": "Watch Their Stories",
         "subtitle": "Real video reviews from our community members sharing their daily tea rituals."
