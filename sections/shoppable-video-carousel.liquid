@@ -90,7 +90,6 @@
 
                 <div class="svc-modal">
                   <button type="button" class="svc-modal-close" data-modal-close aria-label="Close">&times;</button>
-
                    <button class="svc-modal-speaker" aria-label="Toggle sound" data-modal-speaker>
                         <svg class="icon-muted" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="20" height="20">
                           <path d="M16.5 12A4.5 4.5 0 0 0 14 7.97v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51A8.796 8.796 0 0 0 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06A8.99 8.99 0 0 0 17.73 19L19 20.27 20.27 19 5.27 4 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>
@@ -98,7 +97,7 @@
                         <svg class="icon-unmuted" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="20" height="20" style="display:none;">
                           <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 7.97v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
                         </svg>
-                      </button>
+                    </button>
 
                   <div class="svc-modal-body">
                     <div class="svc-modal-media">
@@ -107,7 +106,24 @@
                       {% elsif p.featured_media.media_type == 'video' %}
                         {{ p.featured_media | video_tag: autoplay: true, loop: true, muted: true, controls: false, playsinline: true, class: 'svc-modal-video' }}
                       {% else %}
-                        <img src="{{ p.featured_image | image_url: width: 600 }}" alt="{{ p.title }}" class="svc-modal-image">
+                        {% if p.images.size > 1 %}
+                          <div class="svc-modal-slider" data-svc-image-slider>
+                            <div class="svc-modal-slides-wrap">
+                              {% for img in p.images %}
+                                <div class="svc-modal-slide{% if forloop.first %} is-active{% endif %}" data-slide-index="{{ forloop.index0 }}">
+                                  <img src="{{ img | image_url: width: 800 }}" alt="{{ p.title }}" class="svc-modal-image">
+                                </div>
+                              {% endfor %}
+                            </div>
+                            <div class="svc-modal-dots">
+                              {% for img in p.images %}
+                                <button type="button" class="svc-modal-dot{% if forloop.first %} is-active{% endif %}" data-dot="{{ forloop.index0 }}" aria-label="Go to slide {{ forloop.index }}"></button>
+                              {% endfor %}
+                            </div>
+                          </div>
+                        {% else %}
+                          <img src="{{ p.featured_image | image_url: width: 600 }}" alt="{{ p.title }}" class="svc-modal-image">
+                        {% endif %}
                       {% endif %}
                       <!-- Speaker/Sound Toggle -->
                      
@@ -397,6 +413,41 @@
       </div>
     </div>
   </div>
+
+  <!-- Floating Shoppable Video Widget (Corner Bubble) -->
+  {% if section.settings.enable_floating_widget and section.blocks.size > 0 %}
+    {% assign target_block = nil %}
+    {% assign target_index = 1 %}
+    
+    {% for block in section.blocks %}
+      {% if block.settings.product_1 != blank %}
+        {% assign target_block = block %}
+        {% assign target_index = 1 %}
+        {% break %}
+      {% elsif block.settings.product_2 != blank %}
+        {% assign target_block = block %}
+        {% assign target_index = 2 %}
+        {% break %}
+      {% elsif block.settings.product_3 != blank %}
+        {% assign target_block = block %}
+        {% assign target_index = 3 %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
+    
+    {% if target_block != nil and target_block.settings.video != blank %}
+      {% assign float_target_modal = 'modal-' | append: target_block.id | append: '-' | append: target_index %}
+      <div class="svc-floating-widget" id="svc-float-{{ section.id }}" style="display: none;">
+        <div class="svc-float-bubble" data-svc-float-trigger data-target-modal="{{ float_target_modal }}">
+          <button type="button" class="svc-float-close" aria-label="Close widget">&times;</button>
+          {{ target_block.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, playsinline: true, class: 'svc-float-video' }}
+          {% if section.settings.floating_label != blank %}
+            <div class="svc-float-label">{{ section.settings.floating_label }}</div>
+          {% endif %}
+        </div>
+      </div>
+    {% endif %}
+  {% endif %}
 </section>
 
 <style>
@@ -611,7 +662,6 @@
 
 .svc-modal-thumb-wrap {
   width: 100%;
-  {% comment %} height: 140px; {% endcomment %}
   border-radius: 10px;
   overflow: hidden;
   background: #f5f5f5;
@@ -619,7 +669,7 @@
 }
 .svc-modal-thumb-img {
   width: 100%;
-  height: 100%;
+  height: auto;
   object-fit: contain;
   display: block;
 }
@@ -1178,13 +1228,186 @@ width:100%;
   color: #333;
 }
 
+/* Custom Image Slider for Modal */
+.svc-modal-slider {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.svc-modal-slides-wrap {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+.svc-modal-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+  z-index: 1;
+}
+.svc-modal-slide.is-active {
+  opacity: 1;
+  visibility: visible;
+  z-index: 2;
+}
+.svc-modal-slide img.svc-modal-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.svc-modal-dots {
+  position: absolute;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 6px 12px;
+  border-radius: 100px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+.svc-modal-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #cccccc;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.svc-modal-dot.is-active {
+  background-color: #000000;
+  transform: scale(1.1);
+}
+
 @media (max-width: 600px) {
   .svc-guide-right { grid-template-columns: 1fr; gap: 8px; }
   .svc-guide-left img { height: 160px; }
 }
+
+/* Sticky Floating Video Widget styles */
+.svc-floating-widget {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 9999;
+}
+.svc-float-bubble {
+  position: relative;
+  width: 120px;
+  height: 190px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  background-color: #000;
+}
+.svc-float-bubble:hover {
+  transform: scale(1.04) translateY(-3px);
+}
+.svc-float-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.svc-float-close {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  border: none;
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+  transition: background 0.3s;
+}
+.svc-float-close:hover {
+  background-color: rgba(0, 0, 0, 0.85);
+}
+.svc-float-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 100%);
+  color: #fff;
+  font-size: 10px;
+  text-align: center;
+  padding: 10px 4px 6px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+@media (max-width: 480px) {
+  .svc-float-bubble {
+    width: 95px;
+    height: 150px;
+  }
+  .svc-floating-widget {
+    bottom: 20px;
+    right: 20px;
+  }
+  .svc-float-label {
+    font-size: 8px;
+    padding: 8px 2px 4px;
+  }
+}
 </style>
 
 <script>
+// Helper function to initialize product image slider inside modal
+function initSvcImageSliders(modal) {
+  const slider = modal.querySelector('[data-svc-image-slider]');
+  if (!slider) return;
+  
+  const slides = slider.querySelectorAll('.svc-modal-slide');
+  const dots = slider.querySelectorAll('.svc-modal-dot');
+  
+  if (slides.length <= 1) return;
+
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.classList.toggle('is-active', i === index);
+    });
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('is-active', i === index);
+    });
+  }
+
+  // Bind click events to dots
+  dots.forEach(dot => {
+    dot.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const index = parseInt(dot.getAttribute('data-dot'), 10);
+      showSlide(index);
+    });
+  });
+}
+
 // ── Shared modal-open / modal-close helpers (used by video clicks, thumbnail
 //    clicks, and the prev/next reel navigation) ──────────────────────
 function openSvcModal(targetId) {
@@ -1198,6 +1421,9 @@ function openSvcModal(targetId) {
     modalVideo.muted = true;
     modalVideo.play().catch(() => {});
   }
+
+  // Initialize image slider inside modal if present
+  initSvcImageSliders(modal);
 
   // Make sure any Blend Within widgets inside the now-visible modal are
   // correctly measured/initialized (Read More buttons, scroll arrows).
@@ -1533,6 +1759,34 @@ function initSvcGuideReadMore(scope) {
     });
   });
 }
+
+// ── Floating Video Widget Event Listeners ──
+document.addEventListener("DOMContentLoaded", function () {
+  const floatWidget = document.getElementById("svc-float-{{ section.id }}");
+  if (!floatWidget) return;
+  const bubble = floatWidget.querySelector("[data-svc-float-trigger]");
+  const closeBtn = floatWidget.querySelector(".svc-float-close");
+
+  if (bubble && closeBtn) {
+    if (localStorage.getItem("svc-float-dismissed-{{ section.id }}") === "true") {
+      floatWidget.style.display = "none";
+    } else {
+      floatWidget.style.display = "block";
+    }
+
+    closeBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      e.preventDefault();
+      floatWidget.style.display = "none";
+      localStorage.setItem("svc-float-dismissed-{{ section.id }}", "true");
+    });
+
+    bubble.addEventListener("click", () => {
+      const targetModalId = bubble.getAttribute("data-target-modal");
+      if (targetModalId) openSvcModal(targetModalId);
+    });
+  }
+});
 </script>
 
 {% schema %}
@@ -1541,7 +1795,23 @@ function initSvcGuideReadMore(scope) {
   "settings": [
     { "type": "text", "id": "heading", "label": "Heading", "default": "Watch It. Love It" },
     { "type": "color", "id": "bg_color", "label": "Background Color", "default": "#ffffff" },
-    { "type": "text", "id": "blend_heading", "label": "Blend Within heading (shown in modal Ingredients/How to take tabs)", "default": "Soul of the Blend" }
+    { "type": "text", "id": "blend_heading", "label": "Blend Within heading (shown in modal Ingredients/How to take tabs)", "default": "Soul of the Blend" },
+    {
+      "type": "header",
+      "content": "Floating Widget Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_floating_widget",
+      "label": "Enable Floating Video Widget",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "floating_label",
+      "label": "Floating Widget Label",
+      "default": "Shop Now"
+    }
   ],
   "blocks": [
     {

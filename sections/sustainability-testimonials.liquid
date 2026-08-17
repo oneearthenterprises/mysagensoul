@@ -1,7 +1,7 @@
-<section class="testimonials-card-section" style="padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px; background-color: {{ section.settings.bg_color }};">
+<section id="testimonials-section-{{ section.id }}" class="testimonials-card-section" style="padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px; background-color: {{ section.settings.bg_color }};">
   <div class="page-width">
     
-    <!-- Testimonial Section Header -->
+    <!-- Testimonial Section Header with Navigation Arrows -->
     {% if section.settings.title != blank or section.settings.description != blank %}
       <div class="testimonials-header-row">
         <div class="testimonials-header-left">
@@ -13,12 +13,28 @@
           {% if section.settings.description != blank %}
             <p class="testimonials-section-desc">{{ section.settings.description }}</p>
           {% endif %}
+          
+          <!-- Slider Navigation Arrows -->
+          <div class="slider-arrows">
+            <button class="slider-arrow prev-btn" aria-label="Previous Slide">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+              </svg>
+            </button>
+            <button class="slider-arrow next-btn" aria-label="Next Slide">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
     {% endif %}
 
-    <!-- Grid of Testimonial Cards -->
-    <div class="testimonials-cards-grid">
+    <!-- Slider Track of Testimonial Cards -->
+    <div class="testimonials-slider-track">
       {% for block in section.blocks %}
         <div class="testimonial-grid-card" {{ block.shopify_attributes }}>
           
@@ -53,9 +69,46 @@
   </div>
 </section>
 
+<script>
+  function initTestimonialSlider(sectionId) {
+    const container = document.getElementById('testimonials-section-' + sectionId);
+    if (!container) return;
+    const track = container.querySelector(".testimonials-slider-track");
+    const prevBtn = container.querySelector(".prev-btn");
+    const nextBtn = container.querySelector(".next-btn");
+    
+    if (!track || !prevBtn || !nextBtn) return;
+
+    const getScrollAmount = () => {
+      const card = track.querySelector(".testimonial-grid-card");
+      if (!card) return track.clientWidth;
+      return card.clientWidth + 20; // card width + gap
+    };
+
+    prevBtn.addEventListener("click", () => {
+      track.scrollBy({ left: -getScrollAmount(), behavior: "smooth" });
+    });
+
+    nextBtn.addEventListener("click", () => {
+      track.scrollBy({ left: getScrollAmount(), behavior: "smooth" });
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    initTestimonialSlider("{{ section.id }}");
+  });
+
+  // Re-initialize inside Shopify Theme Editor live preview when edited
+  document.addEventListener("shopify:section:load", function (e) {
+    if (e.detail.sectionId === "{{ section.id }}") {
+      initTestimonialSlider("{{ section.id }}");
+    }
+  });
+</script>
+
 <style>
 .testimonials-card-section {
-  overflow: hidden;
+  overflow: visible;
   font-family: var(--font-body--family), sans-serif;
 }
 
@@ -83,18 +136,69 @@
   letter-spacing: -1px;
 }
 
+.testimonials-header-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 30px;
+}
+
 .testimonials-section-desc {
-  font-size: 17px;
+  font-size: 16px;
   line-height: 1.6;
   color: #4a4a4a;
   margin: 0;
+  max-width: 420px;
 }
 
-/* Grid layout */
-.testimonials-cards-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+/* Slider Arrows */
+.slider-arrows {
+  display: flex;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.slider-arrow {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  color: #1a1a1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  padding: 0;
+}
+
+.slider-arrow:hover {
+  background-color: #1a1a1a;
+  color: #ffffff;
+  border-color: #1a1a1a;
+}
+
+.slider-arrow svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Slider Track container */
+.testimonials-slider-track {
+  display: flex;
   gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none; /* Hide scrollbar Firefox */
+  -ms-overflow-style: none;  /* Hide scrollbar IE/Edge */
+  padding-bottom: 10px;
+  user-select: none;
+}
+
+.testimonials-slider-track::-webkit-scrollbar {
+  display: none; /* Hide scrollbar Chrome/Safari */
 }
 
 /* Testimonial Card container */
@@ -109,6 +213,8 @@
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
   transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
               box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  flex: 0 0 calc(25% - 15px); /* 4 cards in viewport */
+  scroll-snap-align: start;
 }
 
 .testimonial-grid-card:hover {
@@ -190,10 +296,8 @@
   .testimonials-header-row {
     gap: 40px;
   }
-  .testimonials-cards-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
   .testimonial-grid-card {
+    flex: 0 0 calc(50% - 10px); /* 2 cards in viewport */
     height: 440px;
   }
 }
@@ -210,13 +314,21 @@
     text-align: center;
     margin-bottom: 35px;
   }
-}
 
-@media (max-width: 575px) {
-  .testimonials-cards-grid {
-    grid-template-columns: 1fr;
+  .testimonials-header-right {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    justify-content: center;
   }
+
+  .testimonials-section-desc {
+    text-align: center;
+    max-width: 100%;
+  }
+
   .testimonial-grid-card {
+    flex: 0 0 100%; /* 1 card in viewport */
     height: 400px;
     padding: 30px 20px;
   }
