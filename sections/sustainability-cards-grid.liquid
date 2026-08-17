@@ -1,0 +1,478 @@
+<section class="sustainability-grid-section" style="padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px; background-color: {{ section.settings.section_bg }};">
+  <div class="page-width">
+    
+    <div class="asymmetric-sustainability-grid">
+      
+      <!-- Left Column: Large Card -->
+      <div class="grid-card card-large" 
+           style="background-color: {{ section.settings.c1_bg }}; color: {{ section.settings.c1_text_color }}; --card-bg: {{ section.settings.c1_bg }};">
+        
+        {% if section.settings.c1_image != blank %}
+          <div class="card-bg-image-container">
+            <img class="card-bg-image" src="{{ section.settings.c1_image | image_url: width: 1200 }}" alt="{{ section.settings.c1_title }}" loading="lazy">
+            <div class="card-bg-overlay" style="background: linear-gradient(to right, {{ section.settings.c1_bg }} 40%, rgba(0, 0, 0, 0) 100%);"></div>
+          </div>
+        {% endif %}
+
+        <div class="card-text-content">
+          {% if section.settings.c1_title != blank %}
+            <h3 class="card-heading-large">{{ section.settings.c1_title }}</h3>
+          {% endif %}
+          
+          {% if section.settings.c1_desc != blank %}
+            <p class="card-description">{{ section.settings.c1_desc }}</p>
+          {% endif %}
+          
+          {% if section.settings.c1_btn_text != blank %}
+            <a href="{{ section.settings.c1_btn_link | default: '#' }}" class="read-more-btn" style="--hover-icon-color: {{ section.settings.c1_bg }};">
+              <span>{{ section.settings.c1_btn_text }}</span>
+              <span class="circle-arrow">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </span>
+            </a>
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- Right Column: Stacked Cards -->
+      <div class="grid-right-stack">
+        
+        <!-- Right Top Card (Green Card) -->
+        <div class="grid-card card-small-top" 
+             style="background-color: {{ section.settings.c2_bg }}; color: {{ section.settings.c2_text_color }}; --card-bg: {{ section.settings.c2_bg }};">
+          
+          {% if section.settings.c2_image != blank %}
+            <div class="card-bg-image-container">
+              <img class="card-bg-image" src="{{ section.settings.c2_image | image_url: width: 800 }}" alt="{{ section.settings.c2_title }}" loading="lazy">
+              <div class="card-bg-overlay" style="background: linear-gradient(to right, {{ section.settings.c2_bg }} 40%, rgba(0, 0, 0, 0) 100%);"></div>
+            </div>
+          {% endif %}
+
+          <div class="card-text-content">
+            {% if section.settings.c2_title != blank %}
+              <h3 class="card-heading-small">{{ section.settings.c2_title }}</h3>
+            {% endif %}
+            
+            {% if section.settings.c2_desc != blank %}
+              <p class="card-description">{{ section.settings.c2_desc }}</p>
+            {% endif %}
+            
+            {% if section.settings.c2_btn_text != blank %}
+              <a href="{{ section.settings.c2_btn_link | default: '#' }}" class="read-more-btn" style="--hover-icon-color: {{ section.settings.c2_bg }};">
+                <span>{{ section.settings.c2_btn_text }}</span>
+                <span class="circle-arrow">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="7" y1="17" x2="17" y2="7"></line>
+                    <polyline points="7 7 17 7 17 17"></polyline>
+                  </svg>
+                </span>
+              </a>
+            {% endif %}
+          </div>
+        </div>
+
+        <!-- Right Bottom Card (Black Card) -->
+        <div class="grid-card card-small-bottom" 
+             style="background-color: {{ section.settings.c3_bg }}; color: {{ section.settings.c3_text_color }}; --card-bg: {{ section.settings.c3_bg }};">
+          
+          {% if section.settings.c3_image != blank %}
+            <div class="card-bg-image-container">
+              <img class="card-bg-image" src="{{ section.settings.c3_image | image_url: width: 800 }}" alt="{{ section.settings.c3_title }}" loading="lazy">
+              <div class="card-bg-overlay" style="background: linear-gradient(to right, {{ section.settings.c3_bg }} 40%, rgba(0, 0, 0, 0) 100%);"></div>
+            </div>
+          {% endif %}
+
+          <div class="card-text-content">
+            {% if section.settings.c3_title != blank %}
+              <h3 class="card-heading-small">{{ section.settings.c3_title }}</h3>
+            {% endif %}
+            
+            {% if section.settings.c3_desc != blank %}
+              <p class="card-description">{{ section.settings.c3_desc }}</p>
+            {% endif %}
+            
+            {% if section.settings.c3_btn_text != blank %}
+              <a href="{{ section.settings.c3_btn_link | default: '#' }}" class="read-more-btn" style="--hover-icon-color: {{ section.settings.c3_bg }};">
+                <span>{{ section.settings.c3_btn_text }}</span>
+                <span class="circle-arrow">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="7" y1="17" x2="17" y2="7"></line>
+                    <polyline points="7 7 17 7 17 17"></polyline>
+                  </svg>
+                </span>
+              </a>
+            {% endif %}
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+.sustainability-grid-section {
+  overflow: hidden;
+  font-family: var(--font-body--family), sans-serif;
+}
+
+.sustainability-grid-section .page-width {
+  max-width: 1340px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.asymmetric-sustainability-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 24px;
+  align-items: stretch;
+}
+
+.grid-right-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Card General Styling */
+.grid-card {
+  position: relative;
+  border-radius: 28px;
+  overflow: hidden;
+  padding: 45px 50px;
+  display: flex;
+  justify-content: space-between;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.grid-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.04);
+}
+
+.card-large {
+  min-height: 480px;
+}
+
+.card-text-content {
+  width: 58%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 3;
+  position: relative;
+}
+
+.grid-card.card-large .card-text-content {
+  justify-content: center;
+}
+
+.card-heading-large {
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 600;
+  line-height: 1.15;
+  margin: 0 0 18px 0;
+  letter-spacing: -0.5px;
+  color: inherit;
+}
+
+.card-heading-small {
+  font-size: clamp(20px, 2.5vw, 26px);
+  font-weight: 600;
+  line-height: 1.25;
+  margin: 0 0 12px 0;
+  letter-spacing: -0.3px;
+  color: inherit;
+}
+
+.card-description {
+  font-size: 15px;
+  line-height: 1.6;
+  margin: 0 0 35px 0;
+  opacity: 0.85;
+}
+
+/* Button & Circular Arrow styles */
+.read-more-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  color: inherit;
+  text-decoration: none;
+  width: fit-content;
+  position: relative;
+  z-index: 3;
+}
+
+.circle-arrow {
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid currentColor;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+              color 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  flex-shrink: 0;
+}
+
+.circle-arrow svg {
+  width: 14px;
+  height: 14px;
+  transition: transform 0.3s ease;
+}
+
+.read-more-btn:hover .circle-arrow {
+  background-color: currentColor;
+  color: var(--hover-icon-color, #ffffff);
+  transform: rotate(45deg);
+}
+
+/* Card Background Image Styling */
+.card-bg-image-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.card-bg-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: right center;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.grid-card:hover .card-bg-image {
+  transform: scale(1.03);
+}
+
+.card-bg-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+/* Responsive Overrides */
+@media (max-width: 991px) {
+  .asymmetric-sustainability-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .card-large {
+    min-height: auto;
+  }
+}
+
+@media (max-width: 767px) {
+  .grid-card {
+    padding: 35px 30px;
+    border-radius: 20px;
+    min-height: 280px;
+  }
+  
+  .card-text-content {
+    width: 100%;
+  }
+
+  .card-description {
+    margin-bottom: 25px;
+  }
+
+  .card-bg-overlay {
+    background: linear-gradient(to top, var(--card-bg) 55%, rgba(0, 0, 0, 0) 100%) !important;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Sustainability Grid",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Styles"
+    },
+    {
+      "type": "color",
+      "id": "section_bg",
+      "label": "Section Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Card 1 (Left Large Card)"
+    },
+    {
+      "type": "color",
+      "id": "c1_bg",
+      "label": "Background Color",
+      "default": "#e6e9e4"
+    },
+    {
+      "type": "color",
+      "id": "c1_text_color",
+      "label": "Text Color",
+      "default": "#111111"
+    },
+    {
+      "type": "text",
+      "id": "c1_title",
+      "label": "Title",
+      "default": "Cleaning up the planet"
+    },
+    {
+      "type": "textarea",
+      "id": "c1_desc",
+      "label": "Description",
+      "default": "Our team is actively working to clean up the planet from pollution in order to restore its natural beauty."
+    },
+    {
+      "type": "text",
+      "id": "c1_btn_text",
+      "label": "Button Text",
+      "default": "Read More"
+    },
+    {
+      "type": "url",
+      "id": "c1_btn_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "image_picker",
+      "id": "c1_image",
+      "label": "Card Image"
+    },
+    {
+      "type": "header",
+      "content": "Card 2 (Right Top Card)"
+    },
+    {
+      "type": "color",
+      "id": "c2_bg",
+      "label": "Background Color",
+      "default": "#4f7a55"
+    },
+    {
+      "type": "color",
+      "id": "c2_text_color",
+      "label": "Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "text",
+      "id": "c2_title",
+      "label": "Title",
+      "default": "We plant trees"
+    },
+    {
+      "type": "textarea",
+      "id": "c2_desc",
+      "label": "Description",
+      "default": "Tree planting is an essential activity for maintaining the balance of nature."
+    },
+    {
+      "type": "text",
+      "id": "c2_btn_text",
+      "label": "Button Text",
+      "default": "Read More"
+    },
+    {
+      "type": "url",
+      "id": "c2_btn_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "image_picker",
+      "id": "c2_image",
+      "label": "Card Image"
+    },
+    {
+      "type": "header",
+      "content": "Card 3 (Right Bottom Card)"
+    },
+    {
+      "type": "color",
+      "id": "c3_bg",
+      "label": "Background Color",
+      "default": "#070707"
+    },
+    {
+      "type": "color",
+      "id": "c3_text_color",
+      "label": "Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "text",
+      "id": "c3_title",
+      "label": "Title",
+      "default": "Tree step for a big change"
+    },
+    {
+      "type": "textarea",
+      "id": "c3_desc",
+      "label": "Description",
+      "default": "Planting a tree may seem like a small act, but it has a profound impact on the environment."
+    },
+    {
+      "type": "text",
+      "id": "c3_btn_text",
+      "label": "Button Text",
+      "default": "Read More"
+    },
+    {
+      "type": "url",
+      "id": "c3_btn_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "image_picker",
+      "id": "c3_image",
+      "label": "Card Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Sustainability Grid"
+    }
+  ]
+}
+{% endschema %}

@@ -179,11 +179,41 @@
         "padding_top": 40,
         "padding_bottom": 40
       }
+    },
+    "sustainability_cards_grid_ziarJM": {
+      "type": "sustainability-cards-grid",
+      "name": "Sustainability Grid",
+      "settings": {
+        "section_bg": "#ffffff",
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "c1_bg": "#e6e9e4",
+        "c1_text_color": "#111111",
+        "c1_title": "Cleaning up the planet",
+        "c1_desc": "Our team is actively working to clean up the planet from pollution in order to restore its natural beauty.",
+        "c1_btn_text": "Read More",
+        "c1_btn_link": "",
+        "c2_bg": "#4f7a55",
+        "c2_text_color": "#ffffff",
+        "c2_title": "We plant trees",
+        "c2_desc": "Tree planting is an essential activity for maintaining the balance of nature.",
+        "c2_btn_text": "Read More",
+        "c2_btn_link": "",
+        "c2_image": "shopify://shop_images/videoframe_26487.png",
+        "c3_bg": "#070707",
+        "c3_text_color": "#ffffff",
+        "c3_title": "Tree step for a big change",
+        "c3_desc": "Planting a tree may seem like a small act, but it has a profound impact on the environment.",
+        "c3_btn_text": "Read More",
+        "c3_btn_link": "",
+        "c3_image": "shopify://shop_images/videoframe_26487.png"
+      }
     }
   },
   "order": [
     "main",
     "sustainability_highlights_nRHPTb",
-    "sustainability_marquee_DFDEDW"
+    "sustainability_marquee_DFDEDW",
+    "sustainability_cards_grid_ziarJM"
   ]
 }
