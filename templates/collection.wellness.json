@@ -337,6 +337,53 @@
         "padding-block-start": 15,
         "padding-block-end": 32
       }
+    },
+    "sustainability_testimonials_CjTxmB": {
+      "type": "sustainability-testimonials",
+      "blocks": {
+        "testimonial_dfAwFF": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "I was taking multiple supplements because of things I'd read online. The personalised plan helped me focus on what my body actually needed.",
+            "author": "Kabir Bharara"
+          }
+        },
+        "testimonial_jdd6fM": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "I used to rely on guesswork when it came to my wellness routine. Now I feel far more confident making decisions about my health.",
+            "author": "Dr. Swati Pandey"
+          }
+        },
+        "testimonial_B3iVaA": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "What stood out wasn't just the data, it was how personal it felt. It helped me understand myself in a way no health report ever has.",
+            "author": "Abhishree Akolkar"
+          }
+        },
+        "testimonial_NiRtG4": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "I've spent years investing in my health. Understanding my biomarkers made those efforts feel much more intentional.",
+            "author": "Yashika"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_dfAwFF",
+        "testimonial_jdd6fM",
+        "testimonial_B3iVaA",
+        "testimonial_NiRtG4"
+      ],
+      "name": "Testimonial Card Grid",
+      "settings": {
+        "bg_color": "#fbfcf9",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "title": "Real people, real results.",
+        "description": "Discover how people found their perfect supplement fit with Wellbeing BloodView."
+      }
     }
   },
   "order": [
@@ -344,6 +391,7 @@
     "webpage_crousal_L4pfRA",
     "counter_custom_8F34xj",
     "marquee221_NpPBzA",
-    "main"
+    "main",
+    "sustainability_testimonials_CjTxmB"
   ]
 }
