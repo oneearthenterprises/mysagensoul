@@ -248,6 +248,12 @@
               },
               "blocks": {}
             },
+            "judge_me_reviews_preview_badge_homepage_ww6gjc": {
+              "type": "shopify://apps/judge-me-reviews/blocks/preview_badge_homepage/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+              "settings": {
+                "product": "{{ closest.product }}"
+              }
+            },
             "price_hpnEGH": {
               "type": "price",
               "name": "t:names.product_price",
@@ -313,6 +319,7 @@
           "block_order": [
             "product_card_gallery_MbxVxP",
             "product_title_iG9tVL",
+            "judge_me_reviews_preview_badge_homepage_ww6gjc",
             "price_hpnEGH",
             "buy_buttons_Wp9hky"
           ]
@@ -340,12 +347,94 @@
         "padding-block-start": 48,
         "padding-block-end": 48
       }
+    },
+    "178696623357238711": {
+      "type": "_blocks",
+      "blocks": {
+        "judge_me_reviews_cards_carousel_N4B4dy": {
+          "type": "shopify://apps/judge-me-reviews/blocks/cards_carousel/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "show_sample_reviews": false,
+            "reviews_selection": "product_reviews",
+            "products": [
+              "body-detox-heart-herbal-combo",
+              "slim-herbal-tea-weight-management-detox-infusion",
+              "chamomile-herbal-tea-relaxation-sleep-support-infusion",
+              "diabetes-support-herbal-tea-natural-blood-sugar-wellness-infusion",
+              "happy-heart-gluco-balance-herbal-combo",
+              "heart-health-herbal-tea-natural-cardiovascular-support",
+              "moringa-herbal-tea-superfood-nutrition-immunity-boost-infusion",
+              "lady-bloom-women-s-herbal-wellness-infusion",
+              "jasmine-herbal-tea-natural-relaxation-mood-support-infusion",
+              "hibiscus-flower-tea-immunity-boost-antioxidant-herbal-infusion"
+            ],
+            "filter_pinned": false,
+            "filter_featured": true,
+            "filter_custom_tags": "",
+            "star_rating": "all",
+            "show_review_media": true,
+            "display_order": "media_first",
+            "no_image_fallback": "review_text_only",
+            "max_reviews": 20,
+            "review_length": "medium",
+            "text_size": "medium",
+            "image_ratio": "1",
+            "reviews_shown": 4,
+            "show_reviewer_name": true,
+            "show_product_name": true,
+            "hide_arrows_mobile": true,
+            "arrows_position": "sides",
+            "max_width": 1100,
+            "corner_styling": "soft",
+            "header_text_color": "#000000",
+            "text_color": "#000000",
+            "card_color": "#F9F9F9",
+            "stars_color": "",
+            "arrows_color": "#000000",
+            "transition_speed": 5,
+            "header_text": "Customers are saying",
+            "show_average_rating": true,
+            "rating_display": "default"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_cards_carousel_N4B4dy"
+      ],
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
     }
   },
   "order": [
     "testimonials_header",
     "testimonials_slider",
     "testimonials_video_grid",
-    "product_recommendations_UNPPPt"
+    "product_recommendations_UNPPPt",
+    "178696623357238711"
   ]
 }
