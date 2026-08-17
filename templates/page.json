@@ -1,3 +1,4 @@
+
 {
   "sections": {
     "main": {
@@ -39,7 +40,7 @@
         "heading",
         "page-content"
       ],
-      "disabled": false,
+      "disabled": true,
       "settings": {
         "content_direction": "column",
         "gap": 32,
@@ -47,9 +48,142 @@
         "padding-block-start": 40,
         "padding-block-end": 80
       }
+    },
+    "sustainability_highlights_nRHPTb": {
+      "type": "sustainability-highlights",
+      "name": "Sustainability Banner",
+      "settings": {
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "bg_image": "shopify://shop_images/videoframe_26487.png",
+        "accent_text": "#1 Sustainable Wellness Brand",
+        "heading": "New Energy for the Future",
+        "btn1_text": "Explore Products",
+        "btn1_link": "",
+        "btn2_text": "Our Promise",
+        "btn2_link": "",
+        "float_image": "shopify://shop_images/videoframe_26487.png",
+        "float_title": "Discover Our Sourcing",
+        "float_link": "",
+        "stat1_num": "100%",
+        "stat1_title": "Sustainable Farming",
+        "stat1_desc": "We partner with local farmers and artisans who use regenerative practices, preserving the soil.",
+        "stat2_num": "Clean",
+        "stat2_title": "Cruelty-Free & Natural",
+        "stat2_desc": "Every offering is 100% natural, free from harmful toxins, and never tested on animals.",
+        "stat3_num": "Zero",
+        "stat3_title": "Waste-Free Packaging",
+        "stat3_desc": "We prioritize glass, paper, and biodegradable materials to minimize plastic waste."
+      }
+    },
+    "sustainability_marquee_DFDEDW": {
+      "type": "sustainability-marquee",
+      "blocks": {
+        "card_RKKU6j": {
+          "type": "card",
+          "settings": {
+            "title": "Solar power",
+            "card_bg": "#ffeacc",
+            "card_text_color": "#8c4f00",
+            "icon_type": "sun",
+            "custom_svg": ""
+          }
+        },
+        "card_peLTD4": {
+          "type": "card",
+          "settings": {
+            "title": "Wind power",
+            "card_bg": "#0d567c",
+            "card_text_color": "#ffffff",
+            "icon_type": "wind",
+            "custom_svg": ""
+          }
+        },
+        "card_DzkWFr": {
+          "type": "card",
+          "settings": {
+            "title": "Forest management",
+            "card_bg": "#d6f272",
+            "card_text_color": "#1c3800",
+            "icon_type": "tree",
+            "custom_svg": ""
+          }
+        },
+        "card_NyK9ha": {
+          "type": "card",
+          "settings": {
+            "title": "Agricultural methane capture",
+            "card_bg": "#5b3713",
+            "card_text_color": "#fed89c",
+            "icon_type": "wheat",
+            "custom_svg": ""
+          }
+        },
+        "card_hFeALJ": {
+          "type": "card",
+          "settings": {
+            "title": "Biogas",
+            "card_bg": "#bce6ff",
+            "card_text_color": "#074872",
+            "icon_type": "biogas",
+            "custom_svg": ""
+          }
+        },
+        "card_DtRqRe": {
+          "type": "card",
+          "settings": {
+            "title": "Oil recycling",
+            "card_bg": "#2b264e",
+            "card_text_color": "#d9ceff",
+            "icon_type": "drop",
+            "custom_svg": ""
+          }
+        },
+        "card_fEGKkF": {
+          "type": "card",
+          "settings": {
+            "title": "Landfill gas methane capture",
+            "card_bg": "#095311",
+            "card_text_color": "#d2ffd6",
+            "icon_type": "trash",
+            "custom_svg": ""
+          }
+        },
+        "card_ED94C8": {
+          "type": "card",
+          "settings": {
+            "title": "Solar power",
+            "card_bg": "#ffe680",
+            "card_text_color": "#5b4000",
+            "icon_type": "sun",
+            "custom_svg": ""
+          }
+        }
+      },
+      "block_order": [
+        "card_RKKU6j",
+        "card_peLTD4",
+        "card_DzkWFr",
+        "card_NyK9ha",
+        "card_hFeALJ",
+        "card_DtRqRe",
+        "card_fEGKkF",
+        "card_ED94C8"
+      ],
+      "name": "Sustainability Marquee",
+      "settings": {
+        "title": "Eco Initiatives",
+        "bg_color": "#ffffff",
+        "direction": "left",
+        "speed": 30,
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "sustainability_highlights_nRHPTb",
+    "sustainability_marquee_DFDEDW"
   ]
 }
