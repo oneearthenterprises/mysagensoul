@@ -1,0 +1,137 @@
+{% comment %}
+  Testimonials Header Section
+{% endcomment %}
+
+<div class="th-section" style="background-color: {{ section.settings.bg_color }};">
+  <div class="th-container">
+    <div class="th-rating-wrap">
+      <div class="th-stars">
+        {% for i in (1..5) %}
+          <svg viewBox="0 0 24 24" fill="#e8a33d" width="20" height="20">
+            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+          </svg>
+        {% endfor %}
+      </div>
+      {% if section.settings.rating_text != blank %}
+        <span class="th-rating-text">{{ section.settings.rating_text }}</span>
+      {% endif %}
+    </div>
+
+    {% if section.settings.title != blank %}
+      <h1 class="th-title">{{ section.settings.title }}</h1>
+    {% endif %}
+
+    {% if section.settings.subtitle != blank %}
+      <p class="th-subtitle">{{ section.settings.subtitle }}</p>
+    {% endif %}
+
+    <!-- Metrics blocks -->
+    <div class="th-metrics">
+      <div class="th-metric-card">
+        <h3>98%</h3>
+        <p>Positive Feedback</p>
+      </div>
+      <div class="th-metric-card">
+        <h3>15K+</h3>
+        <p>Happy Tea Lovers</p>
+      </div>
+      <div class="th-metric-card">
+        <h3>100%</h3>
+        <p>Organic & Natural</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.th-section {
+  padding: 80px 20px 60px;
+  text-align: center;
+  border-bottom: 1px solid #f0edeb;
+}
+.th-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+.th-rating-wrap {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+.th-stars {
+  display: flex;
+  gap: 4px;
+}
+.th-rating-text {
+  font-size: 13px;
+  font-weight: 600;
+  color: #6b6359;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+.th-title {
+  font-size: 48px;
+  line-height: 1.15;
+  color: #1a1a1a;
+  margin: 0 0 16px;
+  font-weight: 700;
+}
+.th-subtitle {
+  font-size: 18px;
+  line-height: 1.5;
+  color: #555;
+  margin: 0 0 40px;
+}
+.th-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+  border-top: 1px solid rgba(0,0,0,0.06);
+  padding-top: 30px;
+}
+.th-metric-card h3 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 4px;
+}
+.th-metric-card p {
+  font-size: 12px;
+  color: #6b6359;
+  margin: 0;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+@media (max-width: 768px) {
+  .th-section {
+    padding: 60px 20px 40px;
+  }
+  .th-title {
+    font-size: 36px;
+  }
+  .th-subtitle {
+    font-size: 16px;
+  }
+  .th-metrics {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Testimonials Header",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Heading", "default": "Real Stories. Real Love." },
+    { "type": "textarea", "id": "subtitle", "label": "Subtext", "default": "Discover how Sage & Soul is transforming daily wellness rituals across our community." },
+    { "type": "text", "id": "rating_text", "label": "Rating Text", "default": "4.9/5 stars based on 15,000+ happy sips" },
+    { "type": "color", "id": "bg_color", "label": "Background Color", "default": "#fbfaf8" }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,32 @@
+{
+  "name": "Testimonials Page",
+  "sections": {
+    "testimonials_header": {
+      "type": "testimonials-header",
+      "settings": {
+        "title": "Real Stories. Real Love.",
+        "subtitle": "Discover how Sage & Soul is transforming daily wellness rituals across our community.",
+        "rating_text": "4.9/5 stars based on 15,000+ happy sips",
+        "bg_color": "#fbfaf8"
+      }
+    },
+    "testimonials_slider": {
+      "type": "sustainability-testimonials",
+      "settings": {
+        "heading": "Love from Our Customers"
+      }
+    },
+    "testimonials_video_grid": {
+      "type": "testimonials-video-grid",
+      "settings": {
+        "heading": "Watch Their Stories",
+        "subtitle": "Real video reviews from our community members sharing their daily tea rituals."
+      }
+    }
+  },
+  "order": [
+    "testimonials_header",
+    "testimonials_slider",
+    "testimonials_video_grid"
+  ]
+}
