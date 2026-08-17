@@ -1,0 +1,338 @@
+<section class="testimonials-card-section" style="padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px; background-color: {{ section.settings.bg_color }};">
+  <div class="page-width">
+    
+    <!-- Testimonial Section Header -->
+    {% if section.settings.title != blank or section.settings.description != blank %}
+      <div class="testimonials-header-row">
+        <div class="testimonials-header-left">
+          {% if section.settings.title != blank %}
+            <h2 class="testimonials-section-title">{{ section.settings.title }}</h2>
+          {% endif %}
+        </div>
+        <div class="testimonials-header-right">
+          {% if section.settings.description != blank %}
+            <p class="testimonials-section-desc">{{ section.settings.description }}</p>
+          {% endif %}
+        </div>
+      </div>
+    {% endif %}
+
+    <!-- Grid of Testimonial Cards -->
+    <div class="testimonials-cards-grid">
+      {% for block in section.blocks %}
+        <div class="testimonial-grid-card" {{ block.shopify_attributes }}>
+          
+          <!-- Background image of the card -->
+          <div class="testimonial-card-bg-wrap">
+            {% if block.settings.image != blank %}
+              <img src="{{ block.settings.image | image_url: width: 800 }}" alt="{{ block.settings.author | escape }}" loading="lazy">
+            {% else %}
+              <!-- Fallback background gradient when no image is uploaded -->
+              <div class="testimonial-placeholder-bg"></div>
+            {% endif %}
+          </div>
+
+          <!-- Bottom dark gradient overlay -->
+          <div class="testimonial-card-overlay"></div>
+
+          <!-- Testimonial content -->
+          <div class="testimonial-card-content">
+            {% if block.settings.quote != blank %}
+              <p class="testimonial-quote">"{{ block.settings.quote }}"</p>
+            {% endif %}
+            
+            {% if block.settings.author != blank %}
+              <h4 class="testimonial-author">{{ block.settings.author }}</h4>
+            {% endif %}
+          </div>
+
+        </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+<style>
+.testimonials-card-section {
+  overflow: hidden;
+  font-family: var(--font-body--family), sans-serif;
+}
+
+.testimonials-card-section .page-width {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Header Split Row Styling */
+.testimonials-header-row {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 60px;
+  align-items: center;
+  margin-bottom: 55px;
+}
+
+.testimonials-section-title {
+  font-size: clamp(28px, 4.5vw, 46px);
+  font-weight: 700;
+  line-height: 1.15;
+  color: #1a1a1a;
+  margin: 0;
+  letter-spacing: -1px;
+}
+
+.testimonials-section-desc {
+  font-size: 17px;
+  line-height: 1.6;
+  color: #4a4a4a;
+  margin: 0;
+}
+
+/* Grid layout */
+.testimonials-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+/* Testimonial Card container */
+.testimonial-grid-card {
+  position: relative;
+  border-radius: 28px;
+  overflow: hidden;
+  height: 480px;
+  display: flex;
+  align-items: flex-end;
+  padding: 35px 28px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.testimonial-grid-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Background image wrap & img styles */
+.testimonial-card-bg-wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  overflow: hidden;
+  background-color: #e5e8e3;
+}
+
+.testimonial-card-bg-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.testimonial-grid-card:hover .testimonial-card-bg-wrap img {
+  transform: scale(1.04);
+}
+
+.testimonial-placeholder-bg {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #8c9b7d 0%, #4f7a55 100%);
+  opacity: 0.2;
+}
+
+/* Dark gradient overlay */
+.testimonial-card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.45) 45%, rgba(0, 0, 0, 0) 100%);
+  transition: opacity 0.3s ease;
+}
+
+/* Testimonial text & author layout */
+.testimonial-card-content {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  text-align: center;
+  color: #ffffff;
+}
+
+.testimonial-quote {
+  font-size: 13.5px;
+  line-height: 1.55;
+  margin: 0 0 16px 0;
+  opacity: 0.9;
+  font-weight: 400;
+  letter-spacing: 0.1px;
+}
+
+.testimonial-author {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0;
+  color: #ffffff;
+  letter-spacing: 0.3px;
+}
+
+/* Responsive styles */
+@media (max-width: 1199px) {
+  .testimonials-header-row {
+    gap: 40px;
+  }
+  .testimonials-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .testimonial-grid-card {
+    height: 440px;
+  }
+}
+
+@media (max-width: 767px) {
+  .testimonials-card-section {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  
+  .testimonials-header-row {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    text-align: center;
+    margin-bottom: 35px;
+  }
+}
+
+@media (max-width: 575px) {
+  .testimonials-cards-grid {
+    grid-template-columns: 1fr;
+  }
+  .testimonial-grid-card {
+    height: 400px;
+    padding: 30px 20px;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Testimonial Card Grid",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Layout"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Section Background",
+      "default": "#fbfcf9"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 80
+    },
+    {
+      "type": "header",
+      "content": "Headers"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Main Heading",
+      "default": "Real people, real results."
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description / Callout Text",
+      "default": "Discover how people found their perfect supplement fit with Wellbeing BloodView."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Customer Photo (Portrait)"
+        },
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Testimonial Quote",
+          "default": "I was taking multiple supplements because of things I'd read online. The personalised plan helped me focus on what my body actually needed."
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Customer Name",
+          "default": "Kabir Bharara"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonial Card Grid",
+      "blocks": [
+        {
+          "type": "testimonial",
+          "settings": {
+            "author": "Kabir Bharara",
+            "quote": "I was taking multiple supplements because of things I'd read online. The personalised plan helped me focus on what my body actually needed."
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "author": "Dr. Swati Pandey",
+            "quote": "I used to rely on guesswork when it came to my wellness routine. Now I feel far more confident making decisions about my health."
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "author": "Abhishree Akolkar",
+            "quote": "What stood out wasn't just the data, it was how personal it felt. It helped me understand myself in a way no health report ever has."
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "author": "Yashika",
+            "quote": "I've spent years investing in my health. Understanding my biomarkers made those efforts feel much more intentional."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
