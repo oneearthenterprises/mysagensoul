@@ -1027,9 +1027,20 @@
     "shoppable_video_carousel_cjpKQK": {
       "type": "shoppable-video-carousel",
       "blocks": {
+        "slide_DFhRc4": {
+          "type": "slide",
+          "settings": {
+            "video": "shopify://files/videos/Happy Heart.mp4",
+            "title": "Best Picks",
+            "product_1": "",
+            "product_2": "",
+            "product_3": ""
+          }
+        },
         "slide_n3KPA7": {
           "type": "slide",
           "settings": {
+            "video": "shopify://files/videos/Happy Liver & Body Detox.mp4",
             "title": "Best Picks",
             "product_1": "heart-health-herbal-tea-natural-cardiovascular-support",
             "product_2": "",
@@ -1039,6 +1050,7 @@
         "slide_69CepG": {
           "type": "slide",
           "settings": {
+            "video": "shopify://files/videos/download (6) (2).mp4",
             "title": "Best Picks",
             "product_1": "slim-herbal-tea-weight-management-detox-infusion",
             "product_2": "",
@@ -1048,6 +1060,7 @@
         "slide_MweWj8": {
           "type": "slide",
           "settings": {
+            "video": "shopify://files/videos/Untitled design (1) (1) (1).mp4",
             "title": "Best Picks",
             "product_1": "slim-herbal-tea-weight-management-detox-infusion",
             "product_2": "",
@@ -1057,6 +1070,7 @@
         "slide_tB38rq": {
           "type": "slide",
           "settings": {
+            "video": "shopify://files/videos/download (6) (2).mp4",
             "title": "Best Picks",
             "product_1": "slim-herbal-tea-weight-management-detox-infusion",
             "product_2": "",
@@ -1066,6 +1080,7 @@
         "slide_8rMLMa": {
           "type": "slide",
           "settings": {
+            "video": "shopify://files/videos/Happy Heart.mp4",
             "title": "Best Picks",
             "product_1": "slim-herbal-tea-weight-management-detox-infusion",
             "product_2": "",
@@ -1075,6 +1090,7 @@
         "slide_TXEB8t": {
           "type": "slide",
           "settings": {
+            "video": "shopify://files/videos/Untitled design (1) (1) (1).mp4",
             "title": "Best Picks",
             "product_1": "slim-herbal-tea-weight-management-detox-infusion",
             "product_2": "diabetes-support-herbal-tea-natural-blood-sugar-wellness-infusion",
@@ -1083,6 +1099,7 @@
         }
       },
       "block_order": [
+        "slide_DFhRc4",
         "slide_n3KPA7",
         "slide_69CepG",
         "slide_MweWj8",
