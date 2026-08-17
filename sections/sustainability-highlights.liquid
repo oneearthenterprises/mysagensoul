@@ -1,0 +1,599 @@
+<section class="sustainability-hero-section" style="padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;">
+  <div class="page-width">
+    
+    <div class="sustainability-hero-wrapper {% if section.settings.bg_image == blank %}gradient-fallback{% endif %}"
+         style="{% if section.settings.bg_image != blank %}background-image: url('{{ section.settings.bg_image | image_url: width: 2000 }}');{% endif %}">
+      
+      <!-- Dark overlay for readability -->
+      <div class="hero-overlay"></div>
+
+      <div class="hero-main-grid">
+        
+        <!-- Left content: Text, Badge, Buttons -->
+        <div class="hero-left-content">
+          {% if section.settings.accent_text != blank %}
+            <span class="hero-accent-badge">{{ section.settings.accent_text }}</span>
+          {% endif %}
+
+          {% if section.settings.heading != blank %}
+            <h1 class="hero-title">{{ section.settings.heading }}</h1>
+          {% endif %}
+
+          <div class="hero-buttons-wrapper">
+            {% if section.settings.btn1_text != blank %}
+              <a href="{{ section.settings.btn1_link | default: '#' }}" class="hero-btn btn-primary">
+                {{ section.settings.btn1_text }} <span class="arrow">↗</span>
+              </a>
+            {% endif %}
+            
+            {% if section.settings.btn2_text != blank %}
+              <a href="{{ section.settings.btn2_link | default: '#' }}" class="hero-btn btn-secondary">
+                {{ section.settings.btn2_text }} <span class="arrow">↗</span>
+              </a>
+            {% endif %}
+          </div>
+        </div>
+
+        <!-- Right content: Floating Glassmorphic Card -->
+        <div class="hero-right-content">
+          <a href="{{ section.settings.float_link | default: '#' }}" class="glass-float-card">
+            
+            <div class="card-image-wrap">
+              {% if section.settings.float_image != blank %}
+                <img src="{{ section.settings.float_image | image_url: width: 500 }}" alt="{{ section.settings.float_title }}" loading="lazy">
+              {% else %}
+                <!-- Nice leaf visual fallback -->
+                <div class="image-placeholder-art">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 3C7.5 3 3.5 6.5 3 11C2.5 15 5 18.5 9 20C9.5 20.2 10 20.3 10.5 20.3C11 20.3 11.5 20.1 11.8 19.8C12.3 19.3 12.4 18.5 12 18C11.6 17.5 11 17 10 16.5C8 15.5 8 13.5 9.5 12.5C11 11.5 13 12 14.5 13C15.5 13.6 16 14.4 16.5 15.2C17 16 17.8 16.8 18.8 17C19.8 17.2 20.8 16.7 21.2 15.8C22.2 13.8 21.5 10.3 19.5 8C17.5 5.7 14.5 3 12 3Z" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+                  </svg>
+                </div>
+              {% endif %}
+            </div>
+
+            <div class="card-footer">
+              <span class="card-title">{{ section.settings.float_title }}</span>
+           
+            </div>
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Bottom Panel: Stats/Highlights with inverted S-curve -->
+      <div class="stats-panel-bar">
+        <div class="stats-bar-grid">
+          
+          <!-- Column 1 -->
+          <div class="stat-column">
+            <span class="stat-number">{{ section.settings.stat1_num }}</span>
+            <h4 class="stat-title">{{ section.settings.stat1_title }}</h4>
+            <p class="stat-desc">{{ section.settings.stat1_desc }}</p>
+          </div>
+
+          <!-- Column 2 -->
+          <div class="stat-column">
+            <span class="stat-number">{{ section.settings.stat2_num }}</span>
+            <h4 class="stat-title">{{ section.settings.stat2_title }}</h4>
+            <p class="stat-desc">{{ section.settings.stat2_desc }}</p>
+          </div>
+
+          <!-- Column 3 -->
+          <div class="stat-column">
+            <span class="stat-number">{{ section.settings.stat3_num }}</span>
+            <h4 class="stat-title">{{ section.settings.stat3_title }}</h4>
+            <p class="stat-desc">{{ section.settings.stat3_desc }}</p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+.sustainability-hero-section {
+  font-family: var(--font-body--family), sans-serif;
+  overflow: hidden;
+  background-color: transparent;
+}
+
+.sustainability-hero-section .page-width {
+  max-width: 1340px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.sustainability-hero-wrapper {
+  position: relative;
+  border-radius: 40px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 650px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.gradient-fallback {
+  background: linear-gradient(135deg, #1b2817 0%, #30442b 100%);
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.5) 100%);
+  z-index: 1;
+}
+
+.hero-main-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 50px;
+  padding: 80px 70px 180px 70px;
+  align-items: center;
+}
+
+/* Left side content styles */
+.hero-accent-badge {
+  display: inline-block;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #c7d8bd;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.hero-title {
+  font-size: clamp(38px, 5.5vw, 68px);
+  font-weight: 600;
+  line-height: 1.1;
+  color: #ffffff;
+  margin: 0 0 40px 0;
+  letter-spacing: -1.5px;
+}
+
+.hero-buttons-wrapper {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.hero-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: 100px;
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.hero-btn .arrow {
+  transition: transform 0.3s ease;
+}
+
+.hero-btn:hover .arrow {
+  transform: translate(2px, -2px);
+}
+
+.btn-primary {
+  background-color: #ffffff;
+  color: #1b2817;
+  border: 1px solid #ffffff;
+}
+
+.btn-primary:hover {
+  background-color: #f3f5f2;
+  box-shadow: 0 5px 15px rgba(255,255,255,0.1);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: #ffffff;
+  border: 1px solid rgba(255,255,255,0.4);
+}
+
+.btn-secondary:hover {
+  border-color: #ffffff;
+  background-color: rgba(255,255,255,0.08);
+}
+
+/* Right side: Glassmorphic Floating Card */
+.hero-right-content {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.glass-float-card {
+  display: block;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 24px;
+  padding: 20px;
+  width: 280px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-float-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 45px rgba(0,0,0,0.25);
+}
+
+.card-dots {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  display: flex;
+  gap: 3px;
+}
+
+.card-dots span {
+  width: 4px;
+  height: 4px;
+  background-color: rgba(255,255,255,0.6);
+  border-radius: 50%;
+}
+
+.card-image-wrap {
+  width: 100%;
+  height: 180px;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.card-image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image-placeholder-art {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,0.4);
+}
+
+.image-placeholder-art svg {
+  width: 40px;
+  height: 40px;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-title {
+  font-size: 15px;
+  font-weight: 500;
+  color: #ffffff;
+  line-height: 1.4;
+  max-width: 80%;
+}
+
+.card-arrow {
+  color: rgba(255,255,255,0.8);
+  font-size: 16px;
+}
+
+/* Bottom Stats Panel */
+.stats-panel-bar {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 68%;
+  background: #ffffff;
+  border-radius: 40px 0 0 0;
+  padding: 45px 50px;
+  z-index: 2;
+}
+
+/* Inverted curves on left boundary of the stats card */
+.stats-panel-bar::before {
+  content: "";
+  position: absolute;
+  left: -40px;
+  bottom: 0;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border-bottom-right-radius: 40px;
+  box-shadow: 20px 20px 0 20px #ffffff;
+  pointer-events: none;
+}
+
+.stats-bar-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+
+.stat-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-number {
+  font-size: clamp(28px, 3.5vw, 46px);
+  font-weight: 600;
+  color: #111111;
+  line-height: 1;
+  margin-bottom: 12px;
+  letter-spacing: -1px;
+}
+
+.stat-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #2b3325;
+  margin: 0 0 8px 0;
+}
+
+.stat-desc {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #666666;
+  margin: 0;
+}
+
+/* Responsive Styles */
+@media (max-width: 1199px) {
+  .hero-main-grid {
+    padding: 70px 50px 200px 50px;
+  }
+  .stats-panel-bar {
+    width: 75%;
+    padding: 40px;
+  }
+}
+
+@media (max-width: 991px) {
+  .sustainability-hero-wrapper {
+    min-height: auto;
+    display: block;
+  }
+  
+  .hero-main-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 60px 40px 60px 40px;
+  }
+  
+  .hero-right-content {
+    justify-content: flex-start;
+  }
+  
+  .glass-float-card {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .stats-panel-bar {
+    position: relative;
+    width: 100%;
+    border-radius: 0;
+    padding: 40px;
+  }
+  
+  .stats-panel-bar::before {
+    display: none;
+  }
+
+  .stats-bar-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+}
+
+@media (max-width: 575px) {
+  .sustainability-hero-wrapper {
+    border-radius: 24px;
+  }
+  .hero-main-grid {
+    padding: 40px 20px;
+  }
+  .hero-title {
+    margin-bottom: 24px;
+  }
+  .stats-panel-bar {
+    padding: 30px 20px;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Sustainability Banner",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout Settings"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 36
+    },
+    {
+      "type": "header",
+      "content": "Hero Banner Background"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "header",
+      "content": "Hero Left Content"
+    },
+    {
+      "type": "text",
+      "id": "accent_text",
+      "label": "Accent Badge Text",
+      "default": "#1 Sustainable Wellness Brand"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Hero Title",
+      "default": "New Energy for the Future"
+    },
+    {
+      "type": "text",
+      "id": "btn1_text",
+      "label": "Primary Button Text",
+      "default": "Explore Products"
+    },
+    {
+      "type": "url",
+      "id": "btn1_link",
+      "label": "Primary Button Link"
+    },
+    {
+      "type": "text",
+      "id": "btn2_text",
+      "label": "Secondary Button Text",
+      "default": "Our Promise"
+    },
+    {
+      "type": "url",
+      "id": "btn2_link",
+      "label": "Secondary Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Hero Right: Floating Card"
+    },
+    {
+      "type": "image_picker",
+      "id": "float_image",
+      "label": "Card Floating Image"
+    },
+    {
+      "type": "text",
+      "id": "float_title",
+      "label": "Card Title",
+      "default": "Discover Our Sourcing"
+    },
+    {
+      "type": "url",
+      "id": "float_link",
+      "label": "Card Link"
+    },
+    {
+      "type": "header",
+      "content": "Bottom Stats Bar"
+    },
+    {
+      "type": "header",
+      "content": "Stat Column 1"
+    },
+    {
+      "type": "text",
+      "id": "stat1_num",
+      "label": "Stat 1 Accent Number/Text",
+      "default": "100%"
+    },
+    {
+      "type": "text",
+      "id": "stat1_title",
+      "label": "Stat 1 Title",
+      "default": "Sustainable Farming"
+    },
+    {
+      "type": "textarea",
+      "id": "stat1_desc",
+      "label": "Stat 1 Description",
+      "default": "We partner with local farmers and artisans who use regenerative practices, preserving the soil."
+    },
+    {
+      "type": "header",
+      "content": "Stat Column 2"
+    },
+    {
+      "type": "text",
+      "id": "stat2_num",
+      "label": "Stat 2 Accent Number/Text",
+      "default": "Clean"
+    },
+    {
+      "type": "text",
+      "id": "stat2_title",
+      "label": "Stat 2 Title",
+      "default": "Cruelty-Free & Natural"
+    },
+    {
+      "type": "textarea",
+      "id": "stat2_desc",
+      "label": "Stat 2 Description",
+      "default": "Every offering is 100% natural, free from harmful toxins, and never tested on animals."
+    },
+    {
+      "type": "header",
+      "content": "Stat Column 3"
+    },
+    {
+      "type": "text",
+      "id": "stat3_num",
+      "label": "Stat 3 Accent Number/Text",
+      "default": "Zero"
+    },
+    {
+      "type": "text",
+      "id": "stat3_title",
+      "label": "Stat 3 Title",
+      "default": "Waste-Free Packaging"
+    },
+    {
+      "type": "textarea",
+      "id": "stat3_desc",
+      "label": "Stat 3 Description",
+      "default": "We prioritize glass, paper, and biodegradable materials to minimize plastic waste."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Sustainability Banner"
+    }
+  ]
+}
+{% endschema %}
