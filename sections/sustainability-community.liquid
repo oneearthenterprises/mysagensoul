@@ -1,0 +1,316 @@
+<section class="sustainability-community-section" style="padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px; background-color: {{ section.settings.bg_color }};">
+  <div class="page-width">
+    <div class="community-split-container layout-{{ section.settings.image_position }}">
+      
+      <!-- Text Column -->
+      <div class="community-text-col">
+        <div class="text-content-wrapper">
+          {% if section.settings.heading != blank %}
+            <h2 class="community-heading">{{ section.settings.heading }}</h2>
+          {% endif %}
+          
+          {% if section.settings.description != blank %}
+            <div class="community-description">
+              <p>{{ section.settings.description }}</p>
+            </div>
+          {% endif %}
+          
+          {% if section.settings.btn_text != blank %}
+            <a href="{{ section.settings.btn_link | default: '#' }}" class="community-action-btn">
+              {{ section.settings.btn_text }}
+            </a>
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- Image Column -->
+      <div class="community-image-col">
+        <div class="image-wrapper">
+          {% if section.settings.image != blank %}
+            <img src="{{ section.settings.image | image_url: width: 1200 }}" 
+                 alt="{{ section.settings.heading | escape }}" 
+                 loading="lazy">
+          {% else %}
+            <!-- Beautiful leaf visual fallback -->
+            <div class="image-placeholder-box">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 3C7.5 3 3.5 6.5 3 11C2.5 15 5 18.5 9 20C9.5 20.2 10 20.3 10.5 20.3C11 20.3 11.5 20.1 11.8 19.8C12.3 19.3 12.4 18.5 12 18C11.6 17.5 11 17 10 16.5C8 15.5 8 13.5 9.5 12.5C11 11.5 13 12 14.5 13C15.5 13.6 16 14.4 16.5 15.2C17 16 17.8 16.8 18.8 17C19.8 17.2 20.8 16.7 21.2 15.8C22.2 13.8 21.5 10.3 19.5 8C17.5 5.7 14.5 3 12 3Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+              <span>Upload Sponsoring / Community Image</span>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+.sustainability-community-section {
+  overflow: hidden;
+  font-family: var(--font-body--family), sans-serif;
+}
+
+.sustainability-community-section .page-width {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.community-split-container {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 60px;
+  align-items: center;
+}
+
+/* Image alignment options */
+.community-split-container.layout-left {
+  direction: rtl;
+}
+
+.community-split-container.layout-left .community-text-col,
+.community-split-container.layout-left .community-image-col {
+  direction: ltr;
+}
+
+/* Text Column Styles */
+.community-text-col {
+  display: flex;
+  align-items: center;
+  padding-right: 20px;
+}
+
+.community-split-container.layout-left .community-text-col {
+  padding-right: 0;
+  padding-left: 20px;
+}
+
+.text-content-wrapper {
+  max-width: 540px;
+}
+
+.community-heading {
+  font-size: clamp(30px, 4.5vw, 48px);
+  font-weight: 700;
+  line-height: 1.15;
+  color: #1a1a1a;
+  margin: 0 0 20px 0;
+  letter-spacing: -0.8px;
+}
+
+.community-description {
+  font-size: 16px;
+  line-height: 1.65;
+  color: #4a4a4a;
+  margin: 0 0 35px 0;
+}
+
+.community-description p {
+  margin: 0;
+}
+
+.community-action-btn {
+  display: inline-block;
+  background-color: #4f7a55;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 14px 34px;
+  border-radius: 100px;
+  box-shadow: 0 4px 15px rgba(79, 122, 85, 0.2);
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  border: 1px solid #4f7a55;
+}
+
+.community-action-btn:hover {
+  background-color: #3b5d40;
+  border-color: #3b5d40;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(79, 122, 85, 0.35);
+}
+
+/* Image Column Styles */
+.image-wrapper {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+  aspect-ratio: 4 / 3;
+}
+
+.image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.image-wrapper:hover img {
+  transform: scale(1.03);
+}
+
+/* Placeholder box */
+.image-placeholder-box {
+  width: 100%;
+  height: 100%;
+  background-color: #f4f6f3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #8c9b7d;
+  gap: 15px;
+  font-size: 14px;
+}
+
+.image-placeholder-box svg {
+  width: 48px;
+  height: 48px;
+}
+
+/* Responsive Styling */
+@media (max-width: 991px) {
+  .community-split-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .community-text-col, 
+  .community-split-container.layout-left .community-text-col {
+    padding: 0;
+  }
+  
+  .text-content-wrapper {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 767px) {
+  .sustainability-community-section {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  
+  .image-wrapper {
+    border-radius: 16px;
+    aspect-ratio: 16 / 10;
+  }
+
+  .community-heading {
+    margin-bottom: 16px;
+  }
+
+  .community-description {
+    margin-bottom: 25px;
+  }
+
+  .community-action-btn {
+    width: 100%;
+    text-align: center;
+    padding: 12px 20px;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Community Effort Banner",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Layout"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Section Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image Position",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "right"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 60
+    },
+    {
+      "type": "header",
+      "content": "Text Content"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Community Efforts in Tree Planting"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description Paragraph",
+      "default": "Tree planting becomes more effective when it is a community effort. Schools, organizations, and neighborhoods."
+    },
+    {
+      "type": "header",
+      "content": "Call to Action"
+    },
+    {
+      "type": "text",
+      "id": "btn_text",
+      "label": "Button Text",
+      "default": "Explore More"
+    },
+    {
+      "type": "url",
+      "id": "btn_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Banner Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Community Effort Banner"
+    }
+  ]
+}
+{% endschema %}
