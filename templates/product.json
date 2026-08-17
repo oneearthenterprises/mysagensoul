@@ -203,7 +203,7 @@
                     "wrap": "pretty",
                     "color": "var(--color-primary)",
                     "background": true,
-                    "background_color": "#0000009c",
+                    "background_color": "#000000",
                     "corner_radius": 8,
                     "padding-block-start": 0,
                     "padding-block-end": 0,
@@ -771,7 +771,7 @@
           "type": "text",
           "name": "t:names.header",
           "settings": {
-            "text": "<h3>You may also like </h3>",
+            "text": "<h3><strong>You may also like </strong></h3>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
@@ -950,6 +950,66 @@
         "padding-block-end": 48
       }
     },
+    "sustainability_testimonials_3g4hHa": {
+      "type": "sustainability-testimonials",
+      "blocks": {
+        "testimonial_EtaNyG": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/03_annie-marie-fine.jpg",
+            "quote": "I was taking multiple supplements because of things I'd read online. The personalised plan helped me focus on what my body actually needed.",
+            "author": "Kabir Bharara"
+          }
+        },
+        "testimonial_UUdCwQ": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/01_paula-simpson.jpg",
+            "quote": "I was taking multiple supplements because of things I'd read online. The personalised plan helped me focus on what my body actually needed.",
+            "author": "Kabir Bharara"
+          }
+        },
+        "testimonial_g8E439": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/04_suresh-khilani.jpg",
+            "quote": "I used to rely on guesswork when it came to my wellness routine. Now I feel far more confident making decisions about my health.",
+            "author": "Dr. Swati Pandey"
+          }
+        },
+        "testimonial_PWEnbx": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/09_sarah-spann.jpg",
+            "quote": "What stood out wasn't just the data, it was how personal it felt. It helped me understand myself in a way no health report ever has.",
+            "author": "Abhishree Akolkar"
+          }
+        },
+        "testimonial_Xa36B7": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/Dr._Simal_Soin_1_be836330-e6e1-4014-9526-2ab5502c1b85.jpg",
+            "quote": "I've spent years investing in my health. Understanding my biomarkers made those efforts feel much more intentional.",
+            "author": "Yashika"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_EtaNyG",
+        "testimonial_UUdCwQ",
+        "testimonial_g8E439",
+        "testimonial_PWEnbx",
+        "testimonial_Xa36B7"
+      ],
+      "name": "Testimonial Card Grid",
+      "settings": {
+        "bg_color": "#fbfcf9",
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "title": "Real people, real results.",
+        "description": "Discover how people found their perfect supplement fit with Wellbeing BloodView."
+      }
+    },
     "custom_faq_hFBF4t": {
       "type": "custom-faq",
       "name": "Custom FAQ",
@@ -1083,6 +1143,7 @@
     "title_image_Q39bJp",
     "certifications_slider_Dhh3zL",
     "product_recommendations_qggXJq",
+    "sustainability_testimonials_3g4hHa",
     "custom_faq_hFBF4t",
     "177694610329077f22",
     "1776833628c06a16a0"
