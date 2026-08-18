@@ -224,6 +224,8 @@ if (window.location.search.includes('variant=')) {
 
     {% render 'search-modal' %}
 
+    {% section 'mobile-sticky-footer-nav' %}
+
     {% if settings.quick_add or settings.mobile_quick_add %}
       {% render 'quick-add-modal' %}
     {% endif %}

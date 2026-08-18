@@ -1,0 +1,397 @@
+{% comment %}
+  Mobile Sticky Footer Navigation Bar
+  Adds a sticky navigation bar at the bottom of the screen on mobile devices only.
+  Fully customizable through the Shopify Theme Customizer.
+{% endcomment %}
+
+{% if section.settings.enable_sticky_nav %}
+<div class="mobile-sticky-footer-nav" id="MobileStickyFooterNav" style="--bg-color: {{ section.settings.bg_color }}; --text-color: {{ section.settings.text_color }}; --active-color: {{ section.settings.active_color }};">
+  <div class="mobile-sticky-footer-nav__container">
+    
+    <!-- HOME -->
+    {% assign home_url = section.settings.home_url | default: '/' %}
+    <a href="{{ home_url }}" class="mobile-sticky-footer-nav__item{% if request.path == home_url %} active{% endif %}">
+      <span class="mobile-sticky-footer-nav__icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+      </span>
+      <span class="mobile-sticky-footer-nav__label">{{ section.settings.home_label }}</span>
+    </a>
+
+    <!-- COLLECTION -->
+    {% assign shop_all_url = section.settings.shop_all_url | default: '/collections/shop-all' %}
+    <a href="{{ shop_all_url }}" class="mobile-sticky-footer-nav__item{% if request.path == shop_all_url %} active{% endif %}">
+      <span class="mobile-sticky-footer-nav__icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+      </span>
+      <span class="mobile-sticky-footer-nav__label">{{ section.settings.shop_all_label }}</span>
+    </a>
+
+    <!-- COMBOS -->
+    {% assign combos_url = section.settings.combos_url | default: '/collections/combos' %}
+    <a href="{{ combos_url }}" class="mobile-sticky-footer-nav__item{% if request.path == combos_url %} active{% endif %}">
+      <span class="mobile-sticky-footer-nav__icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+      </span>
+      <span class="mobile-sticky-footer-nav__label">{{ section.settings.combos_label }}</span>
+    </a>
+
+    <!-- CART / ADD TO CART -->
+    {% if template.name == 'product' %}
+      <button type="button" class="mobile-sticky-footer-nav__item mobile-sticky-footer-nav__item--add-to-cart" id="MobileStickyAddToCartBtn">
+        <span class="mobile-sticky-footer-nav__icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+        </span>
+        <span class="mobile-sticky-footer-nav__label">{{ section.settings.add_to_cart_label }}</span>
+      </button>
+    {% else %}
+      <a href="/cart" class="mobile-sticky-footer-nav__item mobile-sticky-footer-nav__item--cart{% if request.path == '/cart' %} active{% endif %}" id="MobileStickyCartTrigger">
+        <span class="mobile-sticky-footer-nav__icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+          <span class="mobile-sticky-footer-nav__badge{% if cart.item_count == 0 %} hidden{% endif %}" id="MobileCartCountBadge">
+            {{ cart.item_count }}
+          </span>
+        </span>
+        <span class="mobile-sticky-footer-nav__label">{{ section.settings.cart_label }}</span>
+      </a>
+    {% endif %}
+
+  </div>
+</div>
+
+<style>
+  /* Sticky Navigation Bar Styling */
+  .mobile-sticky-footer-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: var(--bg-color);
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.06);
+    z-index: 9999;
+    display: none; /* Hidden on desktop */
+  }
+
+  /* Support safe areas on modern iPhones (notch at the bottom) */
+  @supports (padding-bottom: env(safe-area-inset-bottom)) {
+    .mobile-sticky-footer-nav {
+      height: calc(60px + env(safe-area-inset-bottom));
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+  }
+
+  .mobile-sticky-footer-nav__container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    height: 100%;
+    align-items: center;
+    justify-items: center;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .mobile-sticky-footer-nav__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: var(--text-color);
+    width: 100%;
+    height: 100%;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-family: inherit;
+    transition: color 0.2s ease, transform 0.1s ease;
+    position: relative;
+  }
+
+  .mobile-sticky-footer-nav__item:active {
+    transform: scale(0.95);
+  }
+
+  .mobile-sticky-footer-nav__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .mobile-sticky-footer-nav__icon svg {
+    width: 22px;
+    height: 22px;
+    stroke: currentColor;
+    stroke-width: 2px;
+    transition: stroke 0.2s ease;
+  }
+
+  .mobile-sticky-footer-nav__label {
+    font-size: 11px;
+    font-weight: 500;
+    margin-top: 4px;
+    text-transform: capitalize;
+    color: inherit;
+  }
+
+  /* Active State Styling */
+  .mobile-sticky-footer-nav__item.active {
+    color: var(--active-color);
+  }
+  
+  .mobile-sticky-footer-nav__item.active .mobile-sticky-footer-nav__icon svg {
+    stroke: var(--active-color);
+    fill: rgba(27, 94, 60, 0.05);
+  }
+
+  /* Special Add to Cart Item Styling */
+  .mobile-sticky-footer-nav__item--add-to-cart {
+    color: #ffffff;
+    background: var(--active-color);
+    border-radius: 0;
+    font-weight: bold;
+  }
+  
+  .mobile-sticky-footer-nav__item--add-to-cart:active {
+    opacity: 0.9;
+  }
+
+  .mobile-sticky-footer-nav__item--add-to-cart .mobile-sticky-footer-nav__label {
+    color: #ffffff;
+  }
+
+  /* Cart Badge */
+  .mobile-sticky-footer-nav__badge {
+    position: absolute;
+    top: -6px;
+    right: -10px;
+    background: #e63946;
+    color: #ffffff;
+    font-size: 10px;
+    font-weight: 700;
+    min-width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 4px;
+    box-shadow: 0 0 0 2px var(--bg-color);
+  }
+
+  .mobile-sticky-footer-nav__badge.hidden {
+    display: none;
+  }
+
+  /* Responsive Visibility */
+  @media screen and (max-width: 768px) {
+    .mobile-sticky-footer-nav {
+      display: block;
+    }
+    
+    /* Add padding to body/main content to prevent the sticky nav from overlapping footer content */
+    body {
+      padding-bottom: 60px !important;
+    }
+    @supports (padding-bottom: env(safe-area-inset-bottom)) {
+      body {
+        padding-bottom: calc(60px + env(safe-area-inset-bottom)) !important;
+      }
+    }
+  }
+</style>
+
+<script>
+  (function() {
+    function initMobileNav() {
+      // 1. Handle Add to Cart action on product page
+      const addToCartBtn = document.getElementById('MobileStickyAddToCartBtn');
+      if (addToCartBtn) {
+        addToCartBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          // Try to find the main Add to Cart button on the page and click it
+          const mainAddToCartBtn = document.querySelector('product-form-component button[type="submit"]') || 
+                                   document.querySelector('.add-to-cart-button') ||
+                                   document.querySelector('[name="add"]');
+                                   
+          if (mainAddToCartBtn) {
+            // Visual feedback on the sticky button
+            const labelEl = addToCartBtn.querySelector('.mobile-sticky-footer-nav__label');
+            const originalLabel = labelEl ? labelEl.innerText : 'Add to Cart';
+            if (labelEl) labelEl.innerText = 'Adding...';
+            addToCartBtn.disabled = true;
+            
+            // Trigger the click on the main button
+            mainAddToCartBtn.click();
+            
+            // Restore button state after a short delay
+            setTimeout(() => {
+              if (labelEl) labelEl.innerText = originalLabel;
+              addToCartBtn.disabled = false;
+            }, 2000);
+          } else {
+            console.error('Main Add to Cart button not found');
+          }
+        });
+      }
+
+      // 2. Handle Cart Trigger to open the drawer
+      const cartTrigger = document.getElementById('MobileStickyCartTrigger');
+      if (cartTrigger) {
+        cartTrigger.addEventListener('click', function(e) {
+          // If the cart drawer is enabled and can be opened on this page
+          const headerCartBtn = document.querySelector('[data-testid="cart-drawer-trigger"]') ||
+                                document.querySelector('.header-actions__cart-icon') ||
+                                document.querySelector('cart-drawer-component');
+          
+          if (headerCartBtn) {
+            e.preventDefault();
+            headerCartBtn.click(); // Trigger the header cart drawer click
+          }
+        });
+      }
+
+      // 3. Dynamic Cart Count syncing
+      document.addEventListener('cart:updated', function(event) {
+        updateBadge(event.detail?.item_count);
+      });
+      document.addEventListener('cartUpdate', function(event) {
+        updateBadge(event.detail?.item_count);
+      });
+      
+      // Fallback: poll the header cart badge occasionally
+      setInterval(function() {
+        const headerBadge = document.querySelector('[data-testid="cart-icon"] .cart-bubble__count') || 
+                            document.querySelector('.cart-bubble__count') ||
+                            document.querySelector('.header-actions__cart-icon .cart-bubble');
+        if (headerBadge) {
+          const count = parseInt(headerBadge.innerText.replace(/[^\d]/g, ''), 10);
+          if (!isNaN(count)) {
+            updateBadge(count);
+          }
+        }
+      }, 2000);
+
+      function updateBadge(count) {
+        const badge = document.getElementById('MobileCartCountBadge');
+        if (badge) {
+          if (count > 0) {
+            badge.innerText = count;
+            badge.classList.remove('hidden');
+          } else {
+            badge.classList.add('hidden');
+          }
+        }
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initMobileNav);
+    } else {
+      initMobileNav();
+    }
+  })();
+</script>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Mobile Sticky Footer Nav",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_sticky_nav",
+      "label": "Enable Sticky Mobile Nav",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text/Icon Color (Inactive)",
+      "default": "#707070"
+    },
+    {
+      "type": "color",
+      "id": "active_color",
+      "label": "Text/Icon Color (Active)",
+      "default": "#1b5e3c"
+    },
+    {
+      "type": "header",
+      "content": "Home Link"
+    },
+    {
+      "type": "text",
+      "id": "home_label",
+      "label": "Home Label",
+      "default": "Home"
+    },
+    {
+      "type": "url",
+      "id": "home_url",
+      "label": "Home URL",
+      "default": "/"
+    },
+    {
+      "type": "header",
+      "content": "Shop All Link"
+    },
+    {
+      "type": "text",
+      "id": "shop_all_label",
+      "label": "Shop All Label",
+      "default": "Shop All"
+    },
+    {
+      "type": "url",
+      "id": "shop_all_url",
+      "label": "Shop All URL"
+    },
+    {
+      "type": "header",
+      "content": "Combos Link"
+    },
+    {
+      "type": "text",
+      "id": "combos_label",
+      "label": "Combos Label",
+      "default": "Combos"
+    },
+    {
+      "type": "url",
+      "id": "combos_url",
+      "label": "Combos URL"
+    },
+    {
+      "type": "header",
+      "content": "Cart / Add to Cart Link"
+    },
+    {
+      "type": "text",
+      "id": "cart_label",
+      "label": "Cart Label",
+      "default": "Cart"
+    },
+    {
+      "type": "text",
+      "id": "add_to_cart_label",
+      "label": "Add to Cart Label",
+      "default": "Add to Cart"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Mobile Sticky Footer Nav"
+    }
+  ]
+}
+{% endschema %}
