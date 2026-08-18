@@ -1,0 +1,185 @@
+
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "name": "Title",
+          "settings": {
+            "text": "<h1>{{ closest.page.title }}</h1>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "center",
+            "type_preset": "h2",
+            "font": "var(--font-primary--family)",
+            "font_size": "",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "page-content": {
+          "type": "page-content",
+          "settings": {},
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "heading",
+        "page-content"
+      ],
+      "disabled": false,
+      "settings": {
+        "content_direction": "column",
+        "gap": 32,
+        "color_scheme": "",
+        "padding-block-start": 40,
+        "padding-block-end": 40
+      }
+    },
+    "benefits_tea": {
+      "type": "benefits-tea",
+      "settings": {
+        "heading": "Active Botanicals & Sourcing",
+        "subtext": "Every ingredient is selected for its purity and proven wellness benefits. 100% natural and ethically sourced.",
+        "center_img": "shopify://shop_images/videoframe_26487.png"
+      },
+      "blocks": {
+        "benefit_1": {
+          "type": "benefit",
+          "settings": {
+            "position": "left",
+            "title": "Natural Benefits",
+            "desc": "Rich in antioxidants, vitamins, and minerals that support daily vitality and immune health."
+          }
+        },
+        "benefit_2": {
+          "type": "benefit",
+          "settings": {
+            "position": "left",
+            "title": "Premium Quality",
+            "desc": "Sourced from pristine regions and dried slowly to preserve essential oils and properties."
+          }
+        },
+        "benefit_3": {
+          "type": "benefit",
+          "settings": {
+            "position": "right",
+            "title": "100% Natural Claims",
+            "desc": "Pure herbal infusions free from artificial colors, synthetic flavors, and chemical additives."
+          }
+        },
+        "benefit_4": {
+          "type": "benefit",
+          "settings": {
+            "position": "right",
+            "title": "Caffeine-Free",
+            "desc": "Applicable blends are naturally caffeine-free, offering a soothing ritual at any time of day."
+          }
+        }
+      },
+      "block_order": [
+        "benefit_1",
+        "benefit_2",
+        "benefit_3",
+        "benefit_4"
+      ]
+    },
+    "promise": {
+      "type": "sage-promise-section",
+      "settings": {
+        "bg_color": "#EEF1EA",
+        "heading": "The Sage & Soul Promise",
+        "content": "<p>When you choose Sage & Soul, you choose radical transparency, clean ingredients, and sustainable practices.</p>",
+        "image": "shopify://shop_images/videoframe_26487.png"
+      },
+      "blocks": {
+        "promise_1": {
+          "type": "promise",
+          "settings": {
+            "title": "Ethically Sourced",
+            "text": "Partnering with local farmers using regenerative agricultural practices."
+          }
+        },
+        "promise_2": {
+          "type": "promise",
+          "settings": {
+            "title": "Radical Transparency",
+            "text": "Full disclosure of ingredients and sourcing from seed to teacup."
+          }
+        },
+        "promise_3": {
+          "type": "promise",
+          "settings": {
+            "title": "Pure & Clean",
+            "text": "Tested rigorously for contaminants, heavy metals, and pesticides."
+          }
+        },
+        "promise_4": {
+          "type": "promise",
+          "settings": {
+            "title": "Zero Waste Packaging",
+            "text": "Biodegradable pyramid tea bags and recyclable boxes."
+          }
+        }
+      },
+      "block_order": [
+        "promise_1",
+        "promise_2",
+        "promise_3",
+        "promise_4"
+      ]
+    },
+    "recommendations": {
+      "type": "product-recommendations",
+      "settings": {
+        "recommendation_type": "related",
+        "layout_type": "carousel",
+        "carousel_on_mobile": true,
+        "max_products": 4,
+        "columns": 4,
+        "mobile_columns": "2",
+        "columns_gap": 12,
+        "rows_gap": 24,
+        "icons_style": "arrow",
+        "icons_shape": "none",
+        "section_width": "page-width",
+        "gap": 28,
+        "color_scheme": "scheme-1",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      },
+      "blocks": {
+        "header": {
+          "type": "text",
+          "name": "Header",
+          "settings": {
+            "text": "<h2>Recommended Wellness Blends</h2>",
+            "type_preset": "h3"
+          }
+        }
+      },
+      "block_order": [
+        "header"
+      ]
+    }
+  },
+  "order": [
+    "main",
+    "benefits_tea",
+    "promise",
+    "recommendations"
+  ]
+}
