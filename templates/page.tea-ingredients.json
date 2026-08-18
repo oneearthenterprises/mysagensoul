@@ -40,7 +40,7 @@
         "heading",
         "page-content"
       ],
-      "disabled": false,
+      "disabled": true,
       "settings": {
         "content_direction": "column",
         "gap": 32,
@@ -49,13 +49,26 @@
         "padding-block-end": 40
       }
     },
+    "webpage_crousal_iCdbAm": {
+      "type": "webpage-crousal",
+      "blocks": {
+        "banner_nVfYe9": {
+          "type": "banner",
+          "settings": {
+            "desktop_image": "shopify://shop_images/vecteezy_assorted-herbal-tea-ingredients-in-glass-bowls_43533816-scaled_1.png",
+            "mobile_image": "shopify://shop_images/vecteezy_assorted-herbal-tea-ingredients-in-glass-bowls_43533816-scaled.jpg",
+            "banner_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "banner_nVfYe9"
+      ],
+      "name": "sage Hero Carousel",
+      "settings": {}
+    },
     "benefits_tea": {
       "type": "benefits-tea",
-      "settings": {
-        "heading": "Active Botanicals & Sourcing",
-        "subtext": "Every ingredient is selected for its purity and proven wellness benefits. 100% natural and ethically sourced.",
-        "center_img": "shopify://shop_images/videoframe_26487.png"
-      },
       "blocks": {
         "benefit_1": {
           "type": "benefit",
@@ -95,16 +108,15 @@
         "benefit_2",
         "benefit_3",
         "benefit_4"
-      ]
+      ],
+      "settings": {
+        "heading": "Active Botanicals & Sourcing",
+        "subtext": "Every ingredient is selected for its purity and proven wellness benefits. 100% natural and ethically sourced.",
+        "center_img": "shopify://shop_images/videoframe_26487.png"
+      }
     },
     "promise": {
       "type": "sage-promise-section",
-      "settings": {
-        "bg_color": "#EEF1EA",
-        "heading": "The Sage & Soul Promise",
-        "content": "<p>When you choose Sage & Soul, you choose radical transparency, clean ingredients, and sustainable practices.</p>",
-        "image": "shopify://shop_images/videoframe_26487.png"
-      },
       "blocks": {
         "promise_1": {
           "type": "promise",
@@ -140,46 +152,92 @@
         "promise_2",
         "promise_3",
         "promise_4"
-      ]
-    },
-    "recommendations": {
-      "type": "product-recommendations",
+      ],
       "settings": {
-        "recommendation_type": "related",
-        "layout_type": "carousel",
-        "carousel_on_mobile": true,
-        "max_products": 4,
-        "columns": 4,
-        "mobile_columns": "2",
-        "columns_gap": 12,
-        "rows_gap": 24,
-        "icons_style": "arrow",
-        "icons_shape": "none",
-        "section_width": "page-width",
-        "gap": 28,
-        "color_scheme": "scheme-1",
-        "padding-block-start": 48,
-        "padding-block-end": 48
+        "bg_color": "#eef1ea",
+        "heading": "The Sage & Soul Promise",
+        "content": "<p>When you choose Sage & Soul, you choose radical transparency, clean ingredients, and sustainable practices.</p>",
+        "image": "shopify://shop_images/videoframe_26487.png"
+      }
+    },
+    "varieties": {
+      "type": "tea-varieties",
+      "settings": {
+        "heading": "Basic varieties",
+        "accent_color": "#00a4a6"
       },
       "blocks": {
-        "header": {
-          "type": "text",
-          "name": "Header",
+        "black": {
+          "type": "variety",
           "settings": {
-            "text": "<h2>Recommended Wellness Blends</h2>",
-            "type_preset": "h3"
+            "title": "Black Tea",
+            "description": "Black Tea is the most common type of tea accounting for up to 85% of total tea consumption in the western world. Black tea is fully oxidized and has a darker appearance, stronger flavour, and higher caffeine content compared to other teas. The caffeine content in black tea is still around half the level of coffee. Often black teas can be consumed with sugar, milk, or lemon and offer some of the same health benefits as other teas.",
+            "link_text": "Click here to browse our selection of black teas",
+            "link_url": "/collections/black-tea",
+            "bg_color_1": "#fafcfb",
+            "bg_color_2": "#ebf6f5",
+            "text_color": "#222222"
+          }
+        },
+        "green": {
+          "type": "variety",
+          "settings": {
+            "title": "Green Tea",
+            "description": "Green tea is unoxidized and maintains its fresh green color and high level of catechins (antioxidants). It has a fresh, grassy or vegetative flavor and contains lower caffeine content than black tea.",
+            "link_text": "Click here to browse our selection of green teas",
+            "link_url": "/collections/green-tea",
+            "bg_color_1": "#fafdf9",
+            "bg_color_2": "#eef6eb"
+          }
+        },
+        "oolong": {
+          "type": "variety",
+          "settings": {
+            "title": "Oolong Tea",
+            "description": "Oolong tea is partially oxidized, falling between green and black teas. It has a complex, floral or woody aroma and flavor profile that can vary widely depending on the level of oxidation.",
+            "link_text": "Click here to browse our selection of oolong teas",
+            "link_url": "/collections/oolong-tea",
+            "bg_color_1": "#fbfcfa",
+            "bg_color_2": "#f2f7ec"
+          }
+        },
+        "white": {
+          "type": "variety",
+          "settings": {
+            "title": "White Tea",
+            "description": "White tea is the least processed of all teas, made from young buds and leaves withered in natural sunlight. It features a delicate, slightly sweet, and clean flavor profile.",
+            "link_text": "Click here to browse our selection of white teas",
+            "link_url": "/collections/white-tea",
+            "bg_color_1": "#fafafa",
+            "bg_color_2": "#f0f2ef"
+          }
+        },
+        "puerh": {
+          "type": "variety",
+          "settings": {
+            "title": "Pu-erh Tea",
+            "description": "Pu-erh tea is fermented and aged, producing a rich, earthy flavor profile that mellows and improves over time. It is highly valued for digestive health and everyday comfort.",
+            "link_text": "Click here to browse our selection of pu-erh teas",
+            "link_url": "/collections/pu-erh",
+            "bg_color_1": "#fcfaf8",
+            "bg_color_2": "#f6ebd8"
           }
         }
       },
       "block_order": [
-        "header"
+        "black",
+        "green",
+        "oolong",
+        "white",
+        "puerh"
       ]
     }
   },
   "order": [
     "main",
+    "webpage_crousal_iCdbAm",
+    "varieties",
     "benefits_tea",
-    "promise",
-    "recommendations"
+    "promise"
   ]
 }

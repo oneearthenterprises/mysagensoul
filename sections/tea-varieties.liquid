@@ -1,0 +1,453 @@
+<section class="tea-varieties-section section">
+  <div class="page-width">
+    
+    <div class="tea-varieties-header">
+      {% if section.settings.heading != blank %}
+        <h2 class="tea-varieties-title">{{ section.settings.heading }}</h2>
+        <span class="tea-varieties-underline"></span>
+      {% endif %}
+      {% if section.settings.description != blank %}
+        <div class="tea-varieties-intro">
+          {{ section.settings.description }}
+        </div>
+      {% endif %}
+    </div>
+
+    <!-- Tabs Navigation -->
+    <div class="tea-tabs-nav">
+      {% for block in section.blocks %}
+        <button 
+          type="button" 
+          class="tea-tab-btn{% if forloop.first %} is-active{% endif %}" 
+          data-tab-target="tea-panel-{{ block.id }}-{{ section.id }}"
+          {{ block.shopify_attributes }}
+        >
+          {{ block.settings.title }}
+        </button>
+      {% endfor %}
+    </div>
+
+    <!-- Tabs Content Panels -->
+    <div class="tea-tabs-content">
+      {% for block in section.blocks %}
+        <div 
+          class="tea-tab-panel{% if forloop.first %} is-active{% endif %}" 
+          id="tea-panel-{{ block.id }}-{{ section.id }}"
+          style="background: linear-gradient(135deg, {{ block.settings.bg_color_1 | default: '#f4fbfb' }} 0%, {{ block.settings.bg_color_2 | default: '#e8f5f6' }} 100%);"
+        >
+          <!-- Left: Image -->
+          <div class="tea-panel-media">
+            {% if block.settings.image != blank %}
+              <div class="tea-panel-img-wrap">
+                <img 
+                  src="{{ block.settings.image | image_url: width: 800 }}" 
+                  alt="{{ block.settings.title | escape }}"
+                  loading="lazy"
+                >
+              </div>
+            {% else %}
+              {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+            {% endif %}
+          </div>
+
+          <!-- Right: Text Content -->
+          <div class="tea-panel-info" style="color: {{ block.settings.text_color | default: '#222222' }};">
+            <h3 class="tea-panel-title">
+              {% if block.settings.link_url != blank %}
+                <a href="{{ block.settings.link_url }}">{{ block.settings.title }}</a>
+              {% else %}
+                {{ block.settings.title }}
+              {% endif %}
+            </h3>
+            
+            <div class="tea-panel-desc">
+              {{ block.settings.description }}
+            </div>
+
+            {% if block.settings.link_url != blank and block.settings.link_text != blank %}
+              {% assign parts = block.settings.link_text | split: 'here' %}
+              <p class="tea-panel-action">
+                {% if parts.size > 1 %}
+                  {{ parts[0] }}<a href="{{ block.settings.link_url }}" class="tea-panel-link">here</a>{{ parts[1] }}
+                {% else %}
+                  <a href="{{ block.settings.link_url }}" class="tea-panel-link">{{ block.settings.link_text }}</a>
+                {% endif %}
+              </p>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+<style>
+.tea-varieties-section {
+  padding: 60px 0;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+.tea-varieties-header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 40px;
+  padding: 0 20px;
+}
+
+.tea-varieties-title {
+  font-size: clamp(24px, 4vw, 36px);
+  font-weight: 700;
+  color: #111;
+  margin: 0 0 10px;
+}
+
+.tea-varieties-underline {
+  display: block;
+  width: 80px;
+  height: 3px;
+  background-color: {{ section.settings.accent_color | default: '#00a4a6' }};
+  margin: 0 auto 20px;
+}
+
+.tea-varieties-intro {
+  font-size: clamp(14px, 2.5vw, 16px);
+  line-height: 1.6;
+  color: #444;
+}
+
+/* Tabs Navigation */
+.tea-tabs-nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 40px;
+  padding: 0 20px;
+}
+
+.tea-tab-btn {
+  background: #f7f6f2;
+  border: 1px solid #eae7e1;
+  border-radius: 30px;
+  padding: 10px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #555;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tea-tab-btn:hover {
+  background: #e8e5de;
+  color: #111;
+}
+
+.tea-tab-btn.is-active {
+  background-color: {{ section.settings.accent_color | default: '#00a4a6' }};
+  border-color: {{ section.settings.accent_color | default: '#00a4a6' }};
+  color: #ffffff;
+  box-shadow: 0 4px 10px rgba(0, 164, 166, 0.15);
+}
+
+/* Tabs Content Panels */
+.tea-tabs-content {
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.tea-tab-panel {
+  display: none;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 40px;
+  padding: 50px;
+  border-radius: 24px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.tea-tab-panel.is-active {
+  display: grid;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Left: Media */
+.tea-panel-media {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tea-panel-img-wrap {
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tea-panel-img-wrap img {
+  width: 85%;
+  height: 85%;
+  object-fit: contain;
+  transition: transform 0.5s ease;
+}
+
+.tea-tab-panel:hover .tea-panel-img-wrap img {
+  transform: scale(1.06);
+}
+
+/* Right: Info */
+.tea-panel-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.tea-panel-title {
+  font-size: clamp(22px, 3.5vw, 30px);
+  font-weight: 700;
+  margin: 0 0 16px;
+}
+
+.tea-panel-title a {
+  color: inherit;
+  text-decoration: none;
+  position: relative;
+}
+
+.tea-panel-title a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 2px;
+  background-color: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.tea-panel-title a:hover::after {
+  transform: scaleX(1);
+}
+
+.tea-panel-desc {
+  font-size: 15px;
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+
+.tea-panel-action {
+  font-size: 15px;
+  margin: 0;
+}
+
+.tea-panel-link {
+  color: {{ section.settings.accent_color | default: '#00a4a6' }};
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  transition: opacity 0.2s ease;
+}
+
+.tea-panel-link:hover {
+  opacity: 0.85;
+}
+
+/* Responsive Layout */
+@media (max-width: 850px) {
+  .tea-tab-panel {
+    grid-template-columns: 1fr;
+    padding: 35px 25px;
+    gap: 30px;
+    text-align: center;
+  }
+  
+  .tea-panel-img-wrap {
+    width: 240px;
+    height: 240px;
+  }
+  
+  .tea-panel-info {
+    align-items: center;
+  }
+}
+</style>
+
+<script>
+function initTeaTabs() {
+  const tabsNav = document.querySelector(".tea-tabs-nav");
+  if (!tabsNav) return;
+
+  const tabButtons = tabsNav.querySelectorAll(".tea-tab-btn");
+  const tabPanels = document.querySelectorAll(".tea-tab-panel");
+
+  tabButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      const targetId = button.getAttribute("data-tab-target");
+      const targetPanel = document.getElementById(targetId);
+
+      if (!targetPanel) return;
+
+      // Reset buttons
+      tabButtons.forEach(btn => btn.classList.remove("is-active"));
+      // Reset panels
+      tabPanels.forEach(panel => {
+        panel.classList.remove("is-active");
+      });
+
+      // Activate clicked
+      button.classList.add("is-active");
+      targetPanel.classList.add("is-active");
+    });
+  });
+}
+
+document.addEventListener("DOMContentLoaded", initTeaTabs);
+
+document.addEventListener("shopify:section:load", function (e) {
+  if (e.detail.sectionId === "{{ section.id }}") {
+    initTeaTabs();
+  }
+});
+</script>
+
+{% schema %}
+{
+  "name": "Tea Varieties Tabs",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Basic varieties"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>All tea comes from only one plant called <em>Camellia sinensis</em>. However, based on the type of tea leaves picked and the level of oxidation or processing, tea is classified into five main types: Black, Green, Oolong, White, and Pu-erh.</p>"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color",
+      "default": "#00a4a6"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "variety",
+      "name": "Tea Variety",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Tea Name",
+          "default": "Black Tea"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Tea Image"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Black Tea is the most common type of tea accounting for up to 85% of total tea consumption in the western world. Black tea is fully oxidized and has a darker appearance, stronger flavour, and higher caffeine content compared to other teas."
+        },
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "Link Text",
+          "default": "Click here to browse our selection of black teas"
+        },
+        {
+          "type": "url",
+          "id": "link_url",
+          "label": "Link URL"
+        },
+        {
+          "type": "color",
+          "id": "bg_color_1",
+          "label": "Background Gradient Start",
+          "default": "#f4fbfb"
+        },
+        {
+          "type": "color",
+          "id": "bg_color_2",
+          "label": "Background Gradient End",
+          "default": "#e8f5f6"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text Color",
+          "default": "#222222"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Tea Varieties Tabs",
+      "blocks": [
+        {
+          "type": "variety",
+          "settings": {
+            "title": "Black Tea",
+            "bg_color_1": "#fcfbfb",
+            "bg_color_2": "#f7f1eb"
+          }
+        },
+        {
+          "type": "variety",
+          "settings": {
+            "title": "Green Tea",
+            "bg_color_1": "#fafdf9",
+            "bg_color_2": "#eef6eb"
+          }
+        },
+        {
+          "type": "variety",
+          "settings": {
+            "title": "Oolong Tea",
+            "bg_color_1": "#fbfcfa",
+            "bg_color_2": "#f2f7ec"
+          }
+        },
+        {
+          "type": "variety",
+          "settings": {
+            "title": "White Tea",
+            "bg_color_1": "#fafafa",
+            "bg_color_2": "#f0f2ef"
+          }
+        },
+        {
+          "type": "variety",
+          "settings": {
+            "title": "Pu-erh Tea",
+            "bg_color_1": "#fcfaf8",
+            "bg_color_2": "#f6ebd8"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
