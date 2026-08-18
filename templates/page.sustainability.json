@@ -1,0 +1,368 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "name": "Title",
+          "settings": {
+            "text": "<h1>{{ closest.page.title }}</h1>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h2",
+            "font": "var(--font-primary--family)",
+            "font_size": "",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "page-content": {
+          "type": "page-content",
+          "settings": {},
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "heading",
+        "page-content"
+      ],
+      "disabled": true,
+      "settings": {
+        "content_direction": "column",
+        "gap": 32,
+        "color_scheme": "",
+        "padding-block-start": 40,
+        "padding-block-end": 80
+      }
+    },
+    "sustainability_highlights_nRHPTb": {
+      "type": "sustainability-highlights",
+      "name": "Sustainability Banner",
+      "settings": {
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "bg_image": "shopify://shop_images/videoframe_26487.png",
+        "accent_text": "#1 Sustainable Wellness Brand",
+        "heading": "New Energy for the Future",
+        "btn1_text": "Explore Products",
+        "btn1_link": "",
+        "btn2_text": "Our Promise",
+        "btn2_link": "",
+        "float_image": "shopify://shop_images/videoframe_26487.png",
+        "float_title": "Discover Our Sourcing",
+        "float_link": "",
+        "stat1_num": "100%",
+        "stat1_title": "Sustainable Farming",
+        "stat1_desc": "We partner with local farmers and artisans who use regenerative practices, preserving the soil.",
+        "stat2_num": "Clean",
+        "stat2_title": "Cruelty-Free & Natural",
+        "stat2_desc": "Every offering is 100% natural, free from harmful toxins, and never tested on animals.",
+        "stat3_num": "Zero",
+        "stat3_title": "Waste-Free Packaging",
+        "stat3_desc": "We prioritize glass, paper, and biodegradable materials to minimize plastic waste."
+      }
+    },
+    "sustainability_marquee_DFDEDW": {
+      "type": "sustainability-marquee",
+      "blocks": {
+        "card_RKKU6j": {
+          "type": "card",
+          "settings": {
+            "title": "Solar power",
+            "card_bg": "#ffeacc",
+            "card_text_color": "#8c4f00",
+            "icon_type": "sun",
+            "custom_svg": ""
+          }
+        },
+        "card_peLTD4": {
+          "type": "card",
+          "settings": {
+            "title": "Wind power",
+            "card_bg": "#0d567c",
+            "card_text_color": "#ffffff",
+            "icon_type": "wind",
+            "custom_svg": ""
+          }
+        },
+        "card_DzkWFr": {
+          "type": "card",
+          "settings": {
+            "title": "Forest management",
+            "card_bg": "#d6f272",
+            "card_text_color": "#1c3800",
+            "icon_type": "tree",
+            "custom_svg": ""
+          }
+        },
+        "card_NyK9ha": {
+          "type": "card",
+          "settings": {
+            "title": "Agricultural methane capture",
+            "card_bg": "#5b3713",
+            "card_text_color": "#fed89c",
+            "icon_type": "wheat",
+            "custom_svg": ""
+          }
+        },
+        "card_hFeALJ": {
+          "type": "card",
+          "settings": {
+            "title": "Biogas",
+            "card_bg": "#bce6ff",
+            "card_text_color": "#074872",
+            "icon_type": "biogas",
+            "custom_svg": ""
+          }
+        },
+        "card_DtRqRe": {
+          "type": "card",
+          "settings": {
+            "title": "Oil recycling",
+            "card_bg": "#2b264e",
+            "card_text_color": "#d9ceff",
+            "icon_type": "drop",
+            "custom_svg": ""
+          }
+        },
+        "card_fEGKkF": {
+          "type": "card",
+          "settings": {
+            "title": "Landfill gas methane capture",
+            "card_bg": "#095311",
+            "card_text_color": "#d2ffd6",
+            "icon_type": "trash",
+            "custom_svg": ""
+          }
+        },
+        "card_ED94C8": {
+          "type": "card",
+          "settings": {
+            "title": "Solar power",
+            "card_bg": "#ffe680",
+            "card_text_color": "#5b4000",
+            "icon_type": "sun",
+            "custom_svg": ""
+          }
+        }
+      },
+      "block_order": [
+        "card_RKKU6j",
+        "card_peLTD4",
+        "card_DzkWFr",
+        "card_NyK9ha",
+        "card_hFeALJ",
+        "card_DtRqRe",
+        "card_fEGKkF",
+        "card_ED94C8"
+      ],
+      "name": "Sustainability Marquee",
+      "settings": {
+        "title": "Eco Initiatives",
+        "bg_color": "#ffffff",
+        "direction": "left",
+        "speed": 30,
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "sustainability_cards_grid_ziarJM": {
+      "type": "sustainability-cards-grid",
+      "name": "Sustainability Grid",
+      "settings": {
+        "section_bg": "#ffffff",
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "c1_bg": "#b5c7a9",
+        "c1_text_color": "#111111",
+        "c1_title": "Cleaning up the planet",
+        "c1_desc": "Our team is actively working to clean up the planet from pollution in order to restore its natural beauty.",
+        "c1_btn_text": "Read More",
+        "c1_btn_link": "",
+        "c2_bg": "#4f7a55",
+        "c2_text_color": "#ffffff",
+        "c2_title": "We plant trees",
+        "c2_desc": "Tree planting is an essential activity for maintaining the balance of nature.",
+        "c2_btn_text": "Read More",
+        "c2_btn_link": "",
+        "c2_image": "shopify://shop_images/videoframe_26487.png",
+        "c3_bg": "#070707",
+        "c3_text_color": "#ffffff",
+        "c3_title": "Tree step for a big change",
+        "c3_desc": "Planting a tree may seem like a small act, but it has a profound impact on the environment.",
+        "c3_btn_text": "Read More",
+        "c3_btn_link": "",
+        "c3_image": "shopify://shop_images/videoframe_26487.png"
+      }
+    },
+    "sustainability_video_pVHzib": {
+      "type": "sustainability-video",
+      "name": "Sustainability Video",
+      "settings": {
+        "bg_color": "#ffffff",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "heading": "Quantifying Greenhouse Gas Removals and Reductions in Real-Time",
+        "description": "Hyphen empowers your projects with precision real-time GHG quantification, helping you seamlessly deliver high-quality carbon credits to market faster.",
+        "video": "shopify://files/videos/From Klickpin.com- Refresh these clever brunch board tips that make everything look instantly polished for a stylish result that still feels effor (1).mp4",
+        "external_video_url": "",
+        "video_max_width": 1200,
+        "autoplay": true,
+        "loop": true,
+        "show_controls": false
+      }
+    },
+    "sustainability_community_GLkfMQ": {
+      "type": "sustainability-community",
+      "name": "Community Effort Banner",
+      "settings": {
+        "bg_color": "#ffffff",
+        "image_position": "right",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "heading": "Community Efforts in Tree Planting",
+        "description": "Tree planting becomes more effective when it is a community effort. Schools, organizations, and neighborhoods.",
+        "btn_text": "Explore More",
+        "btn_link": "",
+        "image": "shopify://shop_images/videoframe_26487.png"
+      }
+    },
+    "sticky_stacking_steps_RXzDzM": {
+      "type": "sticky-stacking-steps",
+      "blocks": {
+        "step_card_FMNrqf": {
+          "type": "step_card",
+          "settings": {
+            "card_bg": "#f7f5ef",
+            "card_text_color": "#111111",
+            "step_tag": "Step 1: Book Your Plan",
+            "title": "Upload/book blood test",
+            "bullet1": "Upload recent medical records (last 3 months)",
+            "bullet2": "Or schedule at home blood test appointment",
+            "bullet3": "NABL & CAP accredited partner lab",
+            "bullet4": "",
+            "btn_text": "Start Your Plan",
+            "btn_link": ""
+          }
+        },
+        "step_card_FNWzyH": {
+          "type": "step_card",
+          "settings": {
+            "card_bg": "#f7f5ef",
+            "card_text_color": "#111111",
+            "step_tag": "Step 2: Tell Us About Your Health Goals",
+            "title": "Personal health assessment",
+            "bullet1": "Answer a 3-minute health assessment",
+            "bullet2": "Define your primary & secondary health goals",
+            "bullet3": "Share your health history and lifestyle habits",
+            "bullet4": "",
+            "btn_text": "Book Your Test",
+            "btn_link": ""
+          }
+        },
+        "step_card_mmTN7E": {
+          "type": "step_card",
+          "settings": {
+            "card_bg": "#f7f5ef",
+            "card_text_color": "#111111",
+            "step_tag": "Step 3: Get Your Supplement Plan",
+            "title": "Health insights & supplement plan",
+            "bullet1": "Personalised health coaching",
+            "bullet2": "Curated by doctors, clinicians & nutritionists",
+            "bullet3": "Expert-led clinical analysis",
+            "bullet4": "Nutrition & lifestyle recommendations",
+            "btn_text": "Unlock Your Benefits",
+            "btn_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "step_card_FMNrqf",
+        "step_card_FNWzyH",
+        "step_card_mmTN7E"
+      ],
+      "name": "Sticky Stacking Steps",
+      "settings": {
+        "section_bg": "#ffffff",
+        "accent_color": "#e5a45b",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "sticky_top_offset": 100,
+        "sticky_spacing": 50,
+        "title_part1": "How Sage & Soul",
+        "title_part2_italic": "works",
+        "description": "We analyse your biomarkers and translate them into a personalised supplement plan built just for you."
+      }
+    },
+    "sustainability_testimonials_E9kbB7": {
+      "type": "sustainability-testimonials",
+      "blocks": {
+        "testimonial_JKMQHK": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "I was taking multiple supplements because of things I'd read online. The personalised plan helped me focus on what my body actually needed.",
+            "author": "Kabir Bharara"
+          }
+        },
+        "testimonial_fbaVNr": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "I used to rely on guesswork when it came to my wellness routine. Now I feel far more confident making decisions about my health.",
+            "author": "Dr. Swati Pandey"
+          }
+        },
+        "testimonial_W8jfb9": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "What stood out wasn't just the data, it was how personal it felt. It helped me understand myself in a way no health report ever has.",
+            "author": "Abhishree Akolkar"
+          }
+        },
+        "testimonial_H4pJKi": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "I've spent years investing in my health. Understanding my biomarkers made those efforts feel much more intentional.",
+            "author": "Yashika"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_JKMQHK",
+        "testimonial_fbaVNr",
+        "testimonial_W8jfb9",
+        "testimonial_H4pJKi"
+      ],
+      "name": "Testimonial Card Grid",
+      "settings": {
+        "bg_color": "#fbfcf9",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "title": "Real people, real results.",
+        "description": "Discover how people found their perfect supplement fit with Wellbeing BloodView."
+      }
+    }
+  },
+  "order": [
+    "main",
+    "sustainability_highlights_nRHPTb",
+    "sustainability_marquee_DFDEDW",
+    "sustainability_cards_grid_ziarJM",
+    "sustainability_video_pVHzib",
+    "sustainability_community_GLkfMQ",
+    "sticky_stacking_steps_RXzDzM",
+    "sustainability_testimonials_E9kbB7"
+  ]
+}
