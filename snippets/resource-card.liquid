@@ -136,6 +136,18 @@
         </div>
       {%- endif -%}
     {%- endif -%}
+
+    {%- if resource_type == 'product' -%}
+      {%- assign has_combos_tag = false -%}
+      {%- for tag in resource.tags -%}
+        {%- if tag == 'Combos' or tag == 'combos' or tag == 'combo' or tag == 'Combo' -%}
+          {%- assign has_combos_tag = true -%}
+        {%- endif -%}
+      {%- endfor -%}
+      {%- if has_combos_tag -%}
+        <span class="rc-combos-badge">Combos</span>
+      {%- endif -%}
+    {%- endif -%}
   </div>
 
   <div class="resource-card__content">
@@ -311,5 +323,29 @@
     &:focus {
       --resource-card-secondary-image-opacity: 1;
     }
+  }
+
+  /* Combos tag badge */
+  .resource-card__media {
+    position: relative;
+  }
+
+  .rc-combos-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 2;
+    background: rgba(20, 20, 20, 0.78);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 4px 11px;
+    border-radius: 20px;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    white-space: nowrap;
+    pointer-events: none;
   }
 {% endstylesheet %}
