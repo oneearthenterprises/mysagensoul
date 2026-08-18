@@ -1,4 +1,12 @@
-
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -66,6 +74,85 @@
       ],
       "name": "sage Hero Carousel",
       "settings": {}
+    },
+    "varieties": {
+      "type": "tea-varieties",
+      "blocks": {
+        "black": {
+          "type": "variety",
+          "settings": {
+            "title": "Black Tea",
+            "image": "shopify://shop_images/vecteezy_assorted-herbal-tea-ingredients-in-glass-bowls_43533816-scaled.jpg",
+            "description": "Black Tea is the most common type of tea accounting for up to 85% of total tea consumption in the western world. Black tea is fully oxidized and has a darker appearance, stronger flavour, and higher caffeine content compared to other teas. The caffeine content in black tea is still around half the level of coffee. Often black teas can be consumed with sugar, milk, or lemon and offer some of the same health benefits as other teas.",
+            "link_text": "Click here to browse our selection of black teas",
+            "link_url": "/collections/black-tea",
+            "bg_color_1": "#fafcfb",
+            "bg_color_2": "#ebf6f5",
+            "text_color": "#222222"
+          }
+        },
+        "green": {
+          "type": "variety",
+          "settings": {
+            "title": "Green Tea",
+            "image": "shopify://shop_images/vecteezy_assorted-herbal-tea-ingredients-in-glass-bowls_43533816-scaled.jpg",
+            "description": "Green tea is unoxidized and maintains its fresh green color and high level of catechins (antioxidants). It has a fresh, grassy or vegetative flavor and contains lower caffeine content than black tea.",
+            "link_text": "Click here to browse our selection of green teas",
+            "link_url": "shopify://products/heart-health-herbal-tea-natural-cardiovascular-support",
+            "bg_color_1": "#fafdf9",
+            "bg_color_2": "#eef6eb",
+            "text_color": "#222222"
+          }
+        },
+        "oolong": {
+          "type": "variety",
+          "settings": {
+            "title": "Oolong Tea",
+            "description": "Oolong tea is partially oxidized, falling between green and black teas. It has a complex, floral or woody aroma and flavor profile that can vary widely depending on the level of oxidation.",
+            "link_text": "Click here to browse our selection of oolong teas",
+            "link_url": "/collections/oolong-tea",
+            "bg_color_1": "#fbfcfa",
+            "bg_color_2": "#f2f7ec",
+            "text_color": "#222222"
+          }
+        },
+        "white": {
+          "type": "variety",
+          "settings": {
+            "title": "White Tea",
+            "description": "White tea is the least processed of all teas, made from young buds and leaves withered in natural sunlight. It features a delicate, slightly sweet, and clean flavor profile.",
+            "link_text": "Click here to browse our selection of white teas",
+            "link_url": "/collections/white-tea",
+            "bg_color_1": "#fafafa",
+            "bg_color_2": "#f0f2ef",
+            "text_color": "#222222"
+          }
+        },
+        "puerh": {
+          "type": "variety",
+          "settings": {
+            "title": "Pu-erh Tea",
+            "description": "Pu-erh tea is fermented and aged, producing a rich, earthy flavor profile that mellows and improves over time. It is highly valued for digestive health and everyday comfort.",
+            "link_text": "Click here to browse our selection of pu-erh teas",
+            "link_url": "/collections/pu-erh",
+            "bg_color_1": "#fcfaf8",
+            "bg_color_2": "#f6ebd8",
+            "text_color": "#222222"
+          }
+        }
+      },
+      "block_order": [
+        "black",
+        "green",
+        "oolong",
+        "white",
+        "puerh"
+      ],
+      "settings": {
+        "heading": "Basic varieties",
+        "description": "<p>All tea comes from only one plant called <em>Camellia sinensis</em>. However, based on the type of tea leaves picked and the level of oxidation or processing, tea is classified into five main types: Black, Green, Oolong, White, and Pu-erh.</p>",
+        "accent_color": "#171919"
+      }
     },
     "benefits_tea": {
       "type": "benefits-tea",
@@ -159,78 +246,6 @@
         "content": "<p>When you choose Sage & Soul, you choose radical transparency, clean ingredients, and sustainable practices.</p>",
         "image": "shopify://shop_images/videoframe_26487.png"
       }
-    },
-    "varieties": {
-      "type": "tea-varieties",
-      "settings": {
-        "heading": "Basic varieties",
-        "accent_color": "#00a4a6"
-      },
-      "blocks": {
-        "black": {
-          "type": "variety",
-          "settings": {
-            "title": "Black Tea",
-            "description": "Black Tea is the most common type of tea accounting for up to 85% of total tea consumption in the western world. Black tea is fully oxidized and has a darker appearance, stronger flavour, and higher caffeine content compared to other teas. The caffeine content in black tea is still around half the level of coffee. Often black teas can be consumed with sugar, milk, or lemon and offer some of the same health benefits as other teas.",
-            "link_text": "Click here to browse our selection of black teas",
-            "link_url": "/collections/black-tea",
-            "bg_color_1": "#fafcfb",
-            "bg_color_2": "#ebf6f5",
-            "text_color": "#222222"
-          }
-        },
-        "green": {
-          "type": "variety",
-          "settings": {
-            "title": "Green Tea",
-            "description": "Green tea is unoxidized and maintains its fresh green color and high level of catechins (antioxidants). It has a fresh, grassy or vegetative flavor and contains lower caffeine content than black tea.",
-            "link_text": "Click here to browse our selection of green teas",
-            "link_url": "/collections/green-tea",
-            "bg_color_1": "#fafdf9",
-            "bg_color_2": "#eef6eb"
-          }
-        },
-        "oolong": {
-          "type": "variety",
-          "settings": {
-            "title": "Oolong Tea",
-            "description": "Oolong tea is partially oxidized, falling between green and black teas. It has a complex, floral or woody aroma and flavor profile that can vary widely depending on the level of oxidation.",
-            "link_text": "Click here to browse our selection of oolong teas",
-            "link_url": "/collections/oolong-tea",
-            "bg_color_1": "#fbfcfa",
-            "bg_color_2": "#f2f7ec"
-          }
-        },
-        "white": {
-          "type": "variety",
-          "settings": {
-            "title": "White Tea",
-            "description": "White tea is the least processed of all teas, made from young buds and leaves withered in natural sunlight. It features a delicate, slightly sweet, and clean flavor profile.",
-            "link_text": "Click here to browse our selection of white teas",
-            "link_url": "/collections/white-tea",
-            "bg_color_1": "#fafafa",
-            "bg_color_2": "#f0f2ef"
-          }
-        },
-        "puerh": {
-          "type": "variety",
-          "settings": {
-            "title": "Pu-erh Tea",
-            "description": "Pu-erh tea is fermented and aged, producing a rich, earthy flavor profile that mellows and improves over time. It is highly valued for digestive health and everyday comfort.",
-            "link_text": "Click here to browse our selection of pu-erh teas",
-            "link_url": "/collections/pu-erh",
-            "bg_color_1": "#fcfaf8",
-            "bg_color_2": "#f6ebd8"
-          }
-        }
-      },
-      "block_order": [
-        "black",
-        "green",
-        "oolong",
-        "white",
-        "puerh"
-      ]
     }
   },
   "order": [
