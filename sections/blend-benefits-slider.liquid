@@ -240,10 +240,6 @@ document.addEventListener("DOMContentLoaded", function () {
       991:{ slidesPerView:4 }
     }
   };
-  if (isHomePage) {
-    new CustomSlider(".blendBenefitsSlider", options);
-  } else {
-    new Swiper(".blendBenefitsSlider", options);
-  }
+  new Swiper(".blendBenefitsSlider", options);
 });
 </script>

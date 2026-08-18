@@ -1,0 +1,196 @@
+{%- assign product = closest.product -%}
+{%- assign share_url = shop.url | append: product.url -%}
+{%- assign share_title = product.title | url_encode -%}
+
+<div class="product-share-block spacing-style" style="{% render 'spacing-style', settings: block.settings %}">
+  <span class="product-share-label">{{ block.settings.share_label | default: 'Share:' }}</span>
+  <div class="product-share-buttons">
+    <!-- COPY LINK -->
+    <button type="button" class="product-share-btn share-copy-btn" onclick="copyProductLink(this, '{{ share_url }}')" aria-label="Copy Link">
+      <span class="share-icon">
+        <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+      </span>
+      <span class="tooltip-text">Copy Link</span>
+    </button>
+
+    <!-- WHATSAPP -->
+    <a href="https://api.whatsapp.com/send?text={{ share_title }}+{{ share_url | url_encode }}" target="_blank" rel="noopener" class="product-share-btn share-whatsapp-btn" aria-label="Share on WhatsApp">
+      <span class="share-icon">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.455L0 24zm6.59-4.846c1.66.986 3.292 1.503 4.983 1.503 5.378 0 9.752-4.332 9.755-9.655.003-2.58-1.003-5.007-2.837-6.841-1.834-1.833-4.272-2.843-6.853-2.843-5.385 0-9.759 4.333-9.762 9.656-.001 1.832.486 3.62 1.411 5.187l-.992 3.623 3.73-.969c.001-.001.002-.001.003-.002zm11.391-7.072c-.29-.145-1.712-.845-1.977-.942-.266-.097-.46-.145-.653.145-.193.291-.749.942-.919 1.137-.17.194-.34.218-.63.073-.29-.145-1.229-.453-2.34-1.444-.863-.77-1.447-1.72-1.617-2.011-.17-.29-.018-.448.127-.592.13-.13.29-.34.435-.51.145-.17.193-.291.29-.485.097-.194.049-.364-.025-.51-.073-.145-.653-1.576-.895-2.158-.236-.569-.475-.492-.653-.501-.17-.008-.364-.01-.557-.01-.193 0-.507.073-.77.364-.263.29-1.006.983-1.006 2.399 0 1.416 1.031 2.784 1.176 2.978.145.194 2.029 3.1 4.915 4.346.687.296 1.224.474 1.643.607.69.219 1.319.19 1.816.116.554-.082 1.712-.699 1.954-1.374.242-.675.242-1.25.17-1.374-.074-.124-.268-.197-.559-.342z"/></svg>
+      </span>
+    </a>
+
+    <!-- FACEBOOK -->
+    <a href="https://www.facebook.com/sharer/sharer.php?u={{ share_url | url_encode }}" target="_blank" rel="noopener" class="product-share-btn share-facebook-btn" aria-label="Share on Facebook">
+      <span class="share-icon">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M9 8H7v3h2v9h4v-9h3.6l.4-3H13V6c0-.5.5-1 1-1h3V1h-3c-3 0-5 2-5 5v2z"/></svg>
+      </span>
+    </a>
+
+    <!-- PINTEREST -->
+    <a href="https://pinterest.com/pin/create/button/?url={{ share_url | url_encode }}&media={{ product.featured_image | image_url: width: 1024 | url_encode }}&description={{ share_title }}" target="_blank" rel="noopener" class="product-share-btn share-pinterest-btn" aria-label="Share on Pinterest">
+      <span class="share-icon">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12c0 5.1 3.2 9.4 7.7 11.1-.1-.9-.2-2.4 0-3.5.2-1 1.4-6 1.4-6s-.4-.7-.4-1.7c0-1.6.9-2.8 2.1-2.8 1 0 1.5.8 1.5 1.7 0 1-.6 2.6-.9 4-3 1.3-.3 2.7 1 2.7 3.2 0 5.7-3.4 5.7-8.3 0-4.3-3.1-7.4-7.6-7.4-5.2 0-8.2 3.9-8.2 7.9 0 1.6.6 3.3 1.4 4.2.2.2.2.3.1.6l-.5 2c-.1.3-.3.4-.6.3-2-1-3.3-4-3.3-6.5 0-5.3 3.8-10.2 11.1-10.2 5.8 0 10.3 4.2 10.3 9.7 0 5.8-3.7 10.5-8.8 10.5-1.7 0-3.3-.9-3.9-2l-1 4.1c-.4 1.5-1.4 3.3-2.1 4.4 1.5.5 3.2.7 4.9.7 6.6 0 12-5.4 12-12S18.6 0 12 0z"/></svg>
+      </span>
+    </a>
+
+    <!-- TWITTER / X -->
+    <a href="https://twitter.com/intent/tweet?text={{ share_title }}&url={{ share_url | url_encode }}" target="_blank" rel="noopener" class="product-share-btn share-twitter-btn" aria-label="Share on X">
+      <span class="share-icon">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </span>
+    </a>
+  </div>
+</div>
+
+<style>
+.product-share-block {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.product-share-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.product-share-buttons {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.product-share-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid #e0e0e0;
+  background: #fff;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.product-share-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.share-copy-btn:hover { border-color: #222; color: #222; }
+.share-whatsapp-btn:hover { border-color: #25D366; color: #25D366; }
+.share-facebook-btn:hover { border-color: #1877F2; color: #1877F2; }
+.share-pinterest-btn:hover { border-color: #BD081C; color: #BD081C; }
+.share-twitter-btn:hover { border-color: #000; color: #000; }
+
+.product-share-btn .tooltip-text {
+  visibility: hidden;
+  position: absolute;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.product-share-btn .tooltip-text::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #333 transparent transparent transparent;
+}
+
+.product-share-btn:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+.product-share-btn.copied .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+</style>
+
+<script>
+function copyProductLink(button, url) {
+  navigator.clipboard.writeText(url).then(function() {
+    const tooltip = button.querySelector('.tooltip-text');
+    const originalText = tooltip.innerText;
+    tooltip.innerText = 'Copied!';
+    button.classList.add('copied');
+    setTimeout(function() {
+      tooltip.innerText = originalText;
+      button.classList.remove('copied');
+    }, 2000);
+  }).catch(function(err) {
+    console.error('Failed to copy text: ', err);
+  });
+}
+</script>
+
+{% schema %}
+{
+  "name": "Product Share",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "share_label",
+      "label": "Share Label",
+      "default": "Share:"
+    },
+    {
+      "type": "header",
+      "content": "t:content.padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 10
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Share"
+    }
+  ]
+}
+{% endschema %}

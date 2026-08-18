@@ -385,6 +385,12 @@
             "judge_me_reviews_all_reviews_text_igDhWV": {
               "type": "shopify://apps/judge-me-reviews/blocks/all_reviews_text/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
               "settings": {}
+            },
+            "share_button": {
+              "type": "share",
+              "settings": {
+                "share_label": "Share:"
+              }
             }
           },
           "block_order": [
@@ -393,6 +399,7 @@
             "buy_buttons_eYQEYi",
             "kwik_cod_checkout_checkout_button_ceciKP",
             "kwik_cod_checkout_buy_now_button_843nm9",
+            "share_button",
             "judge_me_reviews_all_reviews_text_igDhWV"
           ]
         }

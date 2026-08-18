@@ -166,11 +166,7 @@ document.addEventListener("DOMContentLoaded", function () {
     slidesPerView: 1,
     loop: true
   };
-  if (isHomePage) {
-    new CustomSlider(".hscrollSwiper", options);
-  } else {
-    new Swiper(".hscrollSwiper", options);
-  }
+  new Swiper(".hscrollSwiper", options);
 });
 </script>
 

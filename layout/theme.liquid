@@ -31,10 +31,8 @@
     {%- render 'stylesheets' -%}
     {%- render 'fonts' -%}
     {%- render 'scripts' -%}
-    {% unless template == 'index' or template.name == 'index' or request.page_type == 'index' %}
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" media="print" onload="this.media='all'">
-      <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
-    {% endunless %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" media="print" onload="this.media='all'">
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
     {%- render 'theme-styles-variables' -%}
     {%- render 'color-schemes' -%}
 

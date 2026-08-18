@@ -4952,3 +4952,103 @@ position: relative;
   }
 }
 
+/* 🔹 Premium Wishlist Button Styling for Wysh App */
+.wysh-product-button.wysh-app-button {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 48px !important;
+  width: 48px !important;
+  min-width: 48px !important;
+  max-width: 48px !important;
+  border-radius: 50% !important;
+  border: 1px solid #dcdcdc !important;
+  background-color: #ffffff !important;
+  color: #222222 !important;
+  cursor: pointer !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  margin-left: 12px !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  flex: 0 0 48px !important;
+  box-sizing: border-box !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05) !important;
+}
+
+.wysh-product-button.wysh-app-button:hover {
+  border-color: #222222 !important;
+  color: #000000 !important;
+  background-color: #f7f7f7 !important;
+  transform: scale(1.05) !important;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08) !important;
+}
+
+.wysh-product-button.wysh-app-button svg,
+.wysh-product-button.wysh-app-button .wysh-icon {
+  width: 22px !important;
+  height: 22px !important;
+  display: block !important;
+  margin: 0 !important;
+}
+
+/* Force flex alignment side-by-side on mobile product form buttons */
+@media screen and (max-width: 749px) {
+  .product-form-buttons {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    width: 100% !important;
+  }
+  
+  .product-form-buttons > add-to-cart-component {
+    flex: 1 1 auto !important;
+  }
+}
+
+/* 🔹 Standardize header action icons (Search, Account, Wishlist, Cart) */
+.wysh-header-badge-wrapper,
+#kp-login-button-header-logo {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: var(--button-size, 44px) !important;
+  height: var(--button-size, 44px) !important;
+  position: relative !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.wysh-header-badge-wrapper svg,
+.wysh-header-badge-wrapper .wysh-icon,
+#kp-login-button-header-logo svg,
+#kp-login-button-header-logo img,
+#kp-login-button-header-logo .kp-icon,
+#kp-login-button-header-logo iframe {
+  width: 22px !important;
+  height: 22px !important;
+  max-width: 22px !important;
+  max-height: 22px !important;
+  min-width: 22px !important;
+  min-height: 22px !important;
+  display: block !important;
+}
+
+.wysh-header-badge-wrapper .wysh-badge-count {
+  position: absolute !important;
+  top: 4px !important;
+  right: 4px !important;
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  font-size: 10px !important;
+  width: 16px !important;
+  height: 16px !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+  z-index: 2 !important;
+}
+

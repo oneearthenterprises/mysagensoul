@@ -192,10 +192,6 @@ document.addEventListener("DOMContentLoaded", function () {
       768: { slidesPerView: 4 }
     }
   };
-  if (isHomePage) {
-    new CustomSlider(".certSlider", options);
-  } else {
-    new Swiper(".certSlider", options);
-  }
+  new Swiper(".certSlider", options);
 });
 </script>
