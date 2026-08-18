@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -39,13 +48,71 @@
         "heading",
         "page-content"
       ],
-      "disabled": false,
+      "disabled": true,
       "settings": {
         "content_direction": "column",
         "gap": 32,
         "color_scheme": "",
         "padding-block-start": 40,
         "padding-block-end": 40
+      }
+    },
+    "sustainability_community_pXnAeN": {
+      "type": "sustainability-community",
+      "name": "Community Effort Banner",
+      "settings": {
+        "bg_color": "#ffffff",
+        "image_position": "right",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "heading": "Community Efforts in Tree Planting",
+        "description": "Tree planting becomes more effective when it is a community effort. Schools, organizations, and neighborhoods.",
+        "btn_text": "Explore More",
+        "btn_link": "",
+        "image": "shopify://shop_images/vecteezy_assorted-herbal-tea-ingredients-in-glass-bowls_43533816-scaled.jpg"
+      }
+    },
+    "about_us_tabs_jBNCwT": {
+      "type": "about-us-tabs",
+      "blocks": {
+        "item_ATkPwV": {
+          "type": "item",
+          "settings": {
+            "title": "Milk Is Our Signature Ingredient",
+            "text": "Our products are made with the goodness of Goat Milk, Rice Milk, Oat Milk, Almond Milk & Soy Milk."
+          }
+        },
+        "item_jHBjyB": {
+          "type": "item",
+          "settings": {
+            "title": "Milk Is Our Signature Ingredient",
+            "text": "Our products are made with the goodness of Goat Milk, Rice Milk, Oat Milk, Almond Milk & Soy Milk."
+          }
+        },
+        "item_3gyEaV": {
+          "type": "item",
+          "settings": {
+            "title": "Milk Is Our Signature Ingredient",
+            "text": "Our products are made with the goodness of Goat Milk, Rice Milk, Oat Milk, Almond Milk & Soy Milk."
+          }
+        },
+        "item_TJEBHb": {
+          "type": "item",
+          "settings": {
+            "title": "Milk Is Our Signature Ingredient",
+            "text": "Our products are made with the goodness of Goat Milk, Rice Milk, Oat Milk, Almond Milk & Soy Milk."
+          }
+        }
+      },
+      "block_order": [
+        "item_ATkPwV",
+        "item_jHBjyB",
+        "item_3gyEaV",
+        "item_TJEBHb"
+      ],
+      "name": "About Us Tabs",
+      "settings": {
+        "heading": "Grounded In Nature, Growing With Science"
       }
     },
     "health_benefits_list": {
@@ -55,21 +122,21 @@
           "type": "benefit",
           "settings": {
             "title": "Heart Diseases",
-            "content": "<p>Tea may protect against cardiovascular diseases and reduce risk of heart attack. Cardiologists at the University of Maryland Medical Centre have come to the conclusion that antioxidants contained in tea may help reduce a potentially harmful constriction of blood vessels after a high\u2013fat meal. However it is suggested that in order to keep the antioxidants working, one should skip the milk. The proteins of the milk bind with the antioxidants negating its effects.</p>"
+            "content": "<p>Tea may protect against cardiovascular diseases and reduce risk of heart attack. Cardiologists at the University of Maryland Medical Centre have come to the conclusion that antioxidants contained in tea may help reduce a potentially harmful constriction of blood vessels after a high–fat meal. However it is suggested that in order to keep the antioxidants working, one should skip the milk. The proteins of the milk bind with the antioxidants negating its effects.</p>"
           }
         },
         "benefit_weight": {
           "type": "benefit",
           "settings": {
             "title": "Weight Loss",
-            "content": "<p>The weight loss properties of tea are attributed to the presence of caffeine, a natural stimulant and catechins called epigallocatechin gallate or EGCG in them which combat fat absorption and speed up the body\u2019s metabolism. The calorie burning properties of green tea have been very widely covered and talked about in the media. But the fact is that just as other health benefits of tea, even weight loss can be achieved from all teas rather than just green or white as they all come from the same tea plant Camellia sinensis. Of course, the level of antioxidants varies from one tea to another and since green and white teas have more of them compared to other teas, they are the ones that get featured most as teas that aid weight loss.</p>"
+            "content": "<p>The weight loss properties of tea are attributed to the presence of caffeine, a natural stimulant and catechins called epigallocatechin gallate or EGCG in them which combat fat absorption and speed up the body’s metabolism. The calorie burning properties of green tea have been very widely covered and talked about in the media. But the fact is that just as other health benefits of tea, even weight loss can be achieved from all teas rather than just green or white as they all come from the same tea plant Camellia sinensis. Of course, the level of antioxidants varies from one tea to another and since green and white teas have more of them compared to other teas, they are the ones that get featured most as teas that aid weight loss.</p>"
           }
         },
         "benefit_exercise": {
           "type": "benefit",
           "settings": {
             "title": "Exercise Endurance",
-            "content": "<p>Glucose is our body\u2019s primary source of energy. While exercising, glycogen that is stored in the liver and the muscles is broken down to produce glucose to meet the demands of the body. Marathon runners and others who exercise a lot often experience what is known as \u2018glycogen debt\u2019 where the athletes\u2019 glycogen stores are depleted due to all the physical exercise, therefore little or no more glucose can be produced to provide instant energy and at this point, the athlete tires out and usually has to stop. Scientists found that catechins in tea, especially green and white tea and moderate caffeine levels in tea slows glycogen depletion by encouraging the body to use more fat as fuel, helping conserve stored glycogen energy for the long run (or ride, swim or jog).</p>"
+            "content": "<p>Glucose is our body’s primary source of energy. While exercising, glycogen that is stored in the liver and the muscles is broken down to produce glucose to meet the demands of the body. Marathon runners and others who exercise a lot often experience what is known as ‘glycogen debt’ where the athletes’ glycogen stores are depleted due to all the physical exercise, therefore little or no more glucose can be produced to provide instant energy and at this point, the athlete tires out and usually has to stop. Scientists found that catechins in tea, especially green and white tea and moderate caffeine levels in tea slows glycogen depletion by encouraging the body to use more fat as fuel, helping conserve stored glycogen energy for the long run (or ride, swim or jog).</p>"
           }
         },
         "benefit_radicals": {
@@ -87,47 +154,16 @@
         "benefit_radicals"
       ],
       "settings": {
+        "intro": "",
         "accent_color": "#00a4a6",
         "bg_color": "#ffffff"
       }
-    },
-    "recommendations": {
-      "type": "product-recommendations",
-      "settings": {
-        "recommendation_type": "related",
-        "layout_type": "carousel",
-        "carousel_on_mobile": true,
-        "max_products": 4,
-        "columns": 4,
-        "mobile_columns": "2",
-        "columns_gap": 12,
-        "rows_gap": 24,
-        "icons_style": "arrow",
-        "icons_shape": "none",
-        "section_width": "page-width",
-        "gap": 28,
-        "color_scheme": "scheme-1",
-        "padding-block-start": 48,
-        "padding-block-end": 48
-      },
-      "blocks": {
-        "header": {
-          "type": "text",
-          "name": "Header",
-          "settings": {
-            "text": "<h2>Recommended Wellness Blends</h2>",
-            "type_preset": "h3"
-          }
-        }
-      },
-      "block_order": [
-        "header"
-      ]
     }
   },
   "order": [
     "main",
-    "health_benefits_list",
-    "recommendations"
+    "sustainability_community_pXnAeN",
+    "about_us_tabs_jBNCwT",
+    "health_benefits_list"
   ]
 }

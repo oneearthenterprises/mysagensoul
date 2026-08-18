@@ -246,6 +246,51 @@
         "content": "<p>When you choose Sage & Soul, you choose radical transparency, clean ingredients, and sustainable practices.</p>",
         "image": "shopify://shop_images/videoframe_26487.png"
       }
+    },
+    "health_benefits_list_MHdWpt": {
+      "type": "health-benefits-list",
+      "blocks": {
+        "benefit_3rAYkE": {
+          "type": "benefit",
+          "settings": {
+            "title": "Heart Diseases",
+            "content": "<p>Tea may protect against cardiovascular diseases and reduce risk of heart attack. Cardiologists at the University of Maryland Medical Centre have come to the conclusion that antioxidants contained in tea may help reduce a potentially harmful constriction of blood vessels after a high–fat meal. However it is suggested that in order to keep the antioxidants working, one should skip the milk. The proteins of the milk bind with the antioxidants negating its effects.</p>"
+          }
+        },
+        "benefit_JE9mci": {
+          "type": "benefit",
+          "settings": {
+            "title": "Weight Loss",
+            "content": "<p>The weight loss properties of tea are attributed to the presence of caffeine, a natural stimulant and catechins called epigallocatechin gallate or EGCG in them which combat fat absorption and speed up the body's metabolism. The calorie burning properties of green tea have been very widely covered and talked about in the media. But the fact is that just as other health benefits of tea, even weight loss can be achieved from all teas rather than just green or white as they all come from the same tea plant Camellia sinensis. Of course, the level of antioxidants varies from one tea to another and since green and white teas have more of them compared to other teas, they are the ones that get featured most as teas that aid weight loss.</p>"
+          }
+        },
+        "benefit_LK448Q": {
+          "type": "benefit",
+          "settings": {
+            "title": "Exercise Endurance",
+            "content": "<p>Glucose is our body's primary source of energy. While exercising, glycogen that is stored in the liver and the muscles is broken down to produce glucose to meet the demands of the body. Marathon runners and others who exercise a lot often experience what is known as 'glycogen debt' where the athletes' glycogen stores are depleted due to all the physical exercise, therefore little or no more glucose can be produced to provide instant energy and at this point, the athlete tires out and usually has to stop. Scientists found that catechins in tea, especially green and white tea and moderate caffeine levels in tea slows glycogen depletion by encouraging the body to use more fat as fuel, helping conserve stored glycogen energy for the long run (or ride, swim or jog).</p>"
+          }
+        },
+        "benefit_M33Wjz": {
+          "type": "benefit",
+          "settings": {
+            "title": "Free Radicals",
+            "content": "<p>Modern life is full of excesses of pollution, sun and stress. This leads in a rise of free radicals, a natural intermediate of the chemical processes in our body. Free radicals have been linked to diseases such as heart disease, stroke and cancer. And who should come to the rescue but our very own ...Tea. It is thought that regular consumption of food and drinks that are rich in free radical combating antioxidants can reduce the risks of the harm caused by free radicals. And tea is rich in a particular group of antioxidants known as Flavonoids (8 times the amount of super antioxidant power in 3 of your cuppas than in one apple. And tea we can have plenty!!!)</p>"
+          }
+        }
+      },
+      "block_order": [
+        "benefit_3rAYkE",
+        "benefit_JE9mci",
+        "benefit_LK448Q",
+        "benefit_M33Wjz"
+      ],
+      "name": "Health Benefits List",
+      "settings": {
+        "intro": "",
+        "accent_color": "#00a4a6",
+        "bg_color": "#ffffff"
+      }
     }
   },
   "order": [
@@ -253,6 +298,7 @@
     "webpage_crousal_iCdbAm",
     "varieties",
     "benefits_tea",
-    "promise"
+    "promise",
+    "health_benefits_list_MHdWpt"
   ]
 }
