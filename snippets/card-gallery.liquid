@@ -204,19 +204,71 @@
     %}
   {%- endif -%}
   {{ children }}
+
+  {%- if product != blank -%}
+    {%- assign has_combos_tag = false -%}
+    {%- for tag in product.tags -%}
+      {%- if tag == 'Combos' or tag == 'combos' or tag == 'Combo' or tag == 'combo' -%}
+        {%- assign has_combos_tag = true -%}
+      {%- endif -%}
+    {%- endfor -%}
+    {%- if has_combos_tag -%}
+      <span class="cg-combos-badge">Combos</span>
+    {%- endif -%}
+  {%- endif -%}
 </div>
 
 {% stylesheet %}
   .card-gallery {
-    overflow: hidden;
+    overflow: visible;
+    position: relative;
     container-type: inline-size; /* Make card-gallery a container */
     container-name: card-gallery-container; /* Optional: name the container */
+  }
+
+  /* Keep images clipped inside the card boundary */
+  .card-gallery > a {
+    overflow: hidden;
+    border-radius: inherit;
+    display: block;
+  }
+
+  /* Fix parent elements that clip the badge */
+  product-card,
+  .product-card__link,
+  .product-card__content,
+  .resource-list__item {
+    overflow: visible !important;
+  }
+
+  /* ===== Combos tag badge on product images ===== */
+  .cg-combos-badge {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    background: #880808;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 6px 14px 14px;
+    line-height: 1;
+    white-space: nowrap;
+    pointer-events: none;
+    clip-path: polygon(0 0, 100% 0, 100% 72%, 60% 72%, 50% 100%, 40% 72%, 0 72%);
+  }
+
+  .card-gallery svg {
+    aspect-ratio: var(--gallery-aspect-ratio, var(--ratio));
   }
 
   .card-gallery__placeholder svg {
     height: 100%;
     width: 100%;
   }
+
 
   .card-gallery svg {
     aspect-ratio: var(--gallery-aspect-ratio, var(--ratio));
