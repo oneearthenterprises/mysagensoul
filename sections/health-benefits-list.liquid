@@ -1,0 +1,175 @@
+<section class="hb-list-section section">
+  <div class="page-width hb-list-wrap">
+
+    {% if section.settings.intro != blank %}
+      <div class="hb-list-intro">{{ section.settings.intro }}</div>
+    {% endif %}
+
+    {% for block in section.blocks %}
+      <div class="hb-list-item" {{ block.shopify_attributes }}>
+        <div class="hb-list-item__header">
+          <h2 class="hb-list-item__title">{{ block.settings.title }}</h2>
+          <span class="hb-list-item__bar" style="background-color: {{ section.settings.accent_color }};"></span>
+        </div>
+        {% if block.settings.content != blank %}
+          <div class="hb-list-item__content">{{ block.settings.content }}</div>
+        {% endif %}
+      </div>
+    {% endfor %}
+
+  </div>
+</section>
+
+<style>
+.hb-list-section {
+  padding: 60px 0;
+  background: {{ section.settings.bg_color }};
+}
+
+.hb-list-wrap {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.hb-list-intro {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #444;
+  margin-bottom: 48px;
+}
+
+/* Each benefit item */
+.hb-list-item {
+  padding: 36px 0;
+  border-bottom: 1px solid #e4e4e4;
+}
+
+.hb-list-item:last-child {
+  border-bottom: none;
+}
+
+.hb-list-item__header {
+  margin-bottom: 14px;
+}
+
+.hb-list-item__title {
+  font-size: clamp(18px, 2.5vw, 22px);
+  font-weight: 700;
+  color: #111;
+  margin: 0 0 8px;
+  line-height: 1.3;
+}
+
+.hb-list-item__bar {
+  display: block;
+  width: 48px;
+  height: 3px;
+  border-radius: 2px;
+}
+
+.hb-list-item__content {
+  font-size: clamp(14px, 1.8vw, 15px);
+  line-height: 1.75;
+  color: #333;
+  margin: 0;
+}
+
+.hb-list-item__content p {
+  margin: 0 0 12px;
+}
+
+.hb-list-item__content p:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 767px) {
+  .hb-list-section {
+    padding: 40px 0;
+  }
+
+  .hb-list-item {
+    padding: 28px 0;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Health Benefits List",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "intro",
+      "label": "Intro Text"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Bar Color",
+      "default": "#00a4a6"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Benefit Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Heart Diseases"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content",
+          "default": "<p>Tea may protect against cardiovascular diseases and reduce risk of heart attack.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Health Benefits List",
+      "blocks": [
+        {
+          "type": "benefit",
+          "settings": {
+            "title": "Heart Diseases",
+            "content": "<p>Tea may protect against cardiovascular diseases and reduce risk of heart attack. Cardiologists at the University of Maryland Medical Centre have come to the conclusion that antioxidants contained in tea may help reduce a potentially harmful constriction of blood vessels after a high–fat meal. However it is suggested that in order to keep the antioxidants working, one should skip the milk. The proteins of the milk bind with the antioxidants negating its effects.</p>"
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "title": "Weight Loss",
+            "content": "<p>The weight loss properties of tea are attributed to the presence of caffeine, a natural stimulant and catechins called epigallocatechin gallate or EGCG in them which combat fat absorption and speed up the body's metabolism. The calorie burning properties of green tea have been very widely covered and talked about in the media. But the fact is that just as other health benefits of tea, even weight loss can be achieved from all teas rather than just green or white as they all come from the same tea plant Camellia sinensis. Of course, the level of antioxidants varies from one tea to another and since green and white teas have more of them compared to other teas, they are the ones that get featured most as teas that aid weight loss.</p>"
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "title": "Exercise Endurance",
+            "content": "<p>Glucose is our body's primary source of energy. While exercising, glycogen that is stored in the liver and the muscles is broken down to produce glucose to meet the demands of the body. Marathon runners and others who exercise a lot often experience what is known as 'glycogen debt' where the athletes' glycogen stores are depleted due to all the physical exercise, therefore little or no more glucose can be produced to provide instant energy and at this point, the athlete tires out and usually has to stop. Scientists found that catechins in tea, especially green and white tea and moderate caffeine levels in tea slows glycogen depletion by encouraging the body to use more fat as fuel, helping conserve stored glycogen energy for the long run (or ride, swim or jog).</p>"
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "title": "Free Radicals",
+            "content": "<p>Modern life is full of excesses of pollution, sun and stress. This leads in a rise of free radicals, a natural intermediate of the chemical processes in our body. Free radicals have been linked to diseases such as heart disease, stroke and cancer. And who should come to the rescue but our very own ...Tea. It is thought that regular consumption of food and drinks that are rich in free radical combating antioxidants can reduce the risks of the harm caused by free radicals. And tea is rich in a particular group of antioxidants known as Flavonoids (8 times the amount of super antioxidant power in 3 of your cuppas than in one apple. And tea we can have plenty!!!)</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
