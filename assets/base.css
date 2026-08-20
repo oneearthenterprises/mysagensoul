@@ -5052,3 +5052,32 @@ position: relative;
   z-index: 2 !important;
 }
 
+/* Move Shopify Chat widget above the bottom sticky navigation bar on mobile */
+/* @media (max-width: 767px) {
+  #shopify-chat,
+  #shopify-chat iframe,
+  shopify-chat,
+  #shopify-element-wrapper,
+  #shopify-element-wrapper .activator-nudge,
+  iframe#chat-button,
+  iframe#dummy-chat-button-iframe,
+  [id^="shopify-chat"],
+  .chat-button-container {
+    bottom: 300px !important;
+  }
+} */
+
+
+
+    #shopify-chat,
+    #shopify-chat iframe,
+    shopify-chat,
+    #shopify-element-wrapper,
+    #shopify-element-wrapper .activator-nudge,
+    iframe#chat-button,
+    iframe#dummy-chat-button-iframe,
+    [id^="shopify-chat"],
+    .chat-button-container {
+      bottom: calc(50px + env(safe-area-inset-bottom)) !important;
+    }
+

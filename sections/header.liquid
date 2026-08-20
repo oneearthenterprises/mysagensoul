@@ -396,6 +396,32 @@
   type="module"
 ></script>
 
+
+<script>
+  (function () {
+    function initHeaderScroll() {
+      var header = document.querySelector('header-component, .header');
+      if (!header) return;
+      function onScroll() {
+        var scrollPos = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0;
+        if (scrollPos > 10) {
+          header.classList.add('header--scrolled');
+        } else {
+          header.classList.remove('header--scrolled');
+        }
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      document.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initHeaderScroll);
+    } else {
+      initHeaderScroll();
+    }
+  })();
+</script>
+
 {% stylesheet %}
   body {
     --header-height: 60px;
@@ -412,10 +438,11 @@
     display: block;
     contain: layout style;
     background: transparent;
-    
-        position: fixed;
+    position: fixed;
     width: 100%;
     top: 0;
+    z-index: 1000;
+ 
 
     a,
     .button,
@@ -424,6 +451,25 @@
       /* reset style from base.css */
       transition: color var(--header-content-transition-timing), border-color var(--header-content-transition-timing);
     }
+  }
+
+  /* Scrolled state: warm background colour */
+  .header--scrolled,
+  .header--scrolled .header__row,
+  .header--scrolled .header__underlay,
+  .header--scrolled .header__underlay-closed,
+  .header--scrolled .header__underlay-open {
+    background-color: #EDE1D7 !important;
+    background: #EDE1D7 !important;
+  }
+
+  .header__row {
+    transition: background-color 0.3s ease, background 0.3s ease;
+  }
+
+  /* Push page content down so it isn't hidden behind the fixed header */
+  #MainContent {
+    padding-top: var(--header-group-height, 60px);
   }
 
   #header-component :is(.header-menu, .dropdown-localization) {

@@ -58,7 +58,7 @@
     </div>
 
     <!-- CONTACT + SOCIAL -->
-    <div class="footer-column">
+    <div class="footer-column footer-column--contact active">
       <div class="footer-heading" data-accordion-header>
         <h4>{{ section.settings.contact_heading | default: 'CONTACT' }}</h4>
         <span class="accordion-icon">+</span>
@@ -317,24 +317,14 @@ Sage & Soul is a brand of The One Earth Enterprises.</p>
     headers.forEach(header => {
       header.addEventListener('click', function() {
         const column = this.parentElement;
-        const isActive = column.classList.contains('active');
-
-        // Close all other accordions
-        document.querySelectorAll('.footer-column').forEach(col => {
-          col.classList.remove('active');
-        });
-
-        // Toggle current one (unless it was already open - then just close it)
-        if (!isActive) {
-          column.classList.add('active');
-        }
+        column.classList.toggle('active');
       });
     });
 
-    // Optional: Open first accordion by default on mobile
+    // Only open the contact accordion by default on mobile
     if (window.innerWidth <= 768) {
-      const firstColumn = document.querySelector('.footer-column');
-      if (firstColumn) firstColumn.classList.add('active');
+      const contactColumn = document.querySelector('.footer-column--contact');
+      if (contactColumn) contactColumn.classList.add('active');
     }
   });
 </script>
