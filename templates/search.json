@@ -54,6 +54,15 @@
         "padding-block-end": 0
       }
     },
+    "counter_custom_Yq9MBa": {
+      "type": "counter-custom",
+      "name": "Counter Custom",
+      "settings": {
+        "heading": "The Payday Sale ends in:",
+        "button_text": "SHOP NOW!",
+        "button_link": ""
+      }
+    },
     "main": {
       "type": "search-results",
       "blocks": {
@@ -225,10 +234,59 @@
         "padding-block-start": 20,
         "padding-block-end": 20
       }
+    },
+    "sustainability_testimonials_W6qFtf": {
+      "type": "sustainability-testimonials",
+      "blocks": {
+        "testimonial_nWVgqf": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "I was taking multiple supplements because of things I'd read online. The personalised plan helped me focus on what my body actually needed.",
+            "author": "Kabir Bharara"
+          }
+        },
+        "testimonial_4dYPVy": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "I used to rely on guesswork when it came to my wellness routine. Now I feel far more confident making decisions about my health.",
+            "author": "Dr. Swati Pandey"
+          }
+        },
+        "testimonial_VwCh6V": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "What stood out wasn't just the data, it was how personal it felt. It helped me understand myself in a way no health report ever has.",
+            "author": "Abhishree Akolkar"
+          }
+        },
+        "testimonial_HWbGjb": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "I've spent years investing in my health. Understanding my biomarkers made those efforts feel much more intentional.",
+            "author": "Yashika"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_nWVgqf",
+        "testimonial_4dYPVy",
+        "testimonial_VwCh6V",
+        "testimonial_HWbGjb"
+      ],
+      "name": "Testimonial Card Grid",
+      "settings": {
+        "bg_color": "#fbfcf9",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "title": "Real people, real results.",
+        "description": "Discover how people found their perfect supplement fit with Wellbeing BloodView."
+      }
     }
   },
   "order": [
     "search",
-    "main"
+    "counter_custom_Yq9MBa",
+    "main",
+    "sustainability_testimonials_W6qFtf"
   ]
 }
