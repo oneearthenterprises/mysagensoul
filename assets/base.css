@@ -4445,7 +4445,7 @@ product-recommendations:has([data-has-recommendations='false']) {
   /* position: absolute; */
   right: 10px;
   bottom: 126px; /* Add to cart button ke upar */
-  background: #4CAF50;
+  background: #2E7D32;
   color: #fff;
   padding: 4px 8px;
   font-size: 16px;

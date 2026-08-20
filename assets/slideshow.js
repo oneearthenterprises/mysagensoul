@@ -197,6 +197,7 @@ export class Slideshow extends Component {
       if (slide.hasAttribute('reveal')) {
         slide.removeAttribute('reveal');
         slide.setAttribute('aria-hidden', 'true');
+        slide.setAttribute('inert', '');
       }
     }
 
@@ -213,6 +214,7 @@ export class Slideshow extends Component {
         if (requestedSlide.hasAttribute('hidden')) {
           requestedSlide.setAttribute('reveal', '');
           requestedSlide.setAttribute('aria-hidden', 'false');
+          requestedSlide.removeAttribute('inert');
         }
 
         return this.slides.indexOf(requestedSlide);
@@ -293,6 +295,7 @@ export class Slideshow extends Component {
     const previousIndex = this.current;
 
     slide.setAttribute('aria-hidden', 'false');
+    slide.removeAttribute('inert');
 
     if (this.#scroll) {
       this.#scroll.to(slide, { instant });
@@ -533,6 +536,7 @@ export class Slideshow extends Component {
 
     if (this.refs.slides?.[0]) {
       this.refs.slides[0].setAttribute('aria-hidden', 'false');
+      this.refs.slides[0].removeAttribute('inert');
     }
   }
 
@@ -927,10 +931,15 @@ export class Slideshow extends Component {
 
     // Batch writes to the DOM
     scheduler.schedule(() => {
-      // Update aria-hidden based on visibility
+      // Update aria-hidden and inert based on visibility
       slides.forEach((slide) => {
         const isVisible = visibleSlides.includes(slide);
         slide.setAttribute('aria-hidden', `${!isVisible}`);
+        if (isVisible) {
+          slide.removeAttribute('inert');
+        } else {
+          slide.setAttribute('inert', '');
+        }
       });
     });
 

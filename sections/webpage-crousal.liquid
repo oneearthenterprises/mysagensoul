@@ -111,6 +111,7 @@
   display:block;
   width:100%;
   overflow:hidden;
+  min-height:44px;
 }
 
 /* IMAGE */
@@ -150,6 +151,10 @@
   cursor:pointer;
   transition:width .2s, opacity .2s, border-radius .2s;
   margin: 0 !important;
+  /* Expand touch target to ≥24×24px without changing visual size */
+  padding: 7px;
+  background-clip: content-box;
+  box-sizing: content-box;
 }
 
 .sage-hero-pagination .swiper-pagination-bullet-active,

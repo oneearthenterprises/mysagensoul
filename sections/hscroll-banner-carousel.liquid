@@ -121,6 +121,10 @@
   display:block;
   margin:0 !important;
   border:1px solid rgba(0,0,0,.15);
+  /* Expand touch target to ≥24×24px without changing visual size */
+  padding: 7px;
+  background-clip: content-box;
+  box-sizing: content-box;
 }
 
 .hscroll-banner-carousel .hscroll-pagination .swiper-pagination-bullet-active{
