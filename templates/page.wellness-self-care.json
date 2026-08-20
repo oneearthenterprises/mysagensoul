@@ -1,0 +1,398 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "name": "Title",
+          "settings": {
+            "text": "<h1>{{ closest.page.title }}</h1>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h2",
+            "font": "var(--font-primary--family)",
+            "font_size": "",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "page-content": {
+          "type": "page-content",
+          "settings": {},
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "heading",
+        "page-content"
+      ],
+      "disabled": true,
+      "settings": {
+        "content_direction": "column",
+        "gap": 32,
+        "color_scheme": "",
+        "padding-block-start": 40,
+        "padding-block-end": 80
+      }
+    },
+    "sustainability_community_jz4eGE": {
+      "type": "sustainability-community",
+      "name": "Community Effort Banner",
+      "settings": {
+        "bg_color": "#ffffff",
+        "image_position": "right",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "heading": "Community Efforts in Tree Planting",
+        "description": "Tree planting becomes more effective when it is a community effort. Schools, organizations, and neighborhoods.",
+        "btn_text": "Explore More",
+        "btn_link": ""
+      }
+    },
+    "health_benefits_list_xWaYfK": {
+      "type": "health-benefits-list",
+      "blocks": {
+        "benefit_gVFxAH": {
+          "type": "benefit",
+          "settings": {
+            "title": "Heart Diseases",
+            "content": "<p>Tea may protect against cardiovascular diseases and reduce risk of heart attack. Cardiologists at the University of Maryland Medical Centre have come to the conclusion that antioxidants contained in tea may help reduce a potentially harmful constriction of blood vessels after a high–fat meal. However it is suggested that in order to keep the antioxidants working, one should skip the milk. The proteins of the milk bind with the antioxidants negating its effects.</p>"
+          }
+        },
+        "benefit_FMQnLa": {
+          "type": "benefit",
+          "settings": {
+            "title": "Weight Loss",
+            "content": "<p>The weight loss properties of tea are attributed to the presence of caffeine, a natural stimulant and catechins called epigallocatechin gallate or EGCG in them which combat fat absorption and speed up the body's metabolism. The calorie burning properties of green tea have been very widely covered and talked about in the media. But the fact is that just as other health benefits of tea, even weight loss can be achieved from all teas rather than just green or white as they all come from the same tea plant Camellia sinensis. Of course, the level of antioxidants varies from one tea to another and since green and white teas have more of them compared to other teas, they are the ones that get featured most as teas that aid weight loss.</p>"
+          }
+        },
+        "benefit_pMyRUh": {
+          "type": "benefit",
+          "settings": {
+            "title": "Exercise Endurance",
+            "content": "<p>Glucose is our body's primary source of energy. While exercising, glycogen that is stored in the liver and the muscles is broken down to produce glucose to meet the demands of the body. Marathon runners and others who exercise a lot often experience what is known as 'glycogen debt' where the athletes' glycogen stores are depleted due to all the physical exercise, therefore little or no more glucose can be produced to provide instant energy and at this point, the athlete tires out and usually has to stop. Scientists found that catechins in tea, especially green and white tea and moderate caffeine levels in tea slows glycogen depletion by encouraging the body to use more fat as fuel, helping conserve stored glycogen energy for the long run (or ride, swim or jog).</p>"
+          }
+        },
+        "benefit_eqiknT": {
+          "type": "benefit",
+          "settings": {
+            "title": "Free Radicals",
+            "content": "<p>Modern life is full of excesses of pollution, sun and stress. This leads in a rise of free radicals, a natural intermediate of the chemical processes in our body. Free radicals have been linked to diseases such as heart disease, stroke and cancer. And who should come to the rescue but our very own ...Tea. It is thought that regular consumption of food and drinks that are rich in free radical combating antioxidants can reduce the risks of the harm caused by free radicals. And tea is rich in a particular group of antioxidants known as Flavonoids (8 times the amount of super antioxidant power in 3 of your cuppas than in one apple. And tea we can have plenty!!!)</p>"
+          }
+        }
+      },
+      "block_order": [
+        "benefit_gVFxAH",
+        "benefit_FMQnLa",
+        "benefit_pMyRUh",
+        "benefit_eqiknT"
+      ],
+      "name": "Health Benefits List",
+      "settings": {
+        "intro": "",
+        "accent_color": "#00a4a6",
+        "bg_color": "#ffffff"
+      }
+    },
+    "sustainability_cards_grid_JmHwzC": {
+      "type": "sustainability-cards-grid",
+      "name": "Sustainability Grid",
+      "settings": {
+        "section_bg": "#ffffff",
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "c1_bg": "#e6e9e4",
+        "c1_text_color": "#111111",
+        "c1_title": "Cleaning up the planet",
+        "c1_desc": "Our team is actively working to clean up the planet from pollution in order to restore its natural beauty.",
+        "c1_btn_text": "Read More",
+        "c1_btn_link": "",
+        "c2_bg": "#4f7a55",
+        "c2_text_color": "#ffffff",
+        "c2_title": "We plant trees",
+        "c2_desc": "Tree planting is an essential activity for maintaining the balance of nature.",
+        "c2_btn_text": "Read More",
+        "c2_btn_link": "",
+        "c3_bg": "#070707",
+        "c3_text_color": "#ffffff",
+        "c3_title": "Tree step for a big change",
+        "c3_desc": "Planting a tree may seem like a small act, but it has a profound impact on the environment.",
+        "c3_btn_text": "Read More",
+        "c3_btn_link": ""
+      }
+    },
+    "image_text_page_KGhhMQ": {
+      "type": "image-text-page",
+      "name": "Product Steps",
+      "settings": {
+        "image": "shopify://shop_images/vecteezy_assorted-herbal-tea-ingredients-in-glass-bowls_43533816-scaled.jpg",
+        "heading": "How To Use",
+        "content": "<p>Step 1: Wet your hair and apply shampoo gently.</p><p>Step 2: Rinse thoroughly and follow with conditioner.</p>"
+      }
+    },
+    "sage_promise_section_iqtL3M": {
+      "type": "sage-promise-section",
+      "blocks": {
+        "promise_mDnFbV": {
+          "type": "promise",
+          "settings": {
+            "title": "100% Hand-Packed",
+            "text": "Crafted with human touch and care."
+          }
+        }
+      },
+      "block_order": [
+        "promise_mDnFbV"
+      ],
+      "name": "Sage Soul Promise",
+      "settings": {
+        "bg_color": "#EEF1EA",
+        "heading": "The Sage & Soul Promise",
+        "content": "<p>When you choose Sage & Soul, you are choosing a brand that operates with radical transparency and deep respect for the planet and your body.</p>",
+        "image": "shopify://shop_images/vecteezy_assorted-herbal-tea-ingredients-in-glass-bowls_43533816-scaled.jpg"
+      }
+    },
+    "hero_99nbMU": {
+      "type": "hero",
+      "blocks": {
+        "group_fkEKxm": {
+          "type": "group",
+          "name": "t:names.group",
+          "settings": {
+            "content_direction": "row",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "flex-end",
+            "align_baseline": true,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 18,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "group_9T9WK7": {
+              "type": "group",
+              "name": "t:names.group",
+              "settings": {
+                "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "center",
+                "align_baseline": false,
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "center",
+                "gap": 6,
+                "width": "custom",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "custom_height": 100,
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "background_media": "none",
+                "video_position": "cover",
+                "background_image_position": "cover",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "link": "",
+                "open_in_new_tab": false,
+                "placeholder": "",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "text_x4iWFP": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<p><em>Introducing</em></p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "h6",
+                    "font": "var(--font-accent--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "text_JqUiwQ": {
+                  "type": "text",
+                  "name": "t:names.heading",
+                  "settings": {
+                    "text": "<h2>New arrivals</h2>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "h2",
+                    "font": "var(--font-body--family)",
+                    "font_size": "",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_x4iWFP",
+                "text_JqUiwQ"
+              ]
+            },
+            "text_w7fHaJ": {
+              "type": "text",
+              "name": "t:names.text",
+              "settings": {
+                "text": "<p>We make things that work better and last longer. Our products solve real problems with clean design and honest materials.</p>",
+                "width": "fit-content",
+                "max_width": "none",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "group_9T9WK7",
+            "text_w7fHaJ"
+          ]
+        }
+      },
+      "block_order": [
+        "group_fkEKxm"
+      ],
+      "name": "t:names.hero_bottom_aligned",
+      "settings": {
+        "media_type_1": "image",
+        "media_type_2": "image",
+        "image_2": "shopify://shop_images/vecteezy_assorted-herbal-tea-ingredients-in-glass-bowls_43533816-scaled_1.png",
+        "stack_media_on_mobile": true,
+        "custom_mobile_media": true,
+        "media_type_1_mobile": "image",
+        "image_1_mobile": "shopify://shop_images/vecteezy_assorted-herbal-tea-ingredients-in-glass-bowls_43533816-scaled.jpg",
+        "media_type_2_mobile": "image",
+        "link": "",
+        "open_in_new_tab": false,
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "flex-end",
+        "gap": 16,
+        "section_width": "page-width",
+        "section_height": "large",
+        "section_height_custom": 50,
+        "color_scheme": "scheme-5",
+        "toggle_overlay": true,
+        "overlay_color": "#00000026",
+        "overlay_style": "gradient",
+        "gradient_direction": "to top",
+        "blurred_reflection": false,
+        "reflection_opacity": 75,
+        "padding-block-start": 40,
+        "padding-block-end": 40
+      }
+    }
+  },
+  "order": [
+    "main",
+    "sustainability_community_jz4eGE",
+    "health_benefits_list_xWaYfK",
+    "sustainability_cards_grid_JmHwzC",
+    "image_text_page_KGhhMQ",
+    "sage_promise_section_iqtL3M",
+    "hero_99nbMU"
+  ]
+}
