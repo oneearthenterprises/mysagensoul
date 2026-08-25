@@ -86,8 +86,11 @@
           assign products = recommendations.products
         endif
       %}
+      {% assign available_products = products | where: 'available', true %}
+      {% assign unavailable_products = products | where: 'available', false %}
+      {% assign sorted_products = available_products | concat: unavailable_products %}
       {% capture list_items %}
-        {% for product in products limit: block_settings.max_products %}
+        {% for product in sorted_products limit: block_settings.max_products %}
           <div class="resource-list__item">
             {% content_for 'block',
               type: '_product-card',

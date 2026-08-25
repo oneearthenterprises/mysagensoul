@@ -36,8 +36,12 @@
         {% assign products = collection.products %}
       {% endif %}
 
+      {% assign available_products = products | where: 'available', true %}
+      {% assign unavailable_products = products | where: 'available', false %}
+      {% assign sorted_products = available_products | concat: unavailable_products %}
+
       {% capture children %}
-        {% for product in products %}
+        {% for product in sorted_products %}
           <li
             id="{{ section.id }}-{{ product.id }}"
             class="product-grid__item product-grid__item--{{ forloop.index0 }}"
@@ -53,7 +57,7 @@
       {% render 'product-grid',
         section: section,
         children: children,
-        products: products,
+        products: sorted_products,
         paginate: paginate,
         enable_infinite_scroll: section.settings.enable_infinite_scroll,
         title: title
