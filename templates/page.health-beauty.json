@@ -7,7 +7,6 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
-
 {
   "sections": {
     "main": {
@@ -49,6 +48,7 @@
         "heading",
         "page-content"
       ],
+      "disabled": true,
       "settings": {
         "content_direction": "column",
         "gap": 32,
@@ -56,9 +56,408 @@
         "padding-block-start": 40,
         "padding-block-end": 80
       }
+    },
+    "hscroll_banner_carousel_rfdMqz": {
+      "type": "hscroll-banner-carousel",
+      "blocks": {
+        "banner_7VVE4h": {
+          "type": "banner",
+          "settings": {
+            "desktop_image": "shopify://shop_images/videoframe_26487_dda3b166-f596-4604-b47d-1d4329b26389.png",
+            "mobile_image": "shopify://shop_images/videoframe_26487.png",
+            "banner_link": ""
+          }
+        },
+        "banner_rmpPn6": {
+          "type": "banner",
+          "settings": {
+            "desktop_image": "shopify://shop_images/videoframe_26487_dda3b166-f596-4604-b47d-1d4329b26389.png",
+            "mobile_image": "shopify://shop_images/videoframe_26487.png",
+            "banner_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "banner_7VVE4h",
+        "banner_rmpPn6"
+      ],
+      "name": "HORIXANTAL SCROLL",
+      "settings": {}
+    },
+    "sustainability_cards_grid_R7ALtA": {
+      "type": "sustainability-cards-grid",
+      "name": "Sustainability Grid",
+      "settings": {
+        "section_bg": "#ffffff",
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "c1_bg": "#e6e9e4",
+        "c1_text_color": "#111111",
+        "c1_title": "Cleaning up the planet",
+        "c1_desc": "Our team is actively working to clean up the planet from pollution in order to restore its natural beauty.",
+        "c1_btn_text": "Read More",
+        "c1_btn_link": "",
+        "c2_bg": "#4f7a55",
+        "c2_text_color": "#ffffff",
+        "c2_title": "We plant trees",
+        "c2_desc": "Tree planting is an essential activity for maintaining the balance of nature.",
+        "c2_btn_text": "Read More",
+        "c2_btn_link": "",
+        "c3_bg": "#070707",
+        "c3_text_color": "#ffffff",
+        "c3_title": "Tree step for a big change",
+        "c3_desc": "Planting a tree may seem like a small act, but it has a profound impact on the environment.",
+        "c3_btn_text": "Read More",
+        "c3_btn_link": ""
+      }
+    },
+    "sustainability_marquee_iH3ijh": {
+      "type": "sustainability-marquee",
+      "blocks": {
+        "card_xGa4UM": {
+          "type": "card",
+          "settings": {
+            "title": "Solar power",
+            "card_bg": "#ffeacc",
+            "card_text_color": "#8c4f00",
+            "icon_type": "sun",
+            "custom_svg": ""
+          }
+        },
+        "card_GpTwKQ": {
+          "type": "card",
+          "settings": {
+            "title": "Wind power",
+            "card_bg": "#0d567c",
+            "card_text_color": "#ffffff",
+            "icon_type": "wind",
+            "custom_svg": ""
+          }
+        },
+        "card_EGmiRf": {
+          "type": "card",
+          "settings": {
+            "title": "Forest management",
+            "card_bg": "#d6f272",
+            "card_text_color": "#1c3800",
+            "icon_type": "tree",
+            "custom_svg": ""
+          }
+        },
+        "card_Qpjnx6": {
+          "type": "card",
+          "settings": {
+            "title": "Agricultural methane capture",
+            "card_bg": "#5b3713",
+            "card_text_color": "#fed89c",
+            "icon_type": "wheat",
+            "custom_svg": ""
+          }
+        },
+        "card_RA77Ua": {
+          "type": "card",
+          "settings": {
+            "title": "Biogas",
+            "card_bg": "#bce6ff",
+            "card_text_color": "#074872",
+            "icon_type": "biogas",
+            "custom_svg": ""
+          }
+        },
+        "card_8QABbP": {
+          "type": "card",
+          "settings": {
+            "title": "Oil recycling",
+            "card_bg": "#2b264e",
+            "card_text_color": "#d9ceff",
+            "icon_type": "drop",
+            "custom_svg": ""
+          }
+        },
+        "card_kJpcdq": {
+          "type": "card",
+          "settings": {
+            "title": "Landfill gas methane capture",
+            "card_bg": "#095311",
+            "card_text_color": "#d2ffd6",
+            "icon_type": "trash",
+            "custom_svg": ""
+          }
+        },
+        "card_YjgKQb": {
+          "type": "card",
+          "settings": {
+            "title": "Solar power",
+            "card_bg": "#ffe680",
+            "card_text_color": "#5b4000",
+            "icon_type": "sun",
+            "custom_svg": ""
+          }
+        }
+      },
+      "block_order": [
+        "card_xGa4UM",
+        "card_GpTwKQ",
+        "card_EGmiRf",
+        "card_Qpjnx6",
+        "card_RA77Ua",
+        "card_8QABbP",
+        "card_kJpcdq",
+        "card_YjgKQb"
+      ],
+      "name": "Sustainability Marquee",
+      "settings": {
+        "title": "Eco Initiatives",
+        "bg_color": "#ffffff",
+        "direction": "left",
+        "speed": 30,
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "marqueenote_i8akQ3": {
+      "type": "marqueenote",
+      "blocks": {
+        "text_ywiLHw": {
+          "type": "text",
+          "settings": {
+            "icon": "|",
+            "text": "“Enhance your cup with a drizzle of raw honey or a squeeze of fresh lemon — both deepen the hibiscus bloom and add a gentle warmth that lingers long after the last sip.”"
+          }
+        },
+        "text_xAxnky": {
+          "type": "text",
+          "settings": {
+            "icon": "|",
+            "text": "“Enhance your cup with a drizzle of raw honey or a squeeze of fresh lemon — both deepen the hibiscus bloom and add a gentle warmth that lingers long after the last sip.”"
+          }
+        },
+        "text_heDnfW": {
+          "type": "text",
+          "settings": {
+            "icon": "|",
+            "text": "“Enhance your cup with a drizzle of raw honey or a squeeze of fresh lemon — both deepen the hibiscus bloom and add a gentle warmth that lingers long after the last sip.”"
+          }
+        }
+      },
+      "block_order": [
+        "text_ywiLHw",
+        "text_xAxnky",
+        "text_heDnfW"
+      ],
+      "name": "Marquee Note",
+      "settings": {
+        "bg": "#000000",
+        "text_color": "#ffffff",
+        "direction": "left",
+        "speed": 40
+      }
+    },
+    "image_text_page_p8GkxF": {
+      "type": "image-text-page",
+      "name": "Product Steps",
+      "settings": {
+        "heading": "How To Use",
+        "content": "<p>Step 1: Wet your hair and apply shampoo gently.</p><p>Step 2: Rinse thoroughly and follow with conditioner.</p>"
+      }
+    },
+    "product_recommendations_e9By8r": {
+      "type": "product-recommendations",
+      "blocks": {
+        "text_zKVAUV": {
+          "type": "text",
+          "name": "t:names.header",
+          "settings": {
+            "text": "<h2>Related products</h2>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h3",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "static-product-card": {
+          "type": "_product-card",
+          "name": "t:names.product_card",
+          "static": true,
+          "settings": {
+            "product_card_gap": 4,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "product_card_gallery_wrdkwz": {
+              "type": "_product-card-gallery",
+              "name": "t:names.product_card_media",
+              "settings": {
+                "image_ratio": "adapt",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 15,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "product_title_wLUjqq": {
+              "type": "product-title",
+              "name": "t:names.product_title",
+              "settings": {
+                "width": "fit-content",
+                "font_weight": "600",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "custom",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 4,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "judge_me_reviews_preview_badge_homepage_cjXeUY": {
+              "type": "shopify://apps/judge-me-reviews/blocks/preview_badge_homepage/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+              "settings": {
+                "product": "{{ closest.product }}"
+              }
+            },
+            "price_iATCEC": {
+              "type": "price",
+              "name": "t:names.product_price",
+              "settings": {
+                "show_sale_price_first": true,
+                "show_installments": false,
+                "show_tax_info": false,
+                "type_preset": "h6",
+                "width": "100%",
+                "alignment": "left",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "color": "var(--color-foreground)",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "buy_buttons_x9igXV": {
+              "type": "buy-buttons",
+              "name": "t:names.product_buy_buttons",
+              "settings": {
+                "stacking": false,
+                "show_pickup_availability": true,
+                "gift_card_form": true,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "quantity": {
+                  "type": "quantity",
+                  "disabled": true,
+                  "static": true,
+                  "settings": {},
+                  "blocks": {}
+                },
+                "add-to-cart": {
+                  "type": "add-to-cart",
+                  "static": true,
+                  "settings": {
+                    "style_class": "button"
+                  },
+                  "blocks": {}
+                },
+                "accelerated-checkout": {
+                  "type": "accelerated-checkout",
+                  "disabled": true,
+                  "static": true,
+                  "settings": {},
+                  "blocks": {}
+                }
+              },
+              "block_order": []
+            }
+          },
+          "block_order": [
+            "product_card_gallery_wrdkwz",
+            "product_title_wLUjqq",
+            "judge_me_reviews_preview_badge_homepage_cjXeUY",
+            "price_iATCEC",
+            "buy_buttons_x9igXV"
+          ]
+        }
+      },
+      "block_order": [
+        "text_zKVAUV"
+      ],
+      "name": "t:names.product_recommendations",
+      "settings": {
+        "product": "{{ closest.product }}",
+        "recommendation_type": "related",
+        "layout_type": "carousel",
+        "carousel_on_mobile": false,
+        "max_products": 10,
+        "columns": 4,
+        "mobile_columns": "2",
+        "columns_gap": 12,
+        "rows_gap": 24,
+        "icons_style": "arrow",
+        "icons_shape": "none",
+        "section_width": "page-width",
+        "gap": 28,
+        "color_scheme": "scheme-1",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "hscroll_banner_carousel_rfdMqz",
+    "sustainability_cards_grid_R7ALtA",
+    "sustainability_marquee_iH3ijh",
+    "marqueenote_i8akQ3",
+    "image_text_page_p8GkxF",
+    "product_recommendations_e9By8r"
   ]
 }

@@ -48,6 +48,7 @@
         "heading",
         "page-content"
       ],
+      "disabled": true,
       "settings": {
         "content_direction": "column",
         "gap": 32,
@@ -55,9 +56,165 @@
         "padding-block-start": 40,
         "padding-block-end": 80
       }
+    },
+    "sustainability_highlights_qdFfJ4": {
+      "type": "sustainability-highlights",
+      "name": "Sustainability Banner",
+      "settings": {
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "bg_image": "shopify://shop_images/videoframe_26487_dda3b166-f596-4604-b47d-1d4329b26389.png",
+        "accent_text": "#1 Sustainable Wellness Brand",
+        "heading": "New Energy for the Future",
+        "btn1_text": "Explore Products",
+        "btn1_link": "",
+        "btn2_text": "Our Promise",
+        "btn2_link": "",
+        "float_title": "Discover Our Sourcing",
+        "float_link": "",
+        "stat1_num": "100%",
+        "stat1_title": "Sustainable Farming",
+        "stat1_desc": "We partner with local farmers and artisans who use regenerative practices, preserving the soil.",
+        "stat2_num": "Clean",
+        "stat2_title": "Cruelty-Free & Natural",
+        "stat2_desc": "Every offering is 100% natural, free from harmful toxins, and never tested on animals.",
+        "stat3_num": "Zero",
+        "stat3_title": "Waste-Free Packaging",
+        "stat3_desc": "We prioritize glass, paper, and biodegradable materials to minimize plastic waste."
+      }
+    },
+    "sustainability_community_tBRheJ": {
+      "type": "sustainability-community",
+      "name": "Community Effort Banner",
+      "settings": {
+        "bg_color": "#ffffff",
+        "image_position": "right",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "heading": "Community Efforts in Tree Planting",
+        "description": "Tree planting becomes more effective when it is a community effort. Schools, organizations, and neighborhoods.",
+        "btn_text": "Explore More",
+        "btn_link": ""
+      }
+    },
+    "health_benefits_list_HDTckt": {
+      "type": "health-benefits-list",
+      "blocks": {
+        "benefit_yQhRDD": {
+          "type": "benefit",
+          "settings": {
+            "title": "Heart Diseases",
+            "content": "<p>Tea may protect against cardiovascular diseases and reduce risk of heart attack. Cardiologists at the University of Maryland Medical Centre have come to the conclusion that antioxidants contained in tea may help reduce a potentially harmful constriction of blood vessels after a high–fat meal. However it is suggested that in order to keep the antioxidants working, one should skip the milk. The proteins of the milk bind with the antioxidants negating its effects.</p>"
+          }
+        },
+        "benefit_f3iexc": {
+          "type": "benefit",
+          "settings": {
+            "title": "Weight Loss",
+            "content": "<p>The weight loss properties of tea are attributed to the presence of caffeine, a natural stimulant and catechins called epigallocatechin gallate or EGCG in them which combat fat absorption and speed up the body's metabolism. The calorie burning properties of green tea have been very widely covered and talked about in the media. But the fact is that just as other health benefits of tea, even weight loss can be achieved from all teas rather than just green or white as they all come from the same tea plant Camellia sinensis. Of course, the level of antioxidants varies from one tea to another and since green and white teas have more of them compared to other teas, they are the ones that get featured most as teas that aid weight loss.</p>"
+          }
+        },
+        "benefit_Mtpitf": {
+          "type": "benefit",
+          "settings": {
+            "title": "Exercise Endurance",
+            "content": "<p>Glucose is our body's primary source of energy. While exercising, glycogen that is stored in the liver and the muscles is broken down to produce glucose to meet the demands of the body. Marathon runners and others who exercise a lot often experience what is known as 'glycogen debt' where the athletes' glycogen stores are depleted due to all the physical exercise, therefore little or no more glucose can be produced to provide instant energy and at this point, the athlete tires out and usually has to stop. Scientists found that catechins in tea, especially green and white tea and moderate caffeine levels in tea slows glycogen depletion by encouraging the body to use more fat as fuel, helping conserve stored glycogen energy for the long run (or ride, swim or jog).</p>"
+          }
+        },
+        "benefit_4ErRQj": {
+          "type": "benefit",
+          "settings": {
+            "title": "Free Radicals",
+            "content": "<p>Modern life is full of excesses of pollution, sun and stress. This leads in a rise of free radicals, a natural intermediate of the chemical processes in our body. Free radicals have been linked to diseases such as heart disease, stroke and cancer. And who should come to the rescue but our very own ...Tea. It is thought that regular consumption of food and drinks that are rich in free radical combating antioxidants can reduce the risks of the harm caused by free radicals. And tea is rich in a particular group of antioxidants known as Flavonoids (8 times the amount of super antioxidant power in 3 of your cuppas than in one apple. And tea we can have plenty!!!)</p>"
+          }
+        }
+      },
+      "block_order": [
+        "benefit_yQhRDD",
+        "benefit_f3iexc",
+        "benefit_Mtpitf",
+        "benefit_4ErRQj"
+      ],
+      "name": "Health Benefits List",
+      "settings": {
+        "intro": "",
+        "accent_color": "#00a4a6",
+        "bg_color": "#ffffff"
+      }
+    },
+    "sticky_stacking_steps_zEyTHJ": {
+      "type": "sticky-stacking-steps",
+      "blocks": {
+        "step_card_4pR3pM": {
+          "type": "step_card",
+          "settings": {
+            "card_bg": "#f7f5ef",
+            "card_text_color": "#111111",
+            "step_tag": "Step 1: Book Your Plan",
+            "title": "Upload/book blood test",
+            "bullet1": "Upload recent medical records (last 3 months)",
+            "bullet2": "Or schedule at home blood test appointment",
+            "bullet3": "NABL & CAP accredited partner lab",
+            "bullet4": "",
+            "btn_text": "Start Your Plan",
+            "btn_link": ""
+          }
+        },
+        "step_card_frdFNb": {
+          "type": "step_card",
+          "settings": {
+            "card_bg": "#f7f5ef",
+            "card_text_color": "#111111",
+            "step_tag": "Step 2: Tell Us About Your Health Goals",
+            "title": "Personal health assessment",
+            "bullet1": "Answer a 3-minute health assessment",
+            "bullet2": "Define your primary & secondary health goals",
+            "bullet3": "Share your health history and lifestyle habits",
+            "bullet4": "",
+            "btn_text": "Book Your Test",
+            "btn_link": ""
+          }
+        },
+        "step_card_xCnabD": {
+          "type": "step_card",
+          "settings": {
+            "card_bg": "#f7f5ef",
+            "card_text_color": "#111111",
+            "step_tag": "Step 3: Get Your Supplement Plan",
+            "title": "Health insights & supplement plan",
+            "bullet1": "Personalised health coaching",
+            "bullet2": "Curated by doctors, clinicians & nutritionists",
+            "bullet3": "Expert-led clinical analysis",
+            "bullet4": "Nutrition & lifestyle recommendations",
+            "btn_text": "Unlock Your Benefits",
+            "btn_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "step_card_4pR3pM",
+        "step_card_frdFNb",
+        "step_card_xCnabD"
+      ],
+      "name": "Sticky Stacking Steps",
+      "settings": {
+        "section_bg": "#ffffff",
+        "accent_color": "#e5a45b",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "sticky_top_offset": 100,
+        "sticky_spacing": 50,
+        "title_part1": "How Sage & Soul",
+        "title_part2_italic": "works",
+        "description": "We analyse your biomarkers and translate them into a personalised supplement plan built just for you."
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "sustainability_highlights_qdFfJ4",
+    "sustainability_community_tBRheJ",
+    "health_benefits_list_HDTckt",
+    "sticky_stacking_steps_zEyTHJ"
   ]
 }

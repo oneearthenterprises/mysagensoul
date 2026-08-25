@@ -49,7 +49,7 @@
           "settings": {
             "desktop_image": "shopify://shop_images/slim_tea_final_banner_deisgn.png",
             "mobile_image": "shopify://shop_images/slim_tea_mobile_banner_final_e8aaf6c0-bf5f-4ef6-aad4-b1d61231952d.png",
-            "banner_link": "shopify://products/slim-herbal-tea-weight-management-detox-infusion"
+            "banner_link": "shopify://products/daily-slim-active-herbal-wellness-infusion"
           }
         },
         "banner_AhXVgg": {
@@ -1052,7 +1052,7 @@
           "settings": {
             "video": "shopify://files/videos/download (6) (2).mp4",
             "title": "Best Picks",
-            "product_1": "slim-herbal-tea-weight-management-detox-infusion",
+            "product_1": "daily-slim-active-herbal-wellness-infusion",
             "product_2": "",
             "product_3": ""
           }
@@ -1062,7 +1062,7 @@
           "settings": {
             "video": "shopify://files/videos/Untitled design (1) (1) (1).mp4",
             "title": "Best Picks",
-            "product_1": "slim-herbal-tea-weight-management-detox-infusion",
+            "product_1": "daily-slim-active-herbal-wellness-infusion",
             "product_2": "",
             "product_3": ""
           }
@@ -1072,7 +1072,7 @@
           "settings": {
             "video": "shopify://files/videos/download (6) (2).mp4",
             "title": "Best Picks",
-            "product_1": "slim-herbal-tea-weight-management-detox-infusion",
+            "product_1": "daily-slim-active-herbal-wellness-infusion",
             "product_2": "",
             "product_3": ""
           }
@@ -1082,7 +1082,7 @@
           "settings": {
             "video": "shopify://files/videos/Happy Heart.mp4",
             "title": "Best Picks",
-            "product_1": "slim-herbal-tea-weight-management-detox-infusion",
+            "product_1": "daily-slim-active-herbal-wellness-infusion",
             "product_2": "",
             "product_3": ""
           }
@@ -1092,9 +1092,9 @@
           "settings": {
             "video": "shopify://files/videos/Untitled design (1) (1) (1).mp4",
             "title": "Best Picks",
-            "product_1": "slim-herbal-tea-weight-management-detox-infusion",
+            "product_1": "daily-slim-active-herbal-wellness-infusion",
             "product_2": "diabetes-support-herbal-tea-natural-blood-sugar-wellness-infusion",
-            "product_3": "body-cleanse-herbal-infusion-natural-detox-digestive-support"
+            "product_3": "happy-liver-body-cleanse-herbal-infusion"
           }
         }
       },
@@ -1125,11 +1125,11 @@
             "show_sample_reviews": false,
             "reviews_selection": "all",
             "products": [
-              "slim-herbal-tea-weight-management-detox-infusion",
+              "daily-slim-active-herbal-wellness-infusion",
               "chamomile-herbal-tea-relaxation-sleep-support-infusion",
               "diabetes-support-herbal-tea-natural-blood-sugar-wellness-infusion",
               "heart-health-herbal-tea-natural-cardiovascular-support",
-              "body-cleanse-herbal-infusion-natural-detox-digestive-support"
+              "happy-liver-body-cleanse-herbal-infusion"
             ],
             "filter_pinned": true,
             "filter_featured": false,
