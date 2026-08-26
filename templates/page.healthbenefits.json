@@ -1,4 +1,12 @@
-
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -57,11 +65,10 @@
         "image_position": "right",
         "padding_top": 60,
         "padding_bottom": 60,
-        "heading": "Community Efforts in Tree Planting",
-        "description": "Tree planting becomes more effective when it is a community effort. Schools, organizations, and neighborhoods.",
-        "btn_text": "Explore More",
-        "btn_link": "",
-        "image": "shopify://shop_images/vecteezy_assorted-herbal-tea-ingredients-in-glass-bowls_43533816-scaled.jpg"
+        "heading": "Herbal Wellness for Every Day",
+        "description": "Bring natural herbal wellness infusions into your daily routine with thoughtfully selected botanicals crafted for mindful everyday living.",
+        "btn_text": " Learn More",
+        "btn_link": ""
       }
     },
     "about_us_tabs_jBNCwT": {
@@ -70,29 +77,29 @@
         "item_ATkPwV": {
           "type": "item",
           "settings": {
-            "title": "Milk Is Our Signature Ingredient",
-            "text": "Our products are made with the goodness of Goat Milk, Rice Milk, Oat Milk, Almond Milk & Soy Milk."
+            "title": "Herbal Wellness Infusions",
+            "text": "Our herbal wellness infusions are thoughtfully crafted with natural botanicals for a simple and mindful daily wellness ritual."
           }
         },
         "item_jHBjyB": {
           "type": "item",
           "settings": {
-            "title": "Milk Is Our Signature Ingredient",
-            "text": "Our products are made with the goodness of Goat Milk, Rice Milk, Oat Milk, Almond Milk & Soy Milk."
+            "title": "Natural Botanicals",
+            "text": "From moringa and hibiscus to chamomile and butterfly pea, we carefully select natural ingredients for our herbal infusion blends."
           }
         },
         "item_3gyEaV": {
           "type": "item",
           "settings": {
-            "title": "Milk Is Our Signature Ingredient",
-            "text": "Our products are made with the goodness of Goat Milk, Rice Milk, Oat Milk, Almond Milk & Soy Milk."
+            "title": "Mindful Herbal Blends",
+            "text": "Our premium herbal infusion blends combine carefully selected botanicals with delicious flavours for an enjoyable everyday wellness experience"
           }
         },
         "item_TJEBHb": {
           "type": "item",
           "settings": {
-            "title": "Milk Is Our Signature Ingredient",
-            "text": "Our products are made with the goodness of Goat Milk, Rice Milk, Oat Milk, Almond Milk & Soy Milk."
+            "title": "Everyday Wellness",
+            "text": "Bring natural wellness into your routine with thoughtfully crafted herbal infusions designed to complement your daily lifestyle."
           }
         }
       },
@@ -104,7 +111,7 @@
       ],
       "name": "About Us Tabs",
       "settings": {
-        "heading": "Grounded In Nature, Growing With Science"
+        "heading": "Rooted In Nature, Crafted For Everyday Wellness"
       }
     },
     "health_benefits_list": {
@@ -113,29 +120,29 @@
         "benefit_heart": {
           "type": "benefit",
           "settings": {
-            "title": "Heart Diseases",
-            "content": "<p>Tea may protect against cardiovascular diseases and reduce risk of heart attack. Cardiologists at the University of Maryland Medical Centre have come to the conclusion that antioxidants contained in tea may help reduce a potentially harmful constriction of blood vessels after a high–fat meal. However it is suggested that in order to keep the antioxidants working, one should skip the milk. The proteins of the milk bind with the antioxidants negating its effects.</p>"
+            "title": "Heart Wellness",
+            "content": "<p>Thoughtfully crafted <strong>herbal wellness infusions</strong> with natural botanicals can be a mindful addition to a balanced lifestyle and everyday wellness routine.</p>"
           }
         },
         "benefit_weight": {
           "type": "benefit",
           "settings": {
-            "title": "Weight Loss",
-            "content": "<p>The weight loss properties of tea are attributed to the presence of caffeine, a natural stimulant and catechins called epigallocatechin gallate or EGCG in them which combat fat absorption and speed up the body’s metabolism. The calorie burning properties of green tea have been very widely covered and talked about in the media. But the fact is that just as other health benefits of tea, even weight loss can be achieved from all teas rather than just green or white as they all come from the same tea plant Camellia sinensis. Of course, the level of antioxidants varies from one tea to another and since green and white teas have more of them compared to other teas, they are the ones that get featured most as teas that aid weight loss.</p>"
+            "title": "Healthy Weight Support",
+            "content": "<p>Our carefully selected <strong>herbal infusion blends</strong> complement an active, balanced lifestyle and make natural wellness an enjoyable part of your daily routine.</p>"
           }
         },
         "benefit_exercise": {
           "type": "benefit",
           "settings": {
-            "title": "Exercise Endurance",
-            "content": "<p>Glucose is our body’s primary source of energy. While exercising, glycogen that is stored in the liver and the muscles is broken down to produce glucose to meet the demands of the body. Marathon runners and others who exercise a lot often experience what is known as ‘glycogen debt’ where the athletes’ glycogen stores are depleted due to all the physical exercise, therefore little or no more glucose can be produced to provide instant energy and at this point, the athlete tires out and usually has to stop. Scientists found that catechins in tea, especially green and white tea and moderate caffeine levels in tea slows glycogen depletion by encouraging the body to use more fat as fuel, helping conserve stored glycogen energy for the long run (or ride, swim or jog).</p>"
+            "title": "Energy & Vitality",
+            "content": "<p>Natural botanicals and thoughtfully crafted <strong>herbal infusions</strong> can add a refreshing moment to your daily routine while supporting a mindful approach to everyday wellness.</p>"
           }
         },
         "benefit_radicals": {
           "type": "benefit",
           "settings": {
-            "title": "Free Radicals",
-            "content": "<p>Modern life is full of excesses of pollution, sun and stress. This leads in a rise of free radicals, a natural intermediate of the chemical processes in our body. Free radicals have been linked to diseases such as heart disease, stroke and cancer. And who should come to the rescue but our very own ...Tea. It is thought that regular consumption of food and drinks that are rich in free radical combating antioxidants can reduce the risks of the harm caused by free radicals. And tea is rich in a particular group of antioxidants known as Flavonoids (8 times the amount of super antioxidant power in 3 of your cuppas than in one apple. And tea we can have plenty!!!)</p>"
+            "title": "Antioxidant-Rich Botanicals",
+            "content": "<p>Many natural botanicals contain antioxidant compounds, making our <strong>premium herbal infusion blends</strong> a delicious and mindful addition to your everyday wellness ritual.</p>"
           }
         }
       },
