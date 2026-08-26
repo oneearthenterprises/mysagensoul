@@ -21,12 +21,79 @@
   name="theme-color"
   content=""
 >
-
 {%- liquid
-  assign og_title = page_title | default: shop.name
+  assign clean_shop_name = shop.name | replace: '&amp;', '&'
+  # Determine page-specific SEO Title
+  assign custom_seo_title = ''
+  if request.page_type == 'index'
+    if page_title != blank and page_title != shop.name
+      assign custom_seo_title = page_title | replace: '&amp;', '&'
+      unless custom_seo_title contains clean_shop_name
+        assign custom_seo_title = custom_seo_title | append: ' | ' | append: clean_shop_name
+      endunless
+    else
+      assign custom_seo_title = clean_shop_name | append: ' | 100% Natural Herbal Teas & Wellness Blends'
+    endif
+  elsif request.page_type == 'collection'
+    if collection.handle == 'all' or collection.title == 'Products' or collection.title == 'All Products'
+      assign custom_seo_title = 'Shop All Herbal Teas & Wellness Blends – ' | append: clean_shop_name
+    elsif collection.title != blank
+      assign custom_seo_title = collection.title | replace: '&amp;', '&' | append: ' – Natural Herbal Teas | ' | append: clean_shop_name
+    else
+      assign custom_seo_title = page_title | replace: '&amp;', '&'
+    endif
+  elsif request.page_type == 'product'
+    if product.title != blank
+      assign custom_seo_title = product.title | replace: '&amp;', '&' | append: ' – 100% Natural Herbal Tea | ' | append: clean_shop_name
+    else
+      assign custom_seo_title = page_title | replace: '&amp;', '&'
+    endif
+  else
+    assign custom_seo_title = page_title | replace: '&amp;', '&'
+    unless custom_seo_title contains clean_shop_name
+      assign custom_seo_title = custom_seo_title | append: ' – ' | append: clean_shop_name
+    endunless
+  endif
+
+  if current_tags
+    assign tags_joined = current_tags | join: ', ' | replace: '&amp;', '&'
+    assign custom_seo_title = custom_seo_title | append: ' – tagged "' | append: tags_joined | append: '"'
+  endif
+  if current_page != 1
+    assign custom_seo_title = custom_seo_title | append: ' – Page ' | append: current_page
+  endif
+
+  assign custom_seo_title = custom_seo_title | replace: '&amp;', '&' | strip
+
+  # Determine page-specific SEO Description with fallback
+  assign fallback_description = 'Discover 100% natural, chemical-free herbal wellness teas, detox infusions, and whole flower blends by ' | append: clean_shop_name | append: '. Crafted for your holistic health and vitality.'
+  assign seo_desc = ''
+  if request.page_type == 'collection'
+    if collection.description != blank
+      assign seo_desc = collection.description | strip_html | strip
+    elsif collection.handle == 'all' or collection.title == 'Products' or collection.title == 'All Products'
+      assign seo_desc = 'Explore our full range of 100% natural, chemical-free herbal teas and wellness infusions by ' | append: clean_shop_name | append: '. Pure botanical ingredients for daily rejuvenation.'
+    elsif collection.title != blank
+      assign seo_desc = 'Shop pure and organic ' | append: collection.title | append: ' at ' | append: clean_shop_name | append: '. 100% natural, chemical-free herbal wellness blends crafted for holistic health.'
+    endif
+  elsif request.page_type == 'product'
+    if product.description != blank
+      assign seo_desc = product.description | strip_html | strip
+    elsif product.title != blank
+      assign seo_desc = 'Buy ' | append: product.title | append: ' from ' | append: clean_shop_name | append: '. 100% natural, chemical-free herbal wellness blend crafted for daily vitality and holistic health.'
+    endif
+  elsif request.page_type == 'article'
+    assign seo_desc = article.excerpt_or_content | default: article.content | strip_html | strip
+  elsif request.page_type == 'page'
+    assign seo_desc = page.content | strip_html | strip
+  endif
+
+  assign seo_description = page_description | default: seo_desc | default: shop.description | default: fallback_description | strip_html | replace: '&amp;', '&' | strip | truncate: 160
+
+  assign og_title = custom_seo_title | default: page_title | default: clean_shop_name
   assign og_url = canonical_url | default: request.origin
   assign og_type = 'website'
-  assign og_description = page_description | default: shop.description | default: shop.name
+  assign og_description = seo_description
 
   if request.page_type == 'product'
     assign og_type = 'product'
@@ -35,11 +102,11 @@
   elsif request.page_type == 'password'
     assign og_url = request.origin
   endif
-%}
+-%}
 
 <meta
   property="og:site_name"
-  content="{{ shop.name }}"
+  content="{{ clean_shop_name | escape }}"
 >
 <meta
   property="og:url"
@@ -107,21 +174,14 @@
   content="{{ og_description | escape }}"
 >
 
-<title>
-  {{ page_title }}
-  {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
-  {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
-  {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
-</title>
+<title>{{ custom_seo_title }}</title>
 
 <link
   rel="canonical"
   href="{{ canonical_url }}"
 >
 
-{% if page_description %}
-  <meta
-    name="description"
-    content="{{ page_description | escape }}"
-  >
-{% endif %}
+<meta
+  name="description"
+  content="{{ seo_description | escape }}"
+>
