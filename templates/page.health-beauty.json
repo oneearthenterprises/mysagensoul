@@ -124,10 +124,30 @@
             "custom_svg": ""
           }
         },
-        "card_GpTwKQ": {
+        "card_gQiP36": {
+          "type": "card",
+          "settings": {
+            "title": "Calm & Relaxation",
+            "card_bg": "#ffeacc",
+            "card_text_color": "#8c4f00",
+            "icon_type": "sun",
+            "custom_svg": ""
+          }
+        },
+        "card_PxqxmX": {
           "type": "card",
           "settings": {
             "title": "Natural Wellness",
+            "card_bg": "#064e6b",
+            "card_text_color": "#ffffff",
+            "icon_type": "wind",
+            "custom_svg": ""
+          }
+        },
+        "card_GpTwKQ": {
+          "type": "card",
+          "settings": {
+            "title": "Moringa",
             "card_bg": "#0d567c",
             "card_text_color": "#ffffff",
             "icon_type": "wind",
@@ -137,7 +157,7 @@
         "card_EGmiRf": {
           "type": "card",
           "settings": {
-            "title": "Forest management",
+            "title": "Hibiscus",
             "card_bg": "#d6f272",
             "card_text_color": "#1c3800",
             "icon_type": "tree",
@@ -147,7 +167,7 @@
         "card_Qpjnx6": {
           "type": "card",
           "settings": {
-            "title": "Agricultural methane capture",
+            "title": "Chamomile",
             "card_bg": "#5b3713",
             "card_text_color": "#fed89c",
             "icon_type": "wheat",
@@ -157,27 +177,47 @@
         "card_RA77Ua": {
           "type": "card",
           "settings": {
-            "title": "Biogas",
+            "title": "Butterfly Pea",
             "card_bg": "#bce6ff",
             "card_text_color": "#074872",
             "icon_type": "biogas",
             "custom_svg": ""
           }
         },
+        "card_PUtVUr": {
+          "type": "card",
+          "settings": {
+            "title": "Rose Botanicals",
+            "card_bg": "#064e6b",
+            "card_text_color": "#ffffff",
+            "icon_type": "wind",
+            "custom_svg": ""
+          }
+        },
         "card_8QABbP": {
           "type": "card",
           "settings": {
-            "title": "Oil recycling",
+            "title": "Daily Detox",
             "card_bg": "#2b264e",
             "card_text_color": "#d9ceff",
             "icon_type": "drop",
             "custom_svg": ""
           }
         },
+        "card_P4B6hA": {
+          "type": "card",
+          "settings": {
+            "title": "Heart Wellness",
+            "card_bg": "#ffeacc",
+            "card_text_color": "#8c4f00",
+            "icon_type": "sun",
+            "custom_svg": ""
+          }
+        },
         "card_kJpcdq": {
           "type": "card",
           "settings": {
-            "title": "Landfill gas methane capture",
+            "title": "Healthy Weight Support",
             "card_bg": "#095311",
             "card_text_color": "#d2ffd6",
             "icon_type": "trash",
@@ -187,7 +227,7 @@
         "card_YjgKQb": {
           "type": "card",
           "settings": {
-            "title": "Solar power",
+            "title": "Women's Wellness",
             "card_bg": "#ffe680",
             "card_text_color": "#5b4000",
             "icon_type": "sun",
@@ -197,11 +237,15 @@
       },
       "block_order": [
         "card_xGa4UM",
+        "card_gQiP36",
+        "card_PxqxmX",
         "card_GpTwKQ",
         "card_EGmiRf",
         "card_Qpjnx6",
         "card_RA77Ua",
+        "card_PUtVUr",
         "card_8QABbP",
+        "card_P4B6hA",
         "card_kJpcdq",
         "card_YjgKQb"
       ],
@@ -222,28 +266,92 @@
           "type": "text",
           "settings": {
             "icon": "|",
-            "text": "“Enhance your cup with a drizzle of raw honey or a squeeze of fresh lemon — both deepen the hibiscus bloom and add a gentle warmth that lingers long after the last sip.”"
+            "text": "Beauty Botanicals"
           }
         },
         "text_xAxnky": {
           "type": "text",
           "settings": {
             "icon": "|",
-            "text": "“Enhance your cup with a drizzle of raw honey or a squeeze of fresh lemon — both deepen the hibiscus bloom and add a gentle warmth that lingers long after the last sip.”"
+            "text": "Daily Wellness"
           }
         },
         "text_heDnfW": {
           "type": "text",
           "settings": {
             "icon": "|",
-            "text": "“Enhance your cup with a drizzle of raw honey or a squeeze of fresh lemon — both deepen the hibiscus bloom and add a gentle warmth that lingers long after the last sip.”"
+            "text": "Mindful Blends"
+          }
+        },
+        "text_qnJkLX": {
+          "type": "text",
+          "settings": {
+            "icon": "|",
+            "text": "Natural Ingredients"
+          }
+        },
+        "text_UKLGhW": {
+          "type": "text",
+          "settings": {
+            "icon": "|",
+            "text": "Healthy Rituals"
+          }
+        },
+        "text_cQnnTz": {
+          "type": "text",
+          "settings": {
+            "icon": "|",
+            "text": "Plant-Based Wellness"
+          }
+        },
+        "text_jBjXzX": {
+          "type": "text",
+          "settings": {
+            "icon": "|",
+            "text": "Botanical Beauty"
+          }
+        },
+        "text_H6chyq": {
+          "type": "text",
+          "settings": {
+            "icon": "|",
+            "text": "Gentle Wellness"
+          }
+        },
+        "text_agxpX6": {
+          "type": "text",
+          "settings": {
+            "icon": "|",
+            "text": "Pure Botanicals"
+          }
+        },
+        "text_4UqL68": {
+          "type": "text",
+          "settings": {
+            "icon": "|",
+            "text": "Wellness Rituals"
+          }
+        },
+        "text_XJxrdN": {
+          "type": "text",
+          "settings": {
+            "icon": "|",
+            "text": "Nature Inspired"
           }
         }
       },
       "block_order": [
         "text_ywiLHw",
         "text_xAxnky",
-        "text_heDnfW"
+        "text_heDnfW",
+        "text_qnJkLX",
+        "text_UKLGhW",
+        "text_cQnnTz",
+        "text_jBjXzX",
+        "text_H6chyq",
+        "text_agxpX6",
+        "text_4UqL68",
+        "text_XJxrdN"
       ],
       "name": "Marquee Note",
       "settings": {
@@ -258,7 +366,7 @@
       "name": "Product Steps",
       "settings": {
         "heading": "How To Use",
-        "content": "<p>Step 1: Wet your hair and apply shampoo gently.</p><p>Step 2: Rinse thoroughly and follow with conditioner.</p>"
+        "content": "<p><strong>Step 1:</strong> Choose your favourite herbal infusion and place one serving in your cup.<br/><strong>Step 2:</strong> Add hot water and allow the herbal infusion to steep according to the blend.<br/><strong>Step 3:</strong> Enjoy your freshly prepared herbal wellness infusion as part of your daily routine.<br/><br/><br/><br/></p>"
       }
     },
     "product_recommendations_e9By8r": {
