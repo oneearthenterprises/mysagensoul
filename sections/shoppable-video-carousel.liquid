@@ -14,7 +14,8 @@
           <div class="svc-card">
             <div class="svc-media-wrapper" data-video-modal-target="modal-{{ block.id }}-1">
               {% if block.settings.video != blank %}
-                {{ block.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, playsinline: true, class: 'svc-video' }}
+                {% comment %} {{ block.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, playsinline: true, class: 'svc-video' }} {% endcomment %}
+                 {{ block.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, playsinline: true, class: 'svc-video', aria_label: block.settings.title }}
               {% endif %}
 
               <!-- Speaker Button -->
@@ -102,9 +103,12 @@
                   <div class="svc-modal-body">
                     <div class="svc-modal-media">
                       {% if block.settings.video != blank %}
-                        {{ block.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, playsinline: true, class: 'svc-modal-video' }}
+                        {% comment %} {{ block.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, playsinline: true, class: 'svc-modal-video' }} {% endcomment %}
+                         {{ block.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, playsinline: true, class: 'svc-modal-video', aria_label: p.title }}
                       {% elsif p.featured_media.media_type == 'video' %}
-                        {{ p.featured_media | video_tag: autoplay: true, loop: true, muted: true, controls: false, playsinline: true, class: 'svc-modal-video' }}
+                        {% comment %} {{ p.featured_media | video_tag: autoplay: true, loop: true, muted: true, controls: false, playsinline: true, class: 'svc-modal-video' }} {% endcomment %}
+
+                        {{ p.featured_media | video_tag: autoplay: true, loop: true, muted: true, controls: false, playsinline: true, class: 'svc-modal-video', aria_label: p.title }}
                       {% else %}
                         {% if p.images.size > 1 %}
                           <div class="svc-modal-slider" data-svc-image-slider>
@@ -440,7 +444,8 @@
       <div class="svc-floating-widget" id="svc-float-{{ section.id }}" style="display: none;">
         <div class="svc-float-bubble" data-svc-float-trigger data-target-modal="{{ float_target_modal }}">
           <button type="button" class="svc-float-close" aria-label="Close widget">&times;</button>
-          {{ target_block.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, playsinline: true, class: 'svc-float-video' }}
+          {% comment %} {{ target_block.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, playsinline: true, class: 'svc-float-video' }} {% endcomment %}
+           {{ target_block.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, playsinline: true, class: 'svc-float-video', aria_label: target_block.settings.title }}
           {% if section.settings.floating_label != blank %}
             <div class="svc-float-label">{{ section.settings.floating_label }}</div>
           {% endif %}

@@ -93,20 +93,20 @@
         "padding_bottom": 40,
         "c1_bg": "#e6e9e4",
         "c1_text_color": "#111111",
-        "c1_title": "Cleaning up the planet",
-        "c1_desc": "Our team is actively working to clean up the planet from pollution in order to restore its natural beauty.",
+        "c1_title": "Herbal Wellness for Everyday Care",
+        "c1_desc": "Our thoughtfully crafted herbal wellness infusions bring together natural botanicals and carefully selected ingredients to complement your daily health and beauty routine.",
         "c1_btn_text": "Read More",
         "c1_btn_link": "",
         "c2_bg": "#4f7a55",
         "c2_text_color": "#ffffff",
-        "c2_title": "We plant trees",
-        "c2_desc": "Tree planting is an essential activity for maintaining the balance of nature.",
+        "c2_title": "Herbal Infusions for Skin & Hair",
+        "c2_desc": "Enjoy carefully selected herbal tea blends made with natural botanicals that fit beautifully into a mindful wellness and beauty routine.",
         "c2_btn_text": "Read More",
         "c2_btn_link": "",
         "c3_bg": "#070707",
         "c3_text_color": "#ffffff",
-        "c3_title": "Tree step for a big change",
-        "c3_desc": "Planting a tree may seem like a small act, but it has a profound impact on the environment.",
+        "c3_title": "Wellness Blends for Your Daily Routine",
+        "c3_desc": "From rose tea and hibiscus tea to other premium herbal infusion blends, make natural wellness a simple and enjoyable part of your everyday routine.",
         "c3_btn_text": "Read More",
         "c3_btn_link": ""
       }
@@ -117,7 +117,7 @@
         "card_xGa4UM": {
           "type": "card",
           "settings": {
-            "title": "Solar power",
+            "title": "Herbal Infusions",
             "card_bg": "#ffeacc",
             "card_text_color": "#8c4f00",
             "icon_type": "sun",
@@ -127,7 +127,7 @@
         "card_GpTwKQ": {
           "type": "card",
           "settings": {
-            "title": "Wind power",
+            "title": "Natural Wellness",
             "card_bg": "#0d567c",
             "card_text_color": "#ffffff",
             "icon_type": "wind",
