@@ -355,7 +355,7 @@
                                             {% if step_icon != blank or step_text != blank %}
                                               <li>
                                                 {% if step_icon != blank %}
-                                                  <img src="{{ step_icon | image_url: width: 60 }}" alt="">
+                                                  <img src="{{ step_icon | image_url: width: 60 }}" alt="{{ step_text }}" loading="lazy">
                                                 {% endif %}
                                                 <span>{{ step_text }}</span>
                                               </li>

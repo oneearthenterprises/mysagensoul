@@ -63,7 +63,7 @@
                   {% if icon != blank or text != blank %}
                     <li>
                       {% if icon != blank %}
-                        <img src="{{ icon | image_url: width: 60 }}" alt="">
+                        <img src="{{ icon | image_url: width: 60 }}" alt="{{ text }}" loading="lazy">
                       {% endif %}
                       <span>{{ text }}</span>
                     </li>
