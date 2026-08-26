@@ -226,7 +226,7 @@
               "name": "t:names.product_title",
               "settings": {
                 "width": "100%",
-                "font_weight": "400",
+                "font_weight": "600",
                 "max_width": "normal",
                 "alignment": "left",
                 "type_preset": "custom",
@@ -297,12 +297,13 @@
                   "type": "add-to-cart",
                   "static": true,
                   "settings": {
-                    "style_class": "button-secondary"
+                    "style_class": "button"
                   },
                   "blocks": {}
                 },
                 "accelerated-checkout": {
                   "type": "accelerated-checkout",
+                  "disabled": true,
                   "static": true,
                   "settings": {},
                   "blocks": {}
