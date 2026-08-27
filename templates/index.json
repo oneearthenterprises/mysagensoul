@@ -705,7 +705,7 @@
         "feature2_title": "Daily Wellness",
         "feature2_text": "Crafted to support a balanced lifestyle with every cup.",
         "button_text": "Shop The Collection",
-        "button_link": "https://www.mysagensoul.com/collections/shop-all"
+        "button_link": "shopify://collections/all"
       }
     },
     "custom_image_cards_dpnjat": {
