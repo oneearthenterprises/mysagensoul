@@ -428,8 +428,8 @@
       "name": "Custom Marquee",
       "settings": {
         "speed": 50,
-        "bg_color": "#7C91E6",
-        "text_color": "#FFFFFF"
+        "bg_color": "#7c91e6",
+        "text_color": "#ffffff"
       }
     },
     "shoppable_video_carousel_enMXYL": {
@@ -497,7 +497,9 @@
       "settings": {
         "heading": "Watch It. Love It",
         "bg_color": "#ffffff",
-        "blend_heading": "Soul of the Blend"
+        "blend_heading": "Soul of the Blend",
+        "enable_floating_widget": false,
+        "floating_label": "Shop Now"
       }
     },
     "about_us_tabs_UfMdNn": {
@@ -506,37 +508,37 @@
         "item_iLFCe3": {
           "type": "item",
           "settings": {
-            "title": "Milk Is Our Signature Ingredient",
-            "text": "Our products are made with the goodness of Goat Milk, Rice Milk, Oat Milk, Almond Milk & Soy Milk."
+            "title": "Curated Daily Wellness",
+            "text": "Experience the ultimate Daily Wellness with our curated combos. Pair an energizing Moringa superfood tea with our refreshing herbal wellness infusions for complete, day-to-night natural balance."
           }
         },
         "item_69w8UA": {
           "type": "item",
           "settings": {
-            "title": "Milk Is Our Signature Ingredient",
-            "text": "Our products are made with the goodness of Goat Milk, Rice Milk, Oat Milk, Almond Milk & Soy Milk."
+            "title": "Botanical Beauty Combos",
+            "text": "Glow from within by combining our top-rated tea for glowing skin with antioxidant-rich rose green tea and hibiscus flower tea. The perfect Beauty Botanicals pairing for your daily self-care routine."
+          }
+        },
+        "item_7wHgzB": {
+          "type": "item",
+          "settings": {
+            "title": "Active Lifestyle & Vitality",
+            "text": "Elevate your fitness routine with our dynamic tea pairings. Enjoy our premium herbal infusions designed for plant-based wellness, supporting your active lifestyle, inner vitality, and natural nourishment."
           }
         },
         "item_pmdwmz": {
           "type": "item",
           "settings": {
-            "title": "Milk Is Our Signature Ingredient",
-            "text": "Our products are made with the goodness of Goat Milk, Rice Milk, Oat Milk, Almond Milk & Soy Milk."
-          }
-        },
-        "item_Q6Y83j": {
-          "type": "item",
-          "settings": {
-            "title": "Milk Is Our Signature Ingredient",
-            "text": "Our products are made with the goodness of Goat Milk, Rice Milk, Oat Milk, Almond Milk & Soy Milk."
+            "title": "Mindful Women's Care",
+            "text": "Find your inner harmony. Our specially crafted women's wellness tea and calming chamomile tea bags deliver gentle comfort, daily balance, and relaxation in premium pyramid tea bags."
           }
         }
       },
       "block_order": [
         "item_iLFCe3",
         "item_69w8UA",
-        "item_pmdwmz",
-        "item_Q6Y83j"
+        "item_7wHgzB",
+        "item_pmdwmz"
       ],
       "name": "About Us Tabs",
       "settings": {
@@ -548,6 +550,7 @@
       "blocks": {
         "testimonial_jdtqN4": {
           "type": "testimonial",
+          "disabled": true,
           "settings": {
             "quote": "I was taking multiple supplements because of things I'd read online. The personalised plan helped me focus on what my body actually needed.",
             "author": "Kabir Bharara"
@@ -581,6 +584,7 @@
         "testimonial_qYLJFJ",
         "testimonial_mgaPGY"
       ],
+      "disabled": true,
       "name": "Testimonial Card Grid",
       "settings": {
         "bg_color": "#fbfcf9",

@@ -376,6 +376,7 @@
         "testimonial_B3iVaA",
         "testimonial_NiRtG4"
       ],
+      "disabled": true,
       "name": "Testimonial Card Grid",
       "settings": {
         "bg_color": "#fbfcf9",

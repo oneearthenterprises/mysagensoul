@@ -151,6 +151,7 @@
       "block_order": [
         "group_4FtiAg"
       ],
+      "disabled": true,
       "name": "Collection list",
       "settings": {
         "layout_type": "grid",

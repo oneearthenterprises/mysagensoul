@@ -33,7 +33,7 @@
           "settings": {
             "desktop_image": "shopify://shop_images/BUTTERFLY_PEA_FLOWER_WEBSITE_BANNER_DEISGN_1.png",
             "mobile_image": "shopify://shop_images/butterfly_pea_flower_mobile_banner_of_home_pages.png",
-            "banner_link": "shopify://products/butterfly-pea-flower-tea-antioxidant-rich-herbal-infusion"
+            "banner_link": "shopify://products/pure-focus-butterfly-pea-flower-herbal-infusion"
           }
         },
         "banner_yx6FFa": {
@@ -723,7 +723,7 @@
           "type": "card",
           "settings": {
             "image": "shopify://shop_images/thrree_berification_3_1.webp",
-            "card_link": "shopify://products/chamomile-herbal-tea-relaxation-sleep-support-infusion",
+            "card_link": "shopify://products/easy-sleep-chamomile-flower-infusion",
             "button_text": "Shop Now"
           }
         },
@@ -731,7 +731,7 @@
           "type": "card",
           "settings": {
             "image": "shopify://shop_images/three_berification_2_2.webp",
-            "card_link": "shopify://products/jasmine-herbal-tea-natural-relaxation-mood-support-infusion",
+            "card_link": "shopify://products/jasmine-uplift-flower-wellness-infusion",
             "button_text": "Shop Now"
           }
         }
@@ -1126,7 +1126,7 @@
             "reviews_selection": "all",
             "products": [
               "daily-slim-active-herbal-wellness-infusion",
-              "chamomile-herbal-tea-relaxation-sleep-support-infusion",
+              "easy-sleep-chamomile-flower-infusion",
               "diabetes-support-herbal-tea-natural-blood-sugar-wellness-infusion",
               "heart-health-herbal-tea-natural-cardiovascular-support",
               "happy-liver-body-cleanse-herbal-infusion"
