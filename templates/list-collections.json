@@ -15,63 +15,83 @@
         "collection_card_1": {
           "type": "collection_card",
           "settings": {
-            "title": "Chamomile Flower",
-            "subtitle": "Calming & Relaxing Herbal Tea",
-            "badge": "Popular",
-            "button_label": "Shop Now"
+            "collection": "moringa",
+            "custom_url": "",
+            "custom_image": "shopify://shop_images/moringa-superfood-herbal-wellness-infusion-30-premium-pyramid-tea-bags-1231679.webp",
+            "title": "",
+            "subtitle": "",
+            "badge": "",
+            "button_label": ""
           }
         },
-        "collection_card_2": {
+        "collection_card_7hgLXe": {
           "type": "collection_card",
           "settings": {
-            "title": "Hibiscus Flower",
-            "subtitle": "Rich in Antioxidants & Tangy",
-            "badge": "Best Seller",
-            "button_label": "Shop Now"
+            "collection": "chamomile-flower",
+            "custom_url": "",
+            "custom_image": "shopify://shop_images/easy-sleep-chamomile-flower-infusion-32-premium-pyramid-tea-bags-6932208.webp",
+            "title": "",
+            "subtitle": "",
+            "badge": "",
+            "button_label": ""
           }
         },
-        "collection_card_3": {
+        "collection_card_rh7nY6": {
           "type": "collection_card",
           "settings": {
-            "title": "Butterfly Pea Flower",
-            "subtitle": "Vibrant Naturally Blue Herbal Tea",
-            "badge": "Trending",
-            "button_label": "Shop Now"
+            "collection": "detox",
+            "custom_url": "",
+            "custom_image": "shopify://shop_images/happy-liver-body-detox-herbal-wellness-infusion-30-premium-pyramid-tea-bags-6781410.webp",
+            "title": "",
+            "subtitle": "",
+            "badge": "",
+            "button_label": ""
           }
         },
-        "collection_card_4": {
+        "collection_card_Tyj7N4": {
           "type": "collection_card",
           "settings": {
-            "title": "Rose Flower",
-            "subtitle": "Delicate, Aromatic & Soothing",
-            "button_label": "Shop Now"
+            "collection": "hibiscus-flower",
+            "custom_url": "",
+            "custom_image": "shopify://shop_images/hibiscus-glow-antioxidant-herbal-flower-infusion-32-premium-pyramid-tea-bags-5491672.webp",
+            "title": "",
+            "subtitle": "",
+            "badge": "",
+            "button_label": ""
           }
         },
-        "collection_card_5": {
+        "collection_card_8emgcW": {
           "type": "collection_card",
           "settings": {
-            "title": "Jasmine Flower",
-            "subtitle": "Sweet Floral Fragrance & Wellness",
-            "button_label": "Shop Now"
+            "collection": "butterfly-pea-flower",
+            "custom_url": "",
+            "custom_image": "shopify://shop_images/pure-focus-butterfly-pea-herbal-flower-infusion-32-premium-pyramid-tea-bags-5431673.png",
+            "title": "",
+            "subtitle": "",
+            "badge": "",
+            "button_label": ""
           }
         },
-        "collection_card_6": {
+        "collection_card_pp9wpK": {
           "type": "collection_card",
           "settings": {
-            "title": "Moringa",
-            "subtitle": "Nutrient Superfood Herbal Infusion",
-            "badge": "Organic",
-            "button_label": "Shop Now"
+            "collection": "weight",
+            "custom_url": "",
+            "custom_image": "shopify://shop_images/dailyslimactiveherbalwellnessinfusion30premiumpyramidteabags86749691_1.webp",
+            "title": "",
+            "subtitle": "",
+            "badge": "",
+            "button_label": ""
           }
         }
       },
       "block_order": [
         "collection_card_1",
-        "collection_card_2",
-        "collection_card_3",
-        "collection_card_4",
-        "collection_card_5",
-        "collection_card_6"
+        "collection_card_7hgLXe",
+        "collection_card_rh7nY6",
+        "collection_card_Tyj7N4",
+        "collection_card_8emgcW",
+        "collection_card_pp9wpK"
       ],
       "settings": {
         "heading": "Explore Our Collections",
@@ -289,4 +309,3 @@
     "collection_list_Wfgh3m"
   ]
 }
-
