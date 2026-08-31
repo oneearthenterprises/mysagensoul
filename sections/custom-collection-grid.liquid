@@ -1,0 +1,961 @@
+{% comment %}
+  Section: Custom Collection Grid
+  Allows merchants to display collections in a customizable grid with custom uploaded images, titles, badges, and layout options.
+{% endcomment %}
+
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    background-color: {{ section.settings.bg_color | default: 'transparent' }};
+  }
+
+  @media screen and (min-width: 768px) {
+    #shopify-section-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .ccg-wrapper-{{ section.id }} {
+    width: 100%;
+    max-width: {{ section.settings.max_width }}px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .ccg-header-{{ section.id }} {
+    text-align: {{ section.settings.header_alignment }};
+    margin-bottom: {{ section.settings.header_spacing }}px;
+  }
+
+  .ccg-title-{{ section.id }} {
+    font-size: clamp(22px, 3.5vw, {{ section.settings.title_font_size }}px);
+    font-weight: {{ section.settings.title_font_weight }};
+    color: {{ section.settings.title_color }};
+    margin: 0 0 10px 0;
+    line-height: 1.25;
+    text-transform: {{ section.settings.title_transform }};
+    letter-spacing: {{ section.settings.title_letter_spacing }}px;
+  }
+
+  .ccg-subtitle-{{ section.id }} {
+    font-size: clamp(14px, 2vw, {{ section.settings.subtitle_font_size }}px);
+    color: {{ section.settings.subtitle_color }};
+    margin: 0;
+    line-height: 1.6;
+    max-width: 700px;
+    {% if section.settings.header_alignment == 'center' %}
+      margin-left: auto;
+      margin-right: auto;
+    {% elsif section.settings.header_alignment == 'right' %}
+      margin-left: auto;
+    {% endif %}
+  }
+
+  /* Grid Layout */
+  .ccg-grid-{{ section.id }} {
+    display: grid;
+    grid-template-columns: repeat({{ section.settings.columns_mobile }}, 1fr);
+    gap: {{ section.settings.gap_mobile }}px;
+  }
+
+  @media screen and (min-width: 768px) {
+    .ccg-grid-{{ section.id }} {
+      grid-template-columns: repeat({{ section.settings.columns_desktop }}, 1fr);
+      gap: {{ section.settings.gap_desktop }}px;
+    }
+  }
+
+  {% if section.settings.enable_mobile_slider %}
+  @media screen and (max-width: 767px) {
+    .ccg-grid-{{ section.id }} {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      gap: {{ section.settings.gap_mobile }}px;
+      padding-bottom: 12px;
+      scrollbar-width: none;
+    }
+
+    .ccg-grid-{{ section.id }}::-webkit-scrollbar {
+      display: none;
+    }
+
+    .ccg-grid-{{ section.id }} .ccg-card-item {
+      flex: 0 0 calc(80% - {{ section.settings.gap_mobile }}px);
+      scroll-snap-align: start;
+    }
+  }
+  {% endif %}
+
+  /* Card Item */
+  .ccg-card-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+  }
+
+  .ccg-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    border-radius: {{ section.settings.card_border_radius }}px;
+    overflow: hidden;
+    background-color: {{ section.settings.card_bg_color | default: '#ffffff' }};
+    border: {{ section.settings.card_border_width }}px solid {{ section.settings.card_border_color | default: '#eae6df' }};
+    box-shadow: {% if section.settings.enable_shadow %}0 4px 16px rgba(0,0,0,0.06){% else %}none{% endif %};
+    transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .ccg-card-item:hover .ccg-card-link {
+    {% if section.settings.enable_hover_lift %}
+      transform: translateY(-6px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+    {% endif %}
+    {% if section.settings.card_hover_border_color != blank %}
+      border-color: {{ section.settings.card_hover_border_color }};
+    {% endif %}
+  }
+
+  /* Image Container */
+  .ccg-image-wrap {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background-color: #f7f6f4;
+    {% if section.settings.image_aspect_ratio == '1/1' %}
+      aspect-ratio: 1 / 1;
+    {% elsif section.settings.image_aspect_ratio == '4/5' %}
+      aspect-ratio: 4 / 5;
+    {% elsif section.settings.image_aspect_ratio == '16/9' %}
+      aspect-ratio: 16 / 9;
+    {% elsif section.settings.image_aspect_ratio == '3/2' %}
+      aspect-ratio: 3 / 2;
+    {% elsif section.settings.image_aspect_ratio == 'circle' %}
+      aspect-ratio: 1 / 1;
+      border-radius: 50%;
+      margin: 15px auto 0;
+      width: calc(100% - 30px);
+    {% else %}
+      min-height: 220px;
+    {% endif %}
+  }
+
+  .ccg-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .ccg-card-item:hover .ccg-image {
+    transform: scale(1.08);
+  }
+
+  /* Badge / Tag */
+  .ccg-badge {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    z-index: 2;
+    padding: 4px 12px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    border-radius: 20px;
+    background-color: {{ section.settings.badge_bg_color | default: '#1a1a1a' }};
+    color: {{ section.settings.badge_text_color | default: '#ffffff' }};
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  }
+
+  /* Content area for standard layout */
+  .ccg-content-standard {
+    padding: 16px 18px 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    text-align: {{ section.settings.card_text_alignment }};
+    background-color: inherit;
+  }
+
+  .ccg-card-title {
+    font-size: clamp(16px, 2.2vw, {{ section.settings.card_title_size }}px);
+    font-weight: {{ section.settings.card_title_weight }};
+    color: {{ section.settings.card_title_color }};
+    margin: 0 0 6px 0;
+    line-height: 1.35;
+    transition: color 0.3s ease;
+  }
+
+  .ccg-card-item:hover .ccg-card-title {
+    color: {{ section.settings.card_title_hover_color | default: '#000000' }};
+  }
+
+  .ccg-card-subtext {
+    font-size: 13px;
+    color: {{ section.settings.card_subtext_color | default: '#666666' }};
+    margin: 0 0 12px 0;
+    line-height: 1.5;
+  }
+
+  .ccg-product-count {
+    font-size: 12px;
+    color: {{ section.settings.card_subtext_color | default: '#888888' }};
+    font-weight: 500;
+    margin-top: 2px;
+  }
+
+  .ccg-card-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: {% if section.settings.card_text_alignment == 'center' %}center{% elsif section.settings.card_text_alignment == 'right' %}flex-end{% else %}flex-start{% endif %};
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: {{ section.settings.btn_color | default: '#1a1a1a' }};
+    margin-top: auto;
+    padding-top: 10px;
+    text-transform: {{ section.settings.btn_transform }};
+    letter-spacing: 0.5px;
+    transition: gap 0.3s ease, color 0.3s ease;
+  }
+
+  .ccg-card-btn svg {
+    width: 14px;
+    height: 14px;
+    transition: transform 0.3s ease;
+  }
+
+  .ccg-card-item:hover .ccg-card-btn {
+    color: {{ section.settings.btn_hover_color | default: '#00a4a6' }};
+    gap: 10px;
+  }
+
+  .ccg-card-item:hover .ccg-card-btn svg {
+    transform: translateX(3px);
+  }
+
+  /* Overlay Style */
+  .ccg-style-overlay .ccg-image-wrap {
+    height: 100%;
+    min-height: 280px;
+  }
+
+  .ccg-content-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 24px 20px;
+    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0) 100%);
+    text-align: {{ section.settings.card_text_alignment }};
+    transition: background 0.4s ease;
+  }
+
+  .ccg-card-item:hover .ccg-content-overlay {
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0.1) 100%);
+  }
+
+  .ccg-style-overlay .ccg-card-title {
+    color: #ffffff;
+  }
+
+  .ccg-style-overlay .ccg-card-subtext,
+  .ccg-style-overlay .ccg-product-count {
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  .ccg-style-overlay .ccg-card-btn {
+    color: #ffffff;
+  }
+
+  /* Empty state placeholder */
+  .ccg-empty-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f0eee9;
+    color: #999;
+  }
+
+  .ccg-empty-placeholder svg {
+    width: 50%;
+    height: 50%;
+    opacity: 0.6;
+  }
+{%- endstyle -%}
+
+<section class="custom-collection-grid-section" id="ccg-section-{{ section.id }}" data-section-id="{{ section.id }}">
+  <div class="ccg-wrapper-{{ section.id }}">
+
+    {%- if section.settings.heading != blank or section.settings.subheading != blank -%}
+      <div class="ccg-header-{{ section.id }}">
+        {%- if section.settings.heading != blank -%}
+          <h2 class="ccg-title-{{ section.id }}">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+        {%- if section.settings.subheading != blank -%}
+          <p class="ccg-subtitle-{{ section.id }}">{{ section.settings.subheading }}</p>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <div class="ccg-grid-{{ section.id }} ccg-style-{{ section.settings.card_style }}">
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign collection = block.settings.collection
+          assign custom_image = block.settings.custom_image
+          assign custom_title = block.settings.title
+          assign custom_subtitle = block.settings.subtitle
+          assign custom_badge = block.settings.badge
+          assign custom_url = block.settings.custom_url
+          assign button_label = block.settings.button_label
+
+          # Resolve Title
+          if custom_title != blank
+            assign card_title = custom_title
+          elsif collection != blank
+            assign card_title = collection.title
+          else
+            assign card_title = 'Collection ' | append: forloop.index
+          endif
+
+          # Resolve URL
+          if custom_url != blank
+            assign card_url = custom_url
+          elsif collection != blank
+            assign card_url = collection.url
+          else
+            assign card_url = '#'
+          endif
+
+          # Resolve Image: 1. Custom Image -> 2. Collection Featured Image -> 3. Collection First Product Image
+          assign card_image = null
+          if custom_image != blank
+            assign card_image = custom_image
+          elsif collection != blank and collection.featured_image != blank
+            assign card_image = collection.featured_image
+          elsif collection != blank and collection.image != blank
+            assign card_image = collection.image
+          elsif collection != blank and collection.products.first != blank and collection.products.first.featured_image != blank
+            assign card_image = collection.products.first.featured_image
+          endif
+        -%}
+
+        <div class="ccg-card-item" {{ block.shopify_attributes }}>
+          <a href="{{ card_url }}" class="ccg-card-link" aria-label="{{ card_title | escape }}">
+            
+            <!-- Image Area -->
+            <div class="ccg-image-wrap">
+              {%- if custom_badge != blank -%}
+                <span class="ccg-badge">{{ custom_badge }}</span>
+              {%- endif -%}
+
+              {%- if card_image != blank -%}
+                {{
+                  card_image
+                  | image_url: width: 800
+                  | image_tag:
+                    loading: 'lazy',
+                    class: 'ccg-image',
+                    alt: card_title,
+                    widths: '320, 480, 640, 800, 1000'
+                }}
+              {%- else -%}
+                <div class="ccg-empty-placeholder">
+                  {{ 'collection-' | append: forloop.index | placeholder_svg_tag: 'placeholder-svg' }}
+                </div>
+              {%- endif -%}
+
+              {%- if section.settings.card_style == 'overlay' -%}
+                <div class="ccg-content-overlay">
+                  <h3 class="ccg-card-title">{{ card_title }}</h3>
+                  
+                  {%- if custom_subtitle != blank -%}
+                    <div class="ccg-card-subtext">{{ custom_subtitle }}</div>
+                  {%- endif -%}
+
+                  {%- if section.settings.show_product_count and collection != blank -%}
+                    <div class="ccg-product-count">
+                      {{ collection.all_products_count }} {{ collection.all_products_count | pluralize: 'product', 'products' }}
+                    </div>
+                  {%- endif -%}
+
+                  {%- if section.settings.show_button -%}
+                    <div class="ccg-card-btn">
+                      <span>{{ button_label | default: section.settings.default_btn_text | default: 'Explore' }}</span>
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                      </svg>
+                    </div>
+                  {%- endif -%}
+                </div>
+              {%- endif -%}
+            </div>
+
+            <!-- Standard Content below Image -->
+            {%- if section.settings.card_style == 'standard' -%}
+              <div class="ccg-content-standard">
+                <h3 class="ccg-card-title">{{ card_title }}</h3>
+                
+                {%- if custom_subtitle != blank -%}
+                  <div class="ccg-card-subtext">{{ custom_subtitle }}</div>
+                {%- endif -%}
+
+                {%- if section.settings.show_product_count and collection != blank -%}
+                  <div class="ccg-product-count">
+                    {{ collection.all_products_count }} {{ collection.all_products_count | pluralize: 'product', 'products' }}
+                  </div>
+                {%- endif -%}
+
+                {%- if section.settings.show_button -%}
+                  <div class="ccg-card-btn">
+                    <span>{{ button_label | default: section.settings.default_btn_text | default: 'Explore' }}</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                  </div>
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+
+          </a>
+        </div>
+      {%- endfor -%}
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Custom Collection Grid",
+  "tag": "section",
+  "class": "section-custom-collection-grid",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Header"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Explore Our Collections"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Handcrafted herbal infusions and premium wellness teas designed to nourish your mind, body, and soul."
+    },
+    {
+      "type": "select",
+      "id": "header_alignment",
+      "label": "Header Alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "title_font_size",
+      "label": "Heading Font Size (Desktop)",
+      "min": 20,
+      "max": 48,
+      "step": 2,
+      "default": 32,
+      "unit": "px"
+    },
+    {
+      "type": "select",
+      "id": "title_font_weight",
+      "label": "Heading Weight",
+      "options": [
+        { "value": "400", "label": "Normal (400)" },
+        { "value": "600", "label": "Semi Bold (600)" },
+        { "value": "700", "label": "Bold (700)" },
+        { "value": "800", "label": "Extra Bold (800)" }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "select",
+      "id": "title_transform",
+      "label": "Heading Transform",
+      "options": [
+        { "value": "none", "label": "Normal" },
+        { "value": "uppercase", "label": "UPPERCASE" },
+        { "value": "capitalize", "label": "Capitalize" }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "range",
+      "id": "title_letter_spacing",
+      "label": "Heading Letter Spacing",
+      "min": 0,
+      "max": 4,
+      "step": 0.5,
+      "default": 0.5,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "subtitle_font_size",
+      "label": "Subheading Font Size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "default": 15,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "header_spacing",
+      "label": "Space Below Header",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "default": 35,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Grid Layout"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "label": "Columns on Desktop",
+      "min": 2,
+      "max": 6,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "label": "Columns on Mobile",
+      "options": [
+        { "value": "1", "label": "1 Column" },
+        { "value": "2", "label": "2 Columns" }
+      ],
+      "default": "2"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_mobile_slider",
+      "label": "Enable Horizontal Scroll on Mobile",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "gap_desktop",
+      "label": "Grid Gap (Desktop)",
+      "min": 10,
+      "max": 40,
+      "step": 2,
+      "default": 24,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "gap_mobile",
+      "label": "Grid Gap (Mobile)",
+      "min": 8,
+      "max": 24,
+      "step": 2,
+      "default": 14,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Card Style & Appearance"
+    },
+    {
+      "type": "select",
+      "id": "card_style",
+      "label": "Card Layout Style",
+      "options": [
+        { "value": "standard", "label": "Standard (Content Below Image)" },
+        { "value": "overlay", "label": "Overlay (Content Over Image)" }
+      ],
+      "default": "standard"
+    },
+    {
+      "type": "select",
+      "id": "image_aspect_ratio",
+      "label": "Image Ratio",
+      "options": [
+        { "value": "1/1", "label": "Square (1:1)" },
+        { "value": "4/5", "label": "Portrait (4:5)" },
+        { "value": "3/2", "label": "Classic (3:2)" },
+        { "value": "16/9", "label": "Landscape (16:9)" },
+        { "value": "circle", "label": "Round (Circle)" },
+        { "value": "auto", "label": "Natural (Auto)" }
+      ],
+      "default": "1/1"
+    },
+    {
+      "type": "select",
+      "id": "card_text_alignment",
+      "label": "Card Text Alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "label": "Card Corner Radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "default": 12,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "card_border_width",
+      "label": "Card Border Width",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "default": 1,
+      "unit": "px"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_shadow",
+      "label": "Enable Soft Drop Shadow",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_hover_lift",
+      "label": "Enable Hover Lift Effect",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_product_count",
+      "label": "Show Product Count",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_button",
+      "label": "Show Link / Explore Button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "default_btn_text",
+      "label": "Default Button Text",
+      "default": "Explore"
+    },
+    {
+      "type": "select",
+      "id": "btn_transform",
+      "label": "Button Text Transform",
+      "options": [
+        { "value": "none", "label": "Normal" },
+        { "value": "uppercase", "label": "UPPERCASE" },
+        { "value": "capitalize", "label": "Capitalize" }
+      ],
+      "default": "uppercase"
+    },
+    {
+      "type": "range",
+      "id": "card_title_size",
+      "label": "Card Title Font Size",
+      "min": 14,
+      "max": 26,
+      "step": 1,
+      "default": 18,
+      "unit": "px"
+    },
+    {
+      "type": "select",
+      "id": "card_title_weight",
+      "label": "Card Title Weight",
+      "options": [
+        { "value": "500", "label": "Medium (500)" },
+        { "value": "600", "label": "Semi Bold (600)" },
+        { "value": "700", "label": "Bold (700)" }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "header",
+      "content": "Color Settings"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Section Background",
+      "default": "#fdfbf9"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Section Heading Color",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "Section Subheading Color",
+      "default": "#555555"
+    },
+    {
+      "type": "color",
+      "id": "card_bg_color",
+      "label": "Card Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "card_border_color",
+      "label": "Card Border Color",
+      "default": "#ece8e1"
+    },
+    {
+      "type": "color",
+      "id": "card_hover_border_color",
+      "label": "Card Hover Border Color",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "card_title_color",
+      "label": "Card Title Color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "color",
+      "id": "card_title_hover_color",
+      "label": "Card Title Hover Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "card_subtext_color",
+      "label": "Card Subtitle / Count Color",
+      "default": "#777777"
+    },
+    {
+      "type": "color",
+      "id": "btn_color",
+      "label": "Button / Link Color",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "btn_hover_color",
+      "label": "Button / Link Hover Color",
+      "default": "#00a4a6"
+    },
+    {
+      "type": "color",
+      "id": "badge_bg_color",
+      "label": "Badge Background Color",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "badge_text_color",
+      "label": "Badge Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Section Dimensions & Spacing"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Max Container Width",
+      "min": 1000,
+      "max": 1600,
+      "step": 40,
+      "default": 1360,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding Top (Desktop)",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 56,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding Bottom (Desktop)",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 56,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Padding Top (Mobile)",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "default": 32,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Padding Bottom (Mobile)",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "default": 32,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection_card",
+      "name": "Collection Card",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Collection Link"
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Select Collection"
+        },
+        {
+          "type": "url",
+          "id": "custom_url",
+          "label": "Custom URL (Optional)",
+          "info": "Overrides the collection link if provided"
+        },
+        {
+          "type": "header",
+          "content": "Custom Image & Details"
+        },
+        {
+          "type": "image_picker",
+          "id": "custom_image",
+          "label": "Upload Custom Image",
+          "info": "Upload your own custom image. If empty, falls back to the collection's featured image."
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Custom Card Title (Optional)",
+          "info": "Leave blank to automatically use the collection's title"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subtitle / Short Description (Optional)"
+        },
+        {
+          "type": "text",
+          "id": "badge",
+          "label": "Badge / Tag (Optional)",
+          "info": "e.g. 'Popular', 'Best Seller', 'New'"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button Label (Optional)",
+          "info": "e.g. 'Shop Now'"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Collection Grid",
+      "blocks": [
+        {
+          "type": "collection_card",
+          "settings": {
+            "title": "Chamomile Flower",
+            "subtitle": "Calming & Relaxing",
+            "badge": "Popular"
+          }
+        },
+        {
+          "type": "collection_card",
+          "settings": {
+            "title": "Hibiscus Flower",
+            "subtitle": "Tart & Refreshing",
+            "badge": "Best Seller"
+          }
+        },
+        {
+          "type": "collection_card",
+          "settings": {
+            "title": "Butterfly Pea Flower",
+            "subtitle": "Vibrant Herbal Infusions",
+            "badge": "Trending"
+          }
+        },
+        {
+          "type": "collection_card",
+          "settings": {
+            "title": "Rose Flower",
+            "subtitle": "Delicate & Aromatic"
+          }
+        },
+        {
+          "type": "collection_card",
+          "settings": {
+            "title": "Jasmine Flower",
+            "subtitle": "Soothing & Fragrant"
+          }
+        },
+        {
+          "type": "collection_card",
+          "settings": {
+            "title": "Moringa",
+            "subtitle": "Nutrient-Dense Superfood",
+            "badge": "Organic"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

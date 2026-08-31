@@ -9,6 +9,118 @@
  */
 {
   "sections": {
+    "custom_collection_grid": {
+      "type": "custom-collection-grid",
+      "blocks": {
+        "collection_card_1": {
+          "type": "collection_card",
+          "settings": {
+            "title": "Chamomile Flower",
+            "subtitle": "Calming & Relaxing Herbal Tea",
+            "badge": "Popular",
+            "button_label": "Shop Now"
+          }
+        },
+        "collection_card_2": {
+          "type": "collection_card",
+          "settings": {
+            "title": "Hibiscus Flower",
+            "subtitle": "Rich in Antioxidants & Tangy",
+            "badge": "Best Seller",
+            "button_label": "Shop Now"
+          }
+        },
+        "collection_card_3": {
+          "type": "collection_card",
+          "settings": {
+            "title": "Butterfly Pea Flower",
+            "subtitle": "Vibrant Naturally Blue Herbal Tea",
+            "badge": "Trending",
+            "button_label": "Shop Now"
+          }
+        },
+        "collection_card_4": {
+          "type": "collection_card",
+          "settings": {
+            "title": "Rose Flower",
+            "subtitle": "Delicate, Aromatic & Soothing",
+            "button_label": "Shop Now"
+          }
+        },
+        "collection_card_5": {
+          "type": "collection_card",
+          "settings": {
+            "title": "Jasmine Flower",
+            "subtitle": "Sweet Floral Fragrance & Wellness",
+            "button_label": "Shop Now"
+          }
+        },
+        "collection_card_6": {
+          "type": "collection_card",
+          "settings": {
+            "title": "Moringa",
+            "subtitle": "Nutrient Superfood Herbal Infusion",
+            "badge": "Organic",
+            "button_label": "Shop Now"
+          }
+        }
+      },
+      "block_order": [
+        "collection_card_1",
+        "collection_card_2",
+        "collection_card_3",
+        "collection_card_4",
+        "collection_card_5",
+        "collection_card_6"
+      ],
+      "settings": {
+        "heading": "Explore Our Collections",
+        "subheading": "Handcrafted herbal infusions and premium wellness teas designed to nourish your mind, body, and soul.",
+        "header_alignment": "center",
+        "title_font_size": 32,
+        "title_font_weight": "700",
+        "title_transform": "none",
+        "title_letter_spacing": 0.5,
+        "subtitle_font_size": 15,
+        "header_spacing": 35,
+        "columns_desktop": 3,
+        "columns_mobile": "2",
+        "enable_mobile_slider": false,
+        "gap_desktop": 24,
+        "gap_mobile": 14,
+        "card_style": "standard",
+        "image_aspect_ratio": "1/1",
+        "card_text_alignment": "center",
+        "card_border_radius": 12,
+        "card_border_width": 1,
+        "enable_shadow": true,
+        "enable_hover_lift": true,
+        "show_product_count": false,
+        "show_button": true,
+        "default_btn_text": "Explore",
+        "btn_transform": "uppercase",
+        "card_title_size": 18,
+        "card_title_weight": "600",
+        "bg_color": "#fdfbf9",
+        "title_color": "#111111",
+        "subtitle_color": "#555555",
+        "card_bg_color": "#ffffff",
+        "card_border_color": "#ece8e1",
+        "card_hover_border_color": "#111111",
+        "card_title_color": "#1a1a1a",
+        "card_title_hover_color": "#000000",
+        "card_subtext_color": "#777777",
+        "btn_color": "#111111",
+        "btn_hover_color": "#00a4a6",
+        "badge_bg_color": "#111111",
+        "badge_text_color": "#ffffff",
+        "max_width": 1360,
+        "padding_top": 56,
+        "padding_bottom": 56,
+        "padding_top_mobile": 32,
+        "padding_bottom_mobile": 32
+      }
+    },
     "collection_list_Wfgh3m": {
       "type": "main-collection-list",
       "blocks": {
@@ -173,6 +285,8 @@
     }
   },
   "order": [
+    "custom_collection_grid",
     "collection_list_Wfgh3m"
   ]
 }
+
