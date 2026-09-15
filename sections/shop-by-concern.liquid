@@ -4,6 +4,11 @@
   <div class="page-width">
     {% if section.settings.title != blank %}
       <h2 class="shop-by-concern__title">{{ section.settings.title }}</h2>
+      <h3 class="shop-by-concern__description">
+        {% if section.settings.description != blank %}
+          {{ section.settings.description }}
+        {% endif %}
+      </h3>
     {% endif %}
 
     <div class="shop-by-concern__tabs">
@@ -57,6 +62,14 @@
   font-weight: 900;
   letter-spacing: 2px;
   text-transform: uppercase;
+  margin-bottom: 25px;
+}
+.shop-by-concern__description {
+  text-align: center;
+  font-size: clamp(12px, 4vw, 16px);
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: capitalize;
   margin-bottom: 25px;
 }
 
@@ -130,6 +143,12 @@
       "id": "title",
       "label": "Heading",
       "default": "Shop by concern"
+    },
+    {
+      "type": "text",
+      "id": "description",
+      "label": "Description",
+      "default": "Shop our products by your wellness need. All our products are made with natural ingredients and are free from harmful chemicals, pesticides, artificial additives, preservatives and gluten. They are safe to use and can be used by both men and women."
     },
     {
       "type": "range",
