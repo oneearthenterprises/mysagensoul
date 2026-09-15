@@ -4,11 +4,13 @@
   <div class="page-width">
     {% if section.settings.title != blank %}
       <h2 class="shop-by-concern__title">{{ section.settings.title }}</h2>
-      <h3 class="shop-by-concern__description">
+<h3 class="shop-by-concern__subtitle">{{ section.settings.subtitle }}</h3>
+
+      <p class="shop-by-concern__description">
         {% if section.settings.description != blank %}
           {{ section.settings.description }}
         {% endif %}
-      </h3>
+      </p>
     {% endif %}
 
     <div class="shop-by-concern__tabs">
@@ -56,6 +58,14 @@
 }
 }
 
+.shop-by-concern__subtitle{
+  text-align: center;
+  font-size: clamp(12px, 4vw, 16px);
+  font-weight: 900;
+  letter-spacing: 0px; 
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
 .shop-by-concern__title {
   text-align: center;
   font-size: clamp(20px, 4vw, 32px);
@@ -144,11 +154,19 @@
       "label": "Heading",
       "default": "Shop by concern"
     },
+    
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Find Your Blend by What You Actually Need"
+    },
+
     {
       "type": "text",
       "id": "description",
       "label": "Description",
-      "default": "Shop our products by your wellness need. All our products are made with natural ingredients and are free from harmful chemicals, pesticides, artificial additives, preservatives and gluten. They are safe to use and can be used by both men and women."
+      "default": "sure where to start? Pick the concern that matches your day — sleep, gut health, weight, immunity — and we'll point you to the blend built for it."
     },
     {
       "type": "range",
