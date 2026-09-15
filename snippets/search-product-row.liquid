@@ -1,0 +1,83 @@
+{%- doc -%}
+  Renders a single product row for the search modal matching the reference design.
+
+  @param {object} product - The product resource
+{%- enddoc -%}
+
+{%- liquid
+  assign tags_str = ''
+  for tag in product.tags
+    assign dtag = tag | downcase
+    if dtag contains 'sleep' or dtag contains 'relax'
+      assign tags_str = tags_str | append: 'Sleep,Relaxation,'
+    elsif dtag contains 'slim' or dtag contains 'weight' or dtag contains 'detox'
+      assign tags_str = tags_str | append: 'Metabolism,Detox,'
+    elsif dtag contains 'gluco' or dtag contains 'sugar' or dtag contains 'diabetes'
+      assign tags_str = tags_str | append: 'Blood Sugar,Herbal Infusion,'
+    elsif dtag contains 'combo'
+      assign tags_str = tags_str | append: 'Wellness Combo,Best Value,'
+    elsif dtag contains 'joint' or dtag contains 'bone'
+      assign tags_str = tags_str | append: 'Bone & Joint,Mobility,'
+    elsif dtag contains 'skin' or dtag contains 'hair' or dtag contains 'beauty'
+      assign tags_str = tags_str | append: 'Skin Health,Natural Glow,'
+    endif
+  endfor
+
+  if tags_str == ''
+    assign ptitle = product.title | downcase
+    if ptitle contains 'sleep' or ptitle contains 'chamomile'
+      assign tags_str = 'Sleep,Relaxation'
+    elsif ptitle contains 'slim' or ptitle contains 'active'
+      assign tags_str = 'Metabolism,Fat Burning'
+    elsif ptitle contains 'gluco' or ptitle contains 'balance'
+      assign tags_str = 'Blood Sugar,Herbal Infusion'
+    elsif ptitle contains 'combo'
+      assign tags_str = 'Wellness Combo,Best Value'
+    else
+      assign tags_str = '100% Herbal,Wellness'
+    endif
+  endif
+
+  assign tag_array = tags_str | split: ',' | uniq
+-%}
+
+<a href="{{ product.url }}" class="search-product-row" aria-label="{{ product.title | escape }}">
+  <div class="search-product-row__image-wrapper">
+    {% if product.featured_image != blank %}
+      {{ product.featured_image | image_url: width: 140 | image_tag: loading: 'lazy', class: 'search-product-row__image', widths: '70, 140', alt: product.title }}
+    {% else %}
+      <div class="search-product-row__placeholder">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+        </svg>
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="search-product-row__info">
+    <span class="search-product-row__title" title="{{ product.title | escape }}">
+      {{ product.title }}
+    </span>
+
+    <div class="search-product-row__tags">
+      {% for tag_item in tag_array limit: 2 %}
+        {% if tag_item != blank %}
+          <span class="search-product-tag">{{ tag_item }}</span>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <div class="search-product-row__price">
+      <span class="search-product-price-current">{{ product.price | money }}</span>
+      {% if product.compare_at_price > product.price %}
+        <span class="search-product-price-compare">{{ product.compare_at_price | money }}</span>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="search-product-row__arrow" aria-hidden="true">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </div>
+</a>

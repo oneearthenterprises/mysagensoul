@@ -1,5 +1,5 @@
 {% doc %}
-  Renders the predictive search empty state
+  Renders the predictive search empty state (Trending Keywords & Trending Products 2-column layout)
 
   @param {number} shadow_opacity - shadow opacity for the empty state container shadow
   @param {string} products_test_id - a playwright test id, used to differentiate empty state from 'real' search results
@@ -18,27 +18,68 @@
 >
   {% if load_empty_state %}
     <div class="predictive-search-results__inner">
-      {% liquid
-        assign collection = settings.empty_state_collection | default: collections.all
-        assign default_title = 'content.search_results_resource_products' | t
-        assign title = settings.empty_state_collection.title | default: default_title
-      %}
-      {% paginate collection.products by 4 %}
-        {% assign products = collection.products %}
-        {% comment %} Only show products section if there are products to display {% endcomment %}
-        {% if products.size > 0 %}
-          {% render 'predictive-search-products-list',
-            products_test_id: products_test_id,
-            title: title,
-            products: products,
-            limit: 4
-          %}
-        {% else %}
-          <div class="predictive-search-results__no-results">
-            <p>{{ 'content.no_products_found' | t }}</p>
+      <div class="search-two-column-layout">
+        <!-- Left Column: TRENDING KEYWORDS -->
+        <div class="search-keywords-column">
+          <div class="search-column-heading">
+            <span class="search-column-heading__icon">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path>
+              </svg>
+            </span>
+            <span>TRENDING KEYWORDS</span>
           </div>
-        {% endif %}
-      {% endpaginate %}
+
+          <div class="search-keywords-list">
+            {% assign keywords = "Improve sleep quality,Bone & joint health,Boost metabolism,Reduce body fat,Daily slim & active,Herbal wellness combos,Gluco balance & sugar health,Chamomile sleep tea" | split: "," %}
+            {% for kw in keywords %}
+              <button type="button" class="search-keyword-pill" data-search-keyword="{{ kw }}">
+                <span class="search-keyword-pill__icon">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                    <polyline points="17 6 23 6 23 12"></polyline>
+                  </svg>
+                </span>
+                <span class="search-keyword-pill__text">{{ kw }}</span>
+              </button>
+            {% endfor %}
+          </div>
+        </div>
+
+        <!-- Right Column: TRENDING PRODUCTS -->
+        <div class="search-products-column">
+          <div class="search-column-heading">
+            <span class="search-column-heading__icon">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <path d="M16 10a4 4 0 0 1-8 0"></path>
+              </svg>
+            </span>
+            <span>TRENDING PRODUCTS</span>
+          </div>
+
+          {% liquid
+            assign collection = settings.empty_state_collection | default: collections.all
+            assign title = 'content.search_results_resource_products' | t
+          %}
+          {% paginate collection.products by 5 %}
+            {% assign products = collection.products %}
+            {% if products.size > 0 %}
+              {% render 'predictive-search-products-list',
+                products_test_id: products_test_id,
+                title: title,
+                products: products,
+                limit: 4
+              %}
+            {% else %}
+              <div class="predictive-search-results__no-results">
+                <p>{{ 'content.no_products_found' | t }}</p>
+              </div>
+            {% endif %}
+          {% endpaginate %}
+        </div>
+      </div>
     </div>
   {% endif %}
 </div>

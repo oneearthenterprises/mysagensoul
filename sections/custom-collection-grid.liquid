@@ -110,14 +110,14 @@
     overflow: hidden;
     background-color: {{ section.settings.card_bg_color | default: '#ffffff' }};
     border: {{ section.settings.card_border_width }}px solid {{ section.settings.card_border_color | default: '#eae6df' }};
-    box-shadow: {% if section.settings.enable_shadow %}0 4px 16px rgba(0,0,0,0.06){% else %}none{% endif %};
+
     transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
   .ccg-card-item:hover .ccg-card-link {
     {% if section.settings.enable_hover_lift %}
       transform: translateY(-6px);
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+    
     {% endif %}
     {% if section.settings.card_hover_border_color != blank %}
       border-color: {{ section.settings.card_hover_border_color }};

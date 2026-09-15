@@ -56,12 +56,33 @@ class PredictiveSearchComponent extends Component {
       this.addEventListener('click', this.#handleModalClick, { signal });
     }
 
+    this.addEventListener('click', this.#handleKeywordPillClick, { signal });
+
     if (RecentlyViewed.getProducts().length > 0) {
       requestIdleCallback(() => {
         this.#loadEmptyState();
       });
     }
   }
+
+  /**
+   * Handles clicks on trending keyword pills
+   * @param {MouseEvent} event - The mouse event
+   */
+  #handleKeywordPillClick = (event) => {
+    const target = /** @type {HTMLElement} */ (event.target);
+    const pill = target.closest('.search-keyword-pill');
+    if (pill instanceof HTMLElement && pill.dataset.searchKeyword) {
+      event.preventDefault();
+      const keyword = pill.dataset.searchKeyword.trim();
+      if (this.refs.searchInput) {
+        this.refs.searchInput.value = keyword;
+        this.#showResetButton();
+        this.refs.searchInput.dispatchEvent(new InputEvent('input', { bubbles: true, inputType: 'insertText' }));
+        this.refs.searchInput.focus();
+      }
+    }
+  };
 
   /**
    * Handles clicks within the predictive search modal to maintain focus on the input
