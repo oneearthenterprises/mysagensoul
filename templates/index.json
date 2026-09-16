@@ -818,6 +818,20 @@
         "button_link": "shopify://collections/all"
       }
     },
+    "ingredient_trust_section_sage01": {
+      "type": "ingredient-trust-section",
+      "name": "Ingredient Trust Section",
+      "settings": {
+        "heading": "Every Infusion Starts With a Real Ingredient List",
+        "subtext": "We\u2019re not big on mystery blends. Every pouch we make lists exactly what\u2019s inside \u2014 no vague \u201cherbal complex\u201d language standing in for actual botanicals. It\u2019s a small thing, but it\u2019s the one rule we haven\u2019t broken since day one.",
+        "card1_title": "Premium, Traceable Botanicals",
+        "card1_text": "Flowers, roots, and herbs sourced with a clear origin \u2014 not filler dust dressed up in a nice pouch.",
+        "card2_title": "Built Around Daily Habits",
+        "card2_text": "Made for the cup you\u2019ll actually finish, not the one that sits half-drunk on your desk by 4 PM.",
+        "button_text": "Shop the Full Collection \u2192",
+        "button_link": "shopify:\/\/collections\/all"
+      }
+    },
     "custom_image_cards_dpnjat": {
       "type": "custom-image-cards",
       "blocks": {
@@ -1670,6 +1684,7 @@
     "collection_list_nmnhVB",
     "1780301960be49e1d7",
     "wellness_tea_section_NrGM7i",
+    "ingredient_trust_section_sage01",
     "custom_image_cards_dpnjat",
     "product_list_iVzKdt",
     "shoppable_video_carousel_cjpKQK",
