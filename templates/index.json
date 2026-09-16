@@ -199,8 +199,8 @@
       ],
       "name": "Shop by concern",
       "settings": {
-        "title": "Shop by concern",
-        "subtitle": "Find Your Blend by What You Actually Need",
+        "title": "Find Your Blend by What You Actually Need",
+        "subtitle": "",
         "description": "sure where to start? Pick the concern that matches your day — sleep, gut health, weight, immunity — and we'll point you to the blend built for it.",
         "padding_top": 36,
         "padding_bottom": 36
@@ -273,7 +273,7 @@
               "type": "_product-list-text",
               "name": "t:names.collection_title",
               "settings": {
-                "text": "<h2><strong>Explore Our Herbal Infusions</strong></h2>",
+                "text": "<h2><strong>Our Most-Loved Blends</strong></h2>",
                 "width": "100%",
                 "max_width": "none",
                 "alignment": "center",
@@ -310,32 +310,6 @@
               },
               "blocks": {}
             },
-            "text_gwYUyK": {
-              "type": "text",
-              "name": "t:names.heading",
-              "settings": {
-                "text": "<h3><strong>Our Most-Loved Blends</strong></h3>",
-                "width": "100%",
-                "max_width": "none",
-                "alignment": "center",
-                "type_preset": "h3",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "color": "var(--color-foreground-heading)",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
             "text_NUkTjP": {
               "type": "text",
               "name": "t:names.text",
@@ -344,7 +318,7 @@
                 "width": "100%",
                 "max_width": "none",
                 "alignment": "center",
-                "type_preset": "rte",
+                "type_preset": "custom",
                 "font": "var(--font-body--family)",
                 "font_size": "1rem",
                 "line_height": "normal",
@@ -366,7 +340,6 @@
           "block_order": [
             "product_list_text_YFtzcL",
             "product_list_button_MWeP9V",
-            "text_gwYUyK",
             "text_NUkTjP"
           ]
         },
@@ -594,7 +567,7 @@
               "type": "text",
               "name": "t:names.text",
               "settings": {
-                "text": "<h3><strong>Shop by collection</strong></h3>",
+                "text": "<h3><strong>Shop by Botanical</strong></h3>",
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "center",
@@ -606,32 +579,6 @@
                 "case": "none",
                 "wrap": "pretty",
                 "color": "var(--color-foreground-heading)",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "text_LBPi8X": {
-              "type": "text",
-              "name": "t:names.heading",
-              "settings": {
-                "text": "<h3><strong>Shop by Botanical</strong></h3>",
-                "width": "100%",
-                "max_width": "none",
-                "alignment": "center",
-                "type_preset": "custom",
-                "font": "var(--font-body--family)",
-                "font_size": "1.5rem",
-                "line_height": "loose",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "color": "var(--color-foreground)",
                 "background": false,
                 "background_color": "#00000026",
                 "corner_radius": 0,
@@ -671,7 +618,6 @@
           },
           "block_order": [
             "text_FEKwqK",
-            "text_LBPi8X",
             "text_3MgwiK"
           ]
         },
@@ -823,13 +769,13 @@
       "name": "Ingredient Trust Section",
       "settings": {
         "heading": "Every Infusion Starts With a Real Ingredient List",
-        "subtext": "We\u2019re not big on mystery blends. Every pouch we make lists exactly what\u2019s inside \u2014 no vague \u201cherbal complex\u201d language standing in for actual botanicals. It\u2019s a small thing, but it\u2019s the one rule we haven\u2019t broken since day one.",
+        "subtext": "We’re not big on mystery blends. Every pouch we make lists exactly what’s inside — no vague “herbal complex” language standing in for actual botanicals. It’s a small thing, but it’s the one rule we haven’t broken since day one.",
         "card1_title": "Premium, Traceable Botanicals",
-        "card1_text": "Flowers, roots, and herbs sourced with a clear origin \u2014 not filler dust dressed up in a nice pouch.",
+        "card1_text": "Flowers, roots, and herbs sourced with a clear origin — not filler dust dressed up in a nice pouch.",
         "card2_title": "Built Around Daily Habits",
-        "card2_text": "Made for the cup you\u2019ll actually finish, not the one that sits half-drunk on your desk by 4 PM.",
-        "button_text": "Shop the Full Collection \u2192",
-        "button_link": "shopify:\/\/collections\/all"
+        "card2_text": "Made for the cup you’ll actually finish, not the one that sits half-drunk on your desk by 4 PM.",
+        "button_text": "Shop the Full Collection →",
+        "button_link": "shopify://collections/all"
       }
     },
     "custom_image_cards_dpnjat": {
@@ -867,7 +813,7 @@
       ],
       "name": "Custom Image Cards",
       "settings": {
-        "heading": "Curated Herbal Wellness Collections"
+        "heading": "Curated for How You Actually Drink Your Infusion"
       }
     },
     "product_list_iVzKdt": {
@@ -904,7 +850,7 @@
           "name": "t:names.header",
           "static": true,
           "settings": {
-            "content_direction": "row",
+            "content_direction": "column",
             "vertical_on_mobile": false,
             "horizontal_alignment": "space-between",
             "vertical_alignment": "flex-end",
@@ -937,7 +883,7 @@
               "type": "_product-list-text",
               "name": "t:names.collection_title",
               "settings": {
-                "text": "<h2><strong>You May Also Like</strong></h2>",
+                "text": "<h2><strong>Complete Your Wellness Ritual</strong></h2>",
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "center",
@@ -949,6 +895,32 @@
                 "case": "none",
                 "wrap": "pretty",
                 "color": "var(--color-foreground-heading)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_zhFK6r": {
+              "type": "text",
+              "name": "t:names.text",
+              "settings": {
+                "text": "<p>Pair your go-to blend with something new — these are the infusions customers most often add to a repeat order.</p>",
+                "width": "100%",
+                "max_width": "none",
+                "alignment": "center",
+                "type_preset": "custom",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
                 "background": false,
                 "background_color": "#00000026",
                 "corner_radius": 0,
@@ -977,6 +949,7 @@
           },
           "block_order": [
             "product_list_text_pHtE3G",
+            "text_zhFK6r",
             "product_list_button_kagMyD"
           ]
         },
@@ -1384,7 +1357,7 @@
       ],
       "name": "Benefits Tea",
       "settings": {
-        "heading": "Nature's Wellness in Every Sip",
+        "heading": "What You Can Expect From Every Sage & Soul Blend",
         "subtext": "Discover premium herbal wellness\n infusions crafted with natural botanicals to nourish your body, calm your mind, and support a healthier lifestyle—naturally.",
         "center_img": "shopify://shop_images/Frame_7.webp"
       }
