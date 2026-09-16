@@ -63,16 +63,14 @@
         "banner_7VVE4h": {
           "type": "banner",
           "settings": {
-            "desktop_image": "shopify://shop_images/videoframe_26487_dda3b166-f596-4604-b47d-1d4329b26389.png",
-            "mobile_image": "shopify://shop_images/videoframe_26487.png",
+            "desktop_image": "shopify://shop_images/Health_Beauty_1_1.webp",
             "banner_link": ""
           }
         },
         "banner_rmpPn6": {
           "type": "banner",
           "settings": {
-            "desktop_image": "shopify://shop_images/videoframe_26487_dda3b166-f596-4604-b47d-1d4329b26389.png",
-            "mobile_image": "shopify://shop_images/videoframe_26487.png",
+            "desktop_image": "shopify://shop_images/Health_Beauty2_1.webp",
             "banner_link": ""
           }
         }
@@ -121,6 +119,7 @@
             "card_bg": "#ffeacc",
             "card_text_color": "#8c4f00",
             "icon_type": "sun",
+            "custom_image": "shopify://shop_images/herbal_infusion.png",
             "custom_svg": ""
           }
         },
@@ -131,6 +130,7 @@
             "card_bg": "#ffeacc",
             "card_text_color": "#8c4f00",
             "icon_type": "sun",
+            "custom_image": "shopify://shop_images/calm_relaxxation.png",
             "custom_svg": ""
           }
         },
@@ -141,6 +141,7 @@
             "card_bg": "#064e6b",
             "card_text_color": "#ffffff",
             "icon_type": "wind",
+            "custom_image": "shopify://shop_images/natural_wellness.png",
             "custom_svg": ""
           }
         },
@@ -151,6 +152,7 @@
             "card_bg": "#0d567c",
             "card_text_color": "#ffffff",
             "icon_type": "wind",
+            "custom_image": "shopify://shop_images/moringa.png",
             "custom_svg": ""
           }
         },
@@ -161,6 +163,7 @@
             "card_bg": "#d6f272",
             "card_text_color": "#1c3800",
             "icon_type": "tree",
+            "custom_image": "shopify://shop_images/hibiscus.png",
             "custom_svg": ""
           }
         },
@@ -171,6 +174,7 @@
             "card_bg": "#5b3713",
             "card_text_color": "#fed89c",
             "icon_type": "wheat",
+            "custom_image": "shopify://shop_images/chamomile_aa46e504-7b06-4fc9-ac63-c03a04e1a28c.png",
             "custom_svg": ""
           }
         },
@@ -181,6 +185,7 @@
             "card_bg": "#bce6ff",
             "card_text_color": "#074872",
             "icon_type": "biogas",
+            "custom_image": "shopify://shop_images/butterfly_pea.png",
             "custom_svg": ""
           }
         },
@@ -191,6 +196,7 @@
             "card_bg": "#064e6b",
             "card_text_color": "#ffffff",
             "icon_type": "wind",
+            "custom_image": "shopify://shop_images/rose_botanical.png",
             "custom_svg": ""
           }
         },
@@ -201,6 +207,7 @@
             "card_bg": "#2b264e",
             "card_text_color": "#d9ceff",
             "icon_type": "drop",
+            "custom_image": "shopify://shop_images/daily_detox.png",
             "custom_svg": ""
           }
         },
@@ -211,6 +218,7 @@
             "card_bg": "#ffeacc",
             "card_text_color": "#8c4f00",
             "icon_type": "sun",
+            "custom_image": "shopify://shop_images/heart_wellness_2.png",
             "custom_svg": ""
           }
         },
@@ -221,6 +229,7 @@
             "card_bg": "#095311",
             "card_text_color": "#d2ffd6",
             "icon_type": "trash",
+            "custom_image": "shopify://shop_images/healthy_weight_support.png",
             "custom_svg": ""
           }
         },
@@ -231,6 +240,7 @@
             "card_bg": "#ffe680",
             "card_text_color": "#5b4000",
             "icon_type": "sun",
+            "custom_image": "shopify://shop_images/women_wellness.png",
             "custom_svg": ""
           }
         }
@@ -365,6 +375,7 @@
       "type": "image-text-page",
       "name": "Product Steps",
       "settings": {
+        "image": "shopify://shop_images/health_benefits_1.webp",
         "heading": "How To Use",
         "content": "<p><strong>Step 1:</strong> Choose your favourite herbal infusion and place one serving in your cup.<br/><strong>Step 2:</strong> Add hot water and allow the herbal infusion to steep according to the blend.<br/><strong>Step 3:</strong> Enjoy your freshly prepared herbal wellness infusion as part of your daily routine.<br/><br/><br/><br/></p>"
       }

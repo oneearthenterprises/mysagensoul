@@ -63,13 +63,14 @@
       "settings": {
         "padding_top": 36,
         "padding_bottom": 36,
-        "bg_image": "shopify://shop_images/videoframe_26487_dda3b166-f596-4604-b47d-1d4329b26389.png",
+        "bg_image": "shopify://shop_images/For_the_Earth_Soul_1_1.webp",
         "accent_text": "# THE FUTURE OF NATURAL WELLNESS",
         "heading": "Premium Herbal Infusions, Rooted in Nature",
         "btn1_text": "Shop Herbal Infusions",
         "btn1_link": "https://www.mysagensoul.com/collections/all",
         "btn2_text": "Our Promise",
         "btn2_link": "",
+        "float_image": "shopify://shop_images/For_the_Earth_Soul_2_1.webp",
         "float_title": "From Nature, With Care",
         "float_link": "",
         "stat1_num": "100%",
@@ -94,7 +95,8 @@
         "heading": "Growing Wellness, Growing Together",
         "description": "We believe herbal wellness goes beyond your daily cup. From responsible sourcing to mindful production, we are committed to creating premium herbal infusion blends while caring for people and the planet.",
         "btn_text": "Learn More",
-        "btn_link": ""
+        "btn_link": "",
+        "image": "shopify://shop_images/For_the_Earth_Soul_3_1.webp"
       }
     },
     "health_benefits_list_HDTckt": {
@@ -157,7 +159,8 @@
             "bullet3": "Find your favourite blends and make them part of your wellness ritual",
             "bullet4": "",
             "btn_text": "Shop Herbal Infusions",
-            "btn_link": ""
+            "btn_link": "",
+            "image": "shopify://shop_images/For_the_Earth_Soul5_1.webp"
           }
         },
         "step_card_frdFNb": {
@@ -172,7 +175,8 @@
             "bullet3": "Turn your daily cup into a mindful wellness moment",
             "bullet4": "",
             "btn_text": " Brewing Guide",
-            "btn_link": ""
+            "btn_link": "",
+            "image": "shopify://shop_images/For_the_Earth_Soul_4_1.webp"
           }
         },
         "step_card_xCnabD": {
@@ -187,7 +191,8 @@
             "bullet3": "Continue your journey with Sage & Soul and find new wellness blends",
             "bullet4": "",
             "btn_text": " Shop Herbal Blends",
-            "btn_link": ""
+            "btn_link": "",
+            "image": "shopify://shop_images/For_the_Earth_Soul6_1_1.webp"
           }
         }
       },
