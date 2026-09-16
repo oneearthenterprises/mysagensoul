@@ -64,6 +64,7 @@
           "type": "banner",
           "settings": {
             "desktop_image": "shopify://shop_images/Health_Beauty_1_1.webp",
+            "mobile_image": "shopify://shop_images/image_3.webp",
             "banner_link": ""
           }
         },
@@ -71,6 +72,7 @@
           "type": "banner",
           "settings": {
             "desktop_image": "shopify://shop_images/Health_Beauty2_1.webp",
+            "mobile_image": "shopify://shop_images/image_2.webp",
             "banner_link": ""
           }
         }

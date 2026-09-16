@@ -813,7 +813,8 @@
       ],
       "name": "Custom Image Cards",
       "settings": {
-        "heading": "Curated for How You Actually Drink Your Infusion"
+        "heading": "Curated for How You Actually Drink Your Infusion",
+        "paragraph": "Morning Starters Bright, energising blends to open your day without a caffeine crash later.\nEvening Wind-Downs Calming infusions built for the hour before bed.\nEveryday Staples The blends people keep restocking, month after month."
       }
     },
     "product_list_iVzKdt": {
@@ -1207,6 +1208,7 @@
       "name": "Shoppable Video Carousel",
       "settings": {
         "heading": "Real Moments. Real Sips. Real Love.",
+        "paragraph": "No scripted testimonials here — just customers brewing their evening cup, in their own kitchens, in their own words.",
         "bg_color": "#ffffff",
         "blend_heading": "Soul of the Blend",
         "enable_floating_widget": true,
@@ -1367,6 +1369,7 @@
       "name": "Blog Slider",
       "settings": {
         "heading": "Discover Stories That Inspire Your Journey",
+        "paragraph": "Step into our world where we share knowledge, inspiration, and the latest updates from our journey.",
         "blog": "sage-herbal-tea",
         "post_limit": 6,
         "bg_color": "#ffffff"
