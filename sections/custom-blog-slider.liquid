@@ -5,8 +5,15 @@
 <section class="custom-blog-slider-section">
   <div class="page-width">
 
-    {% if section.settings.heading != blank %}
-      <h2 class="cbs-heading">{{ section.settings.heading }}</h2>
+    {% if section.settings.heading != blank or section.settings.paragraph != blank %}
+      <div class="cbs-heading-wrap">
+        {% if section.settings.heading != blank %}
+          <h2 class="cbs-heading">{{ section.settings.heading }}</h2>
+        {% endif %}
+        {% if section.settings.paragraph != blank %}
+          <p class="cbs-subtext">{{ section.settings.paragraph }}</p>
+        {% endif %}
+      </div>
     {% endif %}
 
     <div class="cbs-wrap">
@@ -78,13 +85,27 @@
 }
 
 /* HEADING */
+.cbs-heading-wrap {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
 .cbs-heading {
   font-size: clamp(22px, 4vw, 38px);
   font-weight: 700;
   text-align: center;
-  margin-bottom: 40px;
+  margin: 0 0 14px;
   color: #111;
   line-height: 1.2;
+}
+
+.cbs-subtext {
+  font-size: clamp(14px, 1.6vw, 16px);
+  color: #666;
+  line-height: 1.7;
+  margin: 0 auto;
+  max-width: 640px;
+  text-align: center;
 }
 
 /* WRAP */
@@ -292,6 +313,12 @@
       "id": "heading",
       "label": "Heading",
       "default": "Latest from our Blog"
+    },
+    {
+      "type": "textarea",
+      "id": "paragraph",
+      "label": "Paragraph (below heading)",
+      "default": ""
     },
     {
       "type": "blog",
